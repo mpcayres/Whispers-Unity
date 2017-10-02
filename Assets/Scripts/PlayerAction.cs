@@ -25,6 +25,19 @@ public class PlayerAction : MonoBehaviour {
         print("PlayerAction");
         if (collision.gameObject.tag == "SceneObject")
         {
+            if ((collision.transform.position.y < transform.position.y) && 
+                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
+            {
+                print("Back->Lower");
+                collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsFront");
+            }
+            else if ((collision.transform.position.y >= transform.position.y) &&
+                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsFront"))
+            {
+                print("Front->Back");
+                collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
+            }
+
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 collision.gameObject.GetComponent<SceneObject>().ChangeSprite();

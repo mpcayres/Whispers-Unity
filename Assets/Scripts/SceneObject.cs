@@ -30,7 +30,15 @@ public class SceneObject : MonoBehaviour {
         {
             spriteRenderer.sprite = sprite1;
         }
-        boxCollider.size = spriteRenderer.bounds.size/2;
+        boxCollider.size = new Vector2(
+            spriteRenderer.bounds.size.x/transform.lossyScale.x, 
+            spriteRenderer.bounds.size.y/transform.lossyScale.y);
 
     }
+
+    public void ChangeSortingLayer(string newLayer)
+    {
+        spriteRenderer.sortingLayerName = newLayer;
+    }
+
 }
