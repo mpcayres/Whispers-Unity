@@ -7,6 +7,8 @@ TagManager:
   - Mom
   - Cat
   - Background
+  - SceneObject
+  - PlayerAction
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - BlockingLayer
+  - Player
   - 
   - 
   - 
