@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     public float movespeed;
     public Animator animator;
     Rigidbody2D rb;
-    public int direction = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
+    public int direction = 0, wantedDirection = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
     {
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour {
         animator.SetBool("isRunning", isRunning);
         if(playerState == Actions.MOVING_OBJECT)
         {
+            wantedDirection = direction;
             direction = oldDirection;
         }
         animator.SetInteger("direction", direction);

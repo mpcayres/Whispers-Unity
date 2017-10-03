@@ -7,9 +7,12 @@ public class MovingObject : MonoBehaviour {
     public bool colliding = false;
     Player script;
     SpriteRenderer spriteRenderer;
-    bool blockedMove = false;
     float distanceWantedX = 0.6f;
     float distanceWantedY = 0.6f;
+    enum EastWest { NONE, EAST, WEST };
+    enum NorthSouth { NONE, NORTH, SOUTH };
+    EastWest blockEW = EastWest.NONE;
+    NorthSouth blockNS = NorthSouth.NONE;
 
     void Start ()
     {
@@ -51,15 +54,20 @@ public class MovingObject : MonoBehaviour {
             var relativePoint = transform.InverseTransformPoint(player.transform.position);
             //para ver se esta na esquerda ou direta, em cima ou baixo
 
-            if ((script.direction == 0 && relativePoint.x < 0.0)
-                || (script.direction == 1 && relativePoint.x > 0.0))
-            {
+            if ((script.direction == 0 && relativePoint.x < 0.0 && blockEW != EastWest.EAST)
+                || (script.direction == 1 && relativePoint.x > 0.0 && blockEW != EastWest.WEST)
+                || (script.direction == 0 && relativePoint.x < 0.0 && script.wantedDirection == 1)
+                || (script.direction == 1 && relativePoint.x > 0.0 && script.wantedDirection == 0)
+                )
+        {
                 Vector3 diff = transform.position - player.transform.position;
                 diff.y = 0; // ignore Y
                 transform.position = player.transform.position + diff.normalized * distanceWantedX;
             }
-            else if ((script.direction == 2 && relativePoint.y < 0.0)
-                || (script.direction == 3 && relativePoint.y > 0.0))
+            else if ((script.direction == 2 && relativePoint.y < 0.0 && blockNS != NorthSouth.NORTH)
+                || (script.direction == 3 && relativePoint.y > 0.0 && blockNS != NorthSouth.SOUTH)
+                || (script.direction == 2 && relativePoint.y < 0.0 && script.wantedDirection == 3)
+                || (script.direction == 3 && relativePoint.y > 0.0 && script.wantedDirection == 2))
             {
                 Vector3 diff = transform.position - player.transform.position;
                 diff.x = 0; // ignore X
@@ -84,8 +92,26 @@ public class MovingObject : MonoBehaviour {
     {
         if(collision.gameObject.tag != "Player")
         {
-            print(collision.gameObject.tag);
-            blockedMove = true;
+            //print(collision.gameObject.tag);
+            if (script.direction == 0)
+            {
+                blockEW = EastWest.EAST;
+            }
+            else if (script.direction == 1)
+            {
+                blockEW = EastWest.WEST;
+            }
+            else if (script.direction == 2)
+            {
+                blockNS = NorthSouth.NORTH;
+            }
+            else if (script.direction == 3)
+            {
+                blockNS = NorthSouth.SOUTH;
+            }
+
+            print(blockEW);
+            print(blockNS);
         }
     }
 
@@ -93,8 +119,9 @@ public class MovingObject : MonoBehaviour {
     {
         if (collision.gameObject.tag != "Player")
         {
-            print(collision.gameObject.tag);
-            blockedMove = false;
+            //print(collision.gameObject.tag);
+            blockEW = EastWest.NONE;
+            blockNS = NorthSouth.NONE;
         }
     }
 
