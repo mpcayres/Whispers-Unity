@@ -25,6 +25,9 @@ public class PlayerAction : MonoBehaviour {
         print("PlayerAction");
         if (collision.gameObject.tag == "SceneObject")
         {
+
+            collision.gameObject.GetComponent<SceneObject>().colliding = true;
+
             if ((collision.transform.position.y < transform.position.y) && 
                 collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
             {
@@ -37,15 +40,14 @@ public class PlayerAction : MonoBehaviour {
                 print("Front->Back");
                 collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
             }
-
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                collision.gameObject.GetComponent<SceneObject>().ChangeSprite();
-            }
+            
         }
 
         if (collision.gameObject.tag == "MovingObject")
         {
+
+            collision.gameObject.GetComponent<MovingObject>().colliding = true;
+
             if ((collision.transform.position.y < transform.position.y) &&
                 collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
             {
@@ -59,18 +61,6 @@ public class PlayerAction : MonoBehaviour {
                 collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                collision.gameObject.GetComponent<MovingObject>().SetOffset();
-            }
-            else if (Input.GetKey(KeyCode.Z))
-            {
-                collision.gameObject.GetComponent<MovingObject>().Move();
-            }
-            if (Input.GetKeyUp(KeyCode.Z))
-            {
-                collision.gameObject.GetComponent<MovingObject>().EndMove();
-            }
         }
     }
 

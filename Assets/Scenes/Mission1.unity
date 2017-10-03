@@ -327,6 +327,16 @@ Prefab:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61534790596301832, guid: 491f121bc0fed7a49913a5318d5ed2b7,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.006158456
+      objectReference: {fileID: 0}
+    - target: {fileID: 61534790596301832, guid: 491f121bc0fed7a49913a5318d5ed2b7,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.4597592
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114471058424658390, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
@@ -405,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 647137942}
+  colliding: 0
 --- !u!1001 &1498202148
 Prefab:
   m_ObjectHideFlags: 0

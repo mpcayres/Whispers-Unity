@@ -3,7 +3,8 @@
 public class SceneObject : MonoBehaviour {
     public Sprite sprite1;
     public Sprite sprite2;
-    private SpriteRenderer spriteRenderer;
+    public bool colliding = false;
+    SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
 
     void Start ()
@@ -13,13 +14,16 @@ public class SceneObject : MonoBehaviour {
         if (spriteRenderer.sprite == null)
             spriteRenderer.sprite = sprite1;
     }
-	
-	void Update ()
+
+    void Update()
     {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Z) && colliding) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+        {
+            ChangeSprite();
+        }
+    }
     
-    public void ChangeSprite()
+    void ChangeSprite()
     {
         print("SceneObject");
         if (spriteRenderer.sprite == sprite1)

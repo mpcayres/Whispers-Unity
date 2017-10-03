@@ -4,7 +4,7 @@ public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT };
     public Actions playerState;
     public float movespeed;
-    Animator animator;
+    public Animator animator;
     Rigidbody2D rb;
     public int direction = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
@@ -56,8 +56,12 @@ public class Player : MonoBehaviour {
         }
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", isRunning);
+        if(playerState == Actions.MOVING_OBJECT)
+        {
+            direction = oldDirection;
+        }
         animator.SetInteger("direction", direction);
-        if (oldDirection != direction && playerState == Actions.DEFAULT)
+        if (oldDirection != direction)
         {
             animator.SetTrigger("changeDirection");
             oldDirection = direction;

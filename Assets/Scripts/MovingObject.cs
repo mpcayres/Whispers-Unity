@@ -4,66 +4,75 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour {
     public GameObject player;
-    private SpriteRenderer spriteRenderer;
-    Rigidbody2D rb, rbPlayer;
-    Vector2 offset;
+    public bool colliding = false;
     Player script;
+    SpriteRenderer spriteRenderer;
     bool blockedMove = false;
+    float distanceWantedX = 0.6f;
+    float distanceWantedY = 0.6f;
 
     void Start ()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        rbPlayer = player.GetComponent<Rigidbody2D>();
         script = player.GetComponent<Player>();
     }
 	
 	void Update ()
     {
-		
-	}
+        if (colliding)
+        {
+            if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            {
+                SetOffset();
+            }
+            else if (Input.GetKey(KeyCode.Z))
+            {
+                Move();
+            }
+            else if (Input.GetKeyUp(KeyCode.Z))
+            {
+                EndMove();
+            }
+        }
+    }
 
     public void SetOffset()
     {
-        print("OFFSET");
-        offset = new Vector2(Mathf.Abs(rbPlayer.position.x - rb.position.x), 
-            Mathf.Abs(rbPlayer.position.y - rb.position.y));
+        print("INITMOVE");
         script.playerState = Player.Actions.MOVING_OBJECT;
+        script.animator.SetTrigger("movingObject");
     }
 
     public void Move()
     {
         print("MOVE");
-        if (!blockedMove)
-        {
+        //if (!blockedMove)
+        //{
             var relativePoint = transform.InverseTransformPoint(player.transform.position);
+            //para ver se esta na esquerda ou direta, em cima ou baixo
 
-            if (script.direction == 0 && relativePoint.x < 0.0)
+            if ((script.direction == 0 && relativePoint.x < 0.0)
+                || (script.direction == 1 && relativePoint.x > 0.0))
             {
-                print("EAST");
-                rb.position = new Vector2(rbPlayer.position.x + offset.x, rb.position.y);
+                Vector3 diff = transform.position - player.transform.position;
+                diff.y = 0; // ignore Y
+                transform.position = player.transform.position + diff.normalized * distanceWantedX;
             }
-            else if (script.direction == 1 && relativePoint.x > 0.0)
+            else if ((script.direction == 2 && relativePoint.y < 0.0)
+                || (script.direction == 3 && relativePoint.y > 0.0))
             {
-                print("WEST");
-                rb.position = new Vector2(rbPlayer.position.x - offset.x, rb.position.y);
+                Vector3 diff = transform.position - player.transform.position;
+                diff.x = 0; // ignore X
+                transform.position = player.transform.position + diff.normalized * distanceWantedY;
             }
-            else if (script.direction == 2 && relativePoint.y < 0.0)
-            {
-                print("NORTH");
-                rb.position = new Vector2(rb.position.x, rbPlayer.position.y + offset.y);
-            }
-            else if (script.direction == 3 && relativePoint.y > 0.0)
-            {
-                print("SOUTH");
-                rb.position = new Vector2(rb.position.x, rbPlayer.position.y - offset.y);
-            }
-        }
+        //}
     }
 
     public void EndMove()
     {
+        print("ENDMOVE");
         script.playerState = Player.Actions.DEFAULT;
+        script.animator.SetTrigger("changeDirection");
     }
 
     public void ChangeSortingLayer(string newLayer)
