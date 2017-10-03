@@ -9,6 +9,7 @@ TagManager:
   - Background
   - SceneObject
   - PlayerAction
+  - MovingObject
   layers:
   - Default
   - TransparentFX

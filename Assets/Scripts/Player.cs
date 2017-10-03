@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public enum Actions { DEFAULT, MOVING_OBJECT };
+    public Actions playerState;
     public float movespeed;
     Animator animator;
     Rigidbody2D rb;
-    int oldDirection = 0;
+    public int direction = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
     {
@@ -14,7 +16,6 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
-        int direction = oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
         bool isWalking = false, isRunning = false;
         float move = movespeed;
 
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour {
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", isRunning);
         animator.SetInteger("direction", direction);
-        if (oldDirection != direction)
+        if (oldDirection != direction && playerState == Actions.DEFAULT)
         {
             animator.SetTrigger("changeDirection");
             oldDirection = direction;

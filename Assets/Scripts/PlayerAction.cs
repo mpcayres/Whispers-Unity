@@ -43,11 +43,43 @@ public class PlayerAction : MonoBehaviour {
                 collision.gameObject.GetComponent<SceneObject>().ChangeSprite();
             }
         }
+
+        if (collision.gameObject.tag == "MovingObject")
+        {
+            if ((collision.transform.position.y < transform.position.y) &&
+                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
+            {
+                print("Back->Lower");
+                collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsFront");
+            }
+            else if ((collision.transform.position.y >= transform.position.y) &&
+                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsFront"))
+            {
+                print("Front->Back");
+                collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                collision.gameObject.GetComponent<MovingObject>().SetOffset();
+            }
+            else if (Input.GetKey(KeyCode.Z))
+            {
+                collision.gameObject.GetComponent<MovingObject>().Move();
+            }
+            if (Input.GetKeyUp(KeyCode.Z))
+            {
+                collision.gameObject.GetComponent<MovingObject>().EndMove();
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "MovingObject")
+        {
+            collision.gameObject.GetComponent<MovingObject>().EndMove();
+        }
     }
     
 }
