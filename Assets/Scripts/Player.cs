@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
         if (isRunning)
         {
             if (!isWalking) isRunning = false;
-            else isWalking = false;
+            //else isWalking = false;
         }
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", isRunning);
