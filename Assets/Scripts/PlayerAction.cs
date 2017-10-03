@@ -67,9 +67,15 @@ public class PlayerAction : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "SceneObject")
+        {
+            collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
+        }
+
         if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().EndMove();
+            collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
         }
     }
     
