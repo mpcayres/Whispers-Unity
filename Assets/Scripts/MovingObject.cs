@@ -20,6 +20,7 @@ public class MovingObject : MonoBehaviour {
 	
 	void Update ()
     {
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         if (colliding)
         {
             if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
@@ -77,11 +78,6 @@ public class MovingObject : MonoBehaviour {
         print("ENDMOVE");
         script.playerState = Player.Actions.DEFAULT;
         script.animator.SetTrigger("changeDirection");
-    }
-
-    public void ChangeSortingLayer(string newLayer)
-    {
-        spriteRenderer.sortingLayerName = newLayer;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

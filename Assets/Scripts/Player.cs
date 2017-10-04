@@ -6,18 +6,23 @@ public class Player : MonoBehaviour {
     public float movespeed;
     public Animator animator;
     Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
     public int direction = 0, wantedDirection = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
 	void Update ()
     {
         bool isWalking = false, isRunning = false;
         float move = movespeed;
+
+        //Ordem do layer determinada pelo eixo y
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {

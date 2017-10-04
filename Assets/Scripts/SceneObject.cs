@@ -17,6 +17,7 @@ public class SceneObject : MonoBehaviour {
 
     void Update()
     {
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         if (Input.GetKeyDown(KeyCode.Z) && colliding) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {
             ChangeSprite();
@@ -38,11 +39,6 @@ public class SceneObject : MonoBehaviour {
             spriteRenderer.bounds.size.x/transform.lossyScale.x, 
             spriteRenderer.bounds.size.y/transform.lossyScale.y);
 
-    }
-
-    public void ChangeSortingLayer(string newLayer)
-    {
-        spriteRenderer.sortingLayerName = newLayer;
     }
 
 }

@@ -26,42 +26,12 @@ public class PlayerAction : MonoBehaviour {
         print("PlayerAction");
         if (collision.gameObject.tag == "SceneObject")
         {
-
             collision.gameObject.GetComponent<SceneObject>().colliding = true;
-
-            if ((collision.transform.position.y < transform.position.y) && 
-                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
-            {
-                print("Back->Lower");
-                collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsFront");
-            }
-            else if ((collision.transform.position.y >= transform.position.y) &&
-                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsFront"))
-            {
-                print("Front->Back");
-                collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
-            }
-            
         }
 
         if (collision.gameObject.tag == "MovingObject")
         {
-
             collision.gameObject.GetComponent<MovingObject>().colliding = true;
-
-            if ((collision.transform.position.y < transform.position.y) &&
-                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsBack"))
-            {
-                print("Back->Lower");
-                collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsFront");
-            }
-            else if ((collision.transform.position.y >= transform.position.y) &&
-                collision.gameObject.GetComponent<SpriteRenderer>().sortingLayerName.Equals("ObjectsFront"))
-            {
-                print("Front->Back");
-                collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
-            }
-
         }
     }
 
@@ -69,14 +39,12 @@ public class PlayerAction : MonoBehaviour {
     {
         if (collision.gameObject.tag == "SceneObject")
         {
-            collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
             collision.gameObject.GetComponent<SceneObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().EndMove();
-            collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
             collision.gameObject.GetComponent<MovingObject>().colliding = false;
         }
     }
