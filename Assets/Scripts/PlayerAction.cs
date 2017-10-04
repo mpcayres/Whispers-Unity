@@ -70,12 +70,14 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "SceneObject")
         {
             collision.gameObject.GetComponent<SceneObject>().ChangeSortingLayer("ObjectsBack");
+            collision.gameObject.GetComponent<SceneObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().EndMove();
             collision.gameObject.GetComponent<MovingObject>().ChangeSortingLayer("ObjectsBack");
+            collision.gameObject.GetComponent<MovingObject>().colliding = false;
         }
     }
     
