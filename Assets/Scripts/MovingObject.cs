@@ -60,6 +60,7 @@ public class MovingObject : MonoBehaviour {
         {
             Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
             diff.y = 0; // ignore Y
+            diff.z = 0;
             rb.position = player.transform.position + diff.normalized * distanceWantedX;
         }
         else if ((script.direction == 2 && relativePoint.y < 0.0)
@@ -69,6 +70,7 @@ public class MovingObject : MonoBehaviour {
         {
             Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
             diff.x = 0; // ignore X
+            diff.z = 0;
             rb.position = player.transform.position + diff.normalized * distanceWantedY;
         }
     }
