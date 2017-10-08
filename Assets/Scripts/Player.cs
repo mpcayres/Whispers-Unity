@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT };
@@ -73,5 +74,21 @@ public class Player : MonoBehaviour {
             oldDirection = direction;
         }
     }
+
+	private void OnTriggerEnter2D (Collider2D other)
+	{
+
+		switch (other.tag) {
+
+		case "DoorToAlley":
+			SceneManager.LoadScene (1);
+			break;
+		default:
+			SceneManager.LoadScene (0);
+			break;
+
+		}
+
+	}
 
 }

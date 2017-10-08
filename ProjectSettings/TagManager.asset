@@ -11,6 +11,7 @@ TagManager:
   - PlayerAction
   - MovingObject
   - DoorObject
+  - DoorToAlley
   layers:
   - Default
   - TransparentFX
