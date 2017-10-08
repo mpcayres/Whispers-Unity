@@ -79,10 +79,30 @@ public class Player : MonoBehaviour {
 	{
 
 		switch (other.tag) {
-
+		case "DoorToLivingRoom":
+			SceneManager.LoadScene (0);
+			break;
 		case "DoorToAlley":
 			SceneManager.LoadScene (1);
 			break;
+
+		case "DoorToGarden":
+			SceneManager.LoadScene (2);
+			break;
+
+		case "DoorToKitchen":
+			SceneManager.LoadScene (3);
+			break;
+
+
+		case "DoorToMomRoom":
+			SceneManager.LoadScene (4);
+			break;
+
+		case "DoorToKidRoom":
+			SceneManager.LoadScene (5);
+			break;
+		
 		default:
 			SceneManager.LoadScene (0);
 			break;
