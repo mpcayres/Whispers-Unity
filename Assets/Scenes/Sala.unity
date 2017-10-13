@@ -157,20 +157,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -236,20 +222,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -328,20 +300,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -479,11 +437,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4019946032507764, guid: 2df224d072d6e7c4f871134aadb92158, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.2307916
+      value: 2.14
       objectReference: {fileID: 0}
     - target: {fileID: 4019946032507764, guid: 2df224d072d6e7c4f871134aadb92158, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.1510546
+      value: -2.99
       objectReference: {fileID: 0}
     - target: {fileID: 4019946032507764, guid: 2df224d072d6e7c4f871134aadb92158, type: 2}
       propertyPath: m_LocalPosition.z
@@ -516,7 +474,7 @@ Prefab:
     - target: {fileID: 61009898415742742, guid: 2df224d072d6e7c4f871134aadb92158,
         type: 2}
       propertyPath: m_Offset.y
-      value: -1.101397
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61009898415742742, guid: 2df224d072d6e7c4f871134aadb92158,
         type: 2}
@@ -526,7 +484,7 @@ Prefab:
     - target: {fileID: 61009898415742742, guid: 2df224d072d6e7c4f871134aadb92158,
         type: 2}
       propertyPath: m_Offset.x
-      value: 1.4839547
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61009898415742742, guid: 2df224d072d6e7c4f871134aadb92158,
         type: 2}
@@ -803,6 +761,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61885752508834704, guid: 70584b7c5f719c8488f775e83cbc2c09,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 61885752508834704, guid: 70584b7c5f719c8488f775e83cbc2c09,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.93
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70584b7c5f719c8488f775e83cbc2c09, type: 2}
   m_IsPrefabParent: 0
@@ -1013,6 +981,38 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 647137942}
+    - target: {fileID: 61273943242142470, guid: 3961822139a91d443aae3b31b1d5e9de,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61273943242142470, guid: 3961822139a91d443aae3b31b1d5e9de,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242907513319832, guid: 3961822139a91d443aae3b31b1d5e9de, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242907513319832, guid: 3961822139a91d443aae3b31b1d5e9de, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 61273943242142470, guid: 3961822139a91d443aae3b31b1d5e9de,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61273943242142470, guid: 3961822139a91d443aae3b31b1d5e9de,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242907513319832, guid: 3961822139a91d443aae3b31b1d5e9de, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3961822139a91d443aae3b31b1d5e9de, type: 2}
   m_IsPrefabParent: 0
@@ -1064,20 +1064,6 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

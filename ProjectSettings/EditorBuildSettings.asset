@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/QuartoM\xE3e.unity"
     guid: de8c5a787f6626a45a23f1c7cc32251f
+  - enabled: 1
+    path: Assets/Scenes/QuartoKid.unity
+    guid: e44dfa2df3506e64e902e135f1b6d370

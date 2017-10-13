@@ -8,8 +8,8 @@ public class MovingObject : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Player script;
-    float distanceWantedX = 0.6f;
-    float distanceWantedY = 0.6f;
+    float distanceWantedX = 0.4f;
+    float distanceWantedY = 0.45f;
 
     void Start ()
     {
@@ -25,7 +25,7 @@ public class MovingObject : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
-                SetOffset();
+                InitMove();
             }
             else if (Input.GetKey(KeyCode.Z))
             {
@@ -38,7 +38,7 @@ public class MovingObject : MonoBehaviour {
         }
     }
 
-    public void SetOffset()
+    public void InitMove()
     {
         print("INITMOVE");
         script.playerState = Player.Actions.MOVING_OBJECT;

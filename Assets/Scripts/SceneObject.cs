@@ -38,7 +38,6 @@ public class SceneObject : MonoBehaviour {
         boxCollider.size = new Vector2(
             spriteRenderer.bounds.size.x/transform.lossyScale.x, 
             spriteRenderer.bounds.size.y/transform.lossyScale.y);
-
     }
 
 }
