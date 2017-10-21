@@ -6,6 +6,7 @@ public class SceneObject : MonoBehaviour {
     public bool colliding = false;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
+    float sizeX, sizeY;
 
     void Start ()
     {
@@ -13,6 +14,8 @@ public class SceneObject : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer.sprite == null)
             spriteRenderer.sprite = sprite1;
+        sizeX = boxCollider.size.x;
+        sizeY = boxCollider.size.y;
     }
 
     void Update()
@@ -36,8 +39,8 @@ public class SceneObject : MonoBehaviour {
             spriteRenderer.sprite = sprite1;
         }
         boxCollider.size = new Vector2(
-            spriteRenderer.bounds.size.x/transform.lossyScale.x, 
-            spriteRenderer.bounds.size.y/transform.lossyScale.y);
+            sizeX*spriteRenderer.bounds.size.x/transform.lossyScale.x, 
+            sizeY*spriteRenderer.bounds.size.y/transform.lossyScale.y);
     }
 
 }
