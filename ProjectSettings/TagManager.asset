@@ -17,6 +17,7 @@ TagManager:
   - DoorToKitchen
   - DoorToMomRoom
   - DoorToKidRoom
+  - FixedObject
   layers:
   - Default
   - TransparentFX
