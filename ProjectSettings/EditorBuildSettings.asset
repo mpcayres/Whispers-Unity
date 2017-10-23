@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cozinha.unity
     guid: 45dc32c4551060149a1d34334aff9346
   - enabled: 1
-    path: "Assets/Scenes/QuartoM\xE3e.unity"
+    path: Assets/Scenes/QuartoMae.unity
     guid: de8c5a787f6626a45a23f1c7cc32251f
   - enabled: 1
     path: Assets/Scenes/QuartoKid.unity

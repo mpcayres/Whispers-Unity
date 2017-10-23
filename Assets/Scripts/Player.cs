@@ -100,7 +100,7 @@ public class Player : MonoBehaviour {
                 index = 3;
 			    break;
 		    case "DoorToMomRoom":
-			    SceneManager.LoadScene (4);
+			    SceneManager.LoadScene(4);
                 index = 4;
 			    break;
 		    case "DoorToKidRoom":
@@ -112,7 +112,6 @@ public class Player : MonoBehaviour {
 			    break;
 		}
 
-        MissionManager.instance.ChangeScene(index);
     }
 
     public void ChangeDirection(int newDirection)
@@ -127,65 +126,68 @@ public class Player : MonoBehaviour {
     public void ChangePosition()
     {
         playerState = Actions.DEFAULT;
-        if (MissionManager.instance.currentScene.name.Equals("Corredor"))
+        if (!MissionManager.instance.currentSceneName.Equals(MissionManager.instance.previousSceneName))
         {
-            if (MissionManager.instance.previousSceneName.Equals("Sala"))
+            if (MissionManager.instance.currentSceneName.Equals("Corredor"))
             {
-                rb.position = new Vector2((float)-9.8, (float)-0.6);
+                if (MissionManager.instance.previousSceneName.Equals("Sala"))
+                {
+                    rb.position = new Vector2((float)-9.8, (float)-0.6);
+                }
+                else if (MissionManager.instance.previousSceneName.Equals("QuartoMae"))
+                {
+                    rb.position = new Vector2((float)-1.6, (float)-0.3);
+                    ChangeDirection(3);
+                }
+                else if (MissionManager.instance.previousSceneName.Equals("Cozinha"))
+                {
+                    rb.position = new Vector2((float)2.95, (float)-0.6);
+                }
+                else if (MissionManager.instance.previousSceneName.Equals("QuartoKid"))
+                {
+                    rb.position = new Vector2((float)11.9, (float)-0.3);
+                    ChangeDirection(3);
+                }
+                else
+                {
+                    //rb.position = new Vector2((float)10, (float)-0.45);
+                }
             }
-            else if (MissionManager.instance.previousSceneName.Equals("QuartoMae"))
+            else if (MissionManager.instance.currentSceneName.Equals("Cozinha"))
             {
-                rb.position = new Vector2((float)-1.6, (float)-0.3);
+                rb.position = new Vector2((float)1.5, (float)0.7);
+            }
+            else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+            {
+                rb.position = new Vector2((float)3.25, (float)2.3);
+            }
+            else if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+            {
+                rb.position = new Vector2((float)1.75, (float)0.65);
                 ChangeDirection(3);
             }
-            else if (MissionManager.instance.previousSceneName.Equals("Cozinha"))
+            else if (MissionManager.instance.currentSceneName.Equals("QuartoMae"))
             {
-                rb.position = new Vector2((float)2.95, (float)-0.6);
-            }
-            else if (MissionManager.instance.previousSceneName.Equals("QuartoKid"))
-            {
-                rb.position = new Vector2((float)11.9, (float)-0.3);
+                rb.position = new Vector2((float)-3.8, (float)-0.45);
                 ChangeDirection(3);
             }
-            else
+            else if (MissionManager.instance.currentSceneName.Equals("Sala"))
             {
-                rb.position = new Vector2((float)10, (float)-0.45);
+                if (MissionManager.instance.previousSceneName.Equals("Corredor"))
+                {
+                    rb.position = new Vector2((float)-3.15, (float)0.85);
+                }
+                else if (MissionManager.instance.previousSceneName.Equals("Jardim"))
+                {
+                    rb.position = new Vector2((float)2.35, (float)-2.0);
+                }
+                else
+                {
+                    //rb.position = new Vector2((float)2.65, (float)-1.15);
+                }
             }
+            MissionManager.instance.paused = false;
         }
-        else if (MissionManager.instance.currentScene.name.Equals("Cozinha"))
-        {
-            rb.position = new Vector2((float)1.5, (float)0.7);
-        }
-        else if (MissionManager.instance.currentScene.name.Equals("Jardim"))
-        {
-            rb.position = new Vector2((float)3.25, (float)2.3);
-        }
-        else if (MissionManager.instance.currentScene.name.Equals("QuartoKid"))
-        {            
-            rb.position = new Vector2((float)1.75, (float)0.65);
-            ChangeDirection(3);
-        }
-        else if (MissionManager.instance.currentScene.name.Equals("QuartoMae"))
-        {
-            rb.position = new Vector2((float)-3.8, (float)-0.45);
-            ChangeDirection(3);
-        }
-        else if (MissionManager.instance.currentScene.name.Equals("Sala"))
-        {
-            if (MissionManager.instance.previousSceneName.Equals("Corredor"))
-            {
-                rb.position = new Vector2((float)-3.15, (float)0.85);
-            }
-            else if (MissionManager.instance.previousSceneName.Equals("Jardim"))
-            {
-                rb.position = new Vector2((float)2.35, (float)-2.0);
-            }
-            else
-            {
-                rb.position = new Vector2((float)2.65, (float)-1.15);
-            }
-        }
-        MissionManager.instance.paused = false;
     }
 
 }

@@ -5,15 +5,13 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour {
     Player script;
     float rotationSpeed = 1f;
-    Light light;
     Collider2D collider;
 
     void Start ()
     {
         script = GetComponentInParent<Player>();
-        light = GetComponent<Light>();
         collider = GetComponent<Collider2D>();
-        collider.enabled = light.enabled;
+        collider.enabled = GetComponent<Light>().enabled;
     }
 	
 	void Update ()
@@ -21,15 +19,15 @@ public class Flashlight : MonoBehaviour {
         //0 = east, 1 = west, 2 = north, 3 = south
         if (Input.GetKeyDown(KeyCode.F))
         {
-            light.enabled = !light.enabled;
-            collider.enabled = light.enabled;
-            if (light.enabled)
+            GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+            collider.enabled = GetComponent<Light>().enabled;
+            if (GetComponent<Light>().enabled)
             {
                 transform.rotation = Quaternion.Euler((float)0.0, (float)0.0, (float)0.0);
             }
         }
 
-        if (light.enabled)
+        if (GetComponent<Light>().enabled)
         {
             switch (script.direction)
             {

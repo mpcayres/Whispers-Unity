@@ -1,15 +1,19 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
+using UnityEngine.UI;
+using System.Collections;
+using System.Linq;
 
 public class MissionManager : MonoBehaviour {
 
     public static MissionManager instance;
     public Mission mission;
-    public Scene currentScene;
-    public string previousSceneName;
+    public string previousSceneName, currentSceneName;
     public bool paused = false;
 
-    float startMissionDelay = 3f;
+    //float startMissionDelay = 3f;
 
     public void Awake()
     {
@@ -17,9 +21,10 @@ public class MissionManager : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            print("NEWMM");
-            currentScene = SceneManager.GetActiveScene();
-            previousSceneName = currentScene.name;
+            currentSceneName = SceneManager.GetActiveScene().name;
+            previousSceneName = currentSceneName;
+            //print("NEWMM: " + previousSceneName);
+            mission = new Mission1();
         }
         else if (instance != this)
         {
@@ -27,12 +32,31 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
-    public void ChangeScene(int index)
+    private void OnEnable()
     {
-        previousSceneName = currentScene.name;
-        currentScene = SceneManager.GetSceneByBuildIndex(index);
-        //print("OLDSCENE" + previousSceneName);
-        //print("NEWSCENE" + currentScene.name);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        previousSceneName = currentSceneName;
+        currentSceneName = scene.name;
+        print("OLDSCENE" + previousSceneName);
+        print("NEWSCENE" + currentSceneName);
         GetComponent<Player>().ChangePosition();
+        mission.LoadMissionScene();
+    }
+
+    public void AddObject(string name, Vector3 position, Vector3 scale)
+    {
+        GameObject moveInstance =
+            Instantiate(Resources.Load("Prefab/" + name),
+            position, Quaternion.identity) as GameObject;
+        moveInstance.transform.localScale = scale;
     }
 }
