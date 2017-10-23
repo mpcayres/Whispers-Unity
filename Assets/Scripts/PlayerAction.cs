@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAction : MonoBehaviour {
-    public GameObject target;
+    GameObject target;
 
     void Start ()
     {
-		
+        target = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	void Update ()

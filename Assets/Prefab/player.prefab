@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95882510258092630}
   - component: {fileID: 212312604558996582}
   - component: {fileID: 114833596618350534}
+  - component: {fileID: 114600373000498978}
   - component: {fileID: 61343407655216614}
   - component: {fileID: 50105999824673716}
   m_Layer: 8
@@ -272,6 +273,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114600373000498978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103832579489714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9695343170627764fb5d49dea6fe06fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission: {fileID: 0}
+  previousSceneName: 
 --- !u!114 &114655840356109890
 MonoBehaviour:
   m_ObjectHideFlags: 1

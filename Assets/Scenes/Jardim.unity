@@ -310,7 +310,8 @@ Prefab:
       propertyPath: m_TagString
       value: DoorToLivingroom
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114811047820938288, guid: 2df224d072d6e7c4f871134aadb92158, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2df224d072d6e7c4f871134aadb92158, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &862063890
@@ -463,11 +464,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4406268900588164, guid: 063980b53742ff1448b88d2562035754, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.247686
+      value: 3.24
       objectReference: {fileID: 0}
     - target: {fileID: 4406268900588164, guid: 063980b53742ff1448b88d2562035754, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.087616
+      value: 2.338
       objectReference: {fileID: 0}
     - target: {fileID: 4406268900588164, guid: 063980b53742ff1448b88d2562035754, type: 2}
       propertyPath: m_LocalPosition.z

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingObject : MonoBehaviour {
-    public GameObject player;
+    GameObject player;
     public bool colliding = false;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -15,6 +15,7 @@ public class MovingObject : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
         script = player.GetComponent<Player>();
     }
 	
