@@ -84,8 +84,9 @@ public class Player : MonoBehaviour {
         MissionManager.instance.paused = true;
 
 		switch (other.tag) {
-		    case "DoorToLivingRoom":
-			    SceneManager.LoadScene(1);
+			case "DoorToLivingroom":
+				SceneManager.LoadScene (1);
+				index = 1;
 			    break;
 		    case "DoorToAlley":
 			    SceneManager.LoadScene(2);
