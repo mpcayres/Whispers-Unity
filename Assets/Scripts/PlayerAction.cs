@@ -33,6 +33,11 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<MovingObject>().colliding = true;
         }
+
+        if (collision.gameObject.tag == "PickUpObject")
+        {
+            collision.gameObject.GetComponent<PickUpObject>().colliding = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -45,6 +50,11 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().colliding = false;
+        }
+
+        if (collision.gameObject.tag == "PickUpObject")
+        {
+            collision.gameObject.GetComponent<PickUpObject>().colliding = false;
         }
     }
     

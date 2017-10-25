@@ -80,33 +80,26 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-        int index = 0;
         MissionManager.instance.paused = true;
 
 		switch (other.tag) {
 			case "DoorToLivingroom":
-				SceneManager.LoadScene (1);
-				index = 1;
+				SceneManager.LoadScene(1);
 			    break;
 		    case "DoorToAlley":
 			    SceneManager.LoadScene(2);
-                index = 2;
 			    break;
 		    case "DoorToGarden":
 			    SceneManager.LoadScene(3);
-                index = 3;
 			    break;
 		    case "DoorToKitchen":
 			    SceneManager.LoadScene(4);
-                index = 4;
 			    break;
 		    case "DoorToMomRoom":
 			    SceneManager.LoadScene(5);
-                index = 5;
 			    break;
 		    case "DoorToKidRoom":
 			    SceneManager.LoadScene(6);
-                index = 6;
 			    break;
 		    default:
 			    SceneManager.LoadScene(0);
