@@ -101,8 +101,8 @@ public class Player : MonoBehaviour {
 		    case "DoorToKidRoom":
 			    SceneManager.LoadScene(6);
 			    break;
-		    default:
-			    SceneManager.LoadScene(0);
+		default:
+			MissionManager.instance.paused = false;
 			    break;
 		}
 

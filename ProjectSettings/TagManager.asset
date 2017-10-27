@@ -20,6 +20,8 @@ TagManager:
   - FixedObject
   - PickUpObject
   - InventoryMenu
+  - Flashlight
+  - Trigger
   layers:
   - Default
   - TransparentFX
