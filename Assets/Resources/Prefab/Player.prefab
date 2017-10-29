@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 124264362438067404}
   - component: {fileID: 81392326081661894}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1208662004747702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.2216105, y: 3.0149877, z: -19.662964}
-  m_LocalScale: {x: 2.1847742, y: 2.1847737, z: 2.1847737}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
   m_RootOrder: 1
@@ -131,7 +131,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.8571255
+  orthographic size: 2.85
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -284,7 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea213d6d0af3934da64c2de66bfd172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: -1
 --- !u!114 &114600373000498978
 MonoBehaviour:
   m_ObjectHideFlags: 1
