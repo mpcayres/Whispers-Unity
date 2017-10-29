@@ -14,6 +14,8 @@ public class WindowTrigger : MonoBehaviour {
 	float sizeX, sizeY;
 	public bool upSide = false;
 	float posX, posY, posZ, posYdefault;
+	bool enabled = false;
+	Flashlight myscript;
 
 	void Start ()
 	{
@@ -63,16 +65,21 @@ public class WindowTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		
-		/*if (spriteRenderer.sprite == aberto && scare)
-		{
-			spriteRenderer.sprite = fechado;
-		}*/
+		//bool enabled = other.transform.GetChild(0).gameObject.Flashlight.GetState();
 
-		if (spriteRenderer.sprite == aberto && scare && other.tag == "Player" ){
-			spriteRenderer.sprite = monstro;
-			MissionManager.instance.paused = true;
+		//Flashlight myscript = other.GetComponentInChildren<Flashlight>();
+		//bool enabled = Flashlight.enabled();
+
+
+		myscript = other.transform.Find("Flashlight").GetComponent<Flashlight>();
+		enabled = Flashlight.enable;
+
+
+		if (spriteRenderer.sprite == aberto && scare && other.tag == "Player" && !enabled ){
+				spriteRenderer.sprite = monstro;
+				MissionManager.instance.paused = true;
 		}
+
 
 	
 		if (upSide && spriteRenderer.sprite == monstro )

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour {
     Player player;
     float rotationSpeed = 1f;
-
+	static public bool enable;
     void Start ()
     {
         player = GetComponentInParent<Player>();
@@ -24,7 +24,7 @@ public class Flashlight : MonoBehaviour {
                 transform.rotation = Quaternion.Euler((float)0.0, (float)0.0, (float)0.0);
             }
         }
-
+		enable = GetComponent<Light> ().enabled;
         if (GetComponent<Light>().enabled)
         {
             if (Inventory.GetCurrentItemType() != Inventory.InventoryItems.FLASHLIGHT)
@@ -60,4 +60,9 @@ public class Flashlight : MonoBehaviour {
         }
 
     }
+	public bool GetState(){
+
+
+		return enable;
+	}
 }

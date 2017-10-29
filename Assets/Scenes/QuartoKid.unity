@@ -1477,7 +1477,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1756442850427892, guid: 063980b53742ff1448b88d2562035754, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: Flashlight
       objectReference: {fileID: 0}
     - target: {fileID: 20944843857562664, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
