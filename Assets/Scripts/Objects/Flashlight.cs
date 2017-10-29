@@ -15,7 +15,7 @@ public class Flashlight : MonoBehaviour {
 	void Update ()
     {
         //0 = east, 1 = west, 2 = north, 3 = south
-        if (Input.GetKeyDown(KeyCode.F) && Inventory.selectedItem.item == Inventory.InventoryItems.FLASHLIGHT)
+        if (Input.GetKeyDown(KeyCode.F) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
             GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
@@ -27,7 +27,7 @@ public class Flashlight : MonoBehaviour {
 
         if (GetComponent<Light>().enabled)
         {
-            if (Inventory.selectedItem.item != Inventory.InventoryItems.FLASHLIGHT)
+            if (Inventory.GetCurrentItemType() != Inventory.InventoryItems.FLASHLIGHT)
             {
                 GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
                 GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;

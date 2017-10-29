@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour {
     public bool colliding = false;
+    public Inventory.InventoryItems item;
 
     void Start ()
     {
@@ -14,7 +15,7 @@ public class PickUpObject : MonoBehaviour {
     {
         if (colliding && Input.GetKeyDown(KeyCode.Z))
         {
-            Inventory.NewItem(Inventory.InventoryItems.FLASHLIGHT);
+            Inventory.NewItem(item);
             Destroy(gameObject);
         }
 	}
