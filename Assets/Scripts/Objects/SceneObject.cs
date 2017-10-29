@@ -7,6 +7,8 @@ public class SceneObject : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     float sizeX, sizeY;
+	public bool leftSide = false;
+	float posX, posY, posZ, posXdefault;
 
     void Start ()
     {
@@ -16,6 +18,11 @@ public class SceneObject : MonoBehaviour {
             spriteRenderer.sprite = sprite1;
         sizeX = boxCollider.size.x/spriteRenderer.bounds.size.x;
         sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
+		posX = spriteRenderer.bounds.size.x/2;
+		posY = transform.position.y;
+		posZ = transform.position.z;
+		posXdefault = transform.position.x;
+
     }
 
     void Update()
@@ -25,10 +32,12 @@ public class SceneObject : MonoBehaviour {
         {
             ChangeSprite();
         }
+		posZ = transform.position.z;
     }
     
     void ChangeSprite()
     {
+		posZ = transform.position.z;
         print("SceneObject");
         if (spriteRenderer.sprite == sprite1)
         {
@@ -38,9 +47,15 @@ public class SceneObject : MonoBehaviour {
         {
             spriteRenderer.sprite = sprite1;
         }
+		if (leftSide && spriteRenderer.sprite == sprite2 )
+			transform.position = new Vector3 (transform.position.x+posX, posY, posZ);
+		else
+			transform.position = new Vector3 (posXdefault, posY, posZ);
+
         boxCollider.size = new Vector2(
             sizeX*spriteRenderer.bounds.size.x, 
             sizeY*spriteRenderer.bounds.size.y);
+		
     }
 
 }

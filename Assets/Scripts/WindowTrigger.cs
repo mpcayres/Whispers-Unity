@@ -12,6 +12,8 @@ public class WindowTrigger : MonoBehaviour {
 	SpriteRenderer spriteRenderer;
 	BoxCollider2D boxCollider;
 	float sizeX, sizeY;
+	public bool upSide = false;
+	float posX, posY, posZ, posYdefault;
 
 	void Start ()
 	{
@@ -21,6 +23,11 @@ public class WindowTrigger : MonoBehaviour {
 			spriteRenderer.sprite = aberto;
 		sizeX = boxCollider.size.x/spriteRenderer.bounds.size.x;
 		sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
+
+		posX = transform.position.x;
+		posY = spriteRenderer.bounds.size.y/2;
+		posZ = transform.position.z;
+		posYdefault = transform.position.y;
 	}
 
 	void Update()
@@ -45,6 +52,8 @@ public class WindowTrigger : MonoBehaviour {
 		{
 			spriteRenderer.sprite = aberto;
 		}
+
+
 		boxCollider.size = new Vector2(
 			sizeX*spriteRenderer.bounds.size.x, 
 			sizeY*spriteRenderer.bounds.size.y);
@@ -66,5 +75,10 @@ public class WindowTrigger : MonoBehaviour {
 		}
 
 	
+		if (upSide && spriteRenderer.sprite == monstro )
+			transform.position = new Vector3 (posX, (float)(transform.position.y + posY/2 + 0.1), posZ);
+		else
+			transform.position = new Vector3 (posX, posYdefault, posZ);
+		
 	}
 }
