@@ -14,15 +14,15 @@ public class WindowTrigger : MonoBehaviour {
 	float sizeX, sizeY;
 	public bool upSide = false;
 	float posX, posY, posZ, posYdefault;
-	bool enabled = false;
-	Flashlight myscript;
 
 	void Start ()
 	{
 		boxCollider = GetComponent<BoxCollider2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		if (spriteRenderer.sprite == null)
-			spriteRenderer.sprite = aberto;
+        if (spriteRenderer.sprite == null)
+        {
+            spriteRenderer.sprite = aberto;
+        }
 		sizeX = boxCollider.size.x/spriteRenderer.bounds.size.x;
 		sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
 
@@ -49,7 +49,6 @@ public class WindowTrigger : MonoBehaviour {
 		{
 			spriteRenderer.sprite = fechado;
 		}
-
 		else if (spriteRenderer.sprite == fechado)
 		{
 			spriteRenderer.sprite = aberto;
@@ -65,27 +64,20 @@ public class WindowTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		//bool enabled = other.transform.GetChild(0).gameObject.Flashlight.GetState();
-
-		//Flashlight myscript = other.GetComponentInChildren<Flashlight>();
-		//bool enabled = Flashlight.enabled();
-
-
-		myscript = other.transform.Find("Flashlight").GetComponent<Flashlight>();
-		enabled = Flashlight.enable;
-
-
-		if (spriteRenderer.sprite == aberto && scare && other.tag == "Player" && !enabled ){
-				spriteRenderer.sprite = monstro;
-				MissionManager.instance.paused = true;
+		if (spriteRenderer.sprite == aberto && scare && other.tag == "Player" && !Flashlight.enable)
+        {
+			spriteRenderer.sprite = monstro;
+			MissionManager.instance.paused = true;
 		}
 
-
-	
-		if (upSide && spriteRenderer.sprite == monstro )
-			transform.position = new Vector3 (posX, (float)(transform.position.y + posY/2 + 0.1), posZ);
-		else
-			transform.position = new Vector3 (posX, posYdefault, posZ);
+        if (upSide && spriteRenderer.sprite == monstro)
+        {
+            transform.position = new Vector3(posX, (float)(transform.position.y + posY / 2 + 0.1), posZ);
+        }
+        else
+        {
+            transform.position = new Vector3(posX, posYdefault, posZ);
+        }
 		
 	}
 }
