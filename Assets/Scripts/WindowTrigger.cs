@@ -9,11 +9,10 @@ public class WindowTrigger : MonoBehaviour {
 	public Sprite monstro;
 	public bool colliding = false;
 	public bool scare = false;
-	SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
 	BoxCollider2D boxCollider;
 	float sizeX, sizeY;
-	public bool upSide = false;
-	float posX, posY, posZ, posYdefault;
+	float posX, posY, posYdefault;
 
 	void Start ()
 	{
@@ -28,24 +27,20 @@ public class WindowTrigger : MonoBehaviour {
 
 		posX = transform.position.x;
 		posY = spriteRenderer.bounds.size.y/2;
-		posZ = transform.position.z;
 		posYdefault = transform.position.y;
 	}
 
 	void Update()
 	{
-		spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-		if (Input.GetKeyDown(KeyCode.Z) && colliding) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+		if (Input.GetKeyDown(KeyCode.Z) && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
 		{
 			ChangeSprite();
 		}
-
 	}
 
 	void ChangeSprite()
 	{
-		print("SceneObject");
-		if (spriteRenderer.sprite == aberto && !scare)
+		if (spriteRenderer.sprite == aberto)
 		{
 			spriteRenderer.sprite = fechado;
 		}
@@ -54,30 +49,27 @@ public class WindowTrigger : MonoBehaviour {
 			spriteRenderer.sprite = aberto;
 		}
 
-
 		boxCollider.size = new Vector2(
 			sizeX*spriteRenderer.bounds.size.x, 
 			sizeY*spriteRenderer.bounds.size.y);
 	}
-		
 
-
-	private void OnTriggerEnter2D (Collider2D other)
-	{
-		if (spriteRenderer.sprite == aberto && scare && other.tag == "Player" && !Flashlight.enable)
+    public void ScareTrigger()
+    {
+        if (spriteRenderer.sprite == aberto && scare && !Flashlight.enable)
         {
-			spriteRenderer.sprite = monstro;
-			MissionManager.instance.paused = true;
-		}
+            spriteRenderer.sprite = monstro;
+            MissionManager.instance.blocked = true;
+        }
 
-        if (upSide && spriteRenderer.sprite == monstro)
+        if (spriteRenderer.sprite == monstro)
         {
-            transform.position = new Vector3(posX, (float)(transform.position.y + posY / 2 + 0.1), posZ);
+            transform.position = new Vector3(posX, (float)(transform.position.y + posY / 2 + 0.1), transform.position.z);
         }
         else
         {
-            transform.position = new Vector3(posX, posYdefault, posZ);
+            transform.position = new Vector3(posX, posYdefault, transform.position.z);
         }
-		
-	}
+    }
+
 }

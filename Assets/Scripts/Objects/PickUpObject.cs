@@ -13,7 +13,7 @@ public class PickUpObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if (colliding && Input.GetKeyDown(KeyCode.Z))
+        if (colliding && Input.GetKeyDown(KeyCode.Z) && !MissionManager.instance.paused)
         {
             Inventory.NewItem(item);
             Destroy(gameObject);

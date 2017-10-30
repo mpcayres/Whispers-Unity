@@ -3,12 +3,13 @@
 public class SceneObject : MonoBehaviour {
     public Sprite sprite1;
     public Sprite sprite2;
+    public enum PositionSprite { DEFAULT, LEFT };
+    public PositionSprite positionSprite;
     public bool colliding = false;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     float sizeX, sizeY;
-	public bool leftSide = false;
-	float posX, posY, posZ, posXdefault;
+	float posX, posY, posXdefault;
 
     void Start ()
     {
@@ -20,7 +21,6 @@ public class SceneObject : MonoBehaviour {
         sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
 		posX = spriteRenderer.bounds.size.x/2;
 		posY = transform.position.y;
-		posZ = transform.position.z;
 		posXdefault = transform.position.x;
 
     }
@@ -28,16 +28,14 @@ public class SceneObject : MonoBehaviour {
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (Input.GetKeyDown(KeyCode.Z) && colliding) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+        if (Input.GetKeyDown(KeyCode.Z) && colliding && !MissionManager.instance.paused) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {
             ChangeSprite();
         }
-		posZ = transform.position.z;
     }
     
     void ChangeSprite()
     {
-		posZ = transform.position.z;
         print("SceneObject");
         if (spriteRenderer.sprite == sprite1)
         {
@@ -47,10 +45,15 @@ public class SceneObject : MonoBehaviour {
         {
             spriteRenderer.sprite = sprite1;
         }
-		if (leftSide && spriteRenderer.sprite == sprite2 )
-			transform.position = new Vector3 (transform.position.x+posX, posY, posZ);
-		else
-			transform.position = new Vector3 (posXdefault, posY, posZ);
+
+        if (positionSprite == PositionSprite.LEFT && spriteRenderer.sprite == sprite2)
+        {
+            transform.position = new Vector3(transform.position.x + posX, posY, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(posXdefault, posY, transform.position.z);
+        }
 
         boxCollider.size = new Vector2(
             sizeX*spriteRenderer.bounds.size.x, 

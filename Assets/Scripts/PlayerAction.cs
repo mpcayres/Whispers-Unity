@@ -38,6 +38,12 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = true;
         }
+
+        if (collision.gameObject.tag == "WindowTrigger")
+        {
+            collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
+            collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,6 +61,11 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "PickUpObject")
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = false;
+        }
+
+        if (collision.gameObject.tag == "WindowTrigger")
+        {
+            collision.gameObject.GetComponent<WindowTrigger>().colliding = false;
         }
     }
     

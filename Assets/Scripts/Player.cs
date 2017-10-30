@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
     public Animator animator;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
-    public int direction = 0, wantedDirection = 0, oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
+    public int direction = 0, wantedDirection = 0;
+    int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
     {
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
-        if (!MissionManager.instance.paused)
+        if (!MissionManager.instance.paused && !MissionManager.instance.blocked)
         {
             bool isWalking = false, isRunning = false;
             float move = movespeed;
@@ -60,10 +61,10 @@ public class Player : MonoBehaviour {
             if (isRunning)
             {
                 if (!isWalking) isRunning = false;
-                //else isWalking = false;
             }
             animator.SetBool("isWalking", isWalking);
             animator.SetBool("isRunning", isRunning);
+
             if (playerState == Actions.MOVING_OBJECT)
             {
                 wantedDirection = direction;
@@ -75,6 +76,14 @@ public class Player : MonoBehaviour {
                 animator.SetTrigger("changeDirection");
                 oldDirection = direction;
             }
+
+        }
+        else if (oldDirection != -1)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+            animator.SetTrigger("changeDirection");
+            oldDirection = -1;
         }
     }
 

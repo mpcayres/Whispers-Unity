@@ -22,7 +22,7 @@ public class MovingObject : MonoBehaviour {
 	void Update ()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (colliding)
+        if (colliding && !MissionManager.instance.paused)
         {
             if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {

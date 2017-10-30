@@ -12,6 +12,7 @@ public class MissionManager : MonoBehaviour {
     public Mission mission;
     public string previousSceneName, currentSceneName;
     public bool paused = false;
+    public bool blocked = false;
 
     //float startMissionDelay = 3f;
 
@@ -23,7 +24,6 @@ public class MissionManager : MonoBehaviour {
             instance = this;
             currentSceneName = SceneManager.GetActiveScene().name;
             previousSceneName = currentSceneName;
-            //print("NEWMM: " + previousSceneName);
             mission = new Mission1();
         }
         else if (instance != this)
