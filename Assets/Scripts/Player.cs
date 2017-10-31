@@ -128,15 +128,12 @@ public class Player : MonoBehaviour {
 
     public void ChangePosition()
     {
-        GameObject camera = transform.Find("MainCamera").gameObject;
         playerState = Actions.DEFAULT;
 
         if (!MissionManager.instance.currentSceneName.Equals(MissionManager.instance.previousSceneName))
         {
             if (MissionManager.instance.currentSceneName.Equals("Corredor"))
             {
-                camera.transform.localPosition = new Vector3((float)0, (float)1.5, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = 2;
                 if (MissionManager.instance.previousSceneName.Equals("Sala"))
                 {
                     rb.position = new Vector2((float)-9.8, (float)-0.6);
@@ -162,34 +159,24 @@ public class Player : MonoBehaviour {
             }
             else if (MissionManager.instance.currentSceneName.Equals("Cozinha"))
             {
-                camera.transform.localPosition = new Vector3((float)-5, (float)0, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = 2;
                 rb.position = new Vector2((float)1.5, (float)0.7);
             }
             else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
             {
-                camera.transform.localPosition = new Vector3((float)-5, (float)0, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = (float) 1.5;
                 rb.position = new Vector2((float)3.25, (float)2.3);
             }
             else if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
             {
-                camera.transform.localPosition = new Vector3((float)-5, (float)3, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = (float)2.85;
                 rb.position = new Vector2((float)1.75, (float)0.65);
                 ChangeDirection(3);
             }
             else if (MissionManager.instance.currentSceneName.Equals("QuartoMae"))
             {
-                camera.transform.localPosition = new Vector3((float)-5, (float)3, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = (float)2;
                 rb.position = new Vector2((float)-3.8, (float)-0.45);
                 ChangeDirection(3);
             }
             else if (MissionManager.instance.currentSceneName.Equals("Sala"))
             {
-                camera.transform.localPosition = new Vector3((float)-5, (float)3, (float)-20);
-                camera.GetComponent<Camera>().orthographicSize = (float)2.85;
                 if (MissionManager.instance.previousSceneName.Equals("Corredor"))
                 {
                     rb.position = new Vector2((float)-3.15, (float)0.85);
