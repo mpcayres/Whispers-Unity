@@ -35,6 +35,8 @@ public abstract class Mission {
         }
     }
 
+    public abstract void UpdateMission();
+
     public abstract void SetCorredor();
 
     public abstract void SetCozinha();
