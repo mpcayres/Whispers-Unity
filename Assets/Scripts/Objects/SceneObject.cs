@@ -3,13 +3,14 @@
 public class SceneObject : MonoBehaviour {
     public Sprite sprite1;
     public Sprite sprite2;
-    public enum PositionSprite { DEFAULT, LEFT };
+    public enum PositionSprite { DEFAULT, LEFT, RIGHT, UP, DOWN };
     public PositionSprite positionSprite;
+    public float scale = 1;
     public bool colliding = false;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     float sizeX, sizeY;
-	float posX, posY, posXdefault;
+	float posX, posY, posXdefault, posYdefault;
 
     void Start ()
     {
@@ -19,8 +20,9 @@ public class SceneObject : MonoBehaviour {
             spriteRenderer.sprite = sprite1;
         sizeX = boxCollider.size.x/spriteRenderer.bounds.size.x;
         sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
-		posX = spriteRenderer.bounds.size.x/2;
-		posY = transform.position.y;
+		posX = spriteRenderer.bounds.size.x/scale;
+        posY = spriteRenderer.bounds.size.y/scale;
+        posYdefault = transform.position.y;
 		posXdefault = transform.position.x;
 
     }
@@ -48,11 +50,23 @@ public class SceneObject : MonoBehaviour {
 
         if (positionSprite == PositionSprite.LEFT && spriteRenderer.sprite == sprite2)
         {
-            transform.position = new Vector3(transform.position.x + posX, posY, transform.position.z);
+            transform.position = new Vector3(transform.position.x + posX, posYdefault, transform.position.z);
         }
-        else
+        else if(positionSprite == PositionSprite.RIGHT && spriteRenderer.sprite == sprite2)
         {
-            transform.position = new Vector3(posXdefault, posY, transform.position.z);
+            transform.position = new Vector3(transform.position.x - posX, posYdefault, transform.position.z);
+        }
+        else if (positionSprite == PositionSprite.UP && spriteRenderer.sprite == sprite2)
+        {
+            transform.position = new Vector3(posXdefault, transform.position.y + posY, transform.position.z);
+        }
+        else if (positionSprite == PositionSprite.DOWN && spriteRenderer.sprite == sprite2)
+        {
+            transform.position = new Vector3(posXdefault, transform.position.y - posY, transform.position.z);
+        }
+        else if (positionSprite != PositionSprite.DEFAULT)
+        {
+            transform.position = new Vector3(posXdefault, posYdefault, transform.position.z);
         }
 
         boxCollider.size = new Vector2(
