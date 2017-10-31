@@ -12,7 +12,7 @@ public class WindowTrigger : MonoBehaviour {
     SpriteRenderer spriteRenderer;
 	BoxCollider2D boxCollider;
 	float sizeX, sizeY;
-	float posX, posY, posYdefault;
+	float posXdefault, posY, posYdefault;
 
 	void Start ()
 	{
@@ -25,7 +25,7 @@ public class WindowTrigger : MonoBehaviour {
 		sizeX = boxCollider.size.x/spriteRenderer.bounds.size.x;
 		sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
 
-		posX = transform.position.x;
+		posXdefault = transform.position.x;
 		posY = spriteRenderer.bounds.size.y/2;
 		posYdefault = transform.position.y;
 	}
@@ -59,17 +59,18 @@ public class WindowTrigger : MonoBehaviour {
         if (spriteRenderer.sprite == aberto && scare && !Flashlight.enable)
         {
             spriteRenderer.sprite = monstro;
+            transform.Find("BirdEmitter").gameObject.SetActive(true);
             MissionManager.instance.blocked = true;
         }
 
-        if (spriteRenderer.sprite == monstro)
+        /*if (spriteRenderer.sprite == monstro)
         {
-            transform.position = new Vector3(posX, (float)(transform.position.y + posY / 2 + 0.1), transform.position.z);
+            transform.position = new Vector3(posXdefault, (float)(transform.position.y + posY / 2 + 0.1), transform.position.z);
         }
         else
         {
-            transform.position = new Vector3(posX, posYdefault, transform.position.z);
-        }
+            transform.position = new Vector3(posXdefault, posYdefault, transform.position.z);
+        }*/
     }
 
 }
