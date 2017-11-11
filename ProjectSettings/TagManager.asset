@@ -23,6 +23,7 @@ TagManager:
   - Flashlight
   - Trigger
   - WindowTrigger
+  - FurtiveObject
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - Flashlight
   - Enemies
   - PickUp
-  - 
+  - PlayerHidden
   - 
   - 
   - 

@@ -6,6 +6,7 @@ public class MissionManager : MonoBehaviour {
 
     public static MissionManager instance;
     public Mission mission;
+    public int missionSelected;
     public string previousSceneName, currentSceneName;
     public bool paused = false;
     public bool blocked = false;
@@ -27,7 +28,7 @@ public class MissionManager : MonoBehaviour {
             menu = hud.transform.Find("DecisionMenu").gameObject;
             text1 = menu.transform.Find("Option1").gameObject;
             text2 = menu.transform.Find("Option2").gameObject;
-            mission = new Mission1();
+            ChangeMission(missionSelected);
         }
         else if (instance != this)
         {
@@ -110,5 +111,19 @@ public class MissionManager : MonoBehaviour {
         textSel.GetComponent<Text>().color = Color.red;
         textNon.GetComponent<Text>().fontStyle = FontStyle.Normal;
         textNon.GetComponent<Text>().color = Color.white;
+    }
+
+    public void ChangeMission(int m)
+    {
+        missionSelected = m;
+        if (missionSelected == 1)
+        {
+            mission = new Mission1();
+        }
+        else if (missionSelected == 2)
+        {
+            mission = new Mission2();
+        }
+        
     }
 }

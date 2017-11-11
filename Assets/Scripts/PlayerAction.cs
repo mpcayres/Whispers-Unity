@@ -34,6 +34,11 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<MovingObject>().colliding = true;
         }
 
+        if (collision.gameObject.tag == "FurtiveObject")
+        {
+            collision.gameObject.GetComponent<FurtiveObject>().colliding = true;
+        }
+
         if (collision.gameObject.tag == "PickUpObject")
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = true;
@@ -56,6 +61,11 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().colliding = false;
+        }
+
+        if (collision.gameObject.tag == "FurtiveObject")
+        {
+            collision.gameObject.GetComponent<FurtiveObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "PickUpObject")
