@@ -2,6 +2,8 @@
 
 public abstract class Mission {
 
+    public string sceneInit = "";
+
     public void LoadMission()
     {
 
@@ -34,6 +36,8 @@ public abstract class Mission {
             SetSala();
         }
     }
+
+    public abstract void InitMission();
 
     public abstract void UpdateMission();
 

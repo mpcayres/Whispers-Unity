@@ -121,9 +121,15 @@ public class Player : MonoBehaviour {
     {
         print("CHANGE" + newDirection);
         direction = newDirection;
-        animator.SetInteger("direction", direction);
-        animator.SetTrigger("changeDirection");
+        GetComponent<Animator>().SetInteger("direction", direction);
+        GetComponent<Animator>().SetTrigger("changeDirection");
         oldDirection = direction;
+    }
+
+    public void ChangePositionDefault(float x, float y, int dir)
+    {
+        GetComponent<Rigidbody2D>().position = new Vector2(x, y);
+        ChangeDirection(dir);
     }
 
     public void ChangePosition()
@@ -151,10 +157,6 @@ public class Player : MonoBehaviour {
                 {
                     rb.position = new Vector2((float)11.9, (float)-0.3);
                     ChangeDirection(3);
-                }
-                else
-                {
-                    //rb.position = new Vector2((float)10, (float)-0.45);
                 }
             }
             else if (MissionManager.instance.currentSceneName.Equals("Cozinha"))
@@ -184,10 +186,6 @@ public class Player : MonoBehaviour {
                 else if (MissionManager.instance.previousSceneName.Equals("Jardim"))
                 {
                     rb.position = new Vector2((float)2.35, (float)-2.0);
-                }
-                else
-                {
-                    //rb.position = new Vector2((float)2.65, (float)-1.15);
                 }
             }
             MissionManager.instance.paused = false;

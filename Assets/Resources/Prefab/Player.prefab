@@ -229,10 +229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9695343170627764fb5d49dea6fe06fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionSelected: 1
   previousSceneName: 
   currentSceneName: 
   paused: 0
   blocked: 0
+  pathBird: 0
+  pathCat: 0
 --- !u!114 &114655840356109890
 MonoBehaviour:
   m_ObjectHideFlags: 1

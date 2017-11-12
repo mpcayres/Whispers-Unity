@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
+    [System.Serializable]
     public enum InventoryItems { DEFAULT, FLASHLIGHT };
+    [System.Serializable]
     public class DataItems
     {
         public InventoryItems type;
@@ -17,9 +19,10 @@ public class Inventory : MonoBehaviour {
             this.file = file;
         }
     }
+    private static List<DataItems> listItems;
     private static int currentItem = -1;
     private int previousItem = -1;
-    private static List<DataItems> listItems;
+
     GameObject menu, slotsPanel, imagesPanel;
     Sprite box, selectedBox;
     static GameObject menuItem;
@@ -119,16 +122,30 @@ public class Inventory : MonoBehaviour {
         
     }
 
-    static void SetItem(DataItems selectItem, int pos)
+    public static void SetCurrentItem(int pos)
     {
         currentItem = pos;
         if (!menuItem.activeSelf) menuItem.SetActive(true);
-        menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + selectItem.file);
+        menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
         menuItem.GetComponent<Image>().preserveAspect = true;
+    }
+
+    public static void SetInventory(List<DataItems> inv)
+    {
+        listItems = inv;
     }
 
     public static void NewItem(InventoryItems selectItem)
     {
+        // Não permite ter mais de um mesmo objeto no inventário
+        foreach (DataItems i in listItems)
+        {
+            if (selectItem == i.type)
+            {
+                return;
+            }
+        }
+
         string file = "";
         if (selectItem == InventoryItems.FLASHLIGHT)
         {
@@ -136,7 +153,7 @@ public class Inventory : MonoBehaviour {
         }
         DataItems novoItem = new DataItems(selectItem, file);
         listItems.Add(novoItem);
-        SetItem(novoItem, listItems.Count - 1);
+        SetCurrentItem(listItems.Count - 1);
     }
 
     public static void DeleteItem(InventoryItems selectItem)
@@ -150,7 +167,7 @@ public class Inventory : MonoBehaviour {
                 {
                     if (listItems.Count > 1)
                     {
-                        SetItem(listItems[0], 0);
+                        SetCurrentItem(0);
                     }
                     else
                     {
@@ -166,9 +183,19 @@ public class Inventory : MonoBehaviour {
         
     }
 
+    public static int GetCurrentItem()
+    {
+        return currentItem;
+    }
+
     public static InventoryItems GetCurrentItemType()
     {
         if (currentItem == -1) return InventoryItems.DEFAULT;
         return listItems[currentItem].type;
+    }
+
+    public static List<DataItems> GetInventory()
+    {
+        return listItems;
     }
 }

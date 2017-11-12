@@ -1879,11 +1879,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.37
+      value: -1.68
       objectReference: {fileID: 0}
     - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.47
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1922,6 +1922,10 @@ Prefab:
         type: 2}
       propertyPath: item
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520833594432176, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_Name
+      value: PickUpLanterna
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
@@ -2720,12 +2724,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 303
+      value: 408
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 135.5
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

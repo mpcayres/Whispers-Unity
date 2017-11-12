@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliding: 0
+  item: 0
 --- !u!212 &212321789458829192
 SpriteRenderer:
   m_ObjectHideFlags: 1
