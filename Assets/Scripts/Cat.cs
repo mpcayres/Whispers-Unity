@@ -25,7 +25,7 @@ public class Cat : MonoBehaviour {
 
             if (dist > 0.6f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+               
 
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) >
                     Mathf.Abs(player.transform.position.y - transform.position.y))
@@ -53,7 +53,7 @@ public class Cat : MonoBehaviour {
                         animator.SetTrigger("changeState");
                     }
                 }
-
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             }
             else
             {
