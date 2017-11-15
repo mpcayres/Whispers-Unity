@@ -283,6 +283,7 @@ MonoBehaviour:
   - {fileID: 1399195470}
   - {fileID: 1206206640}
   speed: 0.8
+  animator: {fileID: 0}
 --- !u!1 &249403295
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,12 +811,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 224.5
+      value: 426.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 91.5
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -1155,6 +1156,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1254502072881402, guid: 8ea33163b0377ef47a1d9288a63c0d1c, type: 2}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50440710117986718, guid: 8ea33163b0377ef47a1d9288a63c0d1c,
+        type: 2}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
