@@ -1,10 +1,5 @@
-Hello! How are you? I hope you are fine!
-[question=0]So, can I ask you something?
-[choice]Sure!
-[choice]I'm not im the mood.
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
-Você também pode mudar a velocidade durante o texto, assim eu posso te falar algo com algum
+Hello! Welcome to our game!
+[question=0]Are you ready to play?
+[choice]Yes!
+[choice]Not really.
+Ok!
