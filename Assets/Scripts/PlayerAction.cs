@@ -49,6 +49,11 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
             collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
         }
+        if (collision.gameObject.tag == "Cat")
+        {
+            print("Gato");
+            collision.gameObject.GetComponent<Cat>().FollowPlayer();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
