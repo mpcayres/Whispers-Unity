@@ -1,0 +1,4 @@
+Hello! How are you? I hope you are fine!
+[question=0]So, can I ask you something?
+[choice]Sure!
+[choice]I'm not im the mood.
