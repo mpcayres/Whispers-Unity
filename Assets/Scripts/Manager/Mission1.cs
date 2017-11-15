@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class Mission1 : Mission {
     private bool decisionSet = false;
     private int optionSelected = -1;
+
 
     public override void InitMission()
     {
@@ -34,6 +37,7 @@ public class Mission1 : Mission {
     public override void SetCorredor()
     {
         MissionManager.instance.AddObject("MovingObject", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+
     }
 
     public override void SetCozinha()

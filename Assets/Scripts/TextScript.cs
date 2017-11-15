@@ -2,15 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+using RPGTALK;
+
 public class TextScript : MonoBehaviour {
+	public RPGTalk rpgTalk;
+
+	void Update () {
+
+		//skip the Talk to the end if the player hit Return
+		if(Input.GetKeyDown(KeyCode.Return)){
+			rpgTalk.EndTalk ();
+		}
+
+	}
+
 
 	// Use this for initialization
-	void Start () {
+	public void GiveBackControls(){
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void OnMadeChoice(int questionId, int choiceID){
+		if ( questionId == 0) {
+
+		}
 	}
 }
