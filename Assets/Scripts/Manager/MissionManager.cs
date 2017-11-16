@@ -43,6 +43,12 @@ public class MissionManager : MonoBehaviour {
     public void Update()
     {
         if(mission != null) mission.UpdateMission();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            Destroy(gameObject);
+            Destroy(hud);
+        }
 
         // teste, depois colocar pelo menu
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -104,6 +110,8 @@ public class MissionManager : MonoBehaviour {
         save.inventory = Inventory.GetInventory();
         save.mission = missionSelected;
         save.currentItem = Inventory.GetCurrentItem();
+        save.pathBird = pathBird;
+        save.pathCat = pathCat;
 
         return save;
     }
@@ -136,6 +144,8 @@ public class MissionManager : MonoBehaviour {
             SetMission(save.mission);
             Inventory.SetInventory(save.inventory);
             if(save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
+            pathBird = save.pathBird;
+            pathCat = save.pathCat;
 
             Debug.Log("Game Loaded " + m);
 

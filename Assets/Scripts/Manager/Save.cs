@@ -9,4 +9,6 @@ public class Save
 
     public int mission = 0;
     public int currentItem = -1;
+    public float pathBird = 0;
+    public float pathCat = 0;
 }

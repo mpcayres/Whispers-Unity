@@ -11,12 +11,12 @@ public class Mission1 : Mission {
     public override void InitMission()
     {
         // colocar de volta para versão final
-        /*sceneInit = "QuartoKid";
+        sceneInit = "QuartoKid";
         MissionManager.initMission = true;
         MissionManager.initX = (float) 1.5;
         MissionManager.initY = (float) 0.2;
         MissionManager.initDir = 3;
-        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);*/
+        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
