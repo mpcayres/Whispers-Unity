@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission1 : Mission {
-    private bool decisionSet = false;
-    private int optionSelected = -1;
 
 
     public override void InitMission()
@@ -23,15 +21,7 @@ public class Mission1 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-        if (!decisionSet)
-        {
-            //MissionManager.instance.SetDecision("Não matar", "Matar"); //define os textos para decisão
-            decisionSet = true;
-        }
-        else if(optionSelected == -1)
-        {
-            //optionSelected = MissionManager.instance.MakeDecision(); //lógica de update para definir seleção
-        }
+
     }
 
     public override void SetCorredor()

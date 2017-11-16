@@ -6,18 +6,20 @@ public class MomPatrolMovement : MonoBehaviour {
     public Transform[] targets;
     private int destPoint = 0;
     public float speed;
+    SpriteRenderer spriteRenderer;
     public Animator animator;
-
-    // Use this for initialization
+    
     void Start () {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
         animator.SetTrigger("changeDirection");
         GotoNextPoint();
 	}
 	
-	// Update is called once per frame
 	void Update () {
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
         GotoNextPoint();
 	}
 

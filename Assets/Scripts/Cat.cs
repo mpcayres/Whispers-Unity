@@ -9,16 +9,20 @@ public class Cat : MonoBehaviour {
     public Animator animator;
     private bool directionChanged = true;
     private int direction = 0;
+    SpriteRenderer spriteRenderer;
 
     // Use this for initialization
     void Start () {
 		animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-   
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
         if (followingPlayer)
         {
             float dist = Vector3.Distance(player.transform.position, transform.position);
