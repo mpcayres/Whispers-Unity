@@ -8,8 +8,11 @@ public class PickUpObject : MonoBehaviour {
 
     void Start ()
     {
-		
-	}
+        if (Inventory.HasItemType(item))
+        {
+            Destroy(gameObject);
+        }
+    }
 	
 	void Update ()
     {

@@ -198,4 +198,16 @@ public class Inventory : MonoBehaviour {
     {
         return listItems;
     }
+
+    public static bool HasItemType(InventoryItems item)
+    {
+       foreach (DataItems i in listItems)
+        {
+            if (item == i.type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
