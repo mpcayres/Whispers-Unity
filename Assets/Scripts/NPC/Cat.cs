@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour {
     private bool followingPlayer = false;
+    private bool isPatroller = false;
+
     public float speed;
     GameObject player;
     public Animator animator;

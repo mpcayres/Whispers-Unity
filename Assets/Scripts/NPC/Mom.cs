@@ -15,7 +15,11 @@ public class Mom: MonoBehaviour {
         animator = GetComponent<Animator>();
 
         animator.SetTrigger("changeDirection");
-        GotoNextPoint();
+
+        if (isPatroller)
+        {
+            GotoNextPoint();
+        }
 	}
 	
 	void Update () {

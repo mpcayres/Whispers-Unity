@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61004878687434042}
   - component: {fileID: 50440710117986718}
   m_Layer: 8
+  m_Name: mom_bkp
   m_TagString: Mom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
