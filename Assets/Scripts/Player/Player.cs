@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     public int direction = 0, wantedDirection = 0;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
-
+	public RPGTalk rpgTalk;
     void Start ()
     {
         animator = GetComponent<Animator>();
@@ -20,6 +20,9 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
+
+
+
         if (!MissionManager.instance.paused && !MissionManager.instance.blocked)
         {
             bool isWalking = false, isRunning = false;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour {
 
             //Ordem do layer determinada pelo eixo y
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+				
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour {
                 animator.SetTrigger("changeDirection");
                 oldDirection = direction;
             }
+
 
         }
         else if (oldDirection != -1)

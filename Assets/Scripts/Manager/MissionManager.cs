@@ -21,6 +21,7 @@ public class MissionManager : MonoBehaviour {
     public float pathBird, pathCat;
     private GameObject hud;
 
+	public RPGTalk rpgTalk;
     //float startMissionDelay = 3f;
 
     public void Awake()
@@ -63,6 +64,11 @@ public class MissionManager : MonoBehaviour {
         {
             LoadGame(0);
         }
+
+		if(Input.GetKeyDown(KeyCode.Return)){
+			rpgTalk.EndTalk ();
+		}
+
     }
 
     private void OnEnable()

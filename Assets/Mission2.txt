@@ -1,0 +1,25 @@
+[title=M1KidRoomSceneStart]
+Welcome to Mission 2
+[question=0]Are you ready to play?
+[choice]Yes!
+[choice]Not really.
+Ok!
+[title=M1KidRoomSceneEnd]
+[title=M1KidRoomSceneRepeat]
+Not Okay
+Can you help me?
+I guess
+[title=M1KidRoomSceneRepeatEnd]
+
+[title=M2KidRoomSceneStart]
+Welcome to Mission 2
+[question=0]Are you ready to play?
+[choice]Yes!
+[choice]Not really.
+Ok!
+[title=M2KidRoomSceneEnd]
+[title=M2KidRoomSceneRepeat]
+Not Okay
+Can you help me?
+I guess
+[title=M2KidRoomSceneRepeatEnd]
