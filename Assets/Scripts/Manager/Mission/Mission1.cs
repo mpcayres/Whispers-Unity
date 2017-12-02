@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 
 public class Mission1 : Mission {
 	//public RPGTalk rpgTalk;
+	private int count = 0;
 
     public override void InitMission()
     {
@@ -21,7 +22,7 @@ public class Mission1 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-
+		
     }
 
     public override void SetCorredor()
@@ -43,8 +44,11 @@ public class Mission1 : Mission {
 
     public override void SetQuartoKid()
     {
-		MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneStart", "M1KidRoomSceneEnd");
-
+		//count++;	
+		//if(count==1)
+			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneStart", "M1KidRoomSceneEnd");
+		//else if(count==2)
+			//MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd");
     }
 
     public override void SetQuartoMae()
@@ -58,4 +62,8 @@ public class Mission1 : Mission {
 		MissionManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
     }
 
+	public void EraseLine(){
+		//count++;
+		MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
+	}
 }

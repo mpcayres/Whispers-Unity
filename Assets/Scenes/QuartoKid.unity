@@ -1061,11 +1061,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.7471704
+      value: -0.723
       objectReference: {fileID: 0}
     - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1126,7 +1126,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 232.5
+      value: 190.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -1788,7 +1788,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1502438011}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 232.49997, y: 162.49997, z: 0}
+  m_LocalPosition: {x: 190.49997, y: 162.49997, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 889737371}
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   txtToParse: {fileID: 4900000, guid: b51189599ee49be459453e5171734ddc, type: 3}
   enableQuickSkip: 1
   callbackScript: {fileID: 1649447313}
-  callbackFunction: GiveBackControls
+  callbackFunction: EraseLine
   animatorWhenTalking: {fileID: 0}
   animatorBooleanName: 
   animatorIntName: 
@@ -2144,7 +2144,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1971842490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -114.5, y: -31.5, z: 0}
+  m_LocalPosition: {x: -72.5, y: -31.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1502438012}

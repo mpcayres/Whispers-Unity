@@ -338,6 +338,13 @@ public class RPGTalk : MonoBehaviour {
 		NewTalk ();
 	}
 
+	public void NewTalk(string _lineToStart,string _lineToBreak, string _callbackFunction){
+		lineToStart = _lineToStart;
+		lineToBreak = _lineToBreak;
+		callbackFunction = _callbackFunction;
+		NewTalk ();
+	}
+
 	/// <summary>
 	/// Starts a new Talk.
 	/// </summary>

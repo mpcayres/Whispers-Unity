@@ -1,13 +1,20 @@
 [title=M1KidRoomSceneStart]
 Alex: Hm? Já é de manhã?
 Alex: A porta está aberta?
-- como fazer o texto parar aqui para aparecer o gato??
+[title=M1KidRoomSceneEnd]
+
+[title=callingCat]
+Alex: Atze?
+[title=callingCatEnd]
+
+
 [question=0]Are you ready to play?
 [choice]Yes!
 [choice]Not really.
 Ok!
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneRepeat]
+Testando repetição
 [title=M1KidRoomSceneRepeatEnd]
 
 [title=M1KitchenSceneStart]
@@ -21,6 +28,7 @@ Ok!
 [title=M1GardenSceneRepeatEnd]
 
 [title=M1MomRoomSceneStart]
+Alex: Atze?
 [title=M1MomRoomSceneEnd]
 [title=M1MomRoomSceneRepeat]
 [title=M1MomRoomSceneRepeatEnd]
@@ -141,3 +149,7 @@ Ok!
 [title=M4CorridorSceneEnd]
 [title=M4CorridorSceneRepeat]
 [title=M4CorridorSceneRepeatEnd]
+
+
+[title=EraseLine]
+[title=EraseLineEnd]

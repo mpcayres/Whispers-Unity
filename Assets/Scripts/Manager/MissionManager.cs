@@ -43,7 +43,13 @@ public class MissionManager : MonoBehaviour {
 
     public void Update()
     {
+		
         if(mission != null) mission.UpdateMission();
+
+		if(Input.GetKeyDown(KeyCode.Return)){
+			instance.rpgTalk.EndTalk ();
+		}
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
@@ -65,11 +71,11 @@ public class MissionManager : MonoBehaviour {
             LoadGame(0);
         }
 
-		if(Input.GetKeyDown(KeyCode.Return)){
-			rpgTalk.EndTalk ();
-		}
+
+	
 
     }
+
 
     private void OnEnable()
     {
@@ -183,5 +189,6 @@ public class MissionManager : MonoBehaviour {
         SaveGame(0);
         SaveGame(missionSelected);
     }
+
     
 }

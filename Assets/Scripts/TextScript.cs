@@ -7,7 +7,7 @@ using RPGTALK;
 
 public class TextScript : MonoBehaviour {
 	public RPGTalk rpgTalk;
-
+	private int count = 0;
 	void Update () {
 
 		//skip the Talk to the end if the player hit Return
@@ -18,14 +18,14 @@ public class TextScript : MonoBehaviour {
 	}
 
 
-	// Use this for initialization
-	public void GiveBackControls(){
-		
-	}
-
 	void OnMadeChoice(int questionId, int choiceID){
 		if ( questionId == 0) {
 
 		}
+	}
+
+	public void EraseLine(){
+		count++;
+		MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
 	}
 }
