@@ -78,7 +78,35 @@ public class MissionManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             ChangeMission(2);
-        }
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			ChangeMission(3);
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			ChangeMission(4);
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			ChangeMission(4);
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad5))
+		{
+			ChangeMission(5);
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad6))
+		{
+			ChangeMission(6);
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad7))
+		{
+			ChangeMission(7);
+		}if (Input.GetKeyDown(KeyCode.Keypad8))
+		{
+			ChangeMission(8);
+		}
+
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             LoadGame(0);
@@ -185,6 +213,36 @@ public class MissionManager : MonoBehaviour {
     public void SetMission(int m)
     {
         missionSelected = m;
+
+		switch(missionSelected){
+		case 1:
+			mission = new Mission1();
+			break;
+		case 2:
+			mission = new Mission2();
+			break;
+		case 3:
+			mission = new Mission3();
+			break;
+		case 4:
+			mission = new Mission4();
+			break;
+		case 5:
+			mission = new Mission5();
+			break;
+		case 6:
+			mission = new Mission6();
+			break;
+		case 7:
+			mission = new Mission7();
+			break;
+		case 8:
+			mission = new Mission8();
+			break;
+
+		}
+
+		/*
         if (missionSelected == 1)
         {
             mission = new Mission1();
@@ -192,7 +250,7 @@ public class MissionManager : MonoBehaviour {
         else if (missionSelected == 2)
         {
             mission = new Mission2();
-        }
+        }*/
         if (mission != null) mission.InitMission();
     }
 

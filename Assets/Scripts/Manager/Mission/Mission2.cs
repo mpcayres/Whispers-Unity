@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission
 {
-	//public RPGTalk rpgTalk;
-	private int count;
 
     public override void InitMission()
     {
@@ -31,7 +29,7 @@ public class Mission2 : Mission
 
 	public override void SetCozinha()
 	{
-		//MissionManager.instance.rpgTalk.NewTalk ("M21KitchenSceneStart", "M2KitchenSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
 	}
 
 	public override void SetJardim()
@@ -53,9 +51,8 @@ public class Mission2 : Mission
     public override void SetSala()
     {
         MissionManager.instance.AddObject("MovingObject", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        GameObject.Find("PickUpLanterna").gameObject.SetActive(false);
-		count++;	
-		if(count==1)
+        GameObject.Find("PickUpLanterna").gameObject.SetActive(false);	
+		if(MissionManager.instance.countLivingroomDialog == 0)
 			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
     }
 	public void AddCountCorridorDialog(){

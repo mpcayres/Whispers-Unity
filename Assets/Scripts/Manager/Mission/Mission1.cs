@@ -50,9 +50,7 @@ public class Mission1 : Mission {
 		} else if (MissionManager.instance.countKidRoomDialog == 1) {
 			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 		}
-		//else 
-			//MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
-    }
+  }
 
     public override void SetQuartoMae()
     {
@@ -61,14 +59,10 @@ public class Mission1 : Mission {
 
     public override void SetSala()
     {
-        //MissionManager.instance.AddObject("PickUpLanterna", new Vector3((float)-3.37, (float)-0.47, 0), new Vector3(1, 1, 1));
+        MissionManager.instance.AddObject("PickUpLanterna", new Vector3((float)-3.37, (float)-0.47, 0), new Vector3(1, 1, 1));
 		//MissionManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
     }
-
-	//public void EraseLine(){
-		//count++;
-		//MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
-	//}
+		
 	public void AddCountKidRoomDialog(){
 		MissionManager.instance.countKidRoomDialog++;
 
