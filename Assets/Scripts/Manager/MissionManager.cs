@@ -197,17 +197,19 @@ public class MissionManager : MonoBehaviour {
 
     public void ChangeMission(int m)
     {
-		/*countKidRoomDialog = 0;
+		countKidRoomDialog = 0;
 		countMomRoomDialog = 0;
 		countLivingroomDialog = 0;
 		countKitchenDialog = 0;
 		countGardenDialog = 0;
-		countCorridorDialog = 0;*/
+		countCorridorDialog = 0;
 
         SetMission(m);
         SaveGame(0);
         SaveGame(missionSelected);
     }
+
+	// não estão sendo usadas. as variáveis estão sendo incrementadas direto nas suas respectivas missions
 
 	public void AddCountKidRoomDialog(){
 		countKidRoomDialog++;

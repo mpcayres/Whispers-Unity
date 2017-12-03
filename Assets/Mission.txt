@@ -5,7 +5,12 @@ Alex: Atze?
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneRepeat]
-Testando repetição
+Alex: Mais um pesadelo? Mãe... estou com medo. 
+Alex: Atze?
+Alex: Por que está me encarando?
+[question=0] O que quer fazer agora?
+[choice]Tirar gato da cama e se esconder nas cobertas.
+[choice]Abraçar o gato para proteção.
 [title=M1KidRoomSceneRepeatEnd]
 
 [title=M1KitchenSceneStart]
@@ -47,10 +52,9 @@ Alex: Atze?
 [title=M2LivingRoomSceneStart]
 Alex: Mamãe, eu posso dormir com a senhora essa noite? Eu tenho medo do que está vindo no escuro.
 Mãe: Me desculpe meu filho, mamãe se mexe muito a noite, você não iria conseguir dormir ao meu lado. Além disso, você precisa lidar com seus medos sozinho.
-[question=1]Are you ready to play?
-[choice]Yes!
-[choice]Not really.
-Ok!
+[question=1]O que quer dizer para a mamãe?
+[choice]"Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!"
+[choice]"Tudo bem mamãe, ao menos Atze pode ficar ao meu lado..."
 [title=M2LivingRoomSceneEnd]
 [title=M2LivingRoomSceneRepeat]
 [title=M2LivingRoomSceneRepeatEnd]

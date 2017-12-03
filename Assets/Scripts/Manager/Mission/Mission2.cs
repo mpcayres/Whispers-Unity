@@ -26,27 +26,27 @@ public class Mission2 : Mission
 
     public override void SetCorredor()
     {
-		MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
     }
 
 	public override void SetCozinha()
 	{
-		MissionManager.instance.rpgTalk.NewTalk ("M21KitchenSceneStart", "M2KitchenSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M21KitchenSceneStart", "M2KitchenSceneEnd");
 	}
 
 	public override void SetJardim()
 	{
-		MissionManager.instance.rpgTalk.NewTalk ("M2GardenSceneStart", "M2GardenSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M2GardenSceneStart", "M2GardenSceneEnd");
 	}
 
     public override void SetQuartoKid()
     {
-		MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd");
     }
 
 	public override void SetQuartoMae()
 	{
-		MissionManager.instance.rpgTalk.NewTalk ("M2MomRoomSceneStart", "M2MomRoomSceneEnd");
+		//MissionManager.instance.rpgTalk.NewTalk ("M2MomRoomSceneStart", "M2MomRoomSceneEnd");
 	}
 
 
@@ -56,7 +56,10 @@ public class Mission2 : Mission
         GameObject.Find("PickUpLanterna").gameObject.SetActive(false);
 		count++;	
 		if(count==1)
-			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd");
+			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
     }
+	public void AddCountCorridorDialog(){
+		MissionManager.instance.countLivingroomDialog++;
 
+	}
 }
