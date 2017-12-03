@@ -197,15 +197,6 @@ public class Player : MonoBehaviour {
         }
 
     }
-	public void Pause(){
 
-		if (MissionManager.instance.paused == true)
-			MissionManager.instance.paused = false;
-		else if (MissionManager.instance.paused == false)
-			MissionManager.instance.paused = true;
-	}
 
-	public void EraseLine(){
-		MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
-	}
 }

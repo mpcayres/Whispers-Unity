@@ -353,6 +353,10 @@ public class RPGTalk : MonoBehaviour {
 		if(OnNewTalk != null){
 			OnNewTalk ();
 		}
+		//my addition - stop player movement
+		MissionManager.instance.paused = true;
+		MissionManager.instance.blocked = true;
+
 
 		//Check if we are using the right txtToParse based on the language
 		CheckCurrentLanguage ();
@@ -1414,7 +1418,12 @@ public class RPGTalk : MonoBehaviour {
 			//call the event
 			if(OnEndTalk != null){
 				OnEndTalk ();
+
 			}
+			//my addition - enable player movement
+			MissionManager.instance.paused = false;
+			MissionManager.instance.blocked = false;
+
 
 			isPlaying = false;
 

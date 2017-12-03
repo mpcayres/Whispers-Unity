@@ -225,5 +225,14 @@ public class MissionManager : MonoBehaviour {
 		countCorridorDialog++;
 	}
 
+	/*
+	public void OnNewTalk(){
+		MissionManager.instance.paused = true;
+		MissionManager.instance.blocked = true;
+	}
+	public void OnEndTalk(){
+		MissionManager.instance.paused = false;
+		MissionManager.instance.blocked = false;
+	}*/
     
 }
