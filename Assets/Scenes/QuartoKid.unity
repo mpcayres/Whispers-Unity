@@ -1941,8 +1941,8 @@ MonoBehaviour:
   otherCamera: {fileID: 0}
   txtToParse: {fileID: 4900000, guid: b51189599ee49be459453e5171734ddc, type: 3}
   enableQuickSkip: 1
-  callbackScript: {fileID: 1649447313}
-  callbackFunction: EraseLine
+  callbackScript: {fileID: 0}
+  callbackFunction: 
   animatorWhenTalking: {fileID: 0}
   animatorBooleanName: 
   animatorIntName: 
@@ -1960,8 +1960,8 @@ MonoBehaviour:
   passWithMouse: 1
   passWithInputButton: Submit
   enablePass: 1
-  lineToStart: M1KidRoomSceneStart
-  lineToBreak: M1KidRoomSceneEnd
+  lineToStart: 
+  lineToBreak: 
   wordWrap: 0
   maxCharInWidth: 40
   maxCharInHeight: 100
@@ -2109,12 +2109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpgTalk: {fileID: 1599877111}
---- !u!114 &1649447313 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114833596618350534, guid: 063980b53742ff1448b88d2562035754,
-    type: 2}
-  m_PrefabInternal: {fileID: 1649447306}
-  m_Script: {fileID: 11500000, guid: 9f5cf2ebe73c9ee45bd6df4da16dedee, type: 3}
 --- !u!4 &1649447316 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4406268900588164, guid: 063980b53742ff1448b88d2562035754,

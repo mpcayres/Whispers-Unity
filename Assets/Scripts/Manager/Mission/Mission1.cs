@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 
 public class Mission1 : Mission {
-	//public RPGTalk rpgTalk;
-	private int count = 0;
+
 
     public override void InitMission()
     {
@@ -44,11 +43,13 @@ public class Mission1 : Mission {
 
     public override void SetQuartoKid()
     {
-		//count++;	
-		//if(count==1)
-			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneStart", "M1KidRoomSceneEnd");
-		//else if(count==2)
-			//MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd");
+
+		if(MissionManager.instance.countKidRoomDialog  == 0)
+			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneStart", "M1KidRoomSceneEnd", "AddCountKidRoomDialog");
+		else if(MissionManager.instance.countKidRoomDialog  == 1)
+			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", "AddCountKidRoomDialog");
+		else 
+			MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd", "AddCountKidRoomDialog");
     }
 
     public override void SetQuartoMae()
@@ -65,5 +66,9 @@ public class Mission1 : Mission {
 	public void EraseLine(){
 		//count++;
 		MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
+	}
+	public void AddCountKidRoomDialog(){
+
+		MissionManager.instance.countKidRoomDialog++; //pq n ta incrementando??
 	}
 }

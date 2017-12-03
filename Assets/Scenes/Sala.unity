@@ -807,7 +807,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 387781432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -114.5, y: -31.5, z: 0}
+  m_LocalPosition: {x: -72.5, y: -31.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380555747}
@@ -2381,7 +2381,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1380555746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 232.49998, y: 162.5, z: 0.00000014305115}
+  m_LocalPosition: {x: 190.49998, y: 162.5, z: 0.00000014305115}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 1831672477}
@@ -3052,7 +3052,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 232.5
+      value: 190.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -3527,8 +3527,8 @@ MonoBehaviour:
   passWithMouse: 1
   passWithInputButton: Submit
   enablePass: 1
-  lineToStart: M1LivingroomSceneStart
-  lineToBreak: M1LivingroomSceneEnd
+  lineToStart: 
+  lineToBreak: 
   wordWrap: 0
   maxCharInWidth: 40
   maxCharInHeight: 100

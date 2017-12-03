@@ -24,6 +24,15 @@ public class MissionManager : MonoBehaviour {
 	public RPGTalk rpgTalk;
     //float startMissionDelay = 3f;
 
+	public int countKidRoomDialog = 0;
+	public int countMomRoomDialog = 0;
+	public int countLivingroomDialog = 0;
+	public int countKitchenDialog = 0;
+	public int countGardenDialog = 0;
+	public int countCorridorDialog = 0;
+
+
+
     public void Awake()
     {
         if (instance == null)
@@ -46,8 +55,11 @@ public class MissionManager : MonoBehaviour {
 		
         if(mission != null) mission.UpdateMission();
 
-		if(Input.GetKeyDown(KeyCode.Return)){
-			instance.rpgTalk.EndTalk ();
+		if(Input.GetKeyDown(KeyCode.End)){
+			MissionManager.instance.rpgTalk.EndTalk ();
+		}
+		if(Input.GetKeyDown(KeyCode.Space)){
+			MissionManager.instance.rpgTalk.PlayNext ();
 		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -185,10 +197,33 @@ public class MissionManager : MonoBehaviour {
 
     public void ChangeMission(int m)
     {
+		/*countKidRoomDialog = 0;
+		countMomRoomDialog = 0;
+		countLivingroomDialog = 0;
+		countKitchenDialog = 0;
+		countGardenDialog = 0;
+		countCorridorDialog = 0;*/
+
         SetMission(m);
         SaveGame(0);
         SaveGame(missionSelected);
     }
+
+	public void AddCountKidRoomDialog(){
+		countKidRoomDialog++;
+	}
+	public void AddCountMomRoomDialog(){
+		countMomRoomDialog++;
+	}
+	public void AddCountKitchenDialog(){
+		countKitchenDialog++;
+	}
+	public void AddCountGardenDialog(){
+		countGardenDialog++;
+	}
+	public void AddCountCorridorDialog(){
+		countCorridorDialog++;
+	}
 
     
 }

@@ -1,17 +1,8 @@
 [title=M1KidRoomSceneStart]
 Alex: Hm? Já é de manhã?
 Alex: A porta está aberta?
-[title=M1KidRoomSceneEnd]
-
-[title=callingCat]
 Alex: Atze?
-[title=callingCatEnd]
-
-
-[question=0]Are you ready to play?
-[choice]Yes!
-[choice]Not really.
-Ok!
+[title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneRepeat]
 Testando repetição
@@ -54,8 +45,7 @@ Alex: Atze?
 
 [title=M2LivingRoomSceneStart]
 Alex: Mamãe, eu posso dormir com a senhora essa noite? Eu tenho medo do que está vindo no escuro.
-Mãe: Me desculpe meu filho, mamãe se mexe muito a noite, você não iria conseguir dormir ao meu lado. 
-Mãe: Além disso, você precisa lidar com seus medos sozinho.
+Mãe: Me desculpe meu filho, mamãe se mexe muito a noite, você não iria conseguir dormir ao meu lado. Além disso, você precisa lidar com seus medos sozinho.
 [question=1]Are you ready to play?
 [choice]Yes!
 [choice]Not really.

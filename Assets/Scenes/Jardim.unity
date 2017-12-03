@@ -491,7 +491,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418391871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 232.49997, y: 162.5, z: 0.00000007152558}
+  m_LocalPosition: {x: 190.49998, y: 162.5, z: 0.00000007152558}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 2065551637}
@@ -1329,8 +1329,8 @@ MonoBehaviour:
   passWithMouse: 1
   passWithInputButton: Submit
   enablePass: 1
-  lineToStart: M1GardenSceneStart
-  lineToBreak: M1GardenSceneEnd
+  lineToStart: 
+  lineToBreak: 
   wordWrap: 0
   maxCharInWidth: 40
   maxCharInHeight: 100
@@ -1852,7 +1852,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1549745106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -114.5, y: -31.5, z: 0}
+  m_LocalPosition: {x: -72.5, y: -31.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418391872}
@@ -1985,7 +1985,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 232.5
+      value: 190.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

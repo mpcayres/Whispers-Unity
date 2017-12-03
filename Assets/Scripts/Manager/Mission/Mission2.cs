@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Mission2 : Mission
 {
 	//public RPGTalk rpgTalk;
+	private int count;
 
     public override void InitMission()
     {
@@ -53,7 +54,9 @@ public class Mission2 : Mission
     {
         MissionManager.instance.AddObject("MovingObject", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
         GameObject.Find("PickUpLanterna").gameObject.SetActive(false);
-		MissionManager.instance.rpgTalk.NewTalk ("M2LivingroomSceneStart", "M2LivingroomSceneEnd");
+		count++;	
+		if(count==1)
+			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd");
     }
 
 }
