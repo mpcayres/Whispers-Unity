@@ -43,6 +43,7 @@ public class MissionManager : MonoBehaviour {
             previousSceneName = currentSceneName;
             hud = GameObject.Find("HUDCanvas").gameObject;
             SetMission(missionSelected);
+			rpgTalk.OnMadeChoice += OnMadeChoice;
         }
         else if (instance != this)
         {
@@ -208,8 +209,7 @@ public class MissionManager : MonoBehaviour {
         SaveGame(0);
         SaveGame(missionSelected);
     }
-
-	// não estão sendo usadas. as variáveis estão sendo incrementadas direto nas suas respectivas missions
+		
 
 	public void AddCountKidRoomDialog(){
 		countKidRoomDialog++;
@@ -226,7 +226,10 @@ public class MissionManager : MonoBehaviour {
 	public void AddCountCorridorDialog(){
 		countCorridorDialog++;
 	}
-
+	public void AddCountLivingroomDialog(){
+		countCorridorDialog++;
+	}
+		
 	/*
 	public void OnNewTalk(){
 		MissionManager.instance.paused = true;
@@ -236,5 +239,26 @@ public class MissionManager : MonoBehaviour {
 		MissionManager.instance.paused = false;
 		MissionManager.instance.blocked = false;
 	}*/
+
+
+
+	public void OnMadeChoice(int questionId, int choiceID){
+		if ( questionId == 0) { // escolha final da missão 1
+			if (choiceID == 0) {
+				pathBird++;
+			} else {
+				pathCat++;
+			}
+		}
+		if ( questionId == 1) { // escolha final da missão 2
+			if (choiceID == 0) {
+				pathBird++;
+				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+			} else {
+				pathCat++;
+				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+			}
+		}
+	}
     
 }

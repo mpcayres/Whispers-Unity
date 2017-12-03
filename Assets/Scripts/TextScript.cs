@@ -10,22 +10,19 @@ public class TextScript : MonoBehaviour {
 	private int count = 0;
 	void Update () {
 
-		//skip the Talk to the end if the player hit Return
-		if(Input.GetKeyDown(KeyCode.Return)){
-			rpgTalk.EndTalk ();
-		}
 
 	}
 
 
 	void OnMadeChoice(int questionId, int choiceID){
 		if ( questionId == 0) {
-
+			if (choiceID == 0) {
+				MissionManager.instance.pathBird++;
+			} else {
+				MissionManager.instance.pathCat++;
+			}
 		}
 	}
 
-	public void EraseLine(){
-		count++;
-		MissionManager.instance.rpgTalk.NewTalk ("EraseLine", "EraseLineEnd");
-	}
+
 }
