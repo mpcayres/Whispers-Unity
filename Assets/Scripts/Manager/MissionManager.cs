@@ -19,8 +19,9 @@ public class MissionManager : MonoBehaviour {
     public static int initDir = 0;
 
     public float pathBird, pathCat;
-    private GameObject hud;
+    public bool invertWorld = false;
 
+    private GameObject hud;
 	public RPGTalk rpgTalk;
     //float startMissionDelay = 3f;
 
@@ -63,6 +64,11 @@ public class MissionManager : MonoBehaviour {
 			MissionManager.instance.rpgTalk.PlayNext();
 		}
 
+        if (!blocked && !paused && Input.GetKeyDown(KeyCode.E))
+        {
+            InvertWorld(!invertWorld);
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
@@ -102,7 +108,8 @@ public class MissionManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Keypad7))
 		{
 			ChangeMission(7);
-		}if (Input.GetKeyDown(KeyCode.Keypad8))
+		}
+        if (Input.GetKeyDown(KeyCode.Keypad8))
 		{
 			ChangeMission(8);
 		}
@@ -112,11 +119,7 @@ public class MissionManager : MonoBehaviour {
             LoadGame(0);
         }
 
-
-	
-
     }
-
 
     private void OnEnable()
     {
@@ -145,6 +148,7 @@ public class MissionManager : MonoBehaviour {
                 initX = initY = 0;
             }
         }
+        InvertWorld(invertWorld);
         if(mission != null) mission.LoadMissionScene();
     }
 
@@ -154,6 +158,12 @@ public class MissionManager : MonoBehaviour {
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
         moveInstance.transform.localScale = scale;
+    }
+
+    public void InvertWorld(bool sel)
+    {
+        invertWorld = sel;
+        GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
     }
 
     private Save CreateSaveGameObject()
@@ -272,6 +282,7 @@ public class MissionManager : MonoBehaviour {
     {
         blocked = true;
         hud.SetActive(false);
+        InvertWorld(false);
         SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
