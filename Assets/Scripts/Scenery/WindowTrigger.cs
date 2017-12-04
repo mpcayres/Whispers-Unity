@@ -7,14 +7,16 @@ public class WindowTrigger : MonoBehaviour {
 	public Sprite aberto;
 	public Sprite fechado;
 	public Sprite monstro;
-	public bool colliding = false;
+    public bool colliding = false;
 	public bool scare = false;
     SpriteRenderer spriteRenderer;
 	BoxCollider2D boxCollider;
 	float sizeX, sizeY;
 	float posXdefault, posY, posYdefault;
+    bool gameOver = false;
+    float timeLeft = 5;
 
-	void Start ()
+    void Start ()
 	{
 		boxCollider = GetComponent<BoxCollider2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +38,17 @@ public class WindowTrigger : MonoBehaviour {
 		{
 			ChangeSprite();
 		}
+        if (gameOver)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                MissionManager.instance.GameOver();
+            }
+        }
 	}
 
 	void ChangeSprite()
@@ -61,6 +74,7 @@ public class WindowTrigger : MonoBehaviour {
             spriteRenderer.sprite = monstro;
             transform.Find("BirdEmitter").gameObject.SetActive(true);
             MissionManager.instance.blocked = true;
+            gameOver = true;
         }
 
         /*if (spriteRenderer.sprite == monstro)

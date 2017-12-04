@@ -57,10 +57,10 @@ public class MissionManager : MonoBehaviour {
         if(mission != null) mission.UpdateMission();
 
 		if(Input.GetKeyDown(KeyCode.End)){
-			MissionManager.instance.rpgTalk.EndTalk ();
+			MissionManager.instance.rpgTalk.EndTalk();
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
-			MissionManager.instance.rpgTalk.PlayNext ();
+			MissionManager.instance.rpgTalk.PlayNext();
 		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -266,6 +266,20 @@ public class MissionManager : MonoBehaviour {
         SetMission(m);
         SaveGame(0);
         SaveGame(missionSelected);
+    }
+
+    public void GameOver()
+    {
+        blocked = true;
+        hud.SetActive(false);
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+    }
+
+    public void ContinueGame()
+    {
+        SceneManager.LoadScene(previousSceneName, LoadSceneMode.Single);
+        blocked = false;
+        hud.SetActive(true);
     }
 		
 

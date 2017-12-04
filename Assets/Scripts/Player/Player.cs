@@ -158,7 +158,8 @@ public class Player : MonoBehaviour {
                 {
                     rb.position = new Vector2((float)2.95, (float)-0.6);
                 }
-                else if (MissionManager.instance.previousSceneName.Equals("QuartoKid"))
+                //else if (MissionManager.instance.previousSceneName.Equals("QuartoKid"))
+                else
                 {
                     rb.position = new Vector2((float)11.9, (float)-0.3);
                     ChangeDirection(3);
@@ -184,14 +185,20 @@ public class Player : MonoBehaviour {
             }
             else if (MissionManager.instance.currentSceneName.Equals("Sala"))
             {
-                if (MissionManager.instance.previousSceneName.Equals("Corredor"))
-                {
-                    rb.position = new Vector2((float)-3.15, (float)0.85);
-                }
-                else if (MissionManager.instance.previousSceneName.Equals("Jardim"))
+                if (MissionManager.instance.previousSceneName.Equals("Jardim"))
                 {
                     rb.position = new Vector2((float)2.35, (float)-2.0);
                 }
+                //else if (MissionManager.instance.previousSceneName.Equals("Corredor"))
+                else
+                {
+                    rb.position = new Vector2((float)-3.15, (float)0.85);
+                    ChangeDirection(3);
+                }
+            }
+            else if (MissionManager.instance.currentSceneName.Equals("GameOver"))
+            {
+                //rb.position = new Vector2((float)-3.8, (float)-0.45);
             }
             MissionManager.instance.paused = false;
         }
