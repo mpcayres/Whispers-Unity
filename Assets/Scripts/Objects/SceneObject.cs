@@ -30,7 +30,9 @@ public class SceneObject : MonoBehaviour {
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (Input.GetKeyDown(KeyCode.Z) && colliding && !MissionManager.instance.paused) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+        if (Input.GetKeyDown(KeyCode.Z) && colliding && 
+            !MissionManager.instance.paused && !MissionManager.instance.blocked && 
+            !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {
             ChangeSprite();
         }

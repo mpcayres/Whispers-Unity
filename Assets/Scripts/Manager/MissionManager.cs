@@ -12,6 +12,7 @@ public class MissionManager : MonoBehaviour {
     public string previousSceneName, currentSceneName;
 
     public bool paused = false;
+    public bool pausedObject = false;
     public bool blocked = false;
 
     public static bool initMission = false;

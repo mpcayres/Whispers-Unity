@@ -16,7 +16,7 @@ public class FurtiveObject : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (colliding && !MissionManager.instance.paused)
+        if (colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked)
         {
             if (timeLeft > 0)
             {
@@ -27,14 +27,14 @@ public class FurtiveObject : MonoBehaviour {
             {
                 player.GetComponent<Renderer>().enabled = false;
                 player.layer = LayerMask.NameToLayer("PlayerHidden");
-                player.GetComponent<MissionManager>().blocked = true;
+                MissionManager.instance.pausedObject = true;
                 timeLeft = 3;
             }
             else if (!player.GetComponent<Renderer>().enabled && (Input.GetKeyDown(KeyCode.Z) || timeLeft <= 0))
             {
                 player.GetComponent<Renderer>().enabled = true;
                 player.layer = LayerMask.NameToLayer("Player");
-                player.GetComponent<MissionManager>().blocked = false;
+                MissionManager.instance.pausedObject = false;
                 timeLeft = 0;
             }
         }

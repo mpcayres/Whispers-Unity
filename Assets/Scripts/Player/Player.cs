@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
 
 
 
-        if (!MissionManager.instance.paused && !MissionManager.instance.blocked)
+        if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             bool isWalking = false, isRunning = false;
             float move = movespeed;

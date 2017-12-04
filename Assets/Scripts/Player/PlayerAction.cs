@@ -44,6 +44,11 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<PickUpObject>().colliding = true;
         }
 
+        if (collision.gameObject.tag == "ZoomObject")
+        {
+            collision.gameObject.GetComponent<ZoomObject>().colliding = true;
+        }
+
         if (collision.gameObject.tag == "WindowTrigger")
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
@@ -76,6 +81,11 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "PickUpObject")
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = false;
+        }
+
+        if (collision.gameObject.tag == "ZoomObject")
+        {
+            collision.gameObject.GetComponent<ZoomObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "WindowTrigger")

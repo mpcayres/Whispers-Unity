@@ -15,7 +15,8 @@ public class Flashlight : MonoBehaviour {
 	void Update ()
     {
         //0 = east, 1 = west, 2 = north, 3 = south
-        if (Input.GetKeyDown(KeyCode.F) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT && !MissionManager.instance.paused)
+        if (Input.GetKeyDown(KeyCode.F) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT &&
+            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
             GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
