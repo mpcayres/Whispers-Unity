@@ -3,6 +3,7 @@
 public class FurtiveObject : MonoBehaviour {
     GameObject player;
     public bool colliding = false;
+    public float timeMax = 3;
     SpriteRenderer spriteRenderer;
     float timeLeft;
 
@@ -28,7 +29,7 @@ public class FurtiveObject : MonoBehaviour {
                 player.GetComponent<Renderer>().enabled = false;
                 player.layer = LayerMask.NameToLayer("PlayerHidden");
                 MissionManager.instance.pausedObject = true;
-                timeLeft = 3;
+                timeLeft = timeMax;
             }
             else if (!player.GetComponent<Renderer>().enabled && (Input.GetKeyDown(KeyCode.Z) || timeLeft <= 0))
             {

@@ -10,6 +10,7 @@ public class MissionManager : MonoBehaviour {
     public Mission mission;
     public int missionSelected; // colocar 1 quando for a versão final, para começar na missão 1 quando clicar em new game
     public string previousSceneName, currentSceneName;
+    public bool mission2ContestaMae = false;
 
     public bool paused = false;
     public bool pausedObject = false;
@@ -32,7 +33,6 @@ public class MissionManager : MonoBehaviour {
 	public int countKitchenDialog = 0;
 	public int countGardenDialog = 0;
 	public int countCorridorDialog = 0;
-
 
 
     public void Awake()
@@ -176,6 +176,7 @@ public class MissionManager : MonoBehaviour {
         save.currentItem = Inventory.GetCurrentItem();
         save.pathBird = pathBird;
         save.pathCat = pathCat;
+        save.mission2ContestaMae = mission2ContestaMae;
 
         return save;
     }
@@ -210,6 +211,7 @@ public class MissionManager : MonoBehaviour {
             if(save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
             pathBird = save.pathBird;
             pathCat = save.pathCat;
+            mission2ContestaMae = save.mission2ContestaMae;
 
             Debug.Log("Game Loaded " + m);
 

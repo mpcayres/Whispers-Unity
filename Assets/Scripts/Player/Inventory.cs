@@ -6,7 +6,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
 
     [System.Serializable]
-    public enum InventoryItems { DEFAULT, FLASHLIGHT };
+    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, NOVELO, ISQUEIRO };
     [System.Serializable]
     public class DataItems
     {
