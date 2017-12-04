@@ -329,20 +329,31 @@ public class MissionManager : MonoBehaviour {
 	public void OnMadeChoice(int questionId, int choiceID){
 		if ( questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) {
-				pathBird++;
+				pathCat -= 2;
+                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			} else {
-				pathCat++;
+				pathCat+=5;
+                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			}
 		}
 		if ( questionId == 1) { // escolha final da missão 2
 			if (choiceID == 0) {
-				pathBird++;
-				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+				pathBird+=6;
+				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			} else {
-				pathCat++;
-				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+				pathCat+=5;
+				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			}
 		}
+        if ( questionId == 2) { // escolha final da missão 3
+            if (choiceID == 0) {
+                pathBird+=5;
+                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+            } else {
+                pathCat+=5;
+                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+            }
+        }
 	}
     
 }

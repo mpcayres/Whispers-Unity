@@ -39,7 +39,9 @@ public class Mission2 : Mission
 
     public override void SetQuartoKid()
     {
-		//MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd");
+		if (MissionManager.instance.countKidRoomDialog == 0) {
+            MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+        }
     }
 
 	public override void SetQuartoMae()
