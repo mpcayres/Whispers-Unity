@@ -25,6 +25,7 @@ TagManager:
   - WindowTrigger
   - FurtiveObject
   - ZoomObject
+  - ScenePickUpObject
   layers:
   - Default
   - TransparentFX

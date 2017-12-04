@@ -149,7 +149,7 @@ public class Inventory : MonoBehaviour {
         string file = "";
         if (selectItem == InventoryItems.FLASHLIGHT)
         {
-            file = "carretel";
+            file = "lanterna";
         }
         DataItems novoItem = new DataItems(selectItem, file);
         listItems.Add(novoItem);

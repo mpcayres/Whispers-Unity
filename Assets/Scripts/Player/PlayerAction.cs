@@ -49,11 +49,17 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<ZoomObject>().colliding = true;
         }
 
+        if (collision.gameObject.tag == "ScenePickUpObject")
+        {
+            collision.gameObject.GetComponent<ScenePickUpObject>().colliding = true;
+        }
+
         if (collision.gameObject.tag == "WindowTrigger")
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
             collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
         }
+
         if (collision.gameObject.tag == "Cat")
         {
             print("Gato");
@@ -86,6 +92,11 @@ public class PlayerAction : MonoBehaviour {
         if (collision.gameObject.tag == "ZoomObject")
         {
             collision.gameObject.GetComponent<ZoomObject>().colliding = false;
+        }
+
+        if(collision.gameObject.tag == "ScenePickUpObject")
+        {
+            collision.gameObject.GetComponent<ScenePickUpObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "WindowTrigger")

@@ -59,7 +59,17 @@ public class Mission1 : Mission {
 
     public override void SetSala()
     {
-        MissionManager.instance.AddObject("PickUpLanterna", new Vector3((float)-3.37, (float)-0.47, 0), new Vector3(1, 1, 1));
+        GameObject criadoMudo = GameObject.Find("CriadoMudoSala").gameObject;
+        criadoMudo.tag = "ScenePickUpObject";
+        SceneObject sceneObject = criadoMudo.GetComponent<SceneObject>();
+        sceneObject.enabled = false;
+        ScenePickUpObject scenePickUpObject = criadoMudo.AddComponent<ScenePickUpObject>();
+        scenePickUpObject.sprite1 = sceneObject.sprite1;
+        scenePickUpObject.sprite2 = sceneObject.sprite2;
+        scenePickUpObject.positionSprite = sceneObject.positionSprite;
+        scenePickUpObject.scale = sceneObject.scale;
+        scenePickUpObject.item = Inventory.InventoryItems.FLASHLIGHT;
+        //MissionManager.instance.AddObject("PickUpLanterna", new Vector3((float)-3.37, (float)-0.47, 0), new Vector3(1, 1, 1));
 		//MissionManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
     }
 		
