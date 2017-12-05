@@ -1,8 +1,8 @@
 ﻿using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class MissionManager : MonoBehaviour {
 
@@ -24,10 +24,13 @@ public class MissionManager : MonoBehaviour {
     public bool invertWorld = false;
 
     private GameObject hud;
-	public RPGTalk rpgTalk;
-    //float startMissionDelay = 3f;
+    float startMissionDelay = 3f;
+    bool showMissionStart = false;
+    private Text levelText;
+    private GameObject levelImage;
+    public RPGTalk rpgTalk;
 
-	public int countKidRoomDialog = -1;
+    public int countKidRoomDialog = -1;
 	public int countMomRoomDialog = -1;
 	public int countLivingroomDialog = -1;
 	public int countKitchenDialog = -1;
@@ -41,11 +44,16 @@ public class MissionManager : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+
             currentSceneName = SceneManager.GetActiveScene().name;
             previousSceneName = currentSceneName;
+
             hud = GameObject.Find("HUDCanvas").gameObject;
+
             SetMission(missionSelected);
-			rpgTalk.OnMadeChoice += OnMadeChoice;
+            Invoke("HideLevelImage", startMissionDelay);
+
+            rpgTalk.OnMadeChoice += OnMadeChoice;
         }
         else if (instance != this)
         {
@@ -55,26 +63,40 @@ public class MissionManager : MonoBehaviour {
 
     public void Update()
     {
-		
-        if(mission != null) mission.UpdateMission();
-
-		if(Input.GetKeyDown(KeyCode.End)){
-			MissionManager.instance.rpgTalk.EndTalk();
-		}
-		if(Input.GetKeyDown(KeyCode.Space)){
-			MissionManager.instance.rpgTalk.PlayNext();
-		}
-
-        if (!blocked && !paused && Input.GetKeyDown(KeyCode.E))
+        if (!showMissionStart)
         {
-            InvertWorld(!invertWorld);
+
+            if (mission != null)
+            {
+                mission.UpdateMission();
+            }
+
+            if (Input.GetKeyDown(KeyCode.End))
+            {
+                rpgTalk.EndTalk();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rpgTalk.PlayNext();
+            }
+
+            if (!blocked && !paused && Input.GetKeyDown(KeyCode.E))
+            {
+                InvertWorld(!invertWorld);
+            }
+
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                HideLevelImage();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
-            Destroy(gameObject);
-            Destroy(hud);
         }
 
         // teste, depois colocar pelo menu
@@ -138,6 +160,7 @@ public class MissionManager : MonoBehaviour {
         currentSceneName = scene.name;
         print("OLDSCENE" + previousSceneName);
         print("NEWSCENE" + currentSceneName);
+
         if (!initMission) {
             GetComponent<Player>().ChangePosition();
         }
@@ -155,7 +178,25 @@ public class MissionManager : MonoBehaviour {
                 countCorridorDialog = 0;
             }
         }
+
+        if (currentSceneName.Equals("GameOver"))
+        {
+            GetComponent<Player>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+        }
+        else if (previousSceneName.Equals("GameOver"))
+        {
+            GetComponent<Player>().enabled = true;
+            GetComponent<Renderer>().enabled = true;
+        }
+        else if (currentSceneName.Equals("MainMenu"))
+        {
+            Destroy(gameObject);
+            Destroy(hud);
+        }
+
         InvertWorld(invertWorld);
+
         if(mission != null) mission.LoadMissionScene();
     }
 
@@ -170,7 +211,7 @@ public class MissionManager : MonoBehaviour {
     public void InvertWorld(bool sel)
     {
         invertWorld = sel;
-        if (!currentSceneName.Equals("GameOver"))
+        if (!currentSceneName.Equals("GameOver") && !currentSceneName.Equals("MainMenu"))
         {
             GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
         }
@@ -263,17 +304,17 @@ public class MissionManager : MonoBehaviour {
 			break;
 
 		}
+        
+        levelImage = hud.transform.Find("LevelImage").gameObject;
+        levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
 
-		/*
-        if (missionSelected == 1)
+        if (mission != null)
         {
-            mission = new Mission1();
+            levelText.text = "Night " + m;
+            levelImage.SetActive(true);
+            showMissionStart = true;
+            mission.InitMission();
         }
-        else if (missionSelected == 2)
-        {
-            mission = new Mission2();
-        }*/
-        if (mission != null) mission.InitMission();
     }
 
     public void ChangeMission(int m)
@@ -304,9 +345,15 @@ public class MissionManager : MonoBehaviour {
         blocked = false;
         hud.SetActive(true);
     }
-		
 
-	public void AddCountKidRoomDialog()
+    void HideLevelImage()
+    {
+        levelImage.SetActive(false);
+        showMissionStart = false;
+    }
+
+
+    public void AddCountKidRoomDialog()
     {
 		countKidRoomDialog++;
 	}
@@ -338,12 +385,12 @@ public class MissionManager : MonoBehaviour {
 		
 	/*
 	public void OnNewTalk(){
-		MissionManager.instance.paused = true;
-		MissionManager.instance.blocked = true;
+		paused = true;
+		blocked = true;
 	}
 	public void OnEndTalk(){
-		MissionManager.instance.paused = false;
-		MissionManager.instance.blocked = false;
+		paused = false;
+		blocked = false;
 	}*/
 
 
@@ -353,28 +400,28 @@ public class MissionManager : MonoBehaviour {
 		if ( questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) {
 				pathCat -= 2;
-                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			} else {
 				pathCat+=5;
-                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			}
 		}
 		if ( questionId == 1) { // escolha final da missão 2
 			if (choiceID == 0) {
 				pathBird+=6;
-				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			} else {
 				pathCat+=5;
-				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			}
 		}
         if ( questionId == 2) { // escolha final da missão 3
             if (choiceID == 0) {
                 pathBird+=5;
-                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             } else {
                 pathCat+=5;
-                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             }
         }
 	}

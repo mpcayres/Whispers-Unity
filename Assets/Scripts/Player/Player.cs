@@ -22,8 +22,6 @@ public class Player : MonoBehaviour {
 	void Update ()
     {
 
-
-
         if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             bool isWalking = false, isRunning = false;
