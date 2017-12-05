@@ -424,6 +424,19 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             }
         }
-	}
+        if (questionId == 3)
+        { // escolha inicial da missão 4
+            if (choiceID == 0)
+            {
+                pathCat += 3;
+                rpgTalk.NewTalk("M4Q3C0", "M4Q3C0End");
+            }
+            else
+            {
+                pathBird += 3;
+                //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
+            }
+        }
+    }
     
 }

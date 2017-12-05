@@ -70,8 +70,12 @@ public class Mission2 : Mission {
         secao = (enumMission)pos;
     }
 
-    public void AddCountCorridorDialog()
+    public void AddCountLivingroomDialog()
     {
 		MissionManager.instance.countLivingroomDialog++;
 	}
+    public void AddCountKidRoomDialog()
+    {
+        MissionManager.instance.countKidRoomDialog++;
+    }
 }

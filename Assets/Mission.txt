@@ -193,7 +193,7 @@ Alex: Preciso de algo para não me machucar quebrando.
 Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
 [title=IndicarNecessidadeEnd]
 [title=Final]
-Mãe: Volte pro seu quarto! Foi você que quebrou o vaso?
+Mãe: Foi você que quebrou o vaso? Volte pro seu quarto! 
 [title=FinalEnd]
 
 ----------------------------------- ESCOLHAS -----------------------------------
@@ -243,7 +243,6 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M5KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M5KidRoomSceneEnd]
 [title=M5KidRoomSceneRepeat]
 [title=M5KidRoomSceneRepeatEnd]
@@ -281,7 +280,6 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M6KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M6KidRoomSceneEnd]
 [title=M6KidRoomSceneRepeat]
 [title=M6KidRoomSceneRepeatEnd]
@@ -320,7 +318,6 @@ Alex: Tenho que distraí-la.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M7KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M7KidRoomSceneEnd]
 [title=M7KidRoomSceneRepeat]
 [title=M7KidRoomSceneRepeatEnd]
@@ -359,7 +356,6 @@ Alex: Tenho que distraí-la.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M8KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M8KidRoomSceneEnd]
 [title=M8KidRoomSceneRepeat]
 [title=M8KidRoomSceneRepeatEnd]
@@ -398,7 +394,6 @@ Alex: Tenho que distraí-la.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M9KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M9KidRoomSceneEnd]
 [title=M9KidRoomSceneRepeat]
 [title=M9KidRoomSceneRepeatEnd]
@@ -437,7 +432,6 @@ Alex: Tenho que distraí-la.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M10KidRoomSceneStart]
-Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M10KidRoomSceneEnd]
 [title=M10KidRoomSceneRepeat]
 [title=M10KidRoomSceneRepeatEnd]

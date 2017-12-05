@@ -9,7 +9,7 @@ public class Mission1 : Mission {
     enum enumMission { INICIO, GATO_APARECEU, GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, FINAL };
     enumMission secao;
 
-    private int countKidRoomDialog = 0;
+    //private int countKidRoomDialog = 0;
 
     public override void InitMission()
     {
