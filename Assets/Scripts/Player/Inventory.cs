@@ -39,7 +39,8 @@ public class Inventory : MonoBehaviour {
         box = Resources.Load<Sprite>("Sprites/UI/box");
         selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
         missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
-	}
+        Inventory.NewItem(Inventory.InventoryItems.FLASHLIGHT);
+    }
 	
 	void Update ()
     {

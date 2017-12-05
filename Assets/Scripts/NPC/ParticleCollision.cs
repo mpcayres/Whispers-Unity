@@ -17,7 +17,11 @@ public class ParticleCollision : MonoBehaviour {
 
     void OnParticleCollision(GameObject TargetedParticle)
     {
-        MissionManager.instance.GameOver();
+        print("PARTCOL: " + TargetedParticle.tag);
+        if (TargetedParticle.tag == "Player")
+        {
+            MissionManager.instance.GameOver();
+        }
     }
 
 }
