@@ -43,14 +43,14 @@ public class Mission1 : Mission {
 
     public override void SetQuartoKid()
     {
-
 		if (MissionManager.instance.countKidRoomDialog == 0) {
 			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 		
 		} else if (MissionManager.instance.countKidRoomDialog == 1) {
 			MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 		}
-  }
+
+    }
 
     public override void SetQuartoMae()
     {
@@ -73,12 +73,13 @@ public class Mission1 : Mission {
 		//MissionManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
     }
 		
-	public void AddCountKidRoomDialog(){
+	public void AddCountKidRoomDialog()
+    {
 		MissionManager.instance.countKidRoomDialog++;
-
 	}
-	public void AddCountCorridorDialog(){
-		MissionManager.instance.countCorridorDialog++;
 
+	public void AddCountCorridorDialog()
+    {
+		MissionManager.instance.countCorridorDialog++;
 	}
 }

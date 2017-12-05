@@ -42,13 +42,19 @@ public class Mission2 : Mission
 		if (MissionManager.instance.countKidRoomDialog == 0) {
             MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
         }
+
+        GameObject windowTrigger = GameObject.Find("WindowTrigger").gameObject;
+        windowTrigger.tag = "ScenePickUpObject";
+        WindowTrigger sceneObject = windowTrigger.GetComponent<WindowTrigger>();
+        sceneObject.enabled = true;
+        SceneObject sceneObjectNew = windowTrigger.GetComponent<SceneObject>();
+        sceneObjectNew.enabled = false;
     }
 
-	public override void SetQuartoMae()
+    public override void SetQuartoMae()
 	{
 		//MissionManager.instance.rpgTalk.NewTalk ("M2MomRoomSceneStart", "M2MomRoomSceneEnd");
 	}
-
 
     public override void SetSala()
     {
@@ -57,8 +63,9 @@ public class Mission2 : Mission
 		if(MissionManager.instance.countLivingroomDialog == 0)
 			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
     }
-	public void AddCountCorridorDialog(){
-		MissionManager.instance.countLivingroomDialog++;
 
+	public void AddCountCorridorDialog()
+    {
+		MissionManager.instance.countLivingroomDialog++;
 	}
 }

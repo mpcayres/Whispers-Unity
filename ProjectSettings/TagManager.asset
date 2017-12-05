@@ -28,6 +28,7 @@ TagManager:
   - ScenePickUpObject
   - SceneMultipleObject
   - Lamp
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -164,7 +164,10 @@ public class MissionManager : MonoBehaviour {
     public void InvertWorld(bool sel)
     {
         invertWorld = sel;
-        GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
+        if (!currentSceneName.Equals("GameOver"))
+        {
+            GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
+        }
     }
 
     private Save CreateSaveGameObject()
