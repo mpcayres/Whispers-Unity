@@ -53,4 +53,6 @@ public abstract class Mission {
 
     public abstract void SetSala();
 
+    public abstract void EspecificaEnum(int pos);
+
 }

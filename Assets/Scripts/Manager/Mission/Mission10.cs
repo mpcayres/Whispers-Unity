@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 
 public class Mission10 : Mission {
+    enum enumMission { INICIO, FINAL };
+    enumMission secao;
+
     public override void InitMission()
     {
         // colocar de volta para versão final
@@ -15,6 +18,7 @@ public class Mission10 : Mission {
         MissionManager.initY = (float)0.2;
         MissionManager.initDir = 3;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        secao = enumMission.INICIO;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -50,5 +54,10 @@ public class Mission10 : Mission {
     public override void SetSala()
     {
 
+    }
+
+    public override void EspecificaEnum(int pos)
+    {
+        secao = (enumMission) pos;
     }
 }

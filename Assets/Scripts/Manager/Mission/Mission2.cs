@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Mission2 : Mission
-{
+public class Mission2 : Mission {
+    enum enumMission { INICIO_GATO, INICIO_SOZINHO, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
+    enumMission secao;
 
     public override void InitMission()
     {
@@ -13,8 +14,8 @@ public class Mission2 : Mission
         MissionManager.initX = (float)-3.5;
         MissionManager.initY = (float)0.15;
         MissionManager.initDir = 1;
-
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        secao = enumMission.INICIO_GATO;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -64,7 +65,12 @@ public class Mission2 : Mission
 			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
     }
 
-	public void AddCountCorridorDialog()
+    public override void EspecificaEnum(int pos)
+    {
+        secao = (enumMission)pos;
+    }
+
+    public void AddCountCorridorDialog()
     {
 		MissionManager.instance.countLivingroomDialog++;
 	}

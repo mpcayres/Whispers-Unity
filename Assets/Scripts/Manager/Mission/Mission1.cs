@@ -6,17 +6,21 @@ using UnityEngine.UI;
 
 
 public class Mission1 : Mission {
-	private int countKidRoomDialog = 0;
+    enum enumMission { INICIO, GATO_APARECEU, GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, FINAL };
+    enumMission secao;
+
+    private int countKidRoomDialog = 0;
 
     public override void InitMission()
     {
         // colocar de volta para versão final
-         sceneInit = "QuartoKid";
+        sceneInit = "QuartoKid";
         MissionManager.initMission = true;
         MissionManager.initX = (float) 1.5;
         MissionManager.initY = (float) 0.2;
         MissionManager.initDir = 3;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        secao = enumMission.INICIO;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -99,6 +103,11 @@ public class Mission1 : Mission {
         scenePickUpObject.positionSprite = sceneObject.positionSprite;
         scenePickUpObject.scale = sceneObject.scale;
         scenePickUpObject.item = Inventory.InventoryItems.FLASHLIGHT;
+    }
+
+    public override void EspecificaEnum(int pos)
+    {
+        secao = (enumMission) pos;
     }
 		
 	public void AddCountKidRoomDialog()
