@@ -27,6 +27,7 @@ TagManager:
   - ZoomObject
   - ScenePickUpObject
   - SceneMultipleObject
+  - Lamp
   layers:
   - Default
   - TransparentFX

@@ -28,44 +28,40 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<SceneObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "MovingObject")
+        else if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "FurtiveObject")
+        else if (collision.gameObject.tag == "FurtiveObject")
         {
             collision.gameObject.GetComponent<FurtiveObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "PickUpObject")
+        else if (collision.gameObject.tag == "PickUpObject")
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "ZoomObject")
+        else if (collision.gameObject.tag == "ZoomObject")
         {
             collision.gameObject.GetComponent<ZoomObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "ScenePickUpObject")
+        else if (collision.gameObject.tag == "ScenePickUpObject")
         {
             collision.gameObject.GetComponent<ScenePickUpObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "SceneMultipleObject")
+        else if (collision.gameObject.tag == "SceneMultipleObject")
         {
             collision.gameObject.GetComponent<SceneMultipleObject>().colliding = true;
         }
-
-        if (collision.gameObject.tag == "WindowTrigger")
+        else if (collision.gameObject.tag == "Lamp")
+        {
+            collision.gameObject.GetComponent<Lamp>().colliding = true;
+        }
+        else if (collision.gameObject.tag == "WindowTrigger")
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
             collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
         }
-
-        if (collision.gameObject.tag == "Cat")
+        else if (collision.gameObject.tag == "Cat")
         {
             print("Gato");
             collision.gameObject.GetComponent<Cat>().FollowPlayer();
@@ -78,38 +74,35 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<SceneObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "MovingObject")
+        else if (collision.gameObject.tag == "MovingObject")
         {
             collision.gameObject.GetComponent<MovingObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "FurtiveObject")
+        else if (collision.gameObject.tag == "FurtiveObject")
         {
             collision.gameObject.GetComponent<FurtiveObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "PickUpObject")
+        else if (collision.gameObject.tag == "PickUpObject")
         {
             collision.gameObject.GetComponent<PickUpObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "ZoomObject")
+        else if (collision.gameObject.tag == "ZoomObject")
         {
             collision.gameObject.GetComponent<ZoomObject>().colliding = false;
         }
-
-        if(collision.gameObject.tag == "ScenePickUpObject")
+        else if (collision.gameObject.tag == "ScenePickUpObject")
         {
             collision.gameObject.GetComponent<ScenePickUpObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "SceneMultipleObject")
+        else if (collision.gameObject.tag == "SceneMultipleObject")
         {
             collision.gameObject.GetComponent<SceneMultipleObject>().colliding = false;
         }
-
-        if (collision.gameObject.tag == "WindowTrigger")
+        else if (collision.gameObject.tag == "Lamp")
+        {
+            collision.gameObject.GetComponent<Lamp>().colliding = false;
+        }
+        else if (collision.gameObject.tag == "WindowTrigger")
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = false;
         }

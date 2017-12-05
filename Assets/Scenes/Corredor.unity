@@ -354,6 +354,11 @@ Prefab:
       propertyPath: missionSelected
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: rpgTalk
+      value: 
+      objectReference: {fileID: 1649564042}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
   m_IsPrefabParent: 0
@@ -1748,6 +1753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliding: 0
+  timeMax: 3
 --- !u!1001 &1590415032
 Prefab:
   m_ObjectHideFlags: 0
