@@ -54,6 +54,11 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<ScenePickUpObject>().colliding = true;
         }
 
+        if (collision.gameObject.tag == "SceneMultipleObject")
+        {
+            collision.gameObject.GetComponent<SceneMultipleObject>().colliding = true;
+        }
+
         if (collision.gameObject.tag == "WindowTrigger")
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
@@ -97,6 +102,11 @@ public class PlayerAction : MonoBehaviour {
         if(collision.gameObject.tag == "ScenePickUpObject")
         {
             collision.gameObject.GetComponent<ScenePickUpObject>().colliding = false;
+        }
+
+        if (collision.gameObject.tag == "SceneMultipleObject")
+        {
+            collision.gameObject.GetComponent<SceneMultipleObject>().colliding = false;
         }
 
         if (collision.gameObject.tag == "WindowTrigger")

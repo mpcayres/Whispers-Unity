@@ -26,6 +26,7 @@ TagManager:
   - FurtiveObject
   - ZoomObject
   - ScenePickUpObject
+  - SceneMultipleObject
   layers:
   - Default
   - TransparentFX
