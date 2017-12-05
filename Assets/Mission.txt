@@ -171,8 +171,42 @@ Alex: O-O que é isso?
 
 
 -------------------------------------- MISSAO 4 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+[title=frenteCriadoStart]
+Alex: Espera! Você quer que eu encontre o livro que estava aqui?
+Atze: Miau.
+Alex: Mas as páginas voaram quando aquele corvo passou por aqui…
+Alex: Acho que vou ter que procurá-las.
+Alex: Onde elas estão? Você consegue me ajudar, Atze?
+[title=frenteCriadoEnd]
+[title=GrandeBarulhoStart]
+Alex: Eu poderia fazer um grande barulho.
+[question=3] O que quer fazer agora?
+[choice]Convencer o gato a quebrar algo
+[choice]Quebrar algo sozinho 
+[title=GrandeBarulhoEnd]
+[title=EuJaTenhoIsso]
+Alex: Eu já tenho isso.
+[title=EuJaTenhoIssoEnd]
+[title=IndicarNecessidade]
+Alex: Preciso de algo para não me machucar quebrando.
+Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
+[title=IndicarNecessidadeEnd]
+[title=Final]
+Mãe: Volte pro seu quarto! Foi você que quebrou o vaso?
+[title=FinalEnd]
+
+----------------------------------- ESCOLHAS -----------------------------------
+[title=M4Q3C0]
+Alex: Atze, você pode quebrar aquele vaso pra mim?
+Atze: Miau!
+Alex: Você está com fome? Quer brincar? Vou procurar algo...
+[title=M4Q3C0End]
+[title=M4Q3C1]
+[title=M4Q3C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M4KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M4KidRoomSceneEnd]
 [title=M4KidRoomSceneRepeat]
 [title=M4KidRoomSceneRepeatEnd]
@@ -201,3 +235,236 @@ Alex: O-O que é isso?
 [title=M4CorridorSceneEnd]
 [title=M4CorridorSceneRepeat]
 [title=M4CorridorSceneRepeatEnd]
+
+
+-------------------------------------- MISSAO 5 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M5KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M5KidRoomSceneEnd]
+[title=M5KidRoomSceneRepeat]
+[title=M5KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M5KitchenSceneStart]
+[title=M5KitchenSceneEnd]
+[title=M5KitchenSceneRepeat]
+[title=M5KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M5GardenSceneStart]
+[title=M5GardenSceneEnd]
+[title=M5GardenSceneRepeat]
+[title=M5GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M5MomRoomSceneStart]
+[title=M5MomRoomSceneEnd]
+[title=M5MomRoomSceneRepeat]
+[title=M5MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M5LivingroomSceneStart]
+[title=M5LivingroomSceneEnd]
+[title=M5LivingroomSceneRepeat]
+[title=M5LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M5CorridorSceneStart]
+[title=M5CorridorSceneEnd]
+[title=M5CorridorSceneRepeat]
+[title=M5CorridorSceneRepeatEnd]
+
+
+
+-------------------------------------- MISSAO 6 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M6KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M6KidRoomSceneEnd]
+[title=M6KidRoomSceneRepeat]
+[title=M6KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M6KitchenSceneStart]
+[title=M6KitchenSceneEnd]
+[title=M6KitchenSceneRepeat]
+[title=M6KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M6GardenSceneStart]
+[title=M6GardenSceneEnd]
+[title=M6GardenSceneRepeat]
+[title=M6GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M6MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
+[title=M6MomRoomSceneEnd]
+[title=M6MomRoomSceneRepeat]
+[title=M6MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M6LivingroomSceneStart]
+[title=M6LivingroomSceneEnd]
+[title=M6LivingroomSceneRepeat]
+[title=M6LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M6CorridorSceneStart]
+[title=M6CorridorSceneEnd]
+[title=M6CorridorSceneRepeat]
+[title=M6CorridorSceneRepeatEnd]
+
+
+-------------------------------------- MISSAO 7 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M7KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M7KidRoomSceneEnd]
+[title=M7KidRoomSceneRepeat]
+[title=M7KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M7KitchenSceneStart]
+[title=M7KitchenSceneEnd]
+[title=M7KitchenSceneRepeat]
+[title=M7KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M7GardenSceneStart]
+[title=M7GardenSceneEnd]
+[title=M7GardenSceneRepeat]
+[title=M7GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M7MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
+[title=M7MomRoomSceneEnd]
+[title=M7MomRoomSceneRepeat]
+[title=M7MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M7LivingroomSceneStart]
+[title=M7LivingroomSceneEnd]
+[title=M7LivingroomSceneRepeat]
+[title=M7LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M7CorridorSceneStart]
+[title=M7CorridorSceneEnd]
+[title=M7CorridorSceneRepeat]
+[title=M7CorridorSceneRepeatEnd]
+
+
+-------------------------------------- MISSAO 8 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M8KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M8KidRoomSceneEnd]
+[title=M8KidRoomSceneRepeat]
+[title=M8KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M8KitchenSceneStart]
+[title=M8KitchenSceneEnd]
+[title=M8KitchenSceneRepeat]
+[title=M8KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M8GardenSceneStart]
+[title=M8GardenSceneEnd]
+[title=M8GardenSceneRepeat]
+[title=M8GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M8MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
+[title=M8MomRoomSceneEnd]
+[title=M8MomRoomSceneRepeat]
+[title=M8MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M8LivingroomSceneStart]
+[title=M8LivingroomSceneEnd]
+[title=M8LivingroomSceneRepeat]
+[title=M8LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M8CorridorSceneStart]
+[title=M8CorridorSceneEnd]
+[title=M8CorridorSceneRepeat]
+[title=M8CorridorSceneRepeatEnd]
+
+
+-------------------------------------- MISSAO 9 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M9KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M9KidRoomSceneEnd]
+[title=M9KidRoomSceneRepeat]
+[title=M9KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M9KitchenSceneStart]
+[title=M9KitchenSceneEnd]
+[title=M9KitchenSceneRepeat]
+[title=M9KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M9GardenSceneStart]
+[title=M9GardenSceneEnd]
+[title=M9GardenSceneRepeat]
+[title=M9GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M9MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
+[title=M9MomRoomSceneEnd]
+[title=M9MomRoomSceneRepeat]
+[title=M9MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M9LivingroomSceneStart]
+[title=M9LivingroomSceneEnd]
+[title=M9LivingroomSceneRepeat]
+[title=M9LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M9CorridorSceneStart]
+[title=M9CorridorSceneEnd]
+[title=M9CorridorSceneRepeat]
+[title=M9CorridorSceneRepeatEnd]
+
+
+-------------------------------------- MISSAO 10 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+----------------------------------- ESCOLHAS -----------------------------------
+
+----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
+[title=M10KidRoomSceneStart]
+Alex: Eu preciso descobrir o que está acontecendo comigo…
+[title=M10KidRoomSceneEnd]
+[title=M10KidRoomSceneRepeat]
+[title=M10KidRoomSceneRepeatEnd]
+----------------------------------- CENAS NA COZINHA -----------------------------------
+[title=M10KitchenSceneStart]
+[title=M10KitchenSceneEnd]
+[title=M10KitchenSceneRepeat]
+[title=M10KitchenSceneRepeatEnd]
+----------------------------------- CENAS NO JARDIM -----------------------------------
+[title=M10GardenSceneStart]
+[title=M10GardenSceneEnd]
+[title=M10GardenSceneRepeat]
+[title=M10GardenSceneRepeatEnd]
+----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
+[title=M10MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
+[title=M10MomRoomSceneEnd]
+[title=M10MomRoomSceneRepeat]
+[title=M10MomRoomSceneRepeatEnd]
+----------------------------------- CENAS NA SALA -----------------------------------
+[title=M10LivingroomSceneStart]
+[title=M10LivingroomSceneEnd]
+[title=M10LivingroomSceneRepeat]
+[title=M10LivingroomSceneRepeatEnd]
+----------------------------------- CENAS NO CORREDOR -----------------------------------
+[title=M10CorridorSceneStart]
+[title=M10CorridorSceneEnd]
+[title=M10CorridorSceneRepeat]
+[title=M10CorridorSceneRepeatEnd]
