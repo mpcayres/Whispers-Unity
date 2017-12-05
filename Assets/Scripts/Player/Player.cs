@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     public int direction = 0, wantedDirection = 0;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 	public RPGTalk rpgTalk;
+
     void Start ()
     {
         animator = GetComponent<Animator>();

@@ -27,12 +27,12 @@ public class MissionManager : MonoBehaviour {
 	public RPGTalk rpgTalk;
     //float startMissionDelay = 3f;
 
-	public int countKidRoomDialog = 0;
-	public int countMomRoomDialog = 0;
-	public int countLivingroomDialog = 0;
-	public int countKitchenDialog = 0;
-	public int countGardenDialog = 0;
-	public int countCorridorDialog = 0;
+	public int countKidRoomDialog = -1;
+	public int countMomRoomDialog = -1;
+	public int countLivingroomDialog = -1;
+	public int countKitchenDialog = -1;
+	public int countGardenDialog = -1;
+	public int countCorridorDialog = -1;
 
 
     public void Awake()
@@ -147,6 +147,12 @@ public class MissionManager : MonoBehaviour {
             {
                 initMission = false;
                 initX = initY = 0;
+                countKidRoomDialog = 0;
+                countMomRoomDialog = 0;
+                countLivingroomDialog = 0;
+                countKitchenDialog = 0;
+                countGardenDialog = 0;
+                countCorridorDialog = 0;
             }
         }
         InvertWorld(invertWorld);
@@ -300,22 +306,33 @@ public class MissionManager : MonoBehaviour {
     }
 		
 
-	public void AddCountKidRoomDialog(){
+	public void AddCountKidRoomDialog()
+    {
 		countKidRoomDialog++;
 	}
-	public void AddCountMomRoomDialog(){
+
+	public void AddCountMomRoomDialog()
+    {
 		countMomRoomDialog++;
 	}
-	public void AddCountKitchenDialog(){
+
+	public void AddCountKitchenDialog()
+    {
 		countKitchenDialog++;
 	}
-	public void AddCountGardenDialog(){
+
+	public void AddCountGardenDialog()
+    {
 		countGardenDialog++;
 	}
-	public void AddCountCorridorDialog(){
+
+	public void AddCountCorridorDialog()
+    {
 		countCorridorDialog++;
 	}
-	public void AddCountLivingroomDialog(){
+
+	public void AddCountLivingroomDialog()
+    {
 		countCorridorDialog++;
 	}
 		
@@ -331,7 +348,8 @@ public class MissionManager : MonoBehaviour {
 
 
 
-	public void OnMadeChoice(int questionId, int choiceID){
+	public void OnMadeChoice(int questionId, int choiceID)
+    {
 		if ( questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) {
 				pathCat -= 2;

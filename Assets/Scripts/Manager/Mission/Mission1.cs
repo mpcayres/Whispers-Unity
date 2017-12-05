@@ -27,8 +27,10 @@ public class Mission1 : Mission {
     public override void SetCorredor()
     {
         MissionManager.instance.AddObject("MovingObject", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-		MissionManager.instance.rpgTalk.NewTalk ("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
-
+        if (MissionManager.instance.countCorridorDialog == 0)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+        }
     }
 
     public override void SetCozinha()
