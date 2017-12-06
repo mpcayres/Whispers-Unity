@@ -25,7 +25,7 @@ public class MissionManager : MonoBehaviour {
 
     private GameObject hud;
     float startMissionDelay = 3f;
-    bool showMissionStart = false;
+    bool showMissionStart = true;
     private Text levelText;
     private GameObject levelImage;
     public RPGTalk rpgTalk;
@@ -200,11 +200,12 @@ public class MissionManager : MonoBehaviour {
         if(mission != null) mission.LoadMissionScene();
     }
 
-    public void AddObject(string name, Vector3 position, Vector3 scale)
+    public void AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
         GameObject moveInstance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
+        if(sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         moveInstance.transform.localScale = scale;
     }
 
@@ -315,6 +316,9 @@ public class MissionManager : MonoBehaviour {
             showMissionStart = true;
             mission.InitMission();
         }
+        else {
+            showMissionStart = false;
+        }
     }
 
     public void ChangeMission(int m)
@@ -352,6 +356,16 @@ public class MissionManager : MonoBehaviour {
         showMissionStart = false;
     }
 
+    public bool GetMissionStart()
+    {
+        return showMissionStart;
+    }
+
+    public void InvokeMission()
+    {
+        print("INVOKEMISSION");
+        mission.InvokeMission();
+    }
 
     public void AddCountKidRoomDialog()
     {
@@ -437,6 +451,11 @@ public class MissionManager : MonoBehaviour {
                 //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
         }
+    }
+
+    public void Print(string text)
+    {
+        print(text);
     }
     
 }

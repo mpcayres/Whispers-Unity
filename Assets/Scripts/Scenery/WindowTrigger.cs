@@ -69,7 +69,7 @@ public class WindowTrigger : MonoBehaviour {
 
     public void ScareTrigger()
     {
-        if (spriteRenderer.sprite == aberto && scare && !Flashlight.enable)
+        if (spriteRenderer.sprite == aberto && scare && !Flashlight.GetState())
         {
             spriteRenderer.sprite = monstro;
             transform.Find("BirdEmitter").gameObject.SetActive(true);

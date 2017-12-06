@@ -4,7 +4,7 @@ public class ZoomObject : MonoBehaviour {
 
     public bool colliding = false;
     public float scaleX, scaleY;
-    bool showImage = false;
+    bool showImage = false, opened = false;
     GameObject objectInstance;
 
     void Start()
@@ -29,10 +29,21 @@ public class ZoomObject : MonoBehaviour {
             }
             else
             {
+                opened = true;
                 showImage = false;
                 Destroy(objectInstance);
             }
             MissionManager.instance.pausedObject = showImage;
         }
+    }
+
+    public bool IsImageShown()
+    {
+        return showImage;
+    }
+
+    public bool ObjectOpened()
+    {
+        return opened;
     }
 }

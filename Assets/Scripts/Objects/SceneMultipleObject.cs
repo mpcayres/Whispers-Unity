@@ -57,7 +57,7 @@ public class SceneMultipleObject : MonoBehaviour {
         }
     }
 
-    void ChangeSprite()
+    public void ChangeSprite()
     {
         print("SceneMultipleObject");
         cont = 0;

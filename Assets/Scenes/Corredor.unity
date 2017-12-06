@@ -430,7 +430,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 405.85797
+      value: 439.35797
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -494,7 +494,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.17
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -694,7 +694,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ed03a4ecb5d298b4b995f33f74438a0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2148,7 +2148,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ed03a4ecb5d298b4b995f33f74438a0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2201,7 +2201,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 408
+      value: 441.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

@@ -46,6 +46,7 @@ public class Mission2 : Mission {
             panelaPickUp.blockAfterPick = true;
             
             sceneObject.enabled = false;
+            armario.tag = "ScenePickUpObject";
             ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
             scenePickUpObject.sprite1 = sceneObject.sprite1;
             scenePickUpObject.sprite2 = sceneObject.sprite2;
@@ -57,6 +58,7 @@ public class Mission2 : Mission {
         else if (secao == enumMission.RESPEITA_MAE)
         {
             sceneObject.enabled = false;
+            armario.tag = "ScenePickUpObject";
             ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
             scenePickUpObject.sprite1 = sceneObject.sprite1;
             scenePickUpObject.sprite2 = sceneObject.sprite2;
@@ -101,6 +103,7 @@ public class Mission2 : Mission {
         if (secao == enumMission.RESPEITA_MAE)
         {
             GameObject armario = GameObject.Find("Armario").gameObject;
+            armario.tag = "ScenePickUpObject";
             SceneObject sceneObject = armario.GetComponent<SceneObject>();
             sceneObject.enabled = false;
             ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();

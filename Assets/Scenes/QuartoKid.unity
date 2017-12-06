@@ -1075,6 +1075,20 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: b831fd37c8351da428008cfa6dd0e4a0, type: 2}
+    - target: {fileID: 1616395866116222, guid: 32c81fb1af078ba42b4ca50db27957e1, type: 2}
+      propertyPath: m_TagString
+      value: SceneObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 212279381709562638, guid: 32c81fb1af078ba42b4ca50db27957e1,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212279381709562638, guid: 32c81fb1af078ba42b4ca50db27957e1,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32c81fb1af078ba42b4ca50db27957e1, type: 2}
   m_IsPrefabParent: 0

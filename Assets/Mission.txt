@@ -10,9 +10,10 @@ Alex: Você pode dormir comigo, Atze?
 [title=M1KidRoomSceneStart]
 Alex: Hm? Já é de manhã?
 Alex: A porta está aberta?
+[title=M1KidRoomSceneEnd]
+[title=M1KidRoomSceneCat]
 Alex: Atze?
-[title=M1KidRoomSceneEnd]
-[title=M1KidRoomSceneEnd]
+[title=M1KidRoomSceneCatEnd]
 [title=M1KidRoomSceneRepeat]
 Alex: Mais um pesadelo? Mãe... estou com medo. 
 Alex: Atze?

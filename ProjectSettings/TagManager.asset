@@ -29,6 +29,7 @@ TagManager:
   - SceneMultipleObject
   - Lamp
   - Enemy
+  - AreaTrigger
   layers:
   - Default
   - TransparentFX

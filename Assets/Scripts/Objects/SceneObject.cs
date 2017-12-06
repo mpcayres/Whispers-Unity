@@ -8,6 +8,7 @@ public class SceneObject : MonoBehaviour {
     public float scale = 1;
     public bool isUp = false;
     public bool colliding = false;
+    bool isActive = false, opened = false;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
@@ -51,10 +52,13 @@ public class SceneObject : MonoBehaviour {
         if (spriteRenderer.sprite == sprite1)
         {
             spriteRenderer.sprite = sprite2;
+            isActive = true;
         }
         else
         {
             spriteRenderer.sprite = sprite1;
+            isActive = false;
+            opened = true;
         }
 
         if (positionSprite == PositionSprite.LEFT && spriteRenderer.sprite == sprite2)
@@ -82,6 +86,16 @@ public class SceneObject : MonoBehaviour {
             sizeX*spriteRenderer.bounds.size.x, 
             sizeY*spriteRenderer.bounds.size.y);
 		
+    }
+
+    public bool IsActive()
+    {
+        return isActive;
+    }
+
+    public bool ObjectOpened()
+    {
+        return opened;
     }
 
 }

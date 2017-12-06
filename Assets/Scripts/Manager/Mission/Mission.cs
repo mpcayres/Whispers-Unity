@@ -55,4 +55,6 @@ public abstract class Mission {
 
     public abstract void EspecificaEnum(int pos);
 
+    public virtual void InvokeMission() { } // para chamar após um determinado tempo
+
 }
