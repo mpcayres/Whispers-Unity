@@ -420,7 +420,7 @@ Prefab:
     - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: missionSelected
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
         type: 2}

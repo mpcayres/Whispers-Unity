@@ -124,7 +124,8 @@ public class Mission2 : Mission {
     {
         if((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(2f,-1.3f,0), new Vector3(0.15f,0.15f,1));
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f,-1.3f,0), new Vector3(0.15f,0.15f,1));
+            cat.GetComponent<Cat>().FollowPlayer();
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {

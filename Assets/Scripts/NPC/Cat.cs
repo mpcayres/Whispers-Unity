@@ -154,6 +154,11 @@ public class Cat : MonoBehaviour {
         followingPlayer = true;
     }
 
+    public void Patrol()
+    {
+        isPatroller = true;
+    }
+
     public void DestroyCat()
     {
         Destroy(gameObject);

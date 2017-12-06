@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission1 : Mission {
-    enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
+    enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_CORREDOR,
+        GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
     enumMission secao;
 
     SceneObject window;
@@ -38,6 +39,20 @@ public class Mission1 : Mission {
             if (window.ObjectOpened() /*|| CursorLockMode.ObjectOpened()*/)
             {
                 EspecificaEnum((int) enumMission.GATO_APARECEU);
+            }
+        }
+        else if (secao == enumMission.GATO_APARECEU)
+        {
+            if (MissionManager.instance.currentSceneName.Equals("Corredor") && !MissionManager.instance.rpgTalk.isPlaying)
+            {
+                EspecificaEnum((int)enumMission.GATO_CORREDOR);
+                MissionManager.instance.blocked = true;
+                Cat.instance.GetComponent<Cat>().Patrol();
+                Transform aux = new GameObject().transform;
+                aux.position = new Vector3(3f, -0.7f, -0.5f);
+                Transform[] catPos = { aux };
+                Cat.instance.GetComponent<Cat>().targets = catPos;
+                MissionManager.instance.Invoke("InvokeMission", 5f);
             }
         }
         else if (secao == enumMission.GATO_SALA)
@@ -88,6 +103,9 @@ public class Mission1 : Mission {
 
         if (secao == enumMission.GATO_APARECEU)
         {
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(8f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+
             // Porta Sala
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
             portaSala.tag = "Untagged";
@@ -98,6 +116,17 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_COZINHA)
         {
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().Patrol();
+            Transform aux = new GameObject().transform;
+            aux.position = new Vector3(-9.8f, -0.7f, -0.5f);
+            Transform[] catPos = { aux };
+            cat.GetComponent<Cat>().targets = catPos;
+
+            MissionManager.instance.blocked = true;
+            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+            MissionManager.instance.Invoke("InvokeMission", 2.5f);
+
             // Objeto movel que atrapalha
             MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso", 
                 new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
@@ -118,7 +147,7 @@ public class Mission1 : Mission {
         GameObject panela = GameObject.Find("Panela").gameObject;
         panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
 
-        if (secao == enumMission.GATO_APARECEU)
+        if (secao == enumMission.GATO_CORREDOR)
         {
             EspecificaEnum((int)enumMission.GATO_COZINHA);
         }
@@ -280,7 +309,13 @@ public class Mission1 : Mission {
 
     public override void InvokeMission()
     {
-        if (secao == enumMission.CORVO_VISTO)
+        if (secao == enumMission.GATO_CORREDOR || secao == enumMission.GATO_COZINHA)
+        {
+            GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
+            MissionManager.instance.blocked = false;
+            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 2;
+        }
+        else if (secao == enumMission.CORVO_VISTO)
         {
             EspecificaEnum((int)enumMission.MAE_QUARTO);
         }
@@ -308,7 +343,7 @@ public class Mission1 : Mission {
             {
                 GameObject.Find("catFollower(Clone)").gameObject.GetComponent<Cat>().FollowPlayer();
             }
-            MissionManager.instance.Invoke("InvokeMission", 6f);
+            MissionManager.instance.Invoke("InvokeMission", 8f);
         }
     }
 
