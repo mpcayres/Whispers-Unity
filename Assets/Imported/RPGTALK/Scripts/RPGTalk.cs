@@ -302,10 +302,11 @@ public class RPGTalk : MonoBehaviour {
 	/// </summary>
 	/// <param name="_lineToStart">Line to start reading the text.</param>
 	/// <param name="_lineToBreak">Line to stop reading the text.</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak){
+	public void NewTalk(string _lineToStart,string _lineToBreak, bool block = true){
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -314,11 +315,13 @@ public class RPGTalk : MonoBehaviour {
 	/// <param name="_lineToStart">Line to start reading the text.</param>
 	/// <param name="_lineToBreak">Line to stop reading the text.</param>
 	/// <param name="_txtToParse">Text to read from</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse){
+	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, bool block = true)
+    {
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
 		txtToParse = _txtToParse;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -329,20 +332,24 @@ public class RPGTalk : MonoBehaviour {
 	/// <param name="_txtToParse">Text to read from</param>
 	/// <param name="_callbackScript">Script to be called when the talk ends</param>
 	/// <param name="_txtToParse">Function to be called when the talk ends</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, MonoBehaviour _callbackScript, string _callbackFunction){
+	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, MonoBehaviour _callbackScript, string _callbackFunction, bool block = true)
+    {
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
 		txtToParse = _txtToParse;
 		callbackScript = _callbackScript;
 		callbackFunction = _callbackFunction;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
-	public void NewTalk(string _lineToStart,string _lineToBreak, string _callbackFunction){
+	public void NewTalk(string _lineToStart,string _lineToBreak, string _callbackFunction, bool block = true)
+    {
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
 		callbackFunction = _callbackFunction;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -353,9 +360,7 @@ public class RPGTalk : MonoBehaviour {
 		if(OnNewTalk != null){
 			OnNewTalk ();
 		}
-		//my addition - stop player movement
-		MissionManager.instance.paused = true;
-		MissionManager.instance.blocked = true;
+        
 
 
 		//Check if we are using the right txtToParse based on the language
@@ -1420,9 +1425,10 @@ public class RPGTalk : MonoBehaviour {
 				OnEndTalk ();
 
 			}
-			//my addition - enable player movement
-			MissionManager.instance.paused = false;
-			MissionManager.instance.blocked = false;
+
+            //my addition - enable player movement
+            MissionManager.instance.paused = false;
+            MissionManager.instance.blocked = false;
 
 
 			isPlaying = false;
@@ -1474,5 +1480,15 @@ public class RPGTalk : MonoBehaviour {
 			}
 		}
 	}
+
+    void BlockPlayer(bool block) {
+
+        if (block)
+        {
+            //my addition - stop player movement
+            MissionManager.instance.paused = true;
+            MissionManager.instance.blocked = true;
+        }
+    }
 
 }
