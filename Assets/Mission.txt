@@ -15,13 +15,18 @@ Alex: A porta está aberta?
 Alex: Atze?
 [title=M1KidRoomSceneCatEnd]
 [title=M1KidRoomSceneRepeat]
-Alex: Mais um pesadelo? Mãe... estou com medo. 
+Mãe: Mais um pesadelo? 
+Alex: Mãe... estou com medo.
+Mãe: Tudo vai ficar bem. Só volte a dormir.
+Mãe: Vou voltar para o meu quarto agora.
+[title=M1KidRoomSceneRepeatEnd]
+[title=M1KidRoomSceneChoice]
 Alex: Atze?
 Alex: Por que está me encarando?
 [question=0] O que quer fazer agora?
 [choice]"Sai daqui Atze, quero ficar sozinho."
 [choice]“Você pode dormir comigo, Atze?”
-[title=M1KidRoomSceneRepeatEnd]
+[title=M1KidRoomSceneChoiceEnd]
 ----------------------------------- CENAS NA COZINHA -----------------------------------
 [title=M1KitchenSceneStart]
 [title=M1KitchenSceneEnd]

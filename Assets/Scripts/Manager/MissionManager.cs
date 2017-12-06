@@ -283,6 +283,7 @@ public class MissionManager : MonoBehaviour {
     public void SetMission(int m)
     {
         missionSelected = m;
+        print("MISSAO: " + m);
 
 		switch(missionSelected){
 		case 1:
@@ -466,6 +467,7 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.NewTalk("M4Q4C1", "M4Q4C1End");
             }
         }
+        mission.InvokeMissionChoice(choiceID);
     }
 
     public void Print(string text)

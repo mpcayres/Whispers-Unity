@@ -27,11 +27,11 @@ public class Mission2 : Mission {
             {
                 if (MissionManager.instance.mission1AssustaGato)
                 {
-                    secao = enumMission.INICIO_SOZINHO;
+                    EspecificaEnum((int)enumMission.INICIO_SOZINHO);
                 }
                 else
                 {
-                    secao = enumMission.INICIO_GATO;
+                    EspecificaEnum((int)enumMission.INICIO_GATO);
                 }
                 MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
             }

@@ -59,4 +59,6 @@ public abstract class Mission {
 
     public virtual void InvokeMission() { } // para chamar após um determinado tempo
 
+    public virtual void InvokeMissionChoice(int id) { } // para chamar após uma escolha ser feita
+
 }
