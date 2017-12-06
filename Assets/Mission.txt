@@ -194,7 +194,10 @@ Alex: Preciso de algo para não me machucar quebrando.
 Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
 [title=IndicarNecessidadeEnd]
 [title=Final]
-Mãe: Foi você que quebrou o vaso? Volte pro seu quarto! 
+Mãe: Foi você que quebrou o vaso?
+[question=4] O que quer fazer agora?
+[choice]Falar a verdade
+[choice]Mentir 
 [title=FinalEnd]
 
 ----------------------------------- ESCOLHAS -----------------------------------
@@ -205,6 +208,14 @@ Alex: Você está com fome? Quer brincar? Vou procurar algo...
 [title=M4Q3C0End]
 [title=M4Q3C1]
 [title=M4Q3C1End]
+[title=M4Q4C0]
+Alex: Sim mamãe, me desculpe.
+Mãe: Ok... para seu quarto então.
+[title=M4Q4C0End]
+[title=M4Q4C1]
+Alex: Não mãe, não fui eu.
+Mãe: Acha que vou acreditar nisso? Quem mais poderia ter sido? Para o quarto! Já!
+[title=M4Q4C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M4KidRoomSceneStart]
 Alex: Eu preciso descobrir o que está acontecendo comigo…
@@ -240,6 +251,10 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 
 -------------------------------------- MISSAO 5 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
+[title=Dica5]
+Alex: Tenho que tomar cuidado.
+Alex: Algumas podem estar naquele mundo invertido estranho.
+[title=Dica5End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
@@ -254,6 +269,9 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M5KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M5GardenSceneStart]
+Alex: O que são essas páginas espalhadas?
+Alex: Acho que são do livro.
+Alex: Vou tentar reuni-las.
 [title=M5GardenSceneEnd]
 [title=M5GardenSceneRepeat]
 [title=M5GardenSceneRepeatEnd]
@@ -277,6 +295,9 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 
 -------------------------------------- MISSAO 6 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
+[title=Dica6]
+Alex: Parece ter algo de errado aqui.
+[title=Dica6End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
@@ -296,13 +317,13 @@ Alex: Eu preciso descobrir o que está acontecendo comigo…
 [title=M6GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M6MomRoomSceneStart]
-Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M6MomRoomSceneEnd]
 [title=M6MomRoomSceneRepeat]
 [title=M6MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M6LivingroomSceneStart]
+Alex: Estranho, não consigo sair.
+Alex: O que eu faço agora?
 [title=M6LivingroomSceneEnd]
 [title=M6LivingroomSceneRepeat]
 [title=M6LivingroomSceneRepeatEnd]
@@ -319,6 +340,8 @@ Alex: Tenho que distraí-la.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M7KidRoomSceneStart]
+Alex: Quantas páginas será que ainda faltam?
+Alex: Elas parecem estar contando algo...
 [title=M7KidRoomSceneEnd]
 [title=M7KidRoomSceneRepeat]
 [title=M7KidRoomSceneRepeatEnd]
@@ -391,6 +414,10 @@ Alex: Tenho que distraí-la.
 
 -------------------------------------- MISSAO 9 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
+[title=Dica9]
+Alex: Acho que fogo pode destruí-lo.
+Alex: Na cozinha deve ter algo para ajudar.
+[title=Dica9End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
