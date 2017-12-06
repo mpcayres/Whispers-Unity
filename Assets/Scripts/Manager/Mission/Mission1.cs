@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission1 : Mission {
-    enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, FINAL };
+    enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
     enumMission secao;
 
     SceneObject window;
@@ -29,7 +29,7 @@ public class Mission1 : Mission {
         {
             if (!MissionManager.instance.GetMissionStart())
             {
-                secao = enumMission.INICIO;
+                EspecificaEnum((int)enumMission.INICIO);
                 MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
             }
         }
@@ -45,6 +45,13 @@ public class Mission1 : Mission {
             if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
             {
                 EspecificaEnum((int)enumMission.LANTERNA_ENCONTRADA);
+            }
+        }
+        else if (secao == enumMission.MAE_QUARTO)
+        {
+            if (!MissionManager.instance.rpgTalk.isPlaying)
+            {
+                EspecificaEnum((int)enumMission.FAZER_ESCOLHA);
             }
         }
 
@@ -132,11 +139,6 @@ public class Mission1 : Mission {
 
     public override void SetQuartoKid()
     {
-		if (secao == enumMission.CORVO_VISTO)
-        {
-            MissionManager.instance.rpgTalk.NewTalk ("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
-		}
-
         // Luz
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
@@ -165,6 +167,14 @@ public class Mission1 : Mission {
             porta.tag = "Untagged";
             porta.GetComponent<Collider2D>().isTrigger = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
+        }
+
+        if(secao == enumMission.MAE_QUARTO)
+        {
+            GameObject.Find("Flashlight").gameObject.GetComponent<Flashlight>().EnableFlashlight(false);
+            MissionManager.instance.GetComponent<Player>().ChangePositionDefault(-2.5f, 0.7f, 0);
+            MissionManager.instance.AddObject("mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
         }
 
     }
@@ -242,7 +252,17 @@ public class Mission1 : Mission {
             MissionManager.instance.blocked = true;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
+            MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(1, 1, 1));
             MissionManager.instance.Invoke("InvokeMission", 10f);
+        }
+        else if (secao == enumMission.MAE_QUARTO)
+        {
+            SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        }
+        else if (secao == enumMission.FAZER_ESCOLHA)
+        {
+            GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
+            MissionManager.instance.Invoke("InvokeMission", 4f);
         }
     }
 
@@ -254,7 +274,7 @@ public class Mission1 : Mission {
         }
         else if (tag.Equals("TVTrigger") && secao == enumMission.LANTERNA_ENCONTRADA)
         {
-            EspecificaEnum((int) enumMission.CORVO_VISTO);
+            EspecificaEnum((int)enumMission.CORVO_VISTO);
         }
     }
 
@@ -262,11 +282,37 @@ public class Mission1 : Mission {
     {
         if (secao == enumMission.CORVO_VISTO)
         {
-            SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+            EspecificaEnum((int)enumMission.MAE_QUARTO);
+        }
+        else if (secao == enumMission.FAZER_ESCOLHA)
+        {
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(1.7f, 0.7f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+        }
+        else if (secao == enumMission.FINAL)
+        {
+            MissionManager.instance.ChangeMission(2);
         }
     }
-		
-	public void AddCountKidRoomDialog()
+
+    public override void InvokeMissionChoice(int id)
+    {
+        if (secao == enumMission.FAZER_ESCOLHA)
+        {
+            EspecificaEnum((int)enumMission.FINAL);
+            if(id == 0)
+            {
+                GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
+            }
+            else
+            {
+                GameObject.Find("catFollower(Clone)").gameObject.GetComponent<Cat>().FollowPlayer();
+            }
+            MissionManager.instance.Invoke("InvokeMission", 6f);
+        }
+    }
+
+    public void AddCountKidRoomDialog()
     {
 		MissionManager.instance.countKidRoomDialog++;
 	}

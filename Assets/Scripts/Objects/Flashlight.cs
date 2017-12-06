@@ -18,18 +18,20 @@ public class Flashlight : MonoBehaviour {
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
             GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
-            if (GetComponent<Light>().enabled)
+            enable = GetComponent<Light>().enabled;
+            if (enable)
             {
                 transform.rotation = Quaternion.Euler((float)0.0, (float)0.0, (float)0.0);
             }
         }
 		
-        if (GetComponent<Light>().enabled)
+        if (enable)
         {
             if (Inventory.GetCurrentItemType() != Inventory.InventoryItems.FLASHLIGHT)
             {
                 GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
                 GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
+                enable = GetComponent<Light>().enabled;
             }
             switch (player.direction)
             {
@@ -58,11 +60,16 @@ public class Flashlight : MonoBehaviour {
             }
         }
 
-        enable = GetComponent<Light>().enabled;
-
     }
 
 	public static bool GetState(){
 		return enable;
 	}
+
+    public void EnableFlashlight(bool e)
+    {
+        GetComponent<Light>().enabled = e;
+        GetComponent<Collider2D>().enabled = e;
+        enable = e;
+    }
 }
