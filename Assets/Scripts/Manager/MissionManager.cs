@@ -23,6 +23,7 @@ public class MissionManager : MonoBehaviour {
 
     public float pathBird, pathCat;
     public bool invertWorld = false;
+    public bool invertWorldBlocked = true;
 
     private GameObject hud;
     float startMissionDelay = 3f;
@@ -81,7 +82,7 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.PlayNext();
             }
 
-            if (!blocked && !paused && Input.GetKeyDown(KeyCode.E))
+            if (!blocked && !paused && Input.GetKeyDown(KeyCode.E) && !invertWorldBlocked)
             {
                 InvertWorld(!invertWorld);
             }
@@ -202,13 +203,14 @@ public class MissionManager : MonoBehaviour {
         if(mission != null) mission.LoadMissionScene();
     }
 
-    public void AddObject(string name, string sprite, Vector3 position, Vector3 scale)
+    public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
         GameObject moveInstance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
         if(sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         moveInstance.transform.localScale = scale;
+        return moveInstance;
     }
 
     public void InvertWorld(bool sel)

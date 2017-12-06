@@ -246,7 +246,7 @@ public class Mission1 : Mission {
         }
     }
 
-    public void AreaTriggered(string tag)
+    public override void AreaTriggered(string tag)
     {
         if (tag.Equals("AreaTrigger"))
         {

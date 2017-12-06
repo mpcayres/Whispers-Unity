@@ -55,6 +55,8 @@ public abstract class Mission {
 
     public abstract void EspecificaEnum(int pos);
 
+    public virtual void AreaTriggered(string tag) { } // para chamar quando uma área é ativada
+
     public virtual void InvokeMission() { } // para chamar após um determinado tempo
 
 }

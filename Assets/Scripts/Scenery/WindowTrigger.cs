@@ -12,7 +12,7 @@ public class WindowTrigger : MonoBehaviour {
     SpriteRenderer spriteRenderer;
 	BoxCollider2D boxCollider;
 	float sizeX, sizeY;
-	float posXdefault, posY, posYdefault;
+	float posXdefault;
     bool gameOver = false;
     float timeLeft = 5;
 
@@ -28,8 +28,6 @@ public class WindowTrigger : MonoBehaviour {
 		sizeY = boxCollider.size.y/spriteRenderer.bounds.size.y;
 
 		posXdefault = transform.position.x;
-		posY = spriteRenderer.bounds.size.y/2;
-		posYdefault = transform.position.y;
 	}
 
 	void Update()

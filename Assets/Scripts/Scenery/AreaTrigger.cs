@@ -8,10 +8,7 @@ public class AreaTrigger : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             print("TRIGGER: " + gameObject.name);
-            if (MissionManager.instance.missionSelected == 1 && MissionManager.instance.mission is Mission1)
-            {
-                ((Mission1)MissionManager.instance.mission).AreaTriggered(gameObject.name);
-            }
+            MissionManager.instance.mission.AreaTriggered(gameObject.name);
         }
     }
 

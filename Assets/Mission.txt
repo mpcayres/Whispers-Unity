@@ -92,8 +92,11 @@ Alex: Será que posso dormir com ela?
 [title=M2MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M2CorridorSceneStart]
-Alex: Mamãe, eu posso dormir com a senhora essa noite? Eu tenho medo do que está vindo no escuro.
-Mãe: Me desculpe meu filho, mamãe se mexe muito a noite, você não iria conseguir dormir ao meu lado. Além disso, você precisa lidar com seus medos sozinho.
+Alex: Mamãe, eu posso dormir com a senhora essa noite?
+Alex: Eu tenho medo do que está vindo no escuro.
+Mãe: Me desculpe meu filho, mamãe se mexe muito a noite.
+Mãe: Você não iria conseguir dormir ao meu lado.
+Mãe: Além disso, você precisa lidar com seus medos sozinho.
 [question=1]O que quer dizer para a mamãe?
 [choice]"Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!"
 [choice]"Tudo bem mamãe, ao menos Atze pode ficar ao meu lado..."

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission {
-    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
+    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
     enumMission secao;
 
     public override void InitMission()
@@ -40,8 +40,6 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
-        //MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
-
         if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
         {
             // Porta Cozinha
@@ -53,11 +51,23 @@ public class Mission2 : Mission {
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
             portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
+
+            // Porta Quarto Mae
+            GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject;
+            portaMae.tag = "Untagged";
+            portaMae.GetComponent<Collider2D>().isTrigger = false;
+
+            // Mae
+            MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(1.8f, 0f, 1), new Vector3(1, 1, 1));
+            trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
+            trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
 
-        if (secao == enumMission.INICIO_GATO)
+        if (secao == enumMission.INICIO_SOZINHO)
         {
-            // colocar gato aqui
+            // Gato
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
         }
     }
 
@@ -65,6 +75,7 @@ public class Mission2 : Mission {
 	{
         //MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
 
+        // Panela
         GameObject panela = GameObject.Find("Panela").gameObject;
         panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
 
@@ -78,6 +89,7 @@ public class Mission2 : Mission {
             panelaPickUp.item = Inventory.InventoryItems.TAMPA;
             panelaPickUp.blockAfterPick = true;
             
+            // Faca
             sceneObject.enabled = false;
             armario.tag = "ScenePickUpObject";
             ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
@@ -90,6 +102,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
+            // Fosforo
             sceneObject.enabled = false;
             armario.tag = "ScenePickUpObject";
             ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
@@ -111,7 +124,7 @@ public class Mission2 : Mission {
     {
         if((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(2.1f,-1.3f,0), new Vector3(0.15f,0.15f,1));
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(2f,-1.3f,0), new Vector3(0.15f,0.15f,1));
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
@@ -138,6 +151,7 @@ public class Mission2 : Mission {
 
         if (secao == enumMission.RESPEITA_MAE)
         {
+            // Vela
             GameObject armario = GameObject.Find("Armario").gameObject;
             armario.tag = "ScenePickUpObject";
             SceneObject sceneObject = armario.GetComponent<SceneObject>();
@@ -155,6 +169,20 @@ public class Mission2 : Mission {
     public override void EspecificaEnum(int pos)
     {
         secao = (enumMission)pos;
+        MissionManager.instance.Print("SECAO: " + secao);
+
+        if (secao == enumMission.ENCONTRA_MAE)
+        {
+            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
+        }
+    }
+
+    public override void AreaTriggered(string tag)
+    {
+        if (tag.Equals("AreaTrigger(Clone)") && (secao == enumMission.INICIO_GATO || secao == enumMission.INICIO_SOZINHO))
+        {
+            EspecificaEnum((int)enumMission.ENCONTRA_MAE);
+        }
     }
 
     public void AddCountLivingroomDialog()

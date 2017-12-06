@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e66cb579272894b8534158129e6411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyEndPath: 0
   speed: 0.9
-  player: {fileID: 0}
   animator: {fileID: 0}
-  playerAnimator: {fileID: 0}
+  targets: []
 --- !u!212 &212837560094615412
 SpriteRenderer:
   m_ObjectHideFlags: 1
