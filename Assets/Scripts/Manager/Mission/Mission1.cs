@@ -17,7 +17,7 @@ public class Mission1 : Mission {
         MissionManager.initMission = true;
         MissionManager.initX = (float) -2.5;
         MissionManager.initY = (float) 0.7;
-        MissionManager.initDir = 3;
+        MissionManager.initDir = 0;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
