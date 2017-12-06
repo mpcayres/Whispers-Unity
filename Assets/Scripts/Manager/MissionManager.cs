@@ -24,6 +24,7 @@ public class MissionManager : MonoBehaviour {
     public float pathBird, pathCat;
     public bool invertWorld = false;
     public bool invertWorldBlocked = true;
+    public bool playerProtected = false;
 
     private GameObject hud;
     float startMissionDelay = 3f;

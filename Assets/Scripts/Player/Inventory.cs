@@ -47,6 +47,7 @@ public class Inventory : MonoBehaviour {
         {
             ShowInventoryMenu();
         }
+
         if (menu.activeSelf && currentItem != -1)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) && currentItem < listItems.Count-1)
@@ -74,11 +75,6 @@ public class Inventory : MonoBehaviour {
                 currentSlot.GetComponent<Image>().sprite = selectedBox;
                 previousItem = currentItem;
             }
-        }
-        //Só para teste, deleta a lanterna
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DeleteItem(InventoryItems.FLASHLIGHT);
         }
     }
 
@@ -133,6 +129,42 @@ public class Inventory : MonoBehaviour {
     public static void SetInventory(List<DataItems> inv)
     {
         listItems = inv;
+        if (HasItemType(InventoryItems.FLASHLIGHT))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.VELA))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.FOSFORO))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.FACA))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.TAMPA))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.PEDRA))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.RACAO))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.NOVELO))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(true);
+        }
+        else if (HasItemType(InventoryItems.ISQUEIRO))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
+        }
     }
 
     public static void NewItem(InventoryItems selectItem)
@@ -150,38 +182,47 @@ public class Inventory : MonoBehaviour {
         if (selectItem == InventoryItems.FLASHLIGHT)
         {
             file = "lanterna";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.VELA)
         {
             file = "vela";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.FOSFORO)
         {
             file = "caixa_fosforo_maior";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.FACA)
         {
             file = "faca";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.TAMPA)
         {
             file = "tampa";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.PEDRA)
         {
             file = "";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.RACAO)
         {
             file = "";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.NOVELO)
         {
             file = "novelo";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
             file = "";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
         }
 
         DataItems novoItem = new DataItems(selectItem, file);
@@ -213,7 +254,44 @@ public class Inventory : MonoBehaviour {
             }
             count++;
         }
-        
+
+        if (selectItem == InventoryItems.FLASHLIGHT)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.VELA)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.FOSFORO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.FACA)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.TAMPA)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.PEDRA)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.RACAO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.NOVELO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.ISQUEIRO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(false);
+        }
+
     }
 
     public static int GetCurrentItem()
