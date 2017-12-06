@@ -246,7 +246,7 @@ public class Mission2 : Mission {
 
         if (secao == enumMission.ENCONTRA_MAE)
         {
-            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
         }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
@@ -299,5 +299,9 @@ public class Mission2 : Mission {
     public void AddCountKidRoomDialog()
     {
         MissionManager.instance.countKidRoomDialog++;
+    }
+    public void AddCountCorridorDialog()
+    {
+        MissionManager.instance.countCorridorDialog++;
     }
 }

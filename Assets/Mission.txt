@@ -124,7 +124,7 @@ Alex: Eu preciso de algo para me defender...
 [title=M2CorridorSceneStart]
 Alex: Mamãe, eu posso dormir com a senhora essa noite?
 Alex: Eu tenho medo do que está vindo no escuro.
-Mãe: Me desculpe meu filho, mamãe se mexe muito a noite.
+Mãe: Me desculpe bebê, mamãe se mexe muito a noite.
 Mãe: Você não iria conseguir dormir ao meu lado.
 Mãe: Além disso, você precisa lidar com seus medos sozinho.
 [question=1]O que quer dizer para a mamãe?
