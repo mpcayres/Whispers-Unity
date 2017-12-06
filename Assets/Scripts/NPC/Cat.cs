@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cat : MonoBehaviour {
+    public static Cat instance;
     private bool followingPlayer = false;
     private bool isPatroller = false;
     public bool destroyEndPath = false;
@@ -19,9 +20,18 @@ public class Cat : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+            animator = GetComponent<Animator>();
+            player = GameObject.FindGameObjectWithTag("Player");
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 	
 	// Update is called once per frame
@@ -134,8 +144,18 @@ public class Cat : MonoBehaviour {
         }
     }
 
+    public void ChangePosition(float x, float y)
+    {
+        transform.position = new Vector3(x, y, transform.position.z);
+    }
+
     public void FollowPlayer()
     {
         followingPlayer = true;
+    }
+
+    public void DestroyCat()
+    {
+        Destroy(gameObject);
     }
 }

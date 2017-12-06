@@ -4,28 +4,61 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission {
-    enum enumMission { INICIO_GATO, INICIO_SOZINHO, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
+    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
     enumMission secao;
 
     public override void InitMission()
     {
-        sceneInit = "Sala";
+        sceneInit = "QuartoKid";
         MissionManager.initMission = true;
-        MissionManager.initX = (float)-3.5;
-        MissionManager.initY = (float)0.15;
+        MissionManager.initX = (float)1.5;
+        MissionManager.initY = (float)-1.0;
         MissionManager.initDir = 1;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
-        secao = enumMission.INICIO_GATO;
+        secao = enumMission.NIGHT;
+        if (Cat.instance != null) Cat.instance.DestroyCat();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
-    { 
-		
+    {
+        if (secao == enumMission.NIGHT)
+        {
+            if (!MissionManager.instance.GetMissionStart())
+            {
+                if (MissionManager.instance.mission1AssustaGato)
+                {
+                    secao = enumMission.INICIO_SOZINHO;
+                }
+                else
+                {
+                    secao = enumMission.INICIO_GATO;
+                }
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            }
+        }
     }
 
     public override void SetCorredor()
     {
-		//MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
+        //MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
+
+        if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
+        {
+            // Porta Cozinha
+            GameObject portaCozinha = GameObject.Find("DoorToKitchen").gameObject;
+            portaCozinha.tag = "Untagged";
+            portaCozinha.GetComponent<Collider2D>().isTrigger = false;
+
+            // Porta Sala
+            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
+            portaSala.tag = "Untagged";
+            portaSala.GetComponent<Collider2D>().isTrigger = false;
+        }
+
+        if (secao == enumMission.INICIO_GATO)
+        {
+            // colocar gato aqui
+        }
     }
 
 	public override void SetCozinha()
@@ -76,16 +109,19 @@ public class Mission2 : Mission {
 
     public override void SetQuartoKid()
     {
-		if (MissionManager.instance.countKidRoomDialog == 0) {
-            MissionManager.instance.rpgTalk.NewTalk ("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+        if((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
+        {
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(2.1f,-1.3f,0), new Vector3(0.15f,0.15f,1));
         }
-
-        GameObject windowTrigger = GameObject.Find("WindowTrigger").gameObject;
-        windowTrigger.tag = "ScenePickUpObject";
-        WindowTrigger sceneObject = windowTrigger.GetComponent<WindowTrigger>();
-        sceneObject.enabled = true;
-        SceneObject sceneObjectNew = windowTrigger.GetComponent<SceneObject>();
-        sceneObjectNew.enabled = false;
+        else if (secao == enumMission.RESPEITA_MAE)
+        {
+            GameObject windowTrigger = GameObject.Find("WindowTrigger").gameObject;
+            windowTrigger.tag = "WindowTrigger";
+            WindowTrigger trigger = windowTrigger.GetComponent<WindowTrigger>();
+            trigger.enabled = true;
+            SceneObject sceneObject = windowTrigger.GetComponent<SceneObject>();
+            sceneObject.enabled = false;
+        }
     }
 
     public override void SetQuartoMae()
@@ -125,6 +161,7 @@ public class Mission2 : Mission {
     {
 		MissionManager.instance.countLivingroomDialog++;
 	}
+
     public void AddCountKidRoomDialog()
     {
         MissionManager.instance.countKidRoomDialog++;

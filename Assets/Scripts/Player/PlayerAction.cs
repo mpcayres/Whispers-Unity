@@ -63,7 +63,6 @@ public class PlayerAction : MonoBehaviour {
         }
         else if (collision.gameObject.tag.Equals("Cat"))
         {
-            print("Gato");
             collision.gameObject.GetComponent<Cat>().FollowPlayer();
         }
 

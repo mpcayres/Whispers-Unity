@@ -11,6 +11,7 @@ public class MissionManager : MonoBehaviour {
     public int missionSelected; // colocar 1 quando for a versão final, para começar na missão 1 quando clicar em new game
     public string previousSceneName, currentSceneName;
     public bool mission2ContestaMae = false;
+    public bool mission1AssustaGato = false;
 
     public bool paused = false;
     public bool pausedObject = false;
@@ -193,6 +194,7 @@ public class MissionManager : MonoBehaviour {
         {
             Destroy(gameObject);
             Destroy(hud);
+            if (Cat.instance != null) Cat.instance.DestroyCat();
         }
 
         InvertWorld(invertWorld);
@@ -228,6 +230,7 @@ public class MissionManager : MonoBehaviour {
         save.pathBird = pathBird;
         save.pathCat = pathCat;
         save.mission2ContestaMae = mission2ContestaMae;
+        save.mission1AssustaGato = mission1AssustaGato;
 
         return save;
     }
@@ -263,6 +266,7 @@ public class MissionManager : MonoBehaviour {
             pathBird = save.pathBird;
             pathCat = save.pathCat;
             mission2ContestaMae = save.mission2ContestaMae;
+            mission1AssustaGato = save.mission1AssustaGato;
 
             Debug.Log("Game Loaded " + m);
 

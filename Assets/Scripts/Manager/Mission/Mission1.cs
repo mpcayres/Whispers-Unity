@@ -13,14 +13,14 @@ public class Mission1 : Mission {
 
     public override void InitMission()
     {
-        // colocar de volta para versão final
         sceneInit = "QuartoKid";
         MissionManager.initMission = true;
-        MissionManager.initX = (float) 1.5;
-        MissionManager.initY = (float) 0.2;
+        MissionManager.initX = (float) -2.5;
+        MissionManager.initY = (float) 0.7;
         MissionManager.initDir = 3;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
+        if (Cat.instance != null) Cat.instance.DestroyCat();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -152,7 +152,10 @@ public class Mission1 : Mission {
 
             // Relogio
             //clock = GameObject.Find("Relogio").gameObject.GetComponent<ZoomObject>();
+        }
 
+        if (secao == enumMission.NIGHT || secao == enumMission.INICIO || secao == enumMission.CORVO_VISTO)
+        {
             // Porta
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             portaDefaultX = porta.transform.position.x;
@@ -162,7 +165,6 @@ public class Mission1 : Mission {
             porta.tag = "Untagged";
             porta.GetComponent<Collider2D>().isTrigger = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
-
         }
 
     }

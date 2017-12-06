@@ -233,6 +233,12 @@ public class Player : MonoBehaviour {
             MissionManager.instance.paused = false;
         }
 
+        if (Cat.instance != null)
+        {
+            print("CAT");
+            Cat.instance.ChangePosition(rb.position.x - 0.6f, rb.position.y - 0.3f);
+        }
+
     }
 
     public void MoveUpAnimation(MovingObject aux, string anim, float x, float y, int dir)
