@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour {
-    public enum Actions { DEFAULT, MOVING_OBJECT };
+    public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
     public Actions playerState;
     public float movespeed;
     public Animator animator;
+
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
+    MovingObject auxOnObject;
+
     public int direction = 0, wantedDirection = 0;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
-	public RPGTalk rpgTalk;
 
     void Start ()
     {
@@ -29,57 +32,85 @@ public class Player : MonoBehaviour {
 
             //Ordem do layer determinada pelo eixo y
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-				
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (playerState != Actions.ON_OBJECT)
             {
-                move = 5 * movespeed;
-                isRunning = true;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    move = 5 * movespeed;
+                    isRunning = true;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    rb.position = new Vector2(rb.position.x + move, rb.position.y);
+                    isWalking = true;
+                    direction = 0;
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    rb.position = new Vector2(rb.position.x - move, rb.position.y);
+                    isWalking = true;
+                    direction = 1;
+                }
+                else if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    rb.position = new Vector2(rb.position.x, rb.position.y + move);
+                    isWalking = true;
+                    direction = 2;
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    rb.position = new Vector2(rb.position.x, rb.position.y - move);
+                    isWalking = true;
+                    direction = 3;
+                }
+
+                if (isRunning)
+                {
+                    if (!isWalking) isRunning = false;
+                }
+                animator.SetBool("isWalking", isWalking);
+                animator.SetBool("isRunning", isRunning);
+
+                if (playerState == Actions.MOVING_OBJECT)
+                {
+                    wantedDirection = direction;
+                    direction = oldDirection;
+                }
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            else
             {
-                rb.position = new Vector2(rb.position.x + move, rb.position.y);
-                isWalking = true;
-                direction = 0;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                rb.position = new Vector2(rb.position.x - move, rb.position.y);
-                isWalking = true;
-                direction = 1;
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                rb.position = new Vector2(rb.position.x, rb.position.y + move);
-                isWalking = true;
-                direction = 2;
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                rb.position = new Vector2(rb.position.x, rb.position.y - move);
-                isWalking = true;
-                direction = 3;
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    if (Input.GetKeyDown(KeyCode.C))
+                    {
+                        auxOnObject.MoveUp();
+                    }
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    direction = 0;
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    direction = 1;
+                }
+                else if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    direction = 2;
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    direction = 3;
+                }
             }
 
-            if (isRunning)
-            {
-                if (!isWalking) isRunning = false;
-            }
-            animator.SetBool("isWalking", isWalking);
-            animator.SetBool("isRunning", isRunning);
-
-            if (playerState == Actions.MOVING_OBJECT)
-            {
-                wantedDirection = direction;
-                direction = oldDirection;
-            }
             animator.SetInteger("direction", direction);
             if (oldDirection != direction)
             {
                 animator.SetTrigger("changeDirection");
                 oldDirection = direction;
             }
-
 
         }
         else if (oldDirection != -1)
@@ -133,7 +164,7 @@ public class Player : MonoBehaviour {
     public void ChangePositionDefault(float x, float y, int dir)
     {
         GetComponent<Rigidbody2D>().position = new Vector2(x, y);
-        ChangeDirection(dir);
+        if (dir != -1) ChangeDirection(dir);
     }
 
     public void ChangePosition()
@@ -204,5 +235,33 @@ public class Player : MonoBehaviour {
 
     }
 
+    public void MoveUpAnimation(MovingObject aux, string anim, float x, float y, int dir)
+    {
+        auxOnObject = aux;
+        animator.Play(anim);
+        //animator.GetCurrentAnimatorStateInfo(0).length
+        StartCoroutine(WaitCoroutine(2, x, y, dir, false));
+    }
+
+    public void MoveDownAnimation(string anim, float x, float y, int dir)
+    {
+        animator.Play(anim);
+        StartCoroutine(WaitCoroutine(1, x, y, dir, true));
+    }
+
+    IEnumerator WaitCoroutine(float time, float x, float y, int dir, bool down)
+    {
+        Debug.Log("about to yield return WaitForSeconds("+ time + ")");
+        yield return new WaitForSeconds(time);
+        Debug.Log("Animation ended");
+        ChangePositionDefault(x, y, dir);
+        if (down)
+        {
+            playerState = Actions.DEFAULT;
+            auxOnObject.GetComponent<Collider2D>().enabled = true;
+        }
+        yield break;
+        Debug.Log("You'll never see this"); // produces a dead code warning
+    }
 
 }

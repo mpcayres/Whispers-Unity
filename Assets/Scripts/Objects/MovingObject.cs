@@ -10,6 +10,8 @@ public class MovingObject : MonoBehaviour {
     Player script;
     float distanceWantedX = 0.4f;
     float distanceWantedY = 0.45f;
+    int originalDirection;
+    float originalX, originalY;
 
     void Start ()
     {
@@ -21,20 +23,37 @@ public class MovingObject : MonoBehaviour {
 	
 	void Update ()
     {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        if (script.playerState != Player.Actions.ON_OBJECT)
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        }
+        else
+        {
+            spriteRenderer.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder - 1;
+        }
         if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
         {
-            if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (Input.GetKey(KeyCode.LeftControl))
             {
-                InitMove();
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    MoveUp();
+                }
             }
-            else if (Input.GetKey(KeyCode.Z))
+            else if (script.playerState != Player.Actions.ON_OBJECT)
             {
-                Move();
-            }
-            else if (Input.GetKeyUp(KeyCode.Z))
-            {
-                EndMove();
+                if (Input.GetKeyDown(KeyCode.C)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                {
+                    InitMove();
+                }
+                else if (Input.GetKey(KeyCode.C))
+                {
+                    Move();
+                }
+                else if (Input.GetKeyUp(KeyCode.C))
+                {
+                    EndMove();
+                }
             }
         }
     }
@@ -81,6 +100,63 @@ public class MovingObject : MonoBehaviour {
         print("ENDMOVE");
         script.playerState = Player.Actions.DEFAULT;
         script.animator.SetTrigger("changeDirection");
+    }
+
+    public void MoveUp()
+    {
+        print("MOVEUP");
+        if (script.playerState != Player.Actions.ON_OBJECT) {
+            originalDirection = script.direction;
+            if (originalDirection != 3)
+            {
+                script.playerState = Player.Actions.ON_OBJECT;
+                originalX = player.transform.position.x;
+                originalY = player.transform.position.y;
+                GetComponent<Collider2D>().enabled = false;
+                if (originalDirection == 0)
+                {
+                    script.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                    script.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                }
+                else if (originalDirection == 1)
+                {
+                    script.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                    script.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                }
+                else if (originalDirection == 2)
+                {
+                    script.ChangePositionDefault(rb.position.x, rb.position.y, -1);
+                    script.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                }
+                /*else if (originalDirection == 3)
+                {
+                    script.ChangePositionDefault(this, rb.position.x, rb.position.y, -1);
+                    script.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                }*/
+            }
+        }
+        else {
+            if (originalDirection == 0)
+            {
+                script.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 1);
+                script.MoveDownAnimation("playerDownWest", originalX, originalY, -1);
+            }
+            else if (originalDirection == 1)
+            {
+                script.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 0);
+                script.MoveDownAnimation("playerDownEast", originalX, originalY, -1);
+            }
+            else if (originalDirection == 2)
+            {
+                script.ChangePositionDefault(rb.position.x, rb.position.y, 3);
+                script.MoveDownAnimation("playerDownSouth", originalX, originalY, -1);
+            }
+            /*else if (originalDirection == 3)
+            {
+            script.ChangePositionDefault(this, rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), 2);
+                script.MoveDownAnimation("playerDownNorth", originalX, originalY, -1);
+            }*/
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -7,9 +7,13 @@ public class ScenePickUpObject : MonoBehaviour
     public SceneObject.PositionSprite positionSprite;
     public float scale = 1;
     public Inventory.InventoryItems item;
+    public bool isUp = false;
     public bool colliding = false;
+
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
+    Player player;
+
     float sizeX, sizeY;
     float posX, posY, posXdefault, posYdefault;
 
@@ -25,16 +29,20 @@ public class ScenePickUpObject : MonoBehaviour
         posY = spriteRenderer.bounds.size.y / scale;
         posYdefault = transform.position.y;
         posXdefault = transform.position.x;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (Input.GetKeyDown(KeyCode.Z) && colliding &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+        if (!isUp || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
-            ChangeSprite();
+            if (Input.GetKeyDown(KeyCode.Z) && colliding &&
+                !MissionManager.instance.paused && !MissionManager.instance.blocked &&
+                !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            {
+                ChangeSprite();
+            }
         }
     }
 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviour {
     public bool colliding = false;
     public Inventory.InventoryItems item;
+    public bool isUp = false;
+    Player player;
 
     void Start ()
     {
@@ -12,15 +14,19 @@ public class PickUpObject : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 	
 	void Update ()
     {
-        if (colliding && Input.GetKeyDown(KeyCode.Z) && 
-            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        if (!isUp || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
-            Inventory.NewItem(item);
-            Destroy(gameObject);
+            if (colliding && Input.GetKeyDown(KeyCode.Z) &&
+            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+            {
+                Inventory.NewItem(item);
+                Destroy(gameObject);
+            }
         }
 	}
 }
