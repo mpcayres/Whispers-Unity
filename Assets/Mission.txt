@@ -59,14 +59,18 @@ Alex: Atze?
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M2Q1C0]
 Alex: Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!
-Alex: Vamos Atze.
-Alex: Precisamos nos defender do que pode ser que esteja nos assombrando! Precisamos pegar uma arma Atze.
+Alex: Vamos, Atze!
 [title=M2Q1C0End]
+[title=M2Q1C0_2]
+Alex: Precisamos nos defender do que pode ser que esteja nos assombrando! Precisamos pegar uma arma Atze.
+[title=M2Q1C0_2End]
 [title=M2Q1C1]
 Alex: Tudo bem mamãe, ao menos Atze pode ficar ao meu lado...
+[title=M2Q1C1End]
+[title=M2Q1C1_2]
 Alex: Atze vamos pegar uma vela para dormimos com um pouco de luz durante a noite!
 Alex: Preciso colocar a vela em algum local e acendê-la.
-[title=M2Q1C1End]
+[title=M2Q1C1_2End]
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M2KidRoomSceneStart]

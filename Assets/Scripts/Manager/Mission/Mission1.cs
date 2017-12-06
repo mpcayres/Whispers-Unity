@@ -52,7 +52,7 @@ public class Mission1 : Mission {
                 aux.position = new Vector3(3f, -0.7f, -0.5f);
                 Transform[] catPos = { aux };
                 Cat.instance.GetComponent<Cat>().targets = catPos;
-                MissionManager.instance.Invoke("InvokeMission", 5f);
+                MissionManager.instance.Invoke("InvokeMission", 5.7f);
             }
         }
         else if (secao == enumMission.GATO_SALA)

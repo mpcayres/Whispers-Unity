@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission {
-    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE, CONTESTA_MAE, RESPEITA_MAE, FINAL_CONTESTA, FINAL_RESPEITA };
+    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE,
+        CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2, FINAL_CONTESTA, FINAL_RESPEITA };
     enumMission secao;
 
     public override void InitMission()
@@ -63,6 +64,18 @@ public class Mission2 : Mission {
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
+        else if (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2)
+        {
+            // Mae patrulha
+            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            mom.GetComponent<Mom>().isPatroller = true;
+            Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
+            target1.position = new Vector3(-2.6f, 0f, -0.5f);
+            target2.position = new Vector3(6.8f, 0f, -0.5f);
+            Transform[] momTargets = { target1, target2 };
+            mom.GetComponent<Mom>().targets = momTargets;
+            MissionManager.instance.AddObject("MomAction", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        }
 
         if (secao == enumMission.INICIO_SOZINHO)
         {
@@ -82,7 +95,7 @@ public class Mission2 : Mission {
         GameObject armario = GameObject.Find("Armario1").gameObject;
         SceneObject sceneObject = armario.GetComponent<SceneObject>();
 
-        if (secao == enumMission.CONTESTA_MAE) {
+        if (secao == enumMission.CONTESTA_MAE2) {
             ScenePickUpObject panelaPickUp = panela.AddComponent<ScenePickUpObject>();
             panelaPickUp.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
             panelaPickUp.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela");
@@ -100,7 +113,7 @@ public class Mission2 : Mission {
             scenePickUpObject.isUp = sceneObject.isUp;
             scenePickUpObject.item = Inventory.InventoryItems.FACA;
         }
-        else if (secao == enumMission.RESPEITA_MAE)
+        else if (secao == enumMission.RESPEITA_MAE2)
         {
             // Fosforo
             sceneObject.enabled = false;
@@ -129,6 +142,14 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
+            EspecificaEnum((int)enumMission.RESPEITA_MAE2);
+        }
+        else if (secao == enumMission.CONTESTA_MAE)
+        {
+            EspecificaEnum((int)enumMission.CONTESTA_MAE2);
+        }
+        else if (secao == enumMission.RESPEITA_MAE2)
+        {
             GameObject windowTrigger = GameObject.Find("WindowTrigger").gameObject;
             windowTrigger.tag = "WindowTrigger";
             WindowTrigger trigger = windowTrigger.GetComponent<WindowTrigger>();
@@ -145,12 +166,7 @@ public class Mission2 : Mission {
 
     public override void SetSala()
     {
-        if (MissionManager.instance.countLivingroomDialog == 0)
-        {
-            MissionManager.instance.rpgTalk.NewTalk("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
-        }
-
-        if (secao == enumMission.RESPEITA_MAE)
+        if (secao == enumMission.RESPEITA_MAE2)
         {
             // Vela
             GameObject armario = GameObject.Find("Armario").gameObject;
@@ -183,6 +199,31 @@ public class Mission2 : Mission {
         if (tag.Equals("AreaTrigger(Clone)") && (secao == enumMission.INICIO_GATO || secao == enumMission.INICIO_SOZINHO))
         {
             EspecificaEnum((int)enumMission.ENCONTRA_MAE);
+        }
+    }
+
+    public override void InvokeMissionChoice(int id)
+    {
+        if (secao == enumMission.ENCONTRA_MAE)
+        {
+            if (id == 0)
+            {
+                EspecificaEnum((int)enumMission.CONTESTA_MAE);
+            }
+            else
+            {
+                EspecificaEnum((int)enumMission.RESPEITA_MAE);
+            }
+        }
+        else if (secao == enumMission.RESPEITA_MAE2)
+        {
+            GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+        }
+        else if (secao == enumMission.CONTESTA_MAE2)
+        {
+            GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
         }
     }
 

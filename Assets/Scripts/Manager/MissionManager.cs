@@ -418,7 +418,7 @@ public class MissionManager : MonoBehaviour {
 
 	public void OnMadeChoice(int questionId, int choiceID)
     {
-		if ( questionId == 0) { // escolha final da missão 1
+		if (questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) {
 				pathCat -= 2;
                 rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
@@ -427,7 +427,7 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			}
 		}
-		if ( questionId == 1) { // escolha final da missão 2
+		if (questionId == 1) { // escolha final da missão 2
 			if (choiceID == 0) {
 				pathBird+=6;
 				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
@@ -436,7 +436,7 @@ public class MissionManager : MonoBehaviour {
 				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			}
 		}
-        if ( questionId == 2) { // escolha final da missão 3
+        if (questionId == 2) { // escolha final da missão 3
             if (choiceID == 0) {
                 pathBird+=5;
                 rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
@@ -455,7 +455,7 @@ public class MissionManager : MonoBehaviour {
                 //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
         }
-        if (questionId == 3){ // escolha final da missão 4
+        if (questionId == 4){ // escolha final da missão 5
             if (choiceID == 0)
             {
                 pathCat += 4;

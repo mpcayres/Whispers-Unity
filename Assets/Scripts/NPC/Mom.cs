@@ -9,6 +9,7 @@ public class Mom: MonoBehaviour {
     SpriteRenderer spriteRenderer;
     public Animator animator;
     public bool isPatroller = false;
+    int direction = 0;
     
     void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -56,14 +57,20 @@ public class Mom: MonoBehaviour {
             Mathf.Abs(targets[destPoint].position.x - transform.position.x))
         {
             if (targets[destPoint].position.x > transform.position.x)
-                animator.SetInteger("direction", 0);
+                direction = 0;
             else
-                animator.SetInteger("direction", 1);
-        }else {
+                direction = 1;
+        } else {
             if (targets[destPoint].position.y > transform.position.y)
-                animator.SetInteger("direction", 2);
+                direction = 2;
             else
-                animator.SetInteger("direction", 3);
+                direction = 3;
         }
+        animator.SetInteger("direction", direction);
+    }
+
+    public int GetDirection()
+    {
+        return direction;
     }
 }
