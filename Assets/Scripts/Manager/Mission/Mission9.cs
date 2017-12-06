@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 public class Mission9 : Mission {
-    enum enumMission { INICIO, FINAL };
+    enum enumMission { INICIO, DICA, FINAL };
     enumMission secao;
 
     public override void InitMission()
@@ -23,7 +23,10 @@ public class Mission9 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-		
+        if (secao == enumMission.DICA)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("Dica9", "Dica9End");
+        }
     }
 
     public override void SetCorredor()
