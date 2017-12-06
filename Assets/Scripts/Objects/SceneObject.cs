@@ -4,7 +4,7 @@ public class SceneObject : MonoBehaviour {
     public Sprite sprite1;
     public Sprite sprite2;
     public enum PositionSprite { DEFAULT, LEFT, RIGHT, UP, DOWN };
-    public PositionSprite positionSprite;
+    public PositionSprite positionSprite = PositionSprite.DEFAULT;
     public float scale = 1;
     public bool isUp = false;
     public bool colliding = false;
@@ -34,7 +34,7 @@ public class SceneObject : MonoBehaviour {
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (!isUp || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
+        if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (Input.GetKeyDown(KeyCode.Z) && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&

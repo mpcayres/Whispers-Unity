@@ -2,6 +2,7 @@
 
 public class MovingObject : MonoBehaviour {
     GameObject player;
+    public bool canMoveUp = false;
     public bool colliding = false;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -31,7 +32,7 @@ public class MovingObject : MonoBehaviour {
         }
         if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftControl) && canMoveUp)
             {
                 if (Input.GetKeyDown(KeyCode.C))
                 {

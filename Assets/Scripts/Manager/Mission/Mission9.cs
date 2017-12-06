@@ -33,7 +33,9 @@ public class Mission9 : Mission {
 
     public override void SetCozinha()
     {
-		
+
+        GameObject panela = GameObject.Find("Panela").gameObject;
+        GameObject.Destroy(panela);
     }
 
     public override void SetJardim()

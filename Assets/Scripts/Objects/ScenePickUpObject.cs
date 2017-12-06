@@ -4,10 +4,12 @@ public class ScenePickUpObject : MonoBehaviour
 {
     public Sprite sprite1;
     public Sprite sprite2;
-    public SceneObject.PositionSprite positionSprite;
+    public SceneObject.PositionSprite positionSprite = SceneObject.PositionSprite.DEFAULT;
     public float scale = 1;
     public Inventory.InventoryItems item;
     public bool isUp = false;
+    public bool blockAfterPick = false;
+    bool blockChange = false;
     public bool colliding = false;
 
     SpriteRenderer spriteRenderer;
@@ -35,11 +37,11 @@ public class ScenePickUpObject : MonoBehaviour
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (!isUp || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
+        if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (Input.GetKeyDown(KeyCode.Z) && colliding &&
                 !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-                !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                !MissionManager.instance.pausedObject && !blockChange) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 ChangeSprite();
             }
@@ -53,6 +55,7 @@ public class ScenePickUpObject : MonoBehaviour
         {
             spriteRenderer.sprite = sprite2;
             Inventory.NewItem(item);
+            if (blockAfterPick) blockChange = true;
         }
         else
         {

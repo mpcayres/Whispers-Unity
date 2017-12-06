@@ -30,8 +30,42 @@ public class Mission2 : Mission {
 
 	public override void SetCozinha()
 	{
-		//MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
-	}
+        //MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
+
+        GameObject panela = GameObject.Find("Panela").gameObject;
+        panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
+
+        GameObject armario = GameObject.Find("Armario1").gameObject;
+        SceneObject sceneObject = armario.GetComponent<SceneObject>();
+
+        if (secao == enumMission.CONTESTA_MAE) {
+            ScenePickUpObject panelaPickUp = panela.AddComponent<ScenePickUpObject>();
+            panelaPickUp.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
+            panelaPickUp.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela");
+            panelaPickUp.item = Inventory.InventoryItems.TAMPA;
+            panelaPickUp.blockAfterPick = true;
+            
+            sceneObject.enabled = false;
+            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
+            scenePickUpObject.sprite1 = sceneObject.sprite1;
+            scenePickUpObject.sprite2 = sceneObject.sprite2;
+            scenePickUpObject.positionSprite = sceneObject.positionSprite;
+            scenePickUpObject.scale = sceneObject.scale;
+            scenePickUpObject.isUp = sceneObject.isUp;
+            scenePickUpObject.item = Inventory.InventoryItems.FACA;
+        }
+        else if (secao == enumMission.RESPEITA_MAE)
+        {
+            sceneObject.enabled = false;
+            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
+            scenePickUpObject.sprite1 = sceneObject.sprite1;
+            scenePickUpObject.sprite2 = sceneObject.sprite2;
+            scenePickUpObject.positionSprite = sceneObject.positionSprite;
+            scenePickUpObject.scale = sceneObject.scale;
+            scenePickUpObject.isUp = sceneObject.isUp;
+            scenePickUpObject.item = Inventory.InventoryItems.FOSFORO;
+        }
+    }
 
 	public override void SetJardim()
 	{
@@ -59,10 +93,24 @@ public class Mission2 : Mission {
 
     public override void SetSala()
     {
-        MissionManager.instance.AddObject("MovingObject", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        GameObject.Find("PickUpLanterna").gameObject.SetActive(false);	
-		if(MissionManager.instance.countLivingroomDialog == 0)
-			MissionManager.instance.rpgTalk.NewTalk ("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+        if (MissionManager.instance.countLivingroomDialog == 0)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M2LivingRoomSceneStart", "M2LivingroomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+        }
+
+        if (secao == enumMission.RESPEITA_MAE)
+        {
+            GameObject armario = GameObject.Find("Armario").gameObject;
+            SceneObject sceneObject = armario.GetComponent<SceneObject>();
+            sceneObject.enabled = false;
+            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
+            scenePickUpObject.sprite1 = sceneObject.sprite1;
+            scenePickUpObject.sprite2 = sceneObject.sprite2;
+            scenePickUpObject.positionSprite = sceneObject.positionSprite;
+            scenePickUpObject.scale = sceneObject.scale;
+            scenePickUpObject.isUp = sceneObject.isUp;
+            scenePickUpObject.item = Inventory.InventoryItems.VELA;
+        }
     }
 
     public override void EspecificaEnum(int pos)

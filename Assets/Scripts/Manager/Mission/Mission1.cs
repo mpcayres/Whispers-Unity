@@ -48,6 +48,9 @@ public class Mission1 : Mission {
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
+
+        GameObject panela = GameObject.Find("Panela").gameObject;
+        panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
     }
 
     public override void SetJardim()
@@ -102,6 +105,7 @@ public class Mission1 : Mission {
         scenePickUpObject.sprite2 = sceneObject.sprite2;
         scenePickUpObject.positionSprite = sceneObject.positionSprite;
         scenePickUpObject.scale = sceneObject.scale;
+        scenePickUpObject.isUp = sceneObject.isUp;
         scenePickUpObject.item = Inventory.InventoryItems.FLASHLIGHT;
     }
 

@@ -19,7 +19,7 @@ public class PickUpObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if (!isUp || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
+        if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (colliding && Input.GetKeyDown(KeyCode.Z) &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)

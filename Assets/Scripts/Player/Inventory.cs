@@ -152,6 +152,39 @@ public class Inventory : MonoBehaviour {
         {
             file = "lanterna";
         }
+        else if (selectItem == InventoryItems.VELA)
+        {
+            file = "vela";
+        }
+        else if (selectItem == InventoryItems.FOSFORO)
+        {
+            file = "caixa_fosforo_maior";
+        }
+        else if (selectItem == InventoryItems.FACA)
+        {
+            file = "faca";
+        }
+        else if (selectItem == InventoryItems.TAMPA)
+        {
+            file = "tampa";
+        }
+        else if (selectItem == InventoryItems.PEDRA)
+        {
+            file = "";
+        }
+        else if (selectItem == InventoryItems.RACAO)
+        {
+            file = "";
+        }
+        else if (selectItem == InventoryItems.NOVELO)
+        {
+            file = "novelo";
+        }
+        else if (selectItem == InventoryItems.ISQUEIRO)
+        {
+            file = "";
+        }
+
         DataItems novoItem = new DataItems(selectItem, file);
         listItems.Add(novoItem);
         SetCurrentItem(listItems.Count - 1);
