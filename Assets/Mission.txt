@@ -56,6 +56,15 @@ Alex: Atze?
 [title=M1CorridorSceneRepeatEnd]
 
 -------------------------------------- MISSAO 2 ----------------------------------------------------
+----------------------------------- ESPECIAL -----------------------------------
+[title=M2AllObjectsRespeita]
+Alex: Acho que tenho tudo que preciso.
+Alex: Melhor acender essa vela no meu quarto.
+[title=M2AllObjectsRespeitaEnd]
+[title=M2AllObjectsContesta]
+Alex: Acho que tenho tudo que preciso.
+Alex: Melhor guardar isso no meu quarto.
+[title=M2AllObjectsContestaEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M2Q1C0]
 Alex: Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!
@@ -77,6 +86,18 @@ Alex: Preciso colocar a vela em algum local e acendê-la.
 Alex: Onde minha mãe está?
 Alex: Será que posso dormir com ela?
 [title=M2KidRoomSceneEnd]
+[title=M2KidRoomSceneVela]
+Alex: Eu preciso de uma vela para acender...
+[title=M2KidRoomSceneVelaEnd]
+[title=M2KidRoomSceneFosforo]
+Alex: Eu preciso de um fósforo para acender a vela...
+[title=M2KidRoomSceneFosforoEnd]
+[title=M2KidRoomSceneFaca]
+Alex: Eu preciso de algo para atacar...
+[title=M2KidRoomSceneFacaEnd]
+[title=M2KidRoomSceneTampa]
+Alex: Eu preciso de algo para me defender...
+[title=M2KidRoomSceneTampaEnd]
 [title=M2KidRoomSceneRepeat]
 [title=M2KidRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
