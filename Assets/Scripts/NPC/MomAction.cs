@@ -37,7 +37,7 @@ public class MomAction : MonoBehaviour {
     //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("MomAction");
+        print("MomAction: " + collision.tag);
         if (collision.gameObject.tag.Equals("Player"))
         {
             MissionManager.instance.GameOver();

@@ -63,7 +63,7 @@ public class PlayerAction : MonoBehaviour {
         }
         else if (collision.gameObject.tag.Equals("Cat"))
         {
-            collision.gameObject.GetComponent<Cat>().FollowPlayer();
+            collision.gameObject.GetComponent<Cat>().FollowPlayer(true);
         }
 
     }

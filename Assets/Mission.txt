@@ -172,7 +172,7 @@ Mãe: Acho que deveria descansar um pouco a cabeça.
 [M3Q2C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M3KidRoomSceneStart]
-Alex: O-O que é isso?
+Alex: Atze?
 [title=M3KidRoomSceneEnd]
 [title=M3KidRoomSceneRepeat]
 [title=M3KidRoomSceneRepeatEnd]

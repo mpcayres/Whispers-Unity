@@ -32,6 +32,7 @@ public class Cat : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        print("Follow: " + followingPlayer + " Patrol: " + isPatroller);
     }
 	
 	// Update is called once per frame
@@ -149,14 +150,16 @@ public class Cat : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-    public void FollowPlayer()
+    public void FollowPlayer(bool f)
     {
-        followingPlayer = true;
+        isPatroller = !f;
+        followingPlayer = f;
     }
 
-    public void Patrol()
+    public void Patrol(bool p)
     {
-        isPatroller = true;
+        followingPlayer = !p;
+        isPatroller = p;
     }
 
     public void DestroyCat()

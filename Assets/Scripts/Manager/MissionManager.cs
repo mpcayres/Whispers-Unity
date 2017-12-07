@@ -311,8 +311,10 @@ public class MissionManager : MonoBehaviour {
 		case 8:
 			mission = new Mission8();
 			break;
-
-		}
+        case 9:
+            mission = new Mission9();
+            break;
+        }
         
         levelImage = hud.transform.Find("LevelImage").gameObject;
         levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();

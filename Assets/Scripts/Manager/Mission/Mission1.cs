@@ -47,7 +47,7 @@ public class Mission1 : Mission {
             {
                 EspecificaEnum((int)enumMission.GATO_CORREDOR);
                 MissionManager.instance.blocked = true;
-                Cat.instance.GetComponent<Cat>().Patrol();
+                Cat.instance.GetComponent<Cat>().Patrol(true);
                 Transform aux = new GameObject().transform;
                 aux.position = new Vector3(3f, -0.7f, -0.5f);
                 Transform[] catPos = { aux };
@@ -117,7 +117,7 @@ public class Mission1 : Mission {
         else if (secao == enumMission.GATO_COZINHA)
         {
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            cat.GetComponent<Cat>().Patrol();
+            cat.GetComponent<Cat>().Patrol(true);
             Transform aux = new GameObject().transform;
             aux.position = new Vector3(-9.8f, -0.7f, -0.5f);
             Transform[] catPos = { aux };
@@ -341,7 +341,7 @@ public class Mission1 : Mission {
             }
             else
             {
-                GameObject.Find("catFollower(Clone)").gameObject.GetComponent<Cat>().FollowPlayer();
+                GameObject.Find("catFollower(Clone)").gameObject.GetComponent<Cat>().FollowPlayer(true);
             }
             MissionManager.instance.Invoke("InvokeMission", 8f);
         }

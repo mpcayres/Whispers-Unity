@@ -72,8 +72,8 @@ public class Mission2 : Mission {
             portaMae.GetComponent<Collider2D>().isTrigger = false;
 
             // Mae
-            MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-            GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(1.8f, 0f, 1), new Vector3(1, 1, 1));
+            MissionManager.instance.AddObject("mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-1.5f, 0f, 1), new Vector3(1, 1, 1));
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
@@ -152,7 +152,7 @@ public class Mission2 : Mission {
         if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
-            cat.GetComponent<Cat>().FollowPlayer();
+            cat.GetComponent<Cat>().FollowPlayer(true);
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
@@ -170,9 +170,7 @@ public class Mission2 : Mission {
             trigger.enabled = true;
             SceneObject sceneObject = windowTrigger.GetComponent<SceneObject>();
             sceneObject.enabled = false;
-        }
-        else if (secao == enumMission.RESPEITA_MAE2)
-        {
+
             if (!Inventory.HasItemType(Inventory.InventoryItems.VELA))
             {
                 MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneVela", "M2KidRoomSceneVelaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
@@ -248,6 +246,14 @@ public class Mission2 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
         }
+        else if (secao == enumMission.RESPEITA_MAE2)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+        }
+        else if (secao == enumMission.CONTESTA_MAE2)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+        }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
             MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
@@ -278,16 +284,6 @@ public class Mission2 : Mission {
             {
                 EspecificaEnum((int)enumMission.RESPEITA_MAE);
             }
-        }
-        else if (secao == enumMission.RESPEITA_MAE2)
-        {
-            GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
-        }
-        else if (secao == enumMission.CONTESTA_MAE2)
-        {
-            GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
         }
     }
 
