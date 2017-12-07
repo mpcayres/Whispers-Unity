@@ -7,6 +7,7 @@ public class Cat : MonoBehaviour {
     private bool followingPlayer = false;
     private bool isPatroller = false;
     public bool destroyEndPath = false;
+    public bool stopEndPath = false;
 
     public float speed;
     GameObject player;
@@ -17,8 +18,7 @@ public class Cat : MonoBehaviour {
 
     public Transform[] targets;
     private int destPoint = 0;
-
-    // Use this for initialization
+    
     void Start () {
         if (instance == null)
         {
@@ -32,7 +32,6 @@ public class Cat : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        print("Follow: " + followingPlayer + " Patrol: " + isPatroller);
     }
 	
 	// Update is called once per frame
@@ -46,7 +45,6 @@ public class Cat : MonoBehaviour {
 
             if (dist > 0.6f)
             {
-               
 
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) >
                     Mathf.Abs(player.transform.position.y - transform.position.y))
@@ -117,6 +115,11 @@ public class Cat : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+            else if (destPoint + 1 == targets.Length && stopEndPath)
+            {
+                Stop();
+                // Mudar animacao, ficar parado
+            }
             else
             {
                 destPoint = (destPoint + 1) % targets.Length;
@@ -150,16 +153,22 @@ public class Cat : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-    public void FollowPlayer(bool f)
+    public void FollowPlayer()
     {
-        isPatroller = !f;
-        followingPlayer = f;
+        isPatroller = false;
+        followingPlayer = true;
     }
 
-    public void Patrol(bool p)
+    public void Patrol()
     {
-        followingPlayer = !p;
-        isPatroller = p;
+        followingPlayer = false;
+        isPatroller = true;
+    }
+
+    public void Stop()
+    {
+        followingPlayer = false;
+        isPatroller = false;
     }
 
     public void DestroyCat()

@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
     public Actions playerState;
     public float movespeed;
+    public float runningFactor = 3f;
     public Animator animator;
 
     Rigidbody2D rb;
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    move = 5 * movespeed;
+                    move = runningFactor * movespeed;
                     isRunning = true;
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
