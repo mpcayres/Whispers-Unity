@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 61182481285535648}
   - component: {fileID: 114087893353416320}
   m_Layer: 11
-  m_Name: MomAction
+  m_Name: ActionPatroller
   m_TagString: Mom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +77,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c9235b46635a94dbe6c3f0c377204f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: Mom

@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatShadow : MonoBehaviour {
-    public static CatShadow instance;
+public class Corvo : MonoBehaviour {
+    public static Corvo instance;
+    private bool followingPlayer = false;
     private bool isPatroller = false;
+    public bool followWhenClose = true;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
 
     public float speed;
+    GameObject player;
     public Animator animator;
     private bool directionChanged = true;
     private int direction = 0;
@@ -24,6 +27,7 @@ public class CatShadow : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             instance = this;
             animator = GetComponent<Animator>();
+            player = GameObject.FindGameObjectWithTag("Player");
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
         else if (instance != this)
@@ -38,7 +42,58 @@ public class CatShadow : MonoBehaviour {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (isPatroller)
+        if (followingPlayer)
+        {
+            float dist = Vector3.Distance(player.transform.position, transform.position);
+
+            if (dist > 0.6f)
+            {
+
+                if (Mathf.Abs(player.transform.position.x - transform.position.x) >
+                    Mathf.Abs(player.transform.position.y - transform.position.y))
+                {
+                    if (player.transform.position.x > transform.position.x)
+                    {
+                        animator.SetInteger("direction", 2);
+                        animator.SetTrigger("changeState");
+                    }
+                    else
+                    {
+                        animator.SetInteger("direction", 3);
+                        animator.SetTrigger("changeState");
+                    }
+                }
+                else
+                {
+                    if (player.transform.position.y < transform.position.y)
+                    {
+                        animator.SetInteger("direction", 4);
+                        animator.SetTrigger("changeState");
+                    }
+                    else
+                    {
+                        animator.SetInteger("direction", 5);
+                        animator.SetTrigger("changeState");
+                    }
+                }
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            }
+            else
+            {
+                if (player.transform.position.y > transform.position.y)
+                {
+                    animator.SetInteger("direction", 1);
+                    animator.SetTrigger("changeState");
+                }
+                else
+                {
+                    animator.SetInteger("direction", 0);
+                    animator.SetTrigger("changeState");
+                }
+            }
+        }
+
+        else if (isPatroller)
         {
             GotoNextPoint();
         }
@@ -102,13 +157,21 @@ public class CatShadow : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
+    public void FollowPlayer()
+    {
+        isPatroller = false;
+        followingPlayer = true;
+    }
+
     public void Patrol()
     {
+        followingPlayer = false;
         isPatroller = true;
     }
 
     public void Stop()
     {
+        followingPlayer = false;
         isPatroller = false;
     }
 

@@ -249,7 +249,7 @@ public class Mission1 : Mission {
         portaCorredor.tag = "Untagged";
         portaCorredor.GetComponent<Collider2D>().isTrigger = false;
 
-        GameObject birds = GameObject.Find("BirdEmitterColliderHolder").gameObject;
+        GameObject birds = GameObject.Find("BirdEmitterHolder").gameObject;
         birds.transform.Find("AreaTrigger").gameObject.SetActive(true);
         birds.transform.Find("TVTrigger").gameObject.SetActive(true);
         areaTriggered = false;

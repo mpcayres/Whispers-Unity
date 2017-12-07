@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MomAction : MonoBehaviour {
+public class ActionPatroller : MonoBehaviour {
     GameObject target;
+    public string tag = "Mom";
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Mom");
+        target = GameObject.FindGameObjectWithTag(tag);
     }
 
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
 
-        int direction = target.GetComponent<Mom>().GetDirection();
+        int direction = target.GetComponent<Patroller>().GetDirection();
         switch (direction)
         {
             case 0:
@@ -37,7 +38,7 @@ public class MomAction : MonoBehaviour {
     //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("MomAction: " + collision.tag);
+        print("Action: " + collision.tag);
         if (collision.gameObject.tag.Equals("Player"))
         {
             MissionManager.instance.GameOver();

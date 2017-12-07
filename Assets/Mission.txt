@@ -150,9 +150,14 @@ Velho: Pare de dizer besteiras, você só acha que é assombrada porque não par
 Atze: Consegue ver?
 Velha: Como você explica todos os acidentes então?
 Velho: Pff. O importante é que ainda temos nosso pequeno Atze.
+[title=M3MundoInvertidoEnd]
+[title=M3MundoInvertido2]
 Atze: Alex...
 Atze: FUJA!
-[title=M3MundoInvertidoEnd]
+[title=M3MundoInvertido2End]
+[title=M3MundoInvertido3]
+Alex: Não quero mais voltar para aquele lugar!
+[title=M3MundoInvertido3End]
 [title=M3VoltaMundoInvertido]
 Mãe: O que está acontecendo aqui?
 [question=2] O que quer fazer agora?
@@ -183,6 +188,8 @@ Alex: Atze?
 [title=M3KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M3GardenSceneStart]
+Alex: Aqui parece um local seguro...
+Alex: Acho que devo tentar de novo.
 [title=M3GardenSceneEnd]
 [title=M3GardenSceneRepeat]
 [title=M3GardenSceneRepeatEnd]

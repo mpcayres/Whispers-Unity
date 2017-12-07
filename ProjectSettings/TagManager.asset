@@ -32,6 +32,7 @@ TagManager:
   - AreaTrigger
   - CatShadow
   - Shadow
+  - Corvo
   layers:
   - Default
   - TransparentFX
