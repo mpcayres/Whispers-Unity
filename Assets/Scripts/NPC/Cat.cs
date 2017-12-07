@@ -55,13 +55,13 @@ public class Cat : MonoBehaviour {
                 {
                     if (player.transform.position.x > transform.position.x)
                     {
-                        aux.x -= 0.6f;
+                        aux.x -= 0.3f;
                         animator.SetInteger("direction", 2);
                         animator.SetTrigger("changeState");
                     }
                     else
                     {
-                        aux.x += 0.6f;
+                        aux.x += 0.3f;
                         animator.SetInteger("direction", 3);
                         animator.SetTrigger("changeState");
                     }
@@ -69,13 +69,13 @@ public class Cat : MonoBehaviour {
                 else { 
                     if (player.transform.position.y < transform.position.y)
                     {
-                        aux.y += 0.6f;
+                        aux.y += 0.3f;
                         animator.SetInteger("direction", 4);
                         animator.SetTrigger("changeState");
                     }
                     else
                     {
-                        aux.y -= 0.6f;
+                        aux.y -= 0.3f;
                         animator.SetInteger("direction", 5);
                         animator.SetTrigger("changeState");
                     }

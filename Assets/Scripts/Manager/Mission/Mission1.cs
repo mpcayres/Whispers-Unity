@@ -53,7 +53,7 @@ public class Mission1 : Mission {
                 Transform[] catPos = { aux };
                 Cat.instance.GetComponent<Cat>().targets = catPos;
                 Cat.instance.stopEndPath = true;
-                MissionManager.instance.Invoke("InvokeMission", 6f);
+                MissionManager.instance.Invoke("InvokeMission", 8f);
             }
         }
         else if (secao == enumMission.GATO_SALA)
@@ -75,7 +75,7 @@ public class Mission1 : Mission {
         {
             if (areaTriggered && !Flashlight.GetState() && !birdsActive)
             {
-                GameObject birds = GameObject.Find("BirdEmitterColliderHolder").gameObject;
+                GameObject birds = GameObject.Find("BirdEmitterHolder(Sala)").gameObject;
                 birds.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
                 birdsActive = true;
             }
@@ -108,7 +108,7 @@ public class Mission1 : Mission {
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
 
             // Porta Sala
-            GameObject portaSala = GameObject.Find("DoorToLivingroom").gameObject;
+            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
             portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
         }
@@ -246,7 +246,7 @@ public class Mission1 : Mission {
         portaCorredor.tag = "Untagged";
         portaCorredor.GetComponent<Collider2D>().isTrigger = false;
 
-        GameObject birds = GameObject.Find("BirdEmitterHolder").gameObject;
+        GameObject birds = GameObject.Find("BirdEmitterHolder(Sala)").gameObject;
         birds.transform.Find("AreaTrigger").gameObject.SetActive(true);
         birds.transform.Find("TVTrigger").gameObject.SetActive(true);
         areaTriggered = false;
