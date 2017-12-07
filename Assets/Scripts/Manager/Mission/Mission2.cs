@@ -62,7 +62,7 @@ public class Mission2 : Mission {
             portaCozinha.GetComponent<Collider2D>().isTrigger = false;
 
             // Porta Sala
-            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
+            GameObject portaSala = GameObject.Find("DoorToLivingroom").gameObject;
             portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
 
