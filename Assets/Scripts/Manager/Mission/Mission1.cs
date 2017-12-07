@@ -104,16 +104,13 @@ public class Mission1 : Mission {
 
         if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(8f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
 
             // Porta Sala
-            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
+            GameObject portaSala = GameObject.Find("DoorToLivingroom").gameObject;
             portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
-
-            // gato andando para cozinha
-
         }
         else if (secao == enumMission.GATO_COZINHA)
         {
@@ -249,7 +246,7 @@ public class Mission1 : Mission {
         portaCorredor.tag = "Untagged";
         portaCorredor.GetComponent<Collider2D>().isTrigger = false;
 
-        GameObject birds = GameObject.Find("BirdEmitterColliderHolder").gameObject;
+        GameObject birds = GameObject.Find("BirdEmitterHolder").gameObject;
         birds.transform.Find("AreaTrigger").gameObject.SetActive(true);
         birds.transform.Find("TVTrigger").gameObject.SetActive(true);
         areaTriggered = false;

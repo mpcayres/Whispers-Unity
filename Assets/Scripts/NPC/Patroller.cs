@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonShadow : MonoBehaviour {
+public class Patroller : MonoBehaviour {
     public Transform[] targets;
     private int destPoint = 0;
     public float speed;

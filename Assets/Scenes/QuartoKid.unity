@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 85743913}
   - component: {fileID: 85743914}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108834130}
   - component: {fileID: 108834131}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 131523755}
   - component: {fileID: 131523756}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -893367445
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ed9c3732f0828054e9a5aa3bdaaf06cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -831,7 +831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428376594}
   - component: {fileID: 428376595}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 479001368}
   - component: {fileID: 479001370}
   - component: {fileID: 479001369}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4489,7 +4489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664400547}
   - component: {fileID: 664400548}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4949,7 +4949,7 @@ GameObject:
   - component: {fileID: 745790445}
   - component: {fileID: 745790447}
   - component: {fileID: 745790446}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8349,7 +8349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771599468}
   - component: {fileID: 771599469}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8413,7 +8413,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 782468514}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FireEventCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8450,12 +8450,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 303
+      value: 306.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 135.5
+      value: 298.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -8689,7 +8689,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 864447787}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FireEventHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8720,7 +8720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 866004247}
   - component: {fileID: 866004248}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8786,7 +8786,7 @@ GameObject:
   - component: {fileID: 966001576}
   - component: {fileID: 966001578}
   - component: {fileID: 966001577}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12188,7 +12188,7 @@ GameObject:
   - component: {fileID: 1003280946}
   - component: {fileID: 1003280948}
   - component: {fileID: 1003280947}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15590,7 +15590,7 @@ GameObject:
   - component: {fileID: 1023338254}
   - component: {fileID: 1023338256}
   - component: {fileID: 1023338255}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18992,7 +18992,7 @@ GameObject:
   - component: {fileID: 1044578575}
   - component: {fileID: 1044578577}
   - component: {fileID: 1044578576}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22393,7 +22393,7 @@ GameObject:
   - component: {fileID: 1053383899}
   - component: {fileID: 1053383901}
   - component: {fileID: 1053383900}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25816,7 +25816,7 @@ GameObject:
   - component: {fileID: 1094628594}
   - component: {fileID: 1094628596}
   - component: {fileID: 1094628595}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29216,7 +29216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1149864565}
   - component: {fileID: 1149864566}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29282,7 +29282,7 @@ GameObject:
   - component: {fileID: 1154014788}
   - component: {fileID: 1154014790}
   - component: {fileID: 1154014789}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32684,7 +32684,7 @@ GameObject:
   - component: {fileID: 1173094803}
   - component: {fileID: 1173094805}
   - component: {fileID: 1173094804}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36085,7 +36085,7 @@ GameObject:
   - component: {fileID: 1180954339}
   - component: {fileID: 1180954341}
   - component: {fileID: 1180954340}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39487,7 +39487,7 @@ GameObject:
   - component: {fileID: 1194625672}
   - component: {fileID: 1194625674}
   - component: {fileID: 1194625673}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42889,7 +42889,7 @@ GameObject:
   - component: {fileID: 1200129733}
   - component: {fileID: 1200129735}
   - component: {fileID: 1200129734}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46353,7 +46353,7 @@ GameObject:
   - component: {fileID: 1278527951}
   - component: {fileID: 1278527953}
   - component: {fileID: 1278527952}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49755,7 +49755,7 @@ GameObject:
   - component: {fileID: 1287366447}
   - component: {fileID: 1287366449}
   - component: {fileID: 1287366448}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53156,7 +53156,7 @@ GameObject:
   - component: {fileID: 1292449063}
   - component: {fileID: 1292449065}
   - component: {fileID: 1292449064}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56558,7 +56558,7 @@ GameObject:
   - component: {fileID: 1346285939}
   - component: {fileID: 1346285941}
   - component: {fileID: 1346285940}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59960,7 +59960,7 @@ GameObject:
   - component: {fileID: 1352526161}
   - component: {fileID: 1352526163}
   - component: {fileID: 1352526162}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63470,7 +63470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410993875}
   - component: {fileID: 1410993876}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63536,7 +63536,7 @@ GameObject:
   - component: {fileID: 1509021186}
   - component: {fileID: 1509021188}
   - component: {fileID: 1509021187}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66978,7 +66978,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1543040473}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FireEventBird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67024,7 +67024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562871700}
   - component: {fileID: 1562871701}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67137,12 +67137,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 302.99997
+      value: 306.49997
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 162.49997
+      value: 325.49997
       objectReference: {fileID: 0}
     - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -67181,7 +67181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654132421}
   - component: {fileID: 1654132422}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67246,7 +67246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691453071}
   - component: {fileID: 1691453072}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67311,7 +67311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697845688}
   - component: {fileID: 1697845689}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67377,7 +67377,7 @@ GameObject:
   - component: {fileID: 1715820119}
   - component: {fileID: 1715820121}
   - component: {fileID: 1715820120}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70779,7 +70779,7 @@ GameObject:
   - component: {fileID: 1718187666}
   - component: {fileID: 1718187668}
   - component: {fileID: 1718187667}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74181,7 +74181,7 @@ GameObject:
   - component: {fileID: 1727062103}
   - component: {fileID: 1727062105}
   - component: {fileID: 1727062104}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Particle System (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77583,7 +77583,7 @@ GameObject:
   - component: {fileID: 1770667888}
   - component: {fileID: 1770667890}
   - component: {fileID: 1770667889}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80983,7 +80983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1954675711}
   - component: {fileID: 1954675712}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81080,7 +81080,7 @@ GameObject:
   - component: {fileID: 2010533185}
   - component: {fileID: 2010533187}
   - component: {fileID: 2010533186}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: "Fuma\xE7a (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84480,7 +84480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2012730752}
   - component: {fileID: 2012730753}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84724,7 +84724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2125125408}
   - component: {fileID: 2125125409}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

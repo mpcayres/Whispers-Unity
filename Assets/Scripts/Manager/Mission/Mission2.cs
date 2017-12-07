@@ -62,7 +62,7 @@ public class Mission2 : Mission {
             portaCozinha.GetComponent<Collider2D>().isTrigger = false;
 
             // Porta Sala
-            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
+            GameObject portaSala = GameObject.Find("DoorToLivingroom").gameObject;
             portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
 
@@ -83,13 +83,13 @@ public class Mission2 : Mission {
             // Mae patrulha
             // TODO: ADICIONAR MAIS MOVIMENTOS PARA MAE, PARA NAO SER UM CAMINHO TAO OBVIO
             GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-            mom.GetComponent<Mom>().isPatroller = true;
+            mom.GetComponent<Patroller>().isPatroller = true;
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
             target1.position = new Vector3(6.8f, 0f, -0.5f);
             target2.position = new Vector3(-2.6f, 0f, -0.5f);
             Transform[] momTargets = { target1, target2 };
-            mom.GetComponent<Mom>().targets = momTargets;
-            MissionManager.instance.AddObject("MomAction", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+            mom.GetComponent<Patroller>().targets = momTargets;
+            MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
         }
 
         if (secao == enumMission.INICIO_SOZINHO)
