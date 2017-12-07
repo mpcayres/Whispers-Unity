@@ -35,6 +35,7 @@ public class SceneObject : MonoBehaviour {
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (Input.GetKeyDown(KeyCode.Z) && colliding &&
