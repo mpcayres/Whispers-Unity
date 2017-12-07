@@ -32,6 +32,7 @@ TagManager:
   - AreaTrigger
   - CatShadow
   - Shadow
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -47,7 +48,7 @@ TagManager:
   - Enemies
   - PickUp
   - PlayerHidden
-  - 
+  - Fire
   - 
   - 
   - 
