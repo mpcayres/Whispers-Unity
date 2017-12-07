@@ -19,6 +19,8 @@ public class Cat : MonoBehaviour {
 
     public Transform[] targets;
     private int destPoint = 0;
+
+    private float timeToDestroy = 2;
     
     void Start () {
         if (instance == null)
@@ -46,17 +48,20 @@ public class Cat : MonoBehaviour {
 
             if (dist > 0.6f)
             {
+                Vector3 aux = player.transform.position;
 
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) >
                     Mathf.Abs(player.transform.position.y - transform.position.y))
                 {
                     if (player.transform.position.x > transform.position.x)
                     {
+                        aux.x -= 0.6f;
                         animator.SetInteger("direction", 2);
                         animator.SetTrigger("changeState");
                     }
                     else
                     {
+                        aux.x += 0.6f;
                         animator.SetInteger("direction", 3);
                         animator.SetTrigger("changeState");
                     }
@@ -64,16 +69,19 @@ public class Cat : MonoBehaviour {
                 else { 
                     if (player.transform.position.y < transform.position.y)
                     {
+                        aux.y += 0.6f;
                         animator.SetInteger("direction", 4);
                         animator.SetTrigger("changeState");
                     }
                     else
                     {
+                        aux.y -= 0.6f;
                         animator.SetInteger("direction", 5);
                         animator.SetTrigger("changeState");
                     }
                 }
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                
+                transform.position = Vector3.MoveTowards(transform.position, aux, speed * Time.deltaTime);
             }
             else
             {
@@ -104,6 +112,7 @@ public class Cat : MonoBehaviour {
         if (targets.Length == 0)
             return;
 
+        animator.SetTrigger("changeState");
         ChangeDirection();
 
         transform.position = Vector3.MoveTowards(transform.position, targets[destPoint].position, step);
@@ -111,13 +120,17 @@ public class Cat : MonoBehaviour {
         float dist = Vector3.Distance(targets[destPoint].position, transform.position);
         if (dist < 0.4f)
         {
-            animator.SetTrigger("changeState");
+            
             if(destPoint + 1 == targets.Length && destroyEndPath)
             {
+                animator.SetTrigger("changeState");
+                animator.SetInteger("direction", 0);
                 Destroy(gameObject);
             }
             else if (destPoint + 1 == targets.Length && stopEndPath)
             {
+                animator.SetTrigger("changeState");
+                animator.SetInteger("direction", 0);
                 Stop();
                 // Mudar animacao, ficar parado
             }
@@ -174,6 +187,10 @@ public class Cat : MonoBehaviour {
 
     public void DestroyCat()
     {
-        Destroy(gameObject);
+        timeToDestroy -= Time.deltaTime;
+        if (timeToDestroy < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
