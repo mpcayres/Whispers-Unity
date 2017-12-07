@@ -246,7 +246,7 @@ public class Mission2 : Mission {
 
         if (secao == enumMission.ENCONTRA_MAE)
         {
-            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd");
+            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
         }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
