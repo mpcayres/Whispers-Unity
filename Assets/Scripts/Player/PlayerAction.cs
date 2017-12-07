@@ -61,7 +61,7 @@ public class PlayerAction : MonoBehaviour {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
             collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
         }
-        else if (collision.gameObject.tag.Equals("Cat"))
+        else if (collision.gameObject.tag.Equals("Cat") && Cat.instance.followWhenClose)
         {
             collision.gameObject.GetComponent<Cat>().FollowPlayer();
         }

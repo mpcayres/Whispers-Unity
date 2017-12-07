@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat : MonoBehaviour {
-    public static Cat instance;
-    private bool followingPlayer = false;
+public class CatShadow : MonoBehaviour {
+    public static CatShadow instance;
     private bool isPatroller = false;
-    public bool followWhenClose = true;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
 
     public float speed;
-    GameObject player;
     public Animator animator;
     private bool directionChanged = true;
     private int direction = 0;
@@ -19,14 +16,14 @@ public class Cat : MonoBehaviour {
 
     public Transform[] targets;
     private int destPoint = 0;
-    
-    void Start () {
+
+    void Start()
+    {
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
             animator = GetComponent<Animator>();
-            player = GameObject.FindGameObjectWithTag("Player");
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
         else if (instance != this)
@@ -34,63 +31,14 @@ public class Cat : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (followingPlayer)
-        {
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-
-            if (dist > 0.6f)
-            {
-
-                if (Mathf.Abs(player.transform.position.x - transform.position.x) >
-                    Mathf.Abs(player.transform.position.y - transform.position.y))
-                {
-                    if (player.transform.position.x > transform.position.x)
-                    {
-                        animator.SetInteger("direction", 2);
-                        animator.SetTrigger("changeState");
-                    }
-                    else
-                    {
-                        animator.SetInteger("direction", 3);
-                        animator.SetTrigger("changeState");
-                    }
-                }
-                else { 
-                    if (player.transform.position.y < transform.position.y)
-                    {
-                        animator.SetInteger("direction", 4);
-                        animator.SetTrigger("changeState");
-                    }
-                    else
-                    {
-                        animator.SetInteger("direction", 5);
-                        animator.SetTrigger("changeState");
-                    }
-                }
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            }
-            else
-            {
-                if (player.transform.position.y > transform.position.y)
-                {
-                    animator.SetInteger("direction", 1);
-                    animator.SetTrigger("changeState");
-                }
-                else
-                {
-                    animator.SetInteger("direction", 0);
-                    animator.SetTrigger("changeState");
-                }
-            }
-        }
-
-        else if (isPatroller)
+        if (isPatroller)
         {
             GotoNextPoint();
         }
@@ -112,7 +60,7 @@ public class Cat : MonoBehaviour {
         if (dist < 0.4f)
         {
             animator.SetTrigger("changeState");
-            if(destPoint + 1 == targets.Length && destroyEndPath)
+            if (destPoint + 1 == targets.Length && destroyEndPath)
             {
                 Destroy(gameObject);
             }
@@ -125,7 +73,7 @@ public class Cat : MonoBehaviour {
             {
                 destPoint = (destPoint + 1) % targets.Length;
             }
-            
+
         }
 
     }
@@ -154,21 +102,13 @@ public class Cat : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-    public void FollowPlayer()
-    {
-        isPatroller = false;
-        followingPlayer = true;
-    }
-
     public void Patrol()
     {
-        followingPlayer = false;
         isPatroller = true;
     }
 
     public void Stop()
     {
-        followingPlayer = false;
         isPatroller = false;
     }
 
