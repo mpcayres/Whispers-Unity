@@ -321,7 +321,14 @@ public class MissionManager : MonoBehaviour {
 
         if (mission != null)
         {
-            levelText.text = "Night " + m;
+            if(m != 9)
+            {
+                levelText.text = "Night " + m;
+            }
+            else
+            {
+                levelText.enabled = false;
+            }
             levelImage.SetActive(true);
             showMissionStart = true;
             mission.InitMission();
