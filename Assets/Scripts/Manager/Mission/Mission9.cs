@@ -33,17 +33,7 @@ public class Mission9 : Mission {
 
     public override void SetCozinha()
     {
-        // Panela para caso ainda não tenha
-        if (!Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
-        {
-            GameObject panela = GameObject.Find("Panela").gameObject;
-            panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            ScenePickUpObject panelaPickUp = panela.AddComponent<ScenePickUpObject>();
-            panelaPickUp.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            panelaPickUp.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela");
-            panelaPickUp.item = Inventory.InventoryItems.TAMPA;
-            panelaPickUp.blockAfterPick = true;
-        }
+
     }
 
     public override void SetJardim()

@@ -81,11 +81,12 @@ public class Mission2 : Mission {
             secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_RESPEITA)
         {
             // Mae patrulha
+            // TODO: ADICIONAR MAIS MOVIMENTOS PARA MAE, PARA NAO SER UM CAMINHO TAO OBVIO
             GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Mom>().isPatroller = true;
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
-            target1.position = new Vector3(-2.6f, 0f, -0.5f);
-            target2.position = new Vector3(6.8f, 0f, -0.5f);
+            target1.position = new Vector3(6.8f, 0f, -0.5f);
+            target2.position = new Vector3(-2.6f, 0f, -0.5f);
             Transform[] momTargets = { target1, target2 };
             mom.GetComponent<Mom>().targets = momTargets;
             MissionManager.instance.AddObject("MomAction", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
@@ -110,11 +111,7 @@ public class Mission2 : Mission {
         SceneObject sceneObject = armario.GetComponent<SceneObject>();
 
         if (secao == enumMission.CONTESTA_MAE2) {
-            ScenePickUpObject panelaPickUp = panela.AddComponent<ScenePickUpObject>();
-            panelaPickUp.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            panelaPickUp.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela");
-            panelaPickUp.item = Inventory.InventoryItems.TAMPA;
-            panelaPickUp.blockAfterPick = true;
+            panela.GetComponent<ScenePickUpObject>().gameObject.SetActive(true);
             
             // Faca
             sceneObject.enabled = false;

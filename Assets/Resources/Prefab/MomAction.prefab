@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4831262682162860}
   - component: {fileID: 61182481285535648}
   - component: {fileID: 114087893353416320}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: MomAction
-  m_TagString: PlayerAction
+  m_TagString: Mom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

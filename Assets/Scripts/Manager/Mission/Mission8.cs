@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Mission8 : Mission {
     enum enumMission { INICIO, DICA, FINAL };
     enumMission secao;
+    bool hasPanela = false;
 
     public override void InitMission()
     {
@@ -19,6 +20,7 @@ public class Mission8 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.INICIO;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -40,15 +42,11 @@ public class Mission8 : Mission {
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
         // Panela para caso ainda não tenha
-        if (!Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
+        if (!hasPanela)
         {
             GameObject panela = GameObject.Find("Panela").gameObject;
             panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            ScenePickUpObject panelaPickUp = panela.AddComponent<ScenePickUpObject>();
-            panelaPickUp.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            panelaPickUp.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/panela");
-            panelaPickUp.item = Inventory.InventoryItems.TAMPA;
-            panelaPickUp.blockAfterPick = true;
+            panela.GetComponent<ScenePickUpObject>().gameObject.SetActive(true);
         }
     }
 
