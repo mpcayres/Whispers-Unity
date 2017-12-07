@@ -1347,6 +1347,7 @@ GameObject:
   - component: {fileID: 532451447}
   - component: {fileID: 532451446}
   - component: {fileID: 532451445}
+  - component: {fileID: 532451449}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -1431,6 +1432,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &532451449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532451444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674442eb90596294db3312f83bcba202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &696244750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3622,7 @@ GameObject:
   - component: {fileID: 1962639861}
   - component: {fileID: 1962639860}
   - component: {fileID: 1962639859}
+  - component: {fileID: 1962639862}
   m_Layer: 5
   m_Name: Mission2Button
   m_TagString: Untagged
@@ -3676,7 +3689,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1962639860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962639862}
+        m_MethodName: GetMissionNumber
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1962639860
@@ -3714,6 +3738,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1962639857}
+--- !u!114 &1962639862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1962639857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1250f9a1c7814fafc3dc7cf001ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNumber: 0
 --- !u!1 &1962889882
 GameObject:
   m_ObjectHideFlags: 0

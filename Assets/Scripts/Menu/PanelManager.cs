@@ -71,7 +71,7 @@ public class PanelManager : MonoBehaviour {
 		m_Open = null;
 	}
 
-	IEnumerator DisablePanelDeleyed(Animator anim)
+	void DisablePanelDeleyed(Animator anim)
 	{
 		bool closedStateReached = false;
 		bool wantToClose = true;
@@ -82,7 +82,7 @@ public class PanelManager : MonoBehaviour {
 
 			wantToClose = !anim.GetBool(m_OpenParameterId);
 
-			yield return new WaitForEndOfFrame();
+		    yield return new WaitForEndOfFrame();
 		}
 
 		if (wantToClose)
