@@ -260,6 +260,8 @@ Mãe: Acha que vou acreditar nisso? Quem mais poderia ter sido? Para o quarto! J
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M4KidRoomSceneStart]
 Alex: Eu preciso descobrir o que está acontecendo comigo…
+Alex: Atze? O que foi?
+Alex: Quer que eu te siga?
 [title=M4KidRoomSceneEnd]
 [title=M4KidRoomSceneRepeat]
 [title=M4KidRoomSceneRepeatEnd]
