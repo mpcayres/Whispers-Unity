@@ -1,18 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using UnityEngine.UI;
 
 public class EnableMissions : MonoBehaviour{
     //public int missionNumber;
     void Start()
     {
  
-        if(!File.Exists(Application.persistentDataPath + "/gamesave" + 10 + ".save")) //last scene = 10
-            this.gameObject.transform.Find("Mission10Button").gameObject.SetActive(false);
         if (!File.Exists(Application.persistentDataPath + "/gamesave" + 9 + ".save")) //last scene = 9
             this.gameObject.transform.Find("Mission9Button").gameObject.SetActive(false);
         if (!File.Exists(Application.persistentDataPath + "/gamesave" + 8 + ".save")) //last scene = 8

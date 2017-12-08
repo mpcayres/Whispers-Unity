@@ -8,7 +8,6 @@ public class MissionManager : MonoBehaviour {
 
     public static MissionManager instance;
     public Mission mission;
-    public int missionSelected; // colocar 1 quando for a versão final, para começar na missão 1 quando clicar em new game
     public string previousSceneName, currentSceneName;
     public bool mission2ContestaMae = false;
     public bool mission1AssustaGato = false;
@@ -17,6 +16,8 @@ public class MissionManager : MonoBehaviour {
     public bool pausedObject = false;
     public bool blocked = false;
 
+    int missionSelected;
+    public int missionSelectedAux = 1;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
     public static int initDir = 0;
@@ -53,7 +54,20 @@ public class MissionManager : MonoBehaviour {
 
             hud = GameObject.Find("HUDCanvas").gameObject;
 
-            SetMission(missionSelected);
+            // COLOCAR ISSO PRO MENU FUNCIONAR
+            /*missionSelected = PlayerPrefs.GetInt("Mission");
+            if (missionSelected == -1)
+            {
+                missionSelected = 1;
+                SetMission(missionSelected);
+            }
+            else
+            {
+                LoadGame(missionSelected);
+            }*/
+            // ESSE DAQUI E PRA NAO PRECISAR DO MENU, RETIRAR SE ATIVAR O MENU
+            SetMission(missionSelectedAux);
+
             Invoke("HideLevelImage", startMissionDelay);
 
             rpgTalk.OnMadeChoice += OnMadeChoice;
