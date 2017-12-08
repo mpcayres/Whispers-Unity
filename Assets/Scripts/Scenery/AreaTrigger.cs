@@ -12,4 +12,13 @@ public class AreaTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            print("EXITTRIGGER: " + gameObject.name);
+            MissionManager.instance.mission.AreaTriggered("Exit" + gameObject.name);
+        }
+    }
+
 }

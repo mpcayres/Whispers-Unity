@@ -89,6 +89,7 @@ public class Inventory : MonoBehaviour {
                 GameObject currentSlot = slotsPanel.transform.Find("Slot (" + currentItem + ")").gameObject;
                 currentSlot.GetComponent<Image>().sprite = box;
                 previousItem = currentItem;
+                SetCurrentItem(currentItem);
             }
         }
         else
@@ -239,7 +240,9 @@ public class Inventory : MonoBehaviour {
             {
                 if (selectItem == listItems[currentItem].type)
                 {
-                    if (listItems.Count > 1)
+                    listItems.RemoveAt(count);
+
+                    if (listItems.Count > 0)
                     {
                         SetCurrentItem(0);
                     }
@@ -249,7 +252,10 @@ public class Inventory : MonoBehaviour {
                         currentItem = -1;
                     }
                 }
-                listItems.RemoveAt(count);
+                else
+                {
+                    listItems.RemoveAt(count);
+                }
                 break;
             }
             count++;
