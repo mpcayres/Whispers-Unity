@@ -461,7 +461,7 @@ public class MissionManager : MonoBehaviour {
                 //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
         }
-        if (questionId == 4){ // escolha final da missão 5
+        if (questionId == 4){ // escolha final da missão 4
             if (choiceID == 0)
             {
                 pathCat += 4;
