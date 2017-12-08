@@ -49,7 +49,7 @@ TagManager:
   - PickUp
   - PlayerHidden
   - Fire
-  - 
+  - AreaTrigger
   - 
   - 
   - 
@@ -74,7 +74,7 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Shadow
-    uniqueID: 3320147749
+    uniqueID: 3733409655
     locked: 0
   - name: UI
     uniqueID: 3198805345
