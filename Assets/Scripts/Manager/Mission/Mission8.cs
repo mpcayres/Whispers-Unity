@@ -30,6 +30,8 @@ public class Mission8 : Mission {
 
     public override void SetCorredor()
     {
+        //desaparecer com o livro que está no corredor
+        GameObject.Find("livro").gameObject.SetActive(false);
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
