@@ -333,7 +333,7 @@ public class MissionManager : MonoBehaviour {
         {
             if(m != 9)
             {
-                levelText.text = "Night " + m;
+                levelText.text = "Chapter " + m;
             }
             else
             {

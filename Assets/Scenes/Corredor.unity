@@ -7246,6 +7246,11 @@ Prefab:
       propertyPath: missionSelected
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: missionSelectedAux
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
   m_IsPrefabParent: 0
@@ -91384,6 +91389,30 @@ Prefab:
     - target: {fileID: 4102067407463198, guid: 22c14f9bd40b8f345ba0dcc1f4a36112, type: 2}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 198177073794659370, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: simulationSpeed
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431744321724476, guid: 22c14f9bd40b8f345ba0dcc1f4a36112, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198177073794659370, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: randomSeed
+      value: -310798342
+      objectReference: {fileID: 0}
+    - target: {fileID: 198177073794659370, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: ShapeModule.angle
+      value: 6.382721
+      objectReference: {fileID: 0}
+    - target: {fileID: 198177073794659370, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22c14f9bd40b8f345ba0dcc1f4a36112, type: 2}
