@@ -166,7 +166,7 @@ Mãe: O que está acontecendo aqui?
 [choice]"Eu não sei, eu vi coisas estranhas ontem e hoje."
 [title=M3VoltaMundoInvertidoEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
-[title = M3Q2C0]
+[title=M3Q2C0]
 Alex: Não aconteceu nada!! Não importa!
 Alex: Então o que está fazendo ai parado?! Ande e saia daqui para eu limpar a casa!
 [title=M3Q2C0End]
