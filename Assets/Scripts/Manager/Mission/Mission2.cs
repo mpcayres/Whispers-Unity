@@ -54,21 +54,24 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
+        if (secao == enumMission.INICIO_SOZINHO)
+        {
+            // Gato
+            MissionManager.instance.AddObject("catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
+        }
+
         if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
         {
             // Porta Cozinha
             GameObject portaCozinha = GameObject.Find("DoorToKitchen").gameObject;
-            portaCozinha.tag = "Untagged";
             portaCozinha.GetComponent<Collider2D>().isTrigger = false;
 
             // Porta Sala
-            GameObject portaSala = GameObject.Find("DoorToLivingroom").gameObject;
-            portaSala.tag = "Untagged";
+            GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
             portaSala.GetComponent<Collider2D>().isTrigger = false;
 
             // Porta Quarto Mae
             GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject;
-            portaMae.tag = "Untagged";
             portaMae.GetComponent<Collider2D>().isTrigger = false;
 
             // Mae
@@ -80,9 +83,17 @@ public class Mission2 : Mission {
         else if (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2 || 
             secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_RESPEITA)
         {
+            // Porta Mae
+            GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject;
+            float portaMaeDefaultY = portaMae.transform.position.y;
+            float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
+
             // Mae patrulha
             // TODO: ADICIONAR MAIS MOVIMENTOS PARA MAE, PARA NAO SER UM CAMINHO TAO OBVIO
-            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(1.8f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(0f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Patroller>().isPatroller = true;
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
             target1.position = new Vector3(6.8f, 0f, -0.5f);
@@ -90,12 +101,6 @@ public class Mission2 : Mission {
             Transform[] momTargets = { target1, target2 };
             mom.GetComponent<Patroller>().targets = momTargets;
             MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        }
-
-        if (secao == enumMission.INICIO_SOZINHO)
-        {
-            // Gato
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
         }
     }
 
@@ -110,9 +115,10 @@ public class Mission2 : Mission {
         GameObject armario = GameObject.Find("Armario1").gameObject;
         SceneObject sceneObject = armario.GetComponent<SceneObject>();
 
-        if (secao == enumMission.CONTESTA_MAE2) {
-            panela.GetComponent<ScenePickUpObject>().gameObject.SetActive(true);
-            
+        if (secao == enumMission.CONTESTA_MAE2)
+        {
+            panela.GetComponent<ScenePickUpObject>().enabled = true;
+
             // Faca
             sceneObject.enabled = false;
             armario.tag = "ScenePickUpObject";
@@ -194,7 +200,6 @@ public class Mission2 : Mission {
             float portaDefaultY = porta.transform.position.y;
             float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            porta.tag = "Untagged";
             porta.GetComponent<Collider2D>().isTrigger = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
 
@@ -217,6 +222,9 @@ public class Mission2 : Mission {
 
     public override void SetSala()
     {
+        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
+
         if (secao == enumMission.RESPEITA_MAE2)
         {
             // Vela

@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour {
 
         if (menu.activeSelf && currentItem != -1)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) && currentItem < listItems.Count-1)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && currentItem < listItems.Count - 1)
             {
                 currentItem++;
             }
@@ -312,13 +312,17 @@ public class Inventory : MonoBehaviour {
 
     public static bool HasItemType(InventoryItems item)
     {
-       foreach (DataItems i in listItems)
-        {
-            if (item == i.type)
+       if (listItems != null && listItems.Count > 0)
+       {
+            foreach (DataItems i in listItems)
             {
-                return true;
+                if (item == i.type)
+                {
+                    return true;
+                }
             }
-        }
+       }
+       
         return false;
     }
 }

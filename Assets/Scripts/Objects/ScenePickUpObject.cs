@@ -9,6 +9,7 @@ public class ScenePickUpObject : MonoBehaviour
     public Inventory.InventoryItems item;
     public bool isUp = false;
     public bool blockAfterPick = false;
+    public bool blockSortOrder = false;
     bool blockChange = false;
     public bool colliding = false;
 
@@ -36,7 +37,11 @@ public class ScenePickUpObject : MonoBehaviour
 
     void Update()
     {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        if (!blockSortOrder)
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        }
+
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (Input.GetKeyDown(KeyCode.Z) && colliding &&

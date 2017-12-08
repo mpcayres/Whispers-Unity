@@ -3598,7 +3598,7 @@ MonoBehaviour:
   sprite1: {fileID: 21300000, guid: 2c20f0cbd3b648d4ea338a1b5bfafa35, type: 3}
   sprite2: {fileID: 21300000, guid: 53f1350704d67ac43b87835d57a4e1f3, type: 3}
   positionSprite: 2
-  scale: 20
+  scale: 8
   isUp: 1
   colliding: 0
 --- !u!1 &173942267 stripped
@@ -27899,7 +27899,7 @@ GameObject:
   - component: {fileID: 532245047}
   m_Layer: 0
   m_Name: Panela
-  m_TagString: Untagged
+  m_TagString: ScenePickUpObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28024,6 +28024,7 @@ MonoBehaviour:
   item: 5
   isUp: 0
   blockAfterPick: 1
+  blockSortOrder: 1
   colliding: 0
 --- !u!1 &569690228
 GameObject:
@@ -49249,44 +49250,6 @@ Prefab:
       propertyPath: m_Name
       value: Cadeira2
       objectReference: {fileID: 0}
-    - target: {fileID: 212178491532778384, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed03a4ecb5d298b4b995f33f74438a0c, type: 2}
-    - target: {fileID: 212178491532778384, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 173942267}
-    - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689645316546680, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61922107260273222, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 61922107260273222, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
-        type: 2}
-      propertyPath: canMoveUp
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
   m_IsPrefabParent: 0
@@ -63050,7 +63013,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 176.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -88283,7 +88246,7 @@ MonoBehaviour:
   sprite1: {fileID: 21300000, guid: 2c20f0cbd3b648d4ea338a1b5bfafa35, type: 3}
   sprite2: {fileID: 21300000, guid: 53f1350704d67ac43b87835d57a4e1f3, type: 3}
   positionSprite: 2
-  scale: 20
+  scale: 8
   isUp: 1
   colliding: 0
 --- !u!1 &1603361246
@@ -105640,7 +105603,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 189.94098
+      value: 203.441
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: missionSelectedAux
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}

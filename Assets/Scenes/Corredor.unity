@@ -7249,7 +7249,7 @@ Prefab:
     - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: missionSelectedAux
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}

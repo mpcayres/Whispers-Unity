@@ -46,7 +46,7 @@ public class Mission8 : Mission {
         {
             GameObject panela = GameObject.Find("Panela").gameObject;
             panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
-            panela.GetComponent<ScenePickUpObject>().gameObject.SetActive(true);
+            panela.GetComponent<ScenePickUpObject>().enabled = true;
         }
     }
 
