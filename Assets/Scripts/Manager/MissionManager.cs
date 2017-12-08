@@ -103,44 +103,40 @@ public class MissionManager : MonoBehaviour {
         }
 
         // teste, depois colocar pelo menu
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeMission(1);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeMission(2);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad3))
+		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			ChangeMission(3);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad4))
+		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			ChangeMission(4);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad4))
-		{
-			ChangeMission(4);
-		}
-		if (Input.GetKeyDown(KeyCode.Keypad5))
+		if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
 			ChangeMission(5);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad6))
+		if (Input.GetKeyDown(KeyCode.Alpha6))
 		{
 			ChangeMission(6);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad7))
+		if (Input.GetKeyDown(KeyCode.Alpha7))
 		{
 			ChangeMission(7);
 		}
-        if (Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
 		{
 			ChangeMission(8);
 		}
 
-        if (Input.GetKeyDown(KeyCode.Keypad0))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             LoadGame(0);
         }
