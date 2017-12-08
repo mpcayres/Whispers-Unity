@@ -5,28 +5,41 @@ using UnityEngine;
 public class Book : MonoBehaviour {
 
     private bool[] pages = { false, false, false, false, false };
-    int pageShowing; // 0 - 2
-    bool isActive;
-
+    private int pageQuantity;
+    private int pageShowing; // 0 - 2
+  
+    GameObject book;
     MissionManager missionManager;
 
 	void Start () {
-        isActive = false;
+        pageQuantity = 0;
+        book = GameObject.Find("HUDCanvas").transform.Find("Book").gameObject;
         pageShowing = 0;
         missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked 
+            && !MissionManager.instance.pausedObject)
         {
-            isActive = true;
+            ShowBook();
         }
-        if (isActive == true)
-        {
-            isActive = false;
-        }
+    }
 
+    void ShowBook()
+    {
+        if(book.activeSelf)
+        {
+            book.SetActive(false);
+            missionManager.paused = false;
+        }
+        else
+        {
+            book.SetActive(true);
+            missionManager.paused = true;
+
+        }
     }
 
 }
