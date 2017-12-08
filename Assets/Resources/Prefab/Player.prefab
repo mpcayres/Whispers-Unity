@@ -817,9 +817,9 @@ MonoBehaviour:
   enablePass: 1
   lineToStart: 
   lineToBreak: 
-  wordWrap: 0
-  maxCharInWidth: 40
-  maxCharInHeight: 100
+  wordWrap: 1
+  maxCharInWidth: 50
+  maxCharInHeight: 50
   sprites: []
   spritesUsed: []
   actualTextSpeed: 0
@@ -827,7 +827,6 @@ MonoBehaviour:
   choicePrefab: {fileID: 1247332935544908, guid: 4d99072a8a9e841559a3835c7bcbb357,
     type: 2}
   choicesParent: {fileID: 224570043974314930}
-  isChoice: 0
 --- !u!114 &114655840356109890
 MonoBehaviour:
   m_ObjectHideFlags: 1

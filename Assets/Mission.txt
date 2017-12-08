@@ -8,7 +8,7 @@ Alex: Você pode dormir comigo, Atze?
 [title=M1Q0C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M1KidRoomSceneStart]
-Alex: Hm? Já é de manhã?
+Alex: Hm? Já é de manhã? 
 Alex: A porta está aberta?
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneCat]
@@ -67,17 +67,20 @@ Alex: Melhor guardar isso no meu quarto.
 [title=M2AllObjectsContestaEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M2Q1C0]
-Alex: Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!
+Alex: Você não me entende!! 
+Alex: Eu não gosto de ficar sozinho, eu não gosto de você!
 Alex: Vamos, Atze!
 [title=M2Q1C0End]
 [title=M2Q1C0_2]
-Alex: Precisamos nos defender do que pode ser que esteja nos assombrando! Precisamos pegar uma arma Atze.
+Alex: Precisamos pegar uma arma Atze.
+Alex: Vamos nos defender do que está nos assombrando!
 [title=M2Q1C0_2End]
 [title=M2Q1C1]
 Alex: Tudo bem mamãe, ao menos Atze pode ficar ao meu lado...
 [title=M2Q1C1End]
 [title=M2Q1C1_2]
-Alex: Atze vamos pegar uma vela para dormimos com um pouco de luz durante a noite!
+Alex: Atze vamos pegar uma vela!
+Alex: Assim podemos dormir com um pouco de luz durante a noite!
 Alex: Preciso colocar a vela em algum local e acendê-la.
 [title=M2Q1C1_2End]
 
@@ -168,11 +171,12 @@ Mãe: O que está acontecendo aqui?
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M3Q2C0]
 Alex: Não aconteceu nada!! Não importa!
-Alex: Então o que está fazendo ai parado?! Ande e saia daqui para eu limpar a casa!
+Alex: Então o que está fazendo ai parado?!
+Alex: Ande e saia daqui para eu limpar a casa!
 [title=M3Q2C0End]
 [title=M3Q2C1]
 Alex: Eu não sei, eu vi coisas estranhas ontem e hoje! 
-Alex: Eram uns senhores falando sobre algumas coisas que não entendi direito.
+Alex: Uns senhores falando sobre coisas que não entendi direito.
 Mãe: Entendi... você apenas deve ter comido algo estranho!
 Mãe: Acho que deveria descansar um pouco a cabeça. 
 [title=M3Q2C1End]
@@ -217,9 +221,9 @@ Alex: Acho que devo tentar de novo.
 [title=frenteCriadoStart]
 Alex: Espera! Você quer que eu encontre o livro que estava aqui?
 Atze: Miau.
-Alex: Mas as páginas voaram quando aquele corvo passou por aqui…
-Alex: Acho que vou ter que procurá-las.
-Alex: Onde elas estão? Você consegue me ajudar, Atze?
+Alex: Vamos tentar achar então o livro?
+Alex: Será que a estante seria óbvia demais?
+Alex: Você consegue me ajudar, Atze? 
 [title=frenteCriadoEnd]
 [title=GrandeBarulhoStart]
 Alex: Eu poderia fazer um grande barulho.
@@ -255,7 +259,8 @@ Mãe: Ok... para seu quarto então.
 [title=M4Q4C0End]
 [title=M4Q4C1]
 Alex: Não mãe, não fui eu.
-Mãe: Acha que vou acreditar nisso? Quem mais poderia ter sido? Para o quarto! Já!
+Mãe: Acha que vou acreditar nisso?
+Mãe: Quem mais poderia ter sido? Para o quarto! Já!
 [title=M4Q4C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M4KidRoomSceneStart]
@@ -277,6 +282,8 @@ Alex: Quer que eu te siga?
 [title=M4GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M4MomRoomSceneStart]
+Alex: Deve ter algo naquele armário…
+Alex: Tenho que distraí-la.
 [title=M4MomRoomSceneEnd]
 [title=M4MomRoomSceneRepeat]
 [title=M4MomRoomSceneRepeatEnd]
@@ -400,8 +407,6 @@ Alex: Elas parecem estar contando algo...
 [title=M7GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M7MomRoomSceneStart]
-Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M7MomRoomSceneEnd]
 [title=M7MomRoomSceneRepeat]
 [title=M7MomRoomSceneRepeatEnd]
@@ -438,8 +443,6 @@ Alex: Tenho que distraí-la.
 [title=M8GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M8MomRoomSceneStart]
-Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M8MomRoomSceneEnd]
 [title=M8MomRoomSceneRepeat]
 [title=M8MomRoomSceneRepeatEnd]
@@ -480,8 +483,6 @@ Alex: Na cozinha deve ter algo para ajudar.
 [title=M9GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M9MomRoomSceneStart]
-Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M9MomRoomSceneEnd]
 [title=M9MomRoomSceneRepeat]
 [title=M9MomRoomSceneRepeatEnd]
@@ -518,8 +519,6 @@ Alex: Tenho que distraí-la.
 [title=M10GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M10MomRoomSceneStart]
-Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M10MomRoomSceneEnd]
 [title=M10MomRoomSceneRepeat]
 [title=M10MomRoomSceneRepeatEnd]
