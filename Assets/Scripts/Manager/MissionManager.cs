@@ -92,10 +92,6 @@ public class MissionManager : MonoBehaviour {
             {
                 rpgTalk.EndTalk();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rpgTalk.PlayNext();
-            }
 
             if (!blocked && !paused && Input.GetKeyDown(KeyCode.E) && !invertWorldBlocked)
             {
