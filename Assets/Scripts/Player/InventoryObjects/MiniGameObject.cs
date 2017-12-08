@@ -26,13 +26,13 @@ public class MiniGameObject : MonoBehaviour {
                 timeLeft -= Time.deltaTime;
             }
 
-            if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (Input.GetKeyDown(KeyCode.X)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 MissionManager.instance.pausedObject = true;
                 timeLeft = timeMax;
                 //spritesheet
             }
-            else if (Input.GetKeyDown(KeyCode.Z) || timeLeft <= 0)
+            else if (Input.GetKeyDown(KeyCode.X) || timeLeft <= 0)
             {
                 MissionManager.instance.pausedObject = false;
                 timeLeft = 0;
@@ -41,7 +41,7 @@ public class MiniGameObject : MonoBehaviour {
             else if (Input.GetKeyDown(KeyCode.Space))
             {
                 counter++;
-                //sprisheet
+                //sprisheet atualiza
             }
 
             if(counter >= counterMax)

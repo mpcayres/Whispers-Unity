@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission {
     enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE,
-        CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2, FINAL_CONTESTA, FINAL_RESPEITA };
+        CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2, FINAL_CONTESTA, FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
+
+    GameObject vela, fosforo, faca, tampa;
 
     public override void InitMission()
     {
@@ -48,6 +48,20 @@ public class Mission2 : Mission {
             if (Inventory.HasItemType(Inventory.InventoryItems.FACA) && Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
                 EspecificaEnum((int)enumMission.FINAL_CONTESTA);
+            }
+        }
+        else if (secao == enumMission.FINAL_RESPEITA)
+        {
+            if (!Inventory.HasItemType(Inventory.InventoryItems.VELA))
+            {
+                EspecificaEnum((int)enumMission.FINAL_RESPEITA_VELA);
+            }
+        }
+        else if (secao == enumMission.FINAL_RESPEITA_VELA)
+        {
+            if (fosforo.GetComponent<MiniGameObject>().achievedGoal)
+            {
+                EspecificaEnum((int)enumMission.FINAL_RESPEITA_FOSFORO);
             }
         }
     }
@@ -205,11 +219,21 @@ public class Mission2 : Mission {
 
             if (secao == enumMission.FINAL_RESPEITA)
             {
-                //mini-game vela
+                // Mini-game vela
+                vela = GameObject.Find("Player").gameObject.transform.Find("Vela").gameObject;
+                GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
+                trigger.name = "VelaTrigger";
+                trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
+                trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+
+                fosforo = GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject;
             }
             else if (secao == enumMission.FINAL_CONTESTA)
             {
-                //corvo atacando
+                // Corvo atacando
+                faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
+
+                tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
             }
         }
 
@@ -251,6 +275,14 @@ public class Mission2 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
         }
+        else if (secao == enumMission.RESPEITA_MAE)
+        {
+            MissionManager.instance.mission2ContestaMae = false;
+        }
+        else if (secao == enumMission.CONTESTA_MAE)
+        {
+            MissionManager.instance.mission2ContestaMae = true;
+        }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
             MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
@@ -263,9 +295,24 @@ public class Mission2 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
         }
+        else if (secao == enumMission.FINAL_RESPEITA_VELA)
+        {
+            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.2f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
+            velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
+        }
+        else if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
+        {
+            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
+            MissionManager.instance.Invoke("InvokeMission", 4f);
+        }
         else if (secao == enumMission.FINAL_CONTESTA)
         {
             MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+        }
+        else if (secao == enumMission.FINAL)
+        {
+            MissionManager.instance.ChangeMission(3);
         }
     }
 
@@ -274,6 +321,36 @@ public class Mission2 : Mission {
         if (tag.Equals("AreaTrigger(Clone)") && (secao == enumMission.INICIO_GATO || secao == enumMission.INICIO_SOZINHO))
         {
             EspecificaEnum((int)enumMission.ENCONTRA_MAE);
+        }
+        else if (secao == enumMission.FINAL_RESPEITA)
+        {
+            if (tag.Equals("VelaTrigger"))
+            {
+                vela.GetComponent<PlaceObject>().inArea = true;
+            }
+            else if (tag.Equals("ExitVelaTrigger"))
+            {
+                vela.GetComponent<PlaceObject>().inArea = false;
+            }
+        }
+        else if (secao == enumMission.FINAL_RESPEITA_VELA)
+        {
+            if (tag.Equals("VelaTrigger"))
+            {
+                fosforo.GetComponent<MiniGameObject>().activated = true;
+            }
+            else if (tag.Equals("ExitVelaTrigger"))
+            {
+                fosforo.GetComponent<MiniGameObject>().activated = false;
+            }
+        }
+    }
+
+    public override void InvokeMission()
+    {
+        if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
+        {
+            EspecificaEnum((int)enumMission.FINAL);
         }
     }
 

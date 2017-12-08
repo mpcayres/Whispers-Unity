@@ -754,7 +754,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4563368446749394, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.1256619
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 4563368446749394, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -788,7 +788,12 @@ Prefab:
       propertyPath: m_Name
       value: Escrivaninha
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1898482395456276, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114035425749086944, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &418738228
@@ -4788,6 +4793,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32c81fb1af078ba42b4ca50db27957e1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &691295871 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1898482395456276, guid: 335ed42d2ddc5fb4b8eb35c7a984dc6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 315672491}
+--- !u!114 &691295872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691295871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5876dfe3c9befa84ca5433444b4de641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &715410050
 Prefab:
   m_ObjectHideFlags: 0
@@ -8455,7 +8476,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 176.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -67142,7 +67163,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 189.99998
+      value: 203.49998
       objectReference: {fileID: 0}
     - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -67163,6 +67184,11 @@ Prefab:
         type: 2}
       propertyPath: mission1AssustaGato
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: missionSelectedAux
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
