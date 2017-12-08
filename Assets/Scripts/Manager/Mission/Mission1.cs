@@ -31,7 +31,6 @@ public class Mission1 : Mission {
             if (!MissionManager.instance.GetMissionStart())
             {
                 EspecificaEnum((int)enumMission.INICIO);
-                MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
             }
         }
         else if (secao == enumMission.INICIO)
@@ -46,14 +45,6 @@ public class Mission1 : Mission {
             if (MissionManager.instance.currentSceneName.Equals("Corredor") && !MissionManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.GATO_CORREDOR);
-                MissionManager.instance.blocked = true;
-                Cat.instance.GetComponent<Cat>().Patrol();
-                Transform aux = new GameObject().transform;
-                aux.position = new Vector3(3f, -0.7f, -0.5f);
-                Transform[] catPos = { aux };
-                Cat.instance.GetComponent<Cat>().targets = catPos;
-                Cat.instance.stopEndPath = true;
-                MissionManager.instance.Invoke("InvokeMission", 8f);
             }
         }
         else if (secao == enumMission.GATO_SALA)
@@ -98,7 +89,6 @@ public class Mission1 : Mission {
         float portaMaeDefaultY = portaMae.transform.position.y;
         float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
         portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-        portaMae.tag = "Untagged";
         portaMae.GetComponent<Collider2D>().isTrigger = false;
         portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
@@ -109,19 +99,22 @@ public class Mission1 : Mission {
 
             // Porta Sala
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
-            portaSala.tag = "Untagged";
             portaSala.GetComponent<Collider2D>().isTrigger = false;
+
+            // Porta QuartoKid
+            GameObject portaKid = GameObject.Find("DoorToKidRoom").gameObject;
+            portaKid.GetComponent<Collider2D>().isTrigger = false;
         }
         else if (secao == enumMission.GATO_COZINHA)
         {
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().Patrol();
             Transform aux = new GameObject().transform;
-            aux.position = new Vector3(-9.8f, -0.7f, -0.5f);
+            aux.position = new Vector3(-9.8f, -0.4f, -0.5f);
             Transform[] catPos = { aux };
             cat.GetComponent<Cat>().targets = catPos;
 
-            MissionManager.instance.blocked = true;
+            MissionManager.instance.pausedObject = true;
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
 
@@ -169,7 +162,7 @@ public class Mission1 : Mission {
         // Luz
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
-        GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
+        //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO) {
             // Janela
@@ -191,7 +184,6 @@ public class Mission1 : Mission {
             portaDefaultY = porta.transform.position.y;
             float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            porta.tag = "Untagged";
             porta.GetComponent<Collider2D>().isTrigger = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
         }
@@ -201,6 +193,10 @@ public class Mission1 : Mission {
             GameObject.Find("Flashlight").gameObject.GetComponent<Flashlight>().EnableFlashlight(false);
             MissionManager.instance.GetComponent<Player>().ChangePositionDefault(-2.5f, 0.7f, 0);
             MissionManager.instance.AddObject("mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = false;
+
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
         }
 
@@ -238,17 +234,22 @@ public class Mission1 : Mission {
 
         // Porta Jardim
         GameObject portaJardim = GameObject.Find("DoorToGarden").gameObject;
-        portaJardim.tag = "Untagged";
         portaJardim.GetComponent<Collider2D>().isTrigger = false;
 
         // Porta Corredor
         GameObject portaCorredor = GameObject.Find("DoorToAlley").gameObject;
-        portaCorredor.tag = "Untagged";
         portaCorredor.GetComponent<Collider2D>().isTrigger = false;
 
-        GameObject birds = GameObject.Find("BirdEmitterHolder(Sala)").gameObject;
-        birds.transform.Find("AreaTrigger").gameObject.SetActive(true);
-        birds.transform.Find("TVTrigger").gameObject.SetActive(true);
+        GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
+        trigger.name = "AreaTrigger";
+        trigger.GetComponent<Collider2D>().offset = new Vector2(2.68f, 0);
+        trigger.GetComponent<BoxCollider2D>().size = new Vector2(10.2f, 5f);
+
+        GameObject trigger2 = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
+        trigger2.name = "TVTrigger";
+        trigger2.GetComponent<Collider2D>().offset = new Vector2(7f, -0.4f);
+        trigger2.GetComponent<BoxCollider2D>().size = new Vector2(1.55f, 0.8f);
+        
         areaTriggered = false;
         birdsActive = false;
 
@@ -263,16 +264,31 @@ public class Mission1 : Mission {
         secao = (enumMission) pos;
         MissionManager.instance.Print("SECAO: " + secao);
 
-        if (secao == enumMission.GATO_APARECEU)
+        if(secao == enumMission.INICIO)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+        }
+        else if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 
             // Porta abrindo
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
-            porta.tag = "DoorToAlley";
             porta.GetComponent<Collider2D>().isTrigger = true;
             porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
+        }
+        else if (secao == enumMission.GATO_CORREDOR)
+        {
+            Cat.instance.GetComponent<Cat>().Patrol();
+            Transform aux = new GameObject().transform;
+            aux.position = new Vector3(2.6f, -0.7f, -0.5f);
+            Transform[] catPos = { aux };
+            Cat.instance.GetComponent<Cat>().targets = catPos;
+            Cat.instance.stopEndPath = true;
+            Cat.instance.speed = 1.4f;
+            MissionManager.instance.Invoke("InvokeMission", 5.5f);
+            MissionManager.instance.pausedObject = true;
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
@@ -310,7 +326,7 @@ public class Mission1 : Mission {
         if (secao == enumMission.GATO_CORREDOR || secao == enumMission.GATO_COZINHA)
         {
             GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
-            MissionManager.instance.blocked = false;
+            MissionManager.instance.pausedObject = false;
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 2;
         }
         else if (secao == enumMission.CORVO_VISTO)
