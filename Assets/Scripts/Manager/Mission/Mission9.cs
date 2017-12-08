@@ -37,6 +37,8 @@ public class Mission9 : Mission {
 
     public override void SetCorredor()
     {
+        //desaparecer com o livro que está no corredor
+        GameObject.Find("livro").gameObject.SetActive(false);
         if (endCat)
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventCat").gameObject.SetActive(true);
