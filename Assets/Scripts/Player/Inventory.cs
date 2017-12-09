@@ -207,12 +207,12 @@ public class Inventory : MonoBehaviour {
         }
         else if (selectItem == InventoryItems.PEDRA)
         {
-            file = "";
+            file = "pedra";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.RACAO)
         {
-            file = "";
+            file = "saco_racao";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.NOVELO)
@@ -222,7 +222,7 @@ public class Inventory : MonoBehaviour {
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
-            file = "";
+            file = "isqueiro";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
         }
 
