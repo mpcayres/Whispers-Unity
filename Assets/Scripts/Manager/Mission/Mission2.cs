@@ -7,7 +7,7 @@ public class Mission2 : Mission {
         FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
 
-    GameObject vela, fosforo, faca, tampa;
+    GameObject vela, velaFixa, fosforo, faca, tampa;
 
     public override void InitMission()
     {
@@ -315,15 +315,16 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.2f, 0), new Vector3(2.5f, 2.5f, 1));
+            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
 
             GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject.GetComponent<MiniGameObject>().posFlareX = 0.125f;
-            GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject.GetComponent<MiniGameObject>().posFlareY = -1.0f;
+            GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject.GetComponent<MiniGameObject>().posFlareY = -1.05f;
         }
         else if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
         {
+            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
             MissionManager.instance.Invoke("InvokeMission", 4f);
         }
