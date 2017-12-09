@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 public class Mission8 : Mission {
@@ -67,6 +66,19 @@ public class Mission8 : Mission {
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
+
+        if (MissionManager.instance.mission2ContestaMae)
+        {
+            // colocar arranhao
+        }
+        else
+        {
+            // Vela
+            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.2f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
+            velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
+            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
+        }
     }
 
     public override void SetQuartoMae()

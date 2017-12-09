@@ -318,6 +318,9 @@ public class Mission2 : Mission {
             GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.2f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
+
+            GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject.GetComponent<MiniGameObject>().posFlareX = 0.125f;
+            GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject.GetComponent<MiniGameObject>().posFlareY = -1.0f;
         }
         else if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
         {

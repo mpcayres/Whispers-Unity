@@ -9,12 +9,19 @@ public class MiniGameObject : MonoBehaviour {
     public float timeMax = 5;
     public int counterMax = 20;
     public bool refreshTimeMax = true;
+    public float posFlareX = 0, posFlareY = 0;
     float timeLeft;
     int counter;
+    GameObject anim, flare;
 
     void Start()
     {
-
+        anim = GameObject.Find("HUDCanvas").gameObject.transform.Find("AnimMiniGame").gameObject;
+        if (item == Inventory.InventoryItems.FOSFORO)
+        {
+            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+        }
     }
 
     void Update()
@@ -30,18 +37,30 @@ public class MiniGameObject : MonoBehaviour {
             {
                 MissionManager.instance.pausedObject = true;
                 timeLeft = timeMax;
-                //spritesheet
+                anim.SetActive(true);
+                if (item == Inventory.InventoryItems.FOSFORO)
+                {
+                    flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
+                }
             }
             else if (Input.GetKeyDown(KeyCode.X) || timeLeft <= 0)
             {
                 MissionManager.instance.pausedObject = false;
                 timeLeft = 0;
                 if (refreshTimeMax) counter = 0;
+                anim.SetActive(false);
+                if (item == Inventory.InventoryItems.FOSFORO)
+                {
+                    Destroy(flare);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
                 counter++;
-                //sprisheet atualiza
+                if (item == Inventory.InventoryItems.FOSFORO)
+                {
+                    anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160/counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                }
             }
 
             if(counter >= counterMax)
@@ -49,6 +68,11 @@ public class MiniGameObject : MonoBehaviour {
                 achievedGoal = true;
                 timeLeft = counter = 0;
                 MissionManager.instance.pausedObject = false;
+                anim.SetActive(false);
+                if (item == Inventory.InventoryItems.FOSFORO)
+                {
+                    Destroy(flare);
+                }
             }
         }
 
