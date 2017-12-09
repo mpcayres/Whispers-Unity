@@ -252,6 +252,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1797769485256672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4039270905943078}
+  - component: {fileID: 82470496665088498}
+  - component: {fileID: 114365670633547336}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1817887075319610
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +285,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!4 &4039270905943078
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797769485256672}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.893333, y: -2.2366664, z: -30}
+  m_LocalScale: {x: 3.333333, y: 3.333333, z: 3.333333}
+  m_Children: []
+  m_Father: {fileID: 4406268900588164}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4180945757476630
 Transform:
   m_ObjectHideFlags: 1
@@ -279,7 +309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4219609607804878
 Transform:
@@ -293,7 +323,7 @@ Transform:
   m_Children:
   - {fileID: 224014160812952528}
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4406268900588164
 Transform:
@@ -302,9 +332,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103832579489714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.91, y: -0.4, z: -1}
+  m_LocalPosition: {x: 1.768, y: 0.671, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
+  - {fileID: 4039270905943078}
   - {fileID: 4219609607804878}
   - {fileID: 4491217405168076}
   - {fileID: 4790599121461814}
@@ -329,7 +360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4448678045504650
 Transform:
@@ -342,7 +373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4491217405168076
 Transform:
@@ -355,7 +386,7 @@ Transform:
   m_LocalScale: {x: 2.1847737, y: 2.1847742, z: 2.9624066}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4549861376192570
 Transform:
@@ -368,7 +399,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4661746154388858
 Transform:
@@ -381,7 +412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4775795170925544
 Transform:
@@ -394,7 +425,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4790599121461814
 Transform:
@@ -407,7 +438,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4841101458952516
 Transform:
@@ -420,7 +451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406268900588164}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50012896391792452
 Rigidbody2D:
@@ -502,6 +533,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.1468792}
   m_EdgeRadius: 0
+--- !u!82 &82470496665088498
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797769485256672}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95882510258092630
 Animator:
   serializedVersion: 3
@@ -669,6 +780,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpgTalk: {fileID: 114614734401517286}
+--- !u!114 &114365670633547336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797769485256672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db744250c0ceae04ca7bbb0c31a5fea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bat1: {fileID: 8300000, guid: b3685314e6ac18641a640f2605a3256e, type: 3}
+  bat2: {fileID: 8300000, guid: 75355c211dab43a48aee1ca0942e5a90, type: 3}
+  crow: {fileID: 8300000, guid: b5a7c4b7f3f26b64db32dbb52e95b680, type: 3}
+  owl: {fileID: 8300000, guid: 5f53164899f1cf24c8b2ac54d55e0db2, type: 3}
+  parrot: {fileID: 8300000, guid: 8932ffc2d6fd1394ea7a40d9d41cc498, type: 3}
+  wings: {fileID: 8300000, guid: f702ff262de210e47b859501c2692bcf, type: 3}
+  cat1: {fileID: 8300000, guid: c90ea2f3ba0441640a1c544bd84bdead, type: 3}
+  cat2: {fileID: 8300000, guid: dcecab7e051673748998c88305850579, type: 3}
+  cat3: {fileID: 8300000, guid: 3a651520edab5aa42bbcbfa58031335d, type: 3}
+  cat4: {fileID: 8300000, guid: 6fce3732aa88d1a42ad9b340def57383, type: 3}
+  wolf1: {fileID: 8300000, guid: 428c738b6b4aa054bb9e4f0a658e1c38, type: 3}
+  wolf2: {fileID: 8300000, guid: 1e3972e432e9a8449a5df2d78e56f8fe, type: 3}
+  demon1: {fileID: 8300000, guid: 1bd6e5b4ce3c946f4a3f8f53a207ec93, type: 3}
+  demon2: {fileID: 8300000, guid: 2b8ff0d7e2ea64bddb07107f15a72483, type: 3}
+  demon3: {fileID: 8300000, guid: 5e4b54b521170478990535d606debf98, type: 3}
+  demon4: {fileID: 8300000, guid: 79a487faa751a46eebd8a8358c7dea4d, type: 3}
+  demon5: {fileID: 8300000, guid: 6cf1b99ab6dfb4126b558c1fc377f879, type: 3}
+  demon6: {fileID: 8300000, guid: f3b2029bcaf3b4813888364513427d6e, type: 3}
+  demon7: {fileID: 8300000, guid: f3fa3fbe90ff54736b75b2dbbfe46081, type: 3}
+  demon8: {fileID: 8300000, guid: 3cc1e3669c69b457ea5c2c42eae64645, type: 3}
+  heartbeat1: {fileID: 8300000, guid: 2062560f3c53246f9b3557db5188ce64, type: 3}
+  heartbeat2: {fileID: 8300000, guid: ab6f29aa43f83404ab3a3ce185c3a40f, type: 3}
+  heartbeat3: {fileID: 8300000, guid: b44a1bf6a851f426297d07773f7a7baf, type: 3}
+  heartbeat4: {fileID: 8300000, guid: 9810b5f5ee8714fe88d7215b675885cc, type: 3}
+  heartbeat5: {fileID: 8300000, guid: 4fd51ed01d3174bb78836839b26aeb0d, type: 3}
+  scare1: {fileID: 8300000, guid: 192bf9f4a7e8240f7a2f93c5407e5506, type: 3}
+  scare2: {fileID: 8300000, guid: 6609b779bac8c44e6a16bf21d3ebb235, type: 3}
+  scare3: {fileID: 8300000, guid: a49001dd51b4a440180b20c07d1b71cf, type: 3}
+  scare4: {fileID: 8300000, guid: 902275b6949204f4e826aef12c02c085, type: 3}
+  scare5: {fileID: 8300000, guid: f45cbcaaf19f949349f789c0326c5678, type: 3}
+  ambient1: {fileID: 8300000, guid: 3e3cb80203b244cb693c9f46e2111396, type: 3}
+  ambient2: {fileID: 8300000, guid: 3212868acd46b46f38987c73eee99e2d, type: 3}
+  drop: {fileID: 8300000, guid: 2c5b9b6094344467c938568e8c8d797e, type: 3}
+  Night: 1
+  EnableSound: 1
+  NightLoop: 0
 --- !u!114 &114401343632510796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -756,6 +914,7 @@ MonoBehaviour:
   currentSceneName: 
   mission2ContestaMae: 0
   mission1AssustaGato: 0
+  mission4QuebraSozinho: 0
   paused: 0
   pausedObject: 0
   blocked: 0
@@ -766,6 +925,7 @@ MonoBehaviour:
   invertWorldBlocked: 1
   playerProtected: 0
   rpgTalk: {fileID: 114614734401517286}
+  scenerySounds: {fileID: 114365670633547336}
   countKidRoomDialog: 0
   countMomRoomDialog: 0
   countLivingroomDialog: 0

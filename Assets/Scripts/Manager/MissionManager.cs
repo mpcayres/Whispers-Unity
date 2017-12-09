@@ -35,6 +35,8 @@ public class MissionManager : MonoBehaviour {
     private GameObject levelImage;
     public RPGTalk rpgTalk;
 
+    public ScenerySounds scenerySounds;
+
     public int countKidRoomDialog = -1;
 	public int countMomRoomDialog = -1;
 	public int countLivingroomDialog = -1;
