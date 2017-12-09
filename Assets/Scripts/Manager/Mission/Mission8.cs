@@ -12,7 +12,7 @@ public class Mission8 : Mission {
 
     public override void InitMission()
     {
-        sceneInit = "QuartoKid";
+        sceneInit = "Cozinha";
         MissionManager.initMission = true;
         MissionManager.initX = (float) 1.5;
         MissionManager.initY = (float) 0.2;
