@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Corvo : MonoBehaviour {
     public static Corvo instance;
-    private bool followingPlayer = false;
-    private bool isPatroller = false;
-    public bool followWhenClose = true;
+    public bool followingPlayer = false;
+    public bool isPatroller = false;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
-
     public float speed;
-    GameObject player;
-    public Animator animator;
-    private bool directionChanged = true;
-    private int direction = 0;
-    SpriteRenderer spriteRenderer;
+    public float timeBirdsFollow = 1f;
 
     public Transform[] targets;
+    public Animator animator;
+    GameObject player;
+    SpriteRenderer spriteRenderer;
+    GameObject birdEmitter;
+    private bool directionChanged = true;
+    private int direction = 0;
     private int destPoint = 0;
 
     void Start()
@@ -29,18 +27,26 @@ public class Corvo : MonoBehaviour {
             animator = GetComponent<Animator>();
             player = GameObject.FindGameObjectWithTag("Player");
             spriteRenderer = GetComponent<SpriteRenderer>();
+            birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
+
+            GameObject action = MissionManager.instance.AddObject("ActionCorvo", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
+            var main = birdEmitter.GetComponent<ParticleSystem>().main;
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        
+        print("TIME " + birdEmitter.GetComponent<ParticleSystem>().time);
+        if (birdEmitter.activeSelf && birdEmitter.GetComponent<ParticleSystem>().time <= timeBirdsFollow) {
+            birdEmitter.transform.LookAt(player.transform);
+        }
 
         if (followingPlayer)
         {
@@ -157,6 +163,11 @@ public class Corvo : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
+    public int GetDirection()
+    {
+        return direction;
+    }
+
     public void FollowPlayer()
     {
         isPatroller = false;
@@ -175,8 +186,9 @@ public class Corvo : MonoBehaviour {
         isPatroller = false;
     }
 
-    public void DestroyCat()
+    public void DestroyRaven()
     {
         Destroy(gameObject);
+        if (ActionCorvo.instance != null) ActionCorvo.instance.DestroyAction(); 
     }
 }

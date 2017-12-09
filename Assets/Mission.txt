@@ -231,6 +231,7 @@ Alex: Você consegue me ajudar, Atze?
 [title=GrandeBarulhoStart]
 Alex: Tenho que distraí-la.
 Alex: Eu poderia fazer um grande barulho.
+Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
 [question=3] O que quer fazer agora?
 [choice]Convencer o gato a quebrar algo
 [choice]Quebrar algo sozinho 
@@ -242,12 +243,12 @@ Alex: Eu já tenho isso.
 Alex: Preciso de algo para não me machucar quebrando.
 Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
 [title=IndicarNecessidadeEnd]
-[title=Final]
+[title=VerdadeOuMentira]
 Mãe: Foi você que quebrou o vaso?
 [question=4] O que quer fazer agora?
 [choice]Falar a verdade
 [choice]Mentir 
-[title=FinalEnd]
+[title=VerdadeOuMentiraEnd]
 
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M4Q3C0]
@@ -256,6 +257,8 @@ Atze: Miau!
 Alex: Você está com fome? Quer brincar? Vou procurar algo...
 [title=M4Q3C0End]
 [title=M4Q3C1]
+Alex: Eu vou quebrar aquele vaso.
+Alex: Preciso de algo para não me machucar quebrando.
 [title=M4Q3C1End]
 [title=M4Q4C0]
 Alex: Sim mamãe, me desculpe.

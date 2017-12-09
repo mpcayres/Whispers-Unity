@@ -21,6 +21,7 @@ public class Mission9 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
     }
 

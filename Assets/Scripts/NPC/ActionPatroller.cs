@@ -1,37 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ActionPatroller : MonoBehaviour {
     GameObject target;
-    public string tag = "Mom";
+    public string tagAction = "Mom";
+    public bool changeSizeByDirection = true;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag(tag);
+        target = GameObject.FindGameObjectWithTag(tagAction);
     }
 
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
 
-        int direction = target.GetComponent<Patroller>().GetDirection();
-        switch (direction)
+        if (changeSizeByDirection)
         {
-            case 0:
-                GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
-                break;
-            case 1:
-                GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
-                break;
-            case 2:
-                GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
-                break;
-            case 3:
-                GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-                break;
-            default:
-                break;
+            int direction = target.GetComponent<Patroller>().GetDirection(); ;
+            switch (direction)
+            {
+                case 0:
+                    GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
+                    break;
+                case 1:
+                    GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
+                    break;
+                case 2:
+                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
+                    break;
+                case 3:
+                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

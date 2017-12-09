@@ -11,6 +11,7 @@ public class MissionManager : MonoBehaviour {
     public string previousSceneName, currentSceneName;
     public bool mission2ContestaMae = false;
     public bool mission1AssustaGato = false;
+    public bool mission4QuebraSozinho = false;
 
     public bool paused = false;
     public bool pausedObject = false;
@@ -238,6 +239,10 @@ public class MissionManager : MonoBehaviour {
         save.currentItem = Inventory.GetCurrentItem();
         save.pathBird = pathBird;
         save.pathCat = pathCat;
+        if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
+        {
+            save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
+        }
         save.mission2ContestaMae = mission2ContestaMae;
         save.mission1AssustaGato = mission1AssustaGato;
 
@@ -274,6 +279,10 @@ public class MissionManager : MonoBehaviour {
             if(save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
             pathBird = save.pathBird;
             pathCat = save.pathCat;
+            if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
+            {
+                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = save.lifeTampa;
+            }
             mission2ContestaMae = save.mission2ContestaMae;
             mission1AssustaGato = save.mission1AssustaGato;
 
@@ -363,6 +372,8 @@ public class MissionManager : MonoBehaviour {
         blocked = true;
         hud.SetActive(false);
         InvertWorld(false);
+        if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
@@ -461,14 +472,16 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             }
         }
-        if (questionId == 3){ // escolha inicial da missão 4
-            if (choiceID == 0){
+        if (questionId == 3){ // escolha inicial da missão 4 - escolha de quem vai quebrar o vaso
+            if (choiceID == 0){ // quebra com o gato
                 pathCat += 3;
+                mission4QuebraSozinho = false;
                 rpgTalk.NewTalk("M4Q3C0", "M4Q3C0End");
             }
-            else{
+            else{ // quebra sozinho
                 pathBird += 3;
-                //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
+                mission4QuebraSozinho = true;
+                rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); //essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
         }
         if (questionId == 4){ // escolha final da missão 4

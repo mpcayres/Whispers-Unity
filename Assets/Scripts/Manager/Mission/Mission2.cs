@@ -2,8 +2,9 @@
 using UnityEngine.SceneManagement;
 
 public class Mission2 : Mission {
-    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE,
-        CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2, FINAL_CONTESTA, FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
+    enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE, CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2,
+        FINAL_CONTESTA, FINAL_CONTESTA_CORVO, FINAL_CONTESTA_GATO, FINAL_CONTESTA_ATAQUE,
+        FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
 
     GameObject vela, fosforo, faca, tampa;
@@ -18,6 +19,7 @@ public class Mission2 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -114,7 +116,7 @@ public class Mission2 : Mission {
             target2.position = new Vector3(-2.6f, 0f, -0.5f);
             Transform[] momTargets = { target1, target2 };
             mom.GetComponent<Patroller>().targets = momTargets;
-            MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+            MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(0.7f, 0.7f, 1));
         }
     }
 
@@ -166,6 +168,12 @@ public class Mission2 : Mission {
 
     public override void SetQuartoKid()
     {
+        if (MissionManager.instance.previousSceneName.Equals("GameOver") && 
+            (secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
+        {
+            EspecificaEnum((int)enumMission.FINAL_CONTESTA);
+        }
+
         if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
@@ -232,8 +240,16 @@ public class Mission2 : Mission {
             {
                 // Corvo atacando
                 faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
-
                 tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
+
+                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
+                corvo.GetComponent<SpriteRenderer>().color = Color.black;
+                corvo.GetComponent<Corvo>().speed = 0.1f;
+                corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f;
+                var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
+                main.startSpeed = 1;
+
+                MissionManager.instance.Invoke("InvokeMission", 5f);
             }
         }
 
@@ -310,6 +326,40 @@ public class Mission2 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
         }
+        else if (secao == enumMission.FINAL_CONTESTA_CORVO)
+        {
+            Corvo.instance.GetComponent<Corvo>().FollowPlayer();
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            MissionManager.instance.Invoke("InvokeMission", 40f);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA_GATO)
+        {
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            Corvo.instance.Stop();
+
+            Cat.instance.followWhenClose = false;
+            Cat.instance.stopEndPath = true;
+            Cat.instance.Patrol();
+            Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
+            Vector3 posCorvo = Corvo.instance.transform.position;
+            target1.position = posCorvo;
+            target2.position = new Vector3(-1.7f, 0.6f, -0.5f);
+            Transform[] targets = { target1, target2 };
+            Cat.instance.targets = targets;
+
+            Corvo.instance.Patrol();
+            Transform[] targetsCorvo = { target2 };
+            Corvo.instance.targets = targetsCorvo;
+            Corvo.instance.speed = 0.6f;
+
+            MissionManager.instance.Invoke("InvokeMission", 2.5f);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
+        {
+            Corvo.instance.DestroyRaven();
+            Cat.instance.Stop();
+            MissionManager.instance.Invoke("InvokeMission", 6f);
+        }
         else if (secao == enumMission.FINAL)
         {
             MissionManager.instance.ChangeMission(3);
@@ -349,6 +399,22 @@ public class Mission2 : Mission {
     public override void InvokeMission()
     {
         if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
+        {
+            EspecificaEnum((int)enumMission.FINAL);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA)
+        {
+            EspecificaEnum((int)enumMission.FINAL_CONTESTA_CORVO);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA_CORVO)
+        {
+            EspecificaEnum((int)enumMission.FINAL_CONTESTA_GATO);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA_GATO)
+        {
+            EspecificaEnum((int)enumMission.FINAL_CONTESTA_ATAQUE);
+        }
+        else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
             EspecificaEnum((int)enumMission.FINAL);
         }
