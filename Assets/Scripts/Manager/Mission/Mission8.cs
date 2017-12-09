@@ -11,7 +11,7 @@ public class Mission8 : Mission {
 
     public override void InitMission()
     {
-        sceneInit = "Cozinha";
+        sceneInit = "QuartoKid";
         MissionManager.initMission = true;
         MissionManager.initX = (float) 1.5;
         MissionManager.initY = (float) 0.2;
@@ -74,11 +74,13 @@ public class Mission8 : Mission {
         else
         {
             // Vela
-            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.2f, 0), new Vector3(2.5f, 2.5f, 1));
-            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
+            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
         }
+
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
     }
 
     public override void SetQuartoMae()
