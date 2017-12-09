@@ -39,8 +39,8 @@ public class ScenerySounds : MonoBehaviour
         if (Night == true && EnableSound == true)
         {
             EnableSound = false;
-            Invoke("PlayNightLoop", 240);
-            Invoke("EnableSoundLoop", 240);
+            Invoke("PlayNightLoop", 60);
+            Invoke("EnableSoundLoop", 60);
         }
     }
     void EnableSoundLoop() {
@@ -58,7 +58,7 @@ public class ScenerySounds : MonoBehaviour
     {
         PlayNight(NightLoop);
         NightLoop++;
-        if (NightLoop > 5)
+        if (NightLoop > 12)
             NightLoop = 0;
     }
 
@@ -66,6 +66,9 @@ public class ScenerySounds : MonoBehaviour
     {
         source.clip = drop;
         source.PlayOneShot(drop);
+    }
+    public void StopSound() {
+        source.Stop();
     }
     public void PlayCat(int number)
     {

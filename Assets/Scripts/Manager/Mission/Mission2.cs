@@ -71,6 +71,7 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
+        MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.INICIO_SOZINHO)
         {
             // Gato
@@ -123,6 +124,7 @@ public class Mission2 : Mission {
 
 	public override void SetCozinha()
 	{
+        MissionManager.instance.scenerySounds.PlayDrop();
         //MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
 
         // Panela

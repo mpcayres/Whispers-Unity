@@ -76,6 +76,7 @@ public class Mission1 : Mission {
 
     public override void SetCorredor()
     {
+        MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
@@ -129,6 +130,7 @@ public class Mission1 : Mission {
 
     public override void SetCozinha()
     {
+        MissionManager.instance.scenerySounds.PlayDrop();
         //MissionManager.instance.rpgTalk.NewTalk ("M1KitchenSceneStart", "M1KitchenSceneEnd");
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)

@@ -29,4 +29,14 @@ public class PickUpObject : MonoBehaviour {
             }
         }
 	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        colliding = true;
+        if (colliding && Input.GetKeyDown(KeyCode.Z) &&
+           !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        {
+            Inventory.NewItem(item);
+            Destroy(gameObject);
+        }
+    }
 }
