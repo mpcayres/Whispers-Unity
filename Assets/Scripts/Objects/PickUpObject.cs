@@ -36,7 +36,7 @@ public class PickUpObject : MonoBehaviour {
            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             Inventory.NewItem(item);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
