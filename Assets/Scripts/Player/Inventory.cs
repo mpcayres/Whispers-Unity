@@ -6,7 +6,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
 
     [System.Serializable]
-    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, NOVELO, ISQUEIRO };
+    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, ISQUEIRO };
     [System.Serializable]
     public class DataItems
     {
@@ -158,10 +158,6 @@ public class Inventory : MonoBehaviour {
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
         }
-        else if (HasItemType(InventoryItems.NOVELO))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(true);
-        }
         else if (HasItemType(InventoryItems.ISQUEIRO))
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
@@ -214,11 +210,6 @@ public class Inventory : MonoBehaviour {
         {
             file = "saco_racao";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
-        }
-        else if (selectItem == InventoryItems.NOVELO)
-        {
-            file = "novelo";
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
@@ -288,10 +279,6 @@ public class Inventory : MonoBehaviour {
         else if (selectItem == InventoryItems.RACAO)
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(false);
-        }
-        else if (selectItem == InventoryItems.NOVELO)
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Novelo").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {

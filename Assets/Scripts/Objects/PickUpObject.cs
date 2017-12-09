@@ -22,13 +22,14 @@ public class PickUpObject : MonoBehaviour {
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
             if (colliding && Input.GetKeyDown(KeyCode.Z) &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+                !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
             {
                 Inventory.NewItem(item);
                 Destroy(gameObject);
             }
         }
 	}
+
     void OnTriggerEnter2D(Collider2D other)
     {
         colliding = true;
