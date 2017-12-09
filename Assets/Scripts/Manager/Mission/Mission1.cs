@@ -22,6 +22,7 @@ public class Mission1 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão

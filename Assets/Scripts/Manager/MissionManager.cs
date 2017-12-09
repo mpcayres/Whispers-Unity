@@ -241,6 +241,10 @@ public class MissionManager : MonoBehaviour {
         save.currentItem = Inventory.GetCurrentItem();
         save.pathBird = pathBird;
         save.pathCat = pathCat;
+        if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
+        {
+            save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
+        }
         save.mission2ContestaMae = mission2ContestaMae;
         save.mission1AssustaGato = mission1AssustaGato;
 
@@ -277,6 +281,10 @@ public class MissionManager : MonoBehaviour {
             if(save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
             pathBird = save.pathBird;
             pathCat = save.pathCat;
+            if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
+            {
+                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = save.lifeTampa;
+            }
             mission2ContestaMae = save.mission2ContestaMae;
             mission1AssustaGato = save.mission1AssustaGato;
 
@@ -366,6 +374,8 @@ public class MissionManager : MonoBehaviour {
         blocked = true;
         hud.SetActive(false);
         InvertWorld(false);
+        if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 

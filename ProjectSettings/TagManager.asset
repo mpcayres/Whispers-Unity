@@ -33,6 +33,7 @@ TagManager:
   - CatShadow
   - Shadow
   - Fire
+  - Corvo
   layers:
   - Default
   - TransparentFX

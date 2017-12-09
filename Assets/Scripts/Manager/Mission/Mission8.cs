@@ -20,6 +20,7 @@ public class Mission8 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.INICIO;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
     }
 

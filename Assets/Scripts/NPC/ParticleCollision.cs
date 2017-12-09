@@ -20,7 +20,18 @@ public class ParticleCollision : MonoBehaviour {
         print("PARTCOL: " + TargetedParticle.tag);
         if (TargetedParticle.tag == "Player")
         {
-            MissionManager.instance.GameOver();
+            if (MissionManager.instance.playerProtected)
+            {
+                print(Inventory.GetCurrentItemType().ToString());
+                if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
+                {
+                    GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                }
+            }
+            else
+            {
+                MissionManager.instance.GameOver();
+            }
         }
     }
 
