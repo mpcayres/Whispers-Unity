@@ -69,7 +69,8 @@ public class Mission8 : Mission {
 
         if (MissionManager.instance.mission2ContestaMae)
         {
-            // colocar arranhao
+            // Arranhao
+            MissionManager.instance.AddObject("Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
         }
         else
         {

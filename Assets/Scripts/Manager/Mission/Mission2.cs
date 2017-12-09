@@ -364,6 +364,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
+            MissionManager.instance.AddObject("Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
             Corvo.instance.DestroyRaven();
             Cat.instance.Stop();
             MissionManager.instance.Invoke("InvokeMission", 6f);
