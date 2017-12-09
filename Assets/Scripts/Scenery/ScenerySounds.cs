@@ -62,7 +62,7 @@ public class ScenerySounds : MonoBehaviour
             NightLoop = 0;
     }
 
-    public void PlayDrop(int number)
+    public void PlayDrop()
     {
         source.clip = drop;
         source.PlayOneShot(drop);
@@ -215,7 +215,7 @@ public class ScenerySounds : MonoBehaviour
         }
 
     }
-    public void PlayHearBeat(int number)
+    public void PlayHeartbeat(int number)
     {
 
         switch (number)
