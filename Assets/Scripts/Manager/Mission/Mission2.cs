@@ -19,7 +19,6 @@ public class Mission2 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
-        else MissionManager.instance.Print("NONECAT");
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
     }
 
