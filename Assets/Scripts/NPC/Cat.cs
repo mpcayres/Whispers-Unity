@@ -187,10 +187,6 @@ public class Cat : MonoBehaviour {
 
     public void DestroyCat()
     {
-        timeToDestroy -= Time.deltaTime;
-        if (timeToDestroy < 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
