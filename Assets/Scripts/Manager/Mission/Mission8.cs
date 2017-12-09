@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission8 : Mission {
-    enum enumMission { INICIO, DICA, FINAL };
+    enum enumMission { NIGHT, INICIO, DICA, FINAL };
     enumMission secao;
     bool hasPanela = false;
 
@@ -17,7 +17,7 @@ public class Mission8 : Mission {
         MissionManager.initY = (float) 0.2;
         MissionManager.initDir = 3;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
-        secao = enumMission.INICIO;
+        secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
@@ -25,7 +25,13 @@ public class Mission8 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-
+        if (secao == enumMission.NIGHT)
+        {
+            if (!MissionManager.instance.GetMissionStart())
+            {
+                EspecificaEnum((int)enumMission.INICIO);
+            }
+        }
     }
 
     public override void SetCorredor()
@@ -105,7 +111,7 @@ public class Mission8 : Mission {
 
         if (secao == enumMission.DICA)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica9", "Dica9End");
+            MissionManager.instance.rpgTalk.NewTalk("Dica8", "Dica8End");
         }
     }
 }

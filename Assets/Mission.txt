@@ -434,39 +434,39 @@ Alex: Elas parecem estar contando algo...
 
 -------------------------------------- MISSAO 8 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
-[title=Dica9]
+[title=Dica8]
 Alex: Acho que fogo pode destruí-lo.
 Alex: Na cozinha deve ter algo para ajudar.
-[title=Dica9End]
+[title=Dica8End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
-[title=M9KidRoomSceneStart]
-[title=M9KidRoomSceneEnd]
-[title=M9KidRoomSceneRepeat]
-[title=M9KidRoomSceneRepeatEnd]
+[title=M8KidRoomSceneStart]
+[title=M8KidRoomSceneEnd]
+[title=M8KidRoomSceneRepeat]
+[title=M8KidRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA COZINHA -----------------------------------
-[title=M9KitchenSceneStart]
-[title=M9KitchenSceneEnd]
-[title=M9KitchenSceneRepeat]
-[title=M9KitchenSceneRepeatEnd]
+[title=M8KitchenSceneStart]
+[title=M8KitchenSceneEnd]
+[title=M8KitchenSceneRepeat]
+[title=M8KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
-[title=M9GardenSceneStart]
-[title=M9GardenSceneEnd]
-[title=M9GardenSceneRepeat]
-[title=M9GardenSceneRepeatEnd]
+[title=M8GardenSceneStart]
+[title=M8GardenSceneEnd]
+[title=M8GardenSceneRepeat]
+[title=M8GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
-[title=M9MomRoomSceneStart]
-[title=M9MomRoomSceneEnd]
-[title=M9MomRoomSceneRepeat]
-[title=M9MomRoomSceneRepeatEnd]
+[title=M8MomRoomSceneStart]
+[title=M8MomRoomSceneEnd]
+[title=M8MomRoomSceneRepeat]
+[title=M8MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
-[title=M9LivingroomSceneStart]
-[title=M9LivingroomSceneEnd]
-[title=M9LivingroomSceneRepeat]
-[title=M9LivingroomSceneRepeatEnd]
+[title=M8LivingroomSceneStart]
+[title=M8LivingroomSceneEnd]
+[title=M8LivingroomSceneRepeat]
+[title=M8LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
-[title=M9CorridorSceneStart]
-[title=M9CorridorSceneEnd]
-[title=M9CorridorSceneRepeat]
-[title=M9CorridorSceneRepeatEnd]
+[title=M8CorridorSceneStart]
+[title=M8CorridorSceneEnd]
+[title=M8CorridorSceneRepeat]
+[title=M8CorridorSceneRepeatEnd]
