@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Mission1 : Mission {
     enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_CORREDOR,
-        GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
+        GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, SMILE, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
     enumMission secao;
 
     SceneObject window;
@@ -296,7 +296,12 @@ public class Mission1 : Mission {
             MissionManager.instance.blocked = true;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
-            MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(1, 1, 1));
+            MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(2, 2, 1));
+            MissionManager.instance.Invoke("InvokeMission", 7f);
+        }
+        else if (secao == enumMission.SMILE)
+        {
+            MissionManager.instance.AddObject("CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
             MissionManager.instance.Invoke("InvokeMission", 10f);
         }
         else if (secao == enumMission.MAE_QUARTO)
@@ -332,6 +337,10 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
+            EspecificaEnum((int)enumMission.SMILE);
+        }
+        else if (secao == enumMission.SMILE)
+        {
             EspecificaEnum((int)enumMission.MAE_QUARTO);
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
@@ -352,10 +361,12 @@ public class Mission1 : Mission {
             EspecificaEnum((int)enumMission.FINAL);
             if(id == 0)
             {
+                MissionManager.instance.mission1AssustaGato = true;
                 GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
             }
             else
             {
+                MissionManager.instance.mission1AssustaGato = false;
                 GameObject.Find("catFollower(Clone)").gameObject.GetComponent<Cat>().FollowPlayer();
             }
             MissionManager.instance.Invoke("InvokeMission", 8f);

@@ -65,6 +65,9 @@ Alex: Melhor acender essa vela no meu quarto.
 Alex: Acho que tenho tudo que preciso.
 Alex: Melhor guardar isso no meu quarto.
 [title=M2AllObjectsContestaEnd]
+[title=M2AtaqueContesta]
+Atze: Mrrrrow!
+[title=M2AtaqueContestaEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M2Q1C0]
 Alex: Você não me entende!! 

@@ -43,7 +43,6 @@ public class Corvo : MonoBehaviour {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         
-        print("TIME " + birdEmitter.GetComponent<ParticleSystem>().time);
         if (birdEmitter.activeSelf && birdEmitter.GetComponent<ParticleSystem>().time <= timeBirdsFollow) {
             birdEmitter.transform.LookAt(player.transform);
         }

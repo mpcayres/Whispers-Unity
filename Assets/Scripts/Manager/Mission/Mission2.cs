@@ -19,6 +19,7 @@ public class Mission2 : Mission {
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
+        else MissionManager.instance.Print("NONECAT");
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
     }
 
@@ -351,6 +352,8 @@ public class Mission2 : Mission {
             Transform[] targetsCorvo = { target2 };
             Corvo.instance.targets = targetsCorvo;
             Corvo.instance.speed = 0.6f;
+
+            MissionManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
         }
