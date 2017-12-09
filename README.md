@@ -23,13 +23,13 @@ O jogo traz as aventuras de uma criança sendo coagida por um ser misterioso que
 
 * Controles (Como joga):
 
-   Interação com objeto (Z)
-   Abrir inventário (I)
-   Utilizar objeto do inventário (X)
-   Objeto móvel (C)
-   Subir em objeto móvel (Ctrl+C)
-   Ação em mini-game (Espaço)
-   Mundo invertido (E)
+   * Interação com objeto (Z)
+   * Abrir inventário (I)
+   * Utilizar objeto do inventário (X)
+   * Objeto móvel (C)
+   * Subir em objeto móvel (Ctrl+C)
+   * Ação em mini-game (Espaço)
+   * Mundo invertido (E)
 
 
 
