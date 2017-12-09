@@ -11,6 +11,7 @@ public class MissionManager : MonoBehaviour {
     public string previousSceneName, currentSceneName;
     public bool mission2ContestaMae = false;
     public bool mission1AssustaGato = false;
+    public bool mission4QuebraSozinho = false;
 
     public bool paused = false;
     public bool pausedObject = false;
@@ -461,14 +462,16 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             }
         }
-        if (questionId == 3){ // escolha inicial da missão 4
-            if (choiceID == 0){
+        if (questionId == 3){ // escolha inicial da missão 4 - escolha de quem vai quebrar o vaso
+            if (choiceID == 0){ // quebra com o gato
                 pathCat += 3;
+                mission4QuebraSozinho = false;
                 rpgTalk.NewTalk("M4Q3C0", "M4Q3C0End");
             }
-            else{
+            else{ // quebra sozinho
                 pathBird += 3;
-                //rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); essa escolha está sem fala definida. falas vazias não devem ser chamadas.
+                mission4QuebraSozinho = true;
+                rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); //essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
         }
         if (questionId == 4){ // escolha final da missão 4
