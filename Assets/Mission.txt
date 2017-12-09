@@ -218,6 +218,9 @@ Alex: Acho que devo tentar de novo.
 
 -------------------------------------- MISSAO 4 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
+[title=NadaAqui]
+Alex: Nada aqui.
+[title=NadaAquiEnd]
 [title=frenteCriadoStart]
 Alex: Espera! Você quer que eu encontre o livro que estava aqui?
 Atze: Miau.
@@ -226,6 +229,7 @@ Alex: Será que a estante seria óbvia demais?
 Alex: Você consegue me ajudar, Atze? 
 [title=frenteCriadoEnd]
 [title=GrandeBarulhoStart]
+Alex: Tenho que distraí-la.
 Alex: Eu poderia fazer um grande barulho.
 [question=3] O que quer fazer agora?
 [choice]Convencer o gato a quebrar algo
@@ -283,7 +287,6 @@ Alex: Quer que eu te siga?
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M4MomRoomSceneStart]
 Alex: Deve ter algo naquele armário…
-Alex: Tenho que distraí-la.
 [title=M4MomRoomSceneEnd]
 [title=M4MomRoomSceneRepeat]
 [title=M4MomRoomSceneRepeatEnd]
