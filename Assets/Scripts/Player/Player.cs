@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
     MovingObject auxOnObject;
 
     public int direction = 0, wantedDirection = 0;
+    private float corvoPositionX, corvoPositionY;
+    private int corvoDirection;
+    private string corvoScene;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
@@ -236,10 +239,29 @@ public class Player : MonoBehaviour {
 
         if (Cat.instance != null)
         {
-            print("CAT");
             Cat.instance.ChangePosition(rb.position.x - 0.6f, rb.position.y - 0.3f);
         }
 
+        if (MissionManager.instance.mission is Mission8)
+        {
+            corvoPositionX = rb.position.x;
+            corvoPositionY = rb.position.y;
+            corvoDirection = direction;
+            corvoScene = MissionManager.instance.currentSceneName;
+            if (Corvo.instance != null)
+            {
+                Invoke("ChangeCorvoPosition", 2f);
+            }
+        }
+        
+    }
+
+    public void ChangeCorvoPosition()
+    {
+        if (MissionManager.instance.currentSceneName.Equals(corvoScene))
+        {
+            Corvo.instance.ChangePosition(corvoPositionX, corvoPositionY);
+        }
     }
 
     public void MoveUpAnimation(MovingObject aux, string anim, float x, float y, int dir)
