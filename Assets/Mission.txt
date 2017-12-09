@@ -257,8 +257,8 @@ Mãe: Foi você que quebrou o vaso?
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M4Q3C0]
 Alex: Atze, você pode quebrar aquele vaso pra mim?
-Atze: Miau!
-Alex: Você está com fome? Quer brincar? Vou procurar algo...
+Alex: Eu vou te dar um prêmio para fazer isso.
+Alex: Uma ração bem gostosa.
 [title=M4Q3C0End]
 [title=M4Q3C1]
 Alex: Eu vou quebrar aquele vaso.
