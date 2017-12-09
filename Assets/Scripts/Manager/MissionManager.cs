@@ -18,7 +18,6 @@ public class MissionManager : MonoBehaviour {
     public bool blocked = false;
 
     int missionSelected;
-    public int missionSelectedAux = 1;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
     public static int initDir = 0;
@@ -57,8 +56,7 @@ public class MissionManager : MonoBehaviour {
 
             hud = GameObject.Find("HUDCanvas").gameObject;
 
-            // COLOCAR ISSO PRO MENU FUNCIONAR
-            /*missionSelected = PlayerPrefs.GetInt("Mission");
+            missionSelected = PlayerPrefs.GetInt("Mission");
             if (missionSelected == -1)
             {
                 missionSelected = 1;
@@ -67,9 +65,7 @@ public class MissionManager : MonoBehaviour {
             else
             {
                 LoadGame(missionSelected);
-            }*/
-            // ESSE DAQUI E PRA NAO PRECISAR DO MENU, RETIRAR SE ATIVAR O MENU
-            SetMission(missionSelectedAux);
+            }
 
             Invoke("HideLevelImage", startMissionDelay);
 

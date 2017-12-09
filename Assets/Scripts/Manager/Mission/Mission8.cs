@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission8 : Mission {
-    enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_APARECE_BIRD, FINAL };
+    enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT, CORVO_APARECE_BIRD, CORVO_ATACA_BIRD, FINAL };
     enumMission secao;
 
     bool hasPanela = false, endCat = false;
@@ -106,7 +106,11 @@ public class Mission8 : Mission {
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
         }
 
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
+        if (secao == enumMission.NIGHT || secao == enumMission.INICIO)
+        {
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = false;
+        }
     }
 
     public override void SetQuartoMae()
@@ -130,15 +134,29 @@ public class Mission8 : Mission {
 
         if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneStartEnd");
+            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneEnd");
         }
         else if (secao == enumMission.CORVO_APARECE_CAT)
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd");
+
+            GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
+
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = false;
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd");
+
+            GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
+
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = false;
+        }
+        else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
+        {
+            Corvo.instance.FollowPlayer();
         }
     }
 }

@@ -91570,6 +91570,16 @@ Prefab:
       propertyPath: InitialModule.startLifetime.scalar
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 199391546338308714, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -561557641
+      objectReference: {fileID: 0}
+    - target: {fileID: 199391546338308714, guid: 22c14f9bd40b8f345ba0dcc1f4a36112,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22c14f9bd40b8f345ba0dcc1f4a36112, type: 2}
   m_IsPrefabParent: 0

@@ -19,8 +19,6 @@ public class Cat : MonoBehaviour {
 
     public Transform[] targets;
     private int destPoint = 0;
-
-    private float timeToDestroy = 2;
     
     void Start () {
         if (instance == null)
