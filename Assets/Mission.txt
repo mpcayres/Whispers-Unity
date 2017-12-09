@@ -225,7 +225,8 @@ Alex: Acho que devo tentar de novo.
 Alex: Nada aqui.
 [title=NadaAquiEnd]
 [title=frenteCriadoStart]
-Alex: Espera! Você quer que eu encontre o livro que estava aqui?
+Alex: Espera! 
+Alex: Você quer que eu encontre o livro que estava aqui?
 Atze: Miau.
 Alex: Vamos tentar achar então o livro?
 Alex: Será que a estante seria óbvia demais?
