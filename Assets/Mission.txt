@@ -434,42 +434,6 @@ Alex: Elas parecem estar contando algo...
 
 -------------------------------------- MISSAO 8 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
------------------------------------ ESCOLHAS -----------------------------------
-
------------------------------------ CENAS NO QUARTO DA CRIANÇA -----------------------------------
-[title=M8KidRoomSceneStart]
-[title=M8KidRoomSceneEnd]
-[title=M8KidRoomSceneRepeat]
-[title=M8KidRoomSceneRepeatEnd]
------------------------------------ CENAS NA COZINHA -----------------------------------
-[title=M8KitchenSceneStart]
-[title=M8KitchenSceneEnd]
-[title=M8KitchenSceneRepeat]
-[title=M8KitchenSceneRepeatEnd]
------------------------------------ CENAS NO JARDIM -----------------------------------
-[title=M8GardenSceneStart]
-[title=M8GardenSceneEnd]
-[title=M8GardenSceneRepeat]
-[title=M8GardenSceneRepeatEnd]
------------------------------------ CENAS NO QUARTO DA MÃE -----------------------------------
-[title=M8MomRoomSceneStart]
-[title=M8MomRoomSceneEnd]
-[title=M8MomRoomSceneRepeat]
-[title=M8MomRoomSceneRepeatEnd]
------------------------------------ CENAS NA SALA -----------------------------------
-[title=M8LivingroomSceneStart]
-[title=M8LivingroomSceneEnd]
-[title=M8LivingroomSceneRepeat]
-[title=M8LivingroomSceneRepeatEnd]
------------------------------------ CENAS NO CORREDOR -----------------------------------
-[title=M8CorridorSceneStart]
-[title=M8CorridorSceneEnd]
-[title=M8CorridorSceneRepeat]
-[title=M8CorridorSceneRepeatEnd]
-
-
--------------------------------------- MISSAO 9 ----------------------------------------------------
------------------------------------ ESPECIAL -----------------------------------
 [title=Dica9]
 Alex: Acho que fogo pode destruí-lo.
 Alex: Na cozinha deve ter algo para ajudar.
@@ -506,39 +470,3 @@ Alex: Na cozinha deve ter algo para ajudar.
 [title=M9CorridorSceneEnd]
 [title=M9CorridorSceneRepeat]
 [title=M9CorridorSceneRepeatEnd]
-
-
--------------------------------------- MISSAO 10 ----------------------------------------------------
------------------------------------ ESPECIAL -----------------------------------
------------------------------------ ESCOLHAS -----------------------------------
-
------------------------------------ CENAS NO QUARTO DA CRIANÇA -----------------------------------
-[title=M10KidRoomSceneStart]
-[title=M10KidRoomSceneEnd]
-[title=M10KidRoomSceneRepeat]
-[title=M10KidRoomSceneRepeatEnd]
------------------------------------ CENAS NA COZINHA -----------------------------------
-[title=M10KitchenSceneStart]
-[title=M10KitchenSceneEnd]
-[title=M10KitchenSceneRepeat]
-[title=M10KitchenSceneRepeatEnd]
------------------------------------ CENAS NO JARDIM -----------------------------------
-[title=M10GardenSceneStart]
-[title=M10GardenSceneEnd]
-[title=M10GardenSceneRepeat]
-[title=M10GardenSceneRepeatEnd]
------------------------------------ CENAS NO QUARTO DA MÃE -----------------------------------
-[title=M10MomRoomSceneStart]
-[title=M10MomRoomSceneEnd]
-[title=M10MomRoomSceneRepeat]
-[title=M10MomRoomSceneRepeatEnd]
------------------------------------ CENAS NA SALA -----------------------------------
-[title=M10LivingroomSceneStart]
-[title=M10LivingroomSceneEnd]
-[title=M10LivingroomSceneRepeat]
-[title=M10LivingroomSceneRepeatEnd]
------------------------------------ CENAS NO CORREDOR -----------------------------------
-[title=M10CorridorSceneStart]
-[title=M10CorridorSceneEnd]
-[title=M10CorridorSceneRepeat]
-[title=M10CorridorSceneRepeatEnd]
