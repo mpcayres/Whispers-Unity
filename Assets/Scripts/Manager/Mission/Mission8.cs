@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission8 : Mission {
-    enum enumMission { NIGHT, INICIO, DICA, FINAL };
+    enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_APARECE_BIRD, FINAL };
     enumMission secao;
-    bool hasPanela = false;
+
+    bool hasPanela = false, endCat = false;
+    Book book;
 
     public override void InitMission()
     {
@@ -20,7 +22,10 @@ public class Mission8 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
+        if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
+        book = GameObject.Find("Player").gameObject.GetComponent<Book>();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -30,6 +35,20 @@ public class Mission8 : Mission {
             if (!MissionManager.instance.GetMissionStart())
             {
                 EspecificaEnum((int)enumMission.INICIO);
+            }
+        }
+        else if (secao == enumMission.INICIO)
+        {
+            if (book.SeenAll())
+            {
+                if (endCat)
+                {
+                    EspecificaEnum((int)enumMission.CORVO_APARECE_CAT);
+                }
+                else
+                {
+                    EspecificaEnum((int)enumMission.CORVO_APARECE_BIRD);
+                }
             }
         }
     }
@@ -109,9 +128,17 @@ public class Mission8 : Mission {
         secao = (enumMission)pos;
         MissionManager.instance.Print("SECAO: " + secao);
 
-        if (secao == enumMission.DICA)
+        if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica8", "Dica8End");
+            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneStartEnd");
+        }
+        else if (secao == enumMission.CORVO_APARECE_CAT)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd");
+        }
+        else if (secao == enumMission.CORVO_APARECE_BIRD)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd");
         }
     }
 }

@@ -8,6 +8,7 @@ public class Book : MonoBehaviour {
     private static bool[] pages = { false, false, false, false, false };
     private static int pageQuantity;
     private int pageShowing; // 0 - 2
+    private bool lastPageSeen = false, seenAll = false;
   
     GameObject book, page1, page2,pagebonus;
     MissionManager missionManager;
@@ -81,6 +82,7 @@ public class Book : MonoBehaviour {
             }
             else if (pageShowing == 3)
             {
+                lastPageSeen = true;
                 pagebonus.SetActive(true);
                 pagebonus.GetComponent<Image>().sprite = pg78;
             }
@@ -117,6 +119,7 @@ public class Book : MonoBehaviour {
     {
         if(book.activeSelf)
         {
+            if (lastPageSeen) seenAll = true;
             book.SetActive(false);
             missionManager.paused = false;
         }
@@ -124,7 +127,6 @@ public class Book : MonoBehaviour {
         {
             book.SetActive(true);
             missionManager.paused = true;   
-
         }
     }
 
@@ -134,7 +136,9 @@ public class Book : MonoBehaviour {
         pageQuantity++;
     }
 
-
-
+    public bool SeenAll()
+    {
+        return seenAll;
+    }
 
 }

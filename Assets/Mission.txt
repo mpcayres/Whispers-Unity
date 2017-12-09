@@ -434,19 +434,27 @@ Alex: Elas parecem estar contando algo...
 
 -------------------------------------- MISSAO 8 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
-[title=Dica8]
-Alex: Acho que fogo pode destruí-lo.
+[title=Dica8PB]
+Alex: Acho que agora sei como destruí-lo...
+Alex: Preciso incendiar a casa!
 Alex: Na cozinha deve ter algo para ajudar.
-[title=Dica8End]
+[title=Dica8PBEnd]
+[title=Dica8PC]
+Alex: Acho que agora sei como destruí-lo...
+Alex: Preciso incendiá-lo!
+Alex: O mais lonje possível dos quartos.
+[title=Dica8PCEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M8KidRoomSceneStart]
+Alex: Agora que tenho todas as páginas, preciso entendê-las...
 [title=M8KidRoomSceneEnd]
 [title=M8KidRoomSceneRepeat]
 [title=M8KidRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA COZINHA -----------------------------------
 [title=M8KitchenSceneStart]
+Alex: O gás!!!
 [title=M8KitchenSceneEnd]
 [title=M8KitchenSceneRepeat]
 [title=M8KitchenSceneRepeatEnd]
@@ -462,6 +470,7 @@ Alex: Na cozinha deve ter algo para ajudar.
 [title=M8MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M8LivingroomSceneStart]
+Alex: Vou queimar algumas coisas daqui...
 [title=M8LivingroomSceneEnd]
 [title=M8LivingroomSceneRepeat]
 [title=M8LivingroomSceneRepeatEnd]
