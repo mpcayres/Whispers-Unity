@@ -6,7 +6,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
 
     [System.Serializable]
-    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, ISQUEIRO };
+    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, ISQUEIRO, LIVRO };
     [System.Serializable]
     public class DataItems
     {
@@ -162,6 +162,10 @@ public class Inventory : MonoBehaviour {
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
         }
+        else if (HasItemType(InventoryItems.LIVRO))
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(true);
+        }
     }
 
     public static void NewItem(InventoryItems selectItem)
@@ -215,6 +219,11 @@ public class Inventory : MonoBehaviour {
         {
             file = "isqueiro";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
+        }
+        else if (selectItem == InventoryItems.LIVRO)
+        {
+            file = "livro";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(true);
         }
 
         DataItems novoItem = new DataItems(selectItem, file);
@@ -283,6 +292,10 @@ public class Inventory : MonoBehaviour {
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.ISQUEIRO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(false);
         }
 
     }
