@@ -41,12 +41,10 @@ public class Book : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked
             && !MissionManager.instance.pausedObject)
         {
-
-            show = false;
             ShowBook();
         }
 
-        if (book.activeSelf && pageQuantity > 0)
+        if (book.activeSelf && pageQuantity > 0 && MissionManager.instance.invertWorld)
         {
             if (pageShowing == 0)
             {
@@ -126,17 +124,19 @@ public class Book : MonoBehaviour {
             if (lastPageSeen) seenAll = true;
             book.SetActive(false);
             missionManager.paused = false;
+            show = false;
         }
         else
         {
             book.SetActive(true);
-            missionManager.paused = true;   
+            missionManager.paused = true;
+            show = true;
         }
     }
 
-    public static void AddPage(int number)
+    public static void AddPage()
     {
-        pages[number] = true;
+        pages[pageQuantity] = true;
         pageQuantity++;
     }
 
