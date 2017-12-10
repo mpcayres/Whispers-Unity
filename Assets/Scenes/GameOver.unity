@@ -123,8 +123,8 @@ GameObject:
   - component: {fileID: 51816589}
   - component: {fileID: 51816588}
   - component: {fileID: 51816587}
-  - component: {fileID: 51816586}
   - component: {fileID: 51816590}
+  - component: {fileID: 51816586}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -159,11 +159,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 51816584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b626bd99f7b4db4418a0368fad71, type: 3}
+  m_Script: {fileID: 11500000, guid: d70f3a7bfe925df42a286d8255860d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 0}
-  anim: {fileID: 0}
+  black: {fileID: 714124967}
+  anim: {fileID: 714124968}
 --- !u!114 &51816587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 51816586}
-        m_MethodName: LoadByIndex
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -493,7 +493,7 @@ RectTransform:
   m_GameObject: {fileID: 343855746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.033793118, y: 0.033793118, z: 0.033793118}
+  m_LocalScale: {x: 0.02534484, y: 0.02534484, z: 0.02534484}
   m_Children:
   - {fileID: 714124970}
   - {fileID: 1911023597}
@@ -1089,7 +1089,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1911023596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -161.3616, y: 0, z: 0}
+  m_LocalPosition: {x: -96.55394, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 88379082}
@@ -1097,8 +1097,8 @@ RectTransform:
   m_Father: {fileID: 343855750}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0857377, y: 0.5}
-  m_AnchorMax: {x: 0.41700003, y: 0.5}
+  m_AnchorMin: {x: 0.10347459, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
