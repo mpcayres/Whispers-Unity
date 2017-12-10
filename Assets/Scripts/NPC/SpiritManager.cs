@@ -7,7 +7,7 @@ public class SpiritManager : MonoBehaviour{
     public static int evilSpiritGardenKilled = 0;
 
     static MissionManager missionManager;
-    public bool canSummom = false;
+    public static bool canSummom = false;
     private bool active = false;
     public GameObject[] goodSpiritVector;
     public GameObject[] evilSpiritVector;
@@ -21,7 +21,7 @@ public class SpiritManager : MonoBehaviour{
 
     private void Update()
     {
-        if (!active && missionManager.invertWorld)
+        if (!active && missionManager.invertWorld && canSummom)
         {
             for(int i = 0; i < goodSpiritVector.Length; i++)
             {
