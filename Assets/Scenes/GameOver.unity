@@ -489,7 +489,7 @@ RectTransform:
   m_GameObject: {fileID: 343855746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.05207464, y: 0.05207464, z: 0.05207464}
+  m_LocalScale: {x: 0.025755836, y: 0.025755836, z: 0.025755836}
   m_Children:
   - {fileID: 1911023597}
   m_Father: {fileID: 0}
@@ -811,7 +811,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: Sair
 --- !u!222 &1633855158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Game
+  m_Text: Continuar
 --- !u!222 &1729695570
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -998,7 +998,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1911023596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.888, y: 0, z: 0}
+  m_LocalPosition: {x: -117.851166, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 88379082}

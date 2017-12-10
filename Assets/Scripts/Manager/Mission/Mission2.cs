@@ -334,6 +334,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
+            MissionManager.instance.scenerySounds.PlayBird(1);
             Corvo.instance.GetComponent<Corvo>().FollowPlayer();
             Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
             MissionManager.instance.Invoke("InvokeMission", 40f);

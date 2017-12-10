@@ -70,6 +70,9 @@ public class WindowTrigger : MonoBehaviour {
         if (spriteRenderer.sprite == aberto && scare && !Flashlight.GetState())
         {
             spriteRenderer.sprite = monstro;
+            MissionManager.instance.scenerySounds.PlayScare(1);
+            MissionManager.instance.scenerySounds.PlayBird(1);
+            MissionManager.instance.scenerySounds.PlayBird(4);
             transform.Find("BirdEmitter").gameObject.SetActive(true);
             MissionManager.instance.blocked = true;
             gameOver = true;

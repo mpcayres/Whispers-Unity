@@ -1,3 +1,8 @@
+-------------------------------------- DEFAULT ----------------------------------------------------
+[title=Trancada]
+Alex: A porta está trancada.
+[title=TrancadaEnd]
+
 -------------------------------------- MISSAO 1 ----------------------------------------------------
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M1Q0C0]
@@ -84,7 +89,7 @@ Alex: ao menos Atze pode ficar ao meu lado...
 [title=M2Q1C1End]
 [title=M2Q1C1_2]
 Alex: Atze vamos pegar uma vela!
-Alex: Assim podemos dormir com um pouco de luz durante a noite!
+Alex: Assim podemos dormir com um pouco de luz a noite!
 Alex: Preciso colocar a vela em algum local e acendê-la.
 [title=M2Q1C1_2End]
 
@@ -224,7 +229,7 @@ Alex: Acho que devo tentar de novo.
 -------------------------------------- MISSAO 4 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=OQ]
-Alex: Atze, você quebrou o vaso da mamãe.
+Alex: Já era o vaso da mamãe.
 [title=OQEnd]
 [title=NadaAqui]
 Alex: Nada aqui.

@@ -16,9 +16,9 @@ public class ScenerySounds : MonoBehaviour
 
 
 
-    private AudioSource source { get { return GetComponent<AudioSource>(); } }
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-    public bool Night = true;
+    public bool Night = false;
     public bool EnableSound = true;
 
     public int NightLoop = 0;
@@ -214,6 +214,22 @@ public class ScenerySounds : MonoBehaviour
             case 2:
                 source.clip = ambient2;
                 source.PlayOneShot(ambient2);
+                break;
+        }
+
+    }
+    public void PlayWolf(int number)
+    {
+
+        switch (number)
+        {
+            case 1:
+                source.clip = wolf1;
+                source.PlayOneShot(wolf1);
+                break;
+            case 2:
+                source.clip = wolf2;
+                source.PlayOneShot(wolf2);
                 break;
         }
 

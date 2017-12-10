@@ -36,6 +36,7 @@ public class MissionManager : MonoBehaviour {
     public RPGTalk rpgTalk;
 
     public ScenerySounds scenerySounds;
+    public ScenerySounds2 scenerySounds2;
 
     public int countKidRoomDialog = -1;
 	public int countMomRoomDialog = -1;
@@ -95,6 +96,7 @@ public class MissionManager : MonoBehaviour {
 
             if (!blocked && !paused && Input.GetKeyDown(KeyCode.E) && !invertWorldBlocked)
             {
+                MissionManager.instance.scenerySounds.PlayDemon(6);
                 InvertWorld(!invertWorld);
             }
 
