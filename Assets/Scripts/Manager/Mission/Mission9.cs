@@ -28,6 +28,8 @@ public class Mission9 : Mission {
 
         GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject.SetActive(false);
         GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
+
+        Book.bookBlocked = false;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão

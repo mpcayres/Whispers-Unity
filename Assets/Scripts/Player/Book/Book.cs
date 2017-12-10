@@ -10,7 +10,7 @@ public class Book : MonoBehaviour {
     private int pageShowing; // 0 - 2
     private bool lastPageSeen = false, seenAll = false;
 
-    public static bool show = false;
+    public static bool bookBlocked = true;
   
     GameObject book, page1, page2,pagebonus;
     MissionManager missionManager;
@@ -39,7 +39,7 @@ public class Book : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked
-            && !MissionManager.instance.pausedObject)
+            && !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
         }
