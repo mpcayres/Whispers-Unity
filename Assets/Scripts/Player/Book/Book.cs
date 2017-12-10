@@ -122,6 +122,7 @@ public class Book : MonoBehaviour {
     {
         if(book.activeSelf)
         {
+            MissionManager.instance.scenerySounds2.PlayPaper(3);
             if (lastPageSeen) seenAll = true;
             book.SetActive(false);
             missionManager.paused = false;
@@ -129,6 +130,7 @@ public class Book : MonoBehaviour {
         }
         else
         {
+            MissionManager.instance.scenerySounds2.PlayPaper(2);
             book.SetActive(true);
             missionManager.paused = true;
             show = true;

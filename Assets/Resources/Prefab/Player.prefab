@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 82243879345224908}
   - component: {fileID: 114365670633547336}
   m_Layer: 0
-  m_Name: MusicPlayer
+  m_Name: MusicPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 82470496665088498}
   - component: {fileID: 114918750010813636}
   m_Layer: 0
-  m_Name: MusicPlayer
+  m_Name: MusicPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   playerProtected: 0
   rpgTalk: {fileID: 114614734401517286}
   scenerySounds: {fileID: 114365670633547336}
-  scenerySounds2: {fileID: 0}
+  scenerySounds2: {fileID: 114918750010813636}
   countKidRoomDialog: 0
   countMomRoomDialog: 0
   countLivingroomDialog: 0

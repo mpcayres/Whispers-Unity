@@ -302,6 +302,8 @@ public class Mission1 : Mission {
 
             // Porta abrindo
             MissionManager.instance.scenerySounds.PlayCat(2);
+
+            MissionManager.instance.scenerySounds2.PlayDoorOpen(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
             porta.GetComponent<Collider2D>().isTrigger = true;
