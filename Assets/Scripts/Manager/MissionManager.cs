@@ -95,6 +95,7 @@ public class MissionManager : MonoBehaviour {
 
             if (!blocked && !paused && Input.GetKeyDown(KeyCode.E) && !invertWorldBlocked)
             {
+                MissionManager.instance.scenerySounds.PlayDemon(6);
                 InvertWorld(!invertWorld);
             }
 

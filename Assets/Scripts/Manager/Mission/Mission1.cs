@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Collections;
 
 public class Mission1 : Mission {
     enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_CORREDOR,
@@ -67,19 +67,32 @@ public class Mission1 : Mission {
         {
             if (areaTriggered && !Flashlight.GetState() && !birdsActive)
             {
+                MissionManager.instance.scenerySounds.PlayBird(1);
                 GameObject birds = GameObject.Find("BirdEmitterHolder(Sala)").gameObject;
                 birds.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
                 birdsActive = true;
+
+            }
+            if(birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying   )
+            {
+                float value = Random.value;
+                if(value > 0)
+                    MissionManager.instance.scenerySounds.PlayBird(4);
+                else
+                    MissionManager.instance.scenerySounds.PlayBird(1);
+
             }
         }
     }
 
     public override void SetCorredor()
     {
+
         MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+            MissionManager.instance.scenerySounds.PlayCat(2);
         }
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -125,11 +138,14 @@ public class Mission1 : Mission {
                 new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
 
             // gato andando para sala
+            MissionManager.instance.scenerySounds.PlayCat(3);
         }
     }
 
     public override void SetCozinha()
     {
+
+        MissionManager.instance.scenerySounds.StopSound();
         MissionManager.instance.scenerySounds.PlayDrop();
         //MissionManager.instance.rpgTalk.NewTalk ("M1KitchenSceneStart", "M1KitchenSceneEnd");
 
@@ -150,6 +166,8 @@ public class Mission1 : Mission {
 
     public override void SetJardim()
     {
+
+        MissionManager.instance.scenerySounds.StopSound();
         //MissionManager.instance.rpgTalk.NewTalk ("M1GardenSceneStart", "M1GardenSceneEnd");
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -158,10 +176,13 @@ public class Mission1 : Mission {
         /*GameObject areaLight = GameObject.Find("AreaLightHolder").gameObject; //utilizar AreaLight para cenas de dia, variar Z do Holder
         areaLight.transform.Find("AreaLight").gameObject.SetActive(true);
         areaLight.transform.position = new Vector3(areaLight.transform.position.x, areaLight.transform.position.y, -20);*/
+        MissionManager.instance.scenerySounds.PlayWolf(2);
     }
 
     public override void SetQuartoKid()
     {
+
+        MissionManager.instance.scenerySounds.StopSound();
         // Luz
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
@@ -207,6 +228,8 @@ public class Mission1 : Mission {
 
     public override void SetQuartoMae()
     {
+
+        MissionManager.instance.scenerySounds.StopSound();
         //MissionManager.instance.rpgTalk.NewTalk ("M1MomRoomSceneStart", "M1MomRoomSceneEnd");
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -216,6 +239,8 @@ public class Mission1 : Mission {
 
     public override void SetSala()
     {
+
+        MissionManager.instance.scenerySounds.StopSound();
         //MissionManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -276,6 +301,7 @@ public class Mission1 : Mission {
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 
             // Porta abrindo
+            MissionManager.instance.scenerySounds.PlayCat(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
             porta.GetComponent<Collider2D>().isTrigger = true;
@@ -295,6 +321,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
+            MissionManager.instance.scenerySounds.PlayBird(1);
             MissionManager.instance.blocked = true;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
@@ -303,6 +330,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.SMILE)
         {
+            MissionManager.instance.scenerySounds.PlayScare(3);
             MissionManager.instance.AddObject("CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
             MissionManager.instance.Invoke("InvokeMission", 10f);
         }
