@@ -39,12 +39,10 @@ public class ScenerySounds2 : MonoBehaviour
                 source.clip = dooropen2;
                 source.PlayOneShot(dooropen2);
                 break;
-
-
         }
     }
     
-    public void PlayDorClose()
+    public void PlayDoorClose()
     {
         source.clip = doorclose1;
         source.PlayOneShot(doorclose1);

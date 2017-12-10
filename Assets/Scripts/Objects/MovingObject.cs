@@ -66,6 +66,8 @@ public class MovingObject : MonoBehaviour {
 
     public void Move()
     {
+        if (!MissionManager.instance.scenerySounds2.source.isPlaying)
+            MissionManager.instance.scenerySounds2.PlaySlide(1);
         print("MOVE");
         var relativePoint = transform.InverseTransformPoint(player.transform.position);
         //para ver se esta na esquerda ou direta, em cima ou baixo
@@ -96,6 +98,7 @@ public class MovingObject : MonoBehaviour {
 
     public void EndMove()
     {
+        MissionManager.instance.scenerySounds2.StopSound();
         print("ENDMOVE");
         script.playerState = Player.Actions.DEFAULT;
         script.animator.SetTrigger("changeDirection");
