@@ -29,6 +29,7 @@ public class Mission8 : Mission {
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         MissionManager.instance.invertWorldBlocked = false;
+        Book.bookBlocked = false;
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
