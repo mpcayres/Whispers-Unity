@@ -405,13 +405,4 @@ public class Mission1 : Mission {
         }
     }
 
-    public void AddCountKidRoomDialog()
-    {
-		MissionManager.instance.countKidRoomDialog++;
-	}
-
-	public void AddCountCorridorDialog()
-    {
-		MissionManager.instance.countCorridorDialog++;
-	}
 }

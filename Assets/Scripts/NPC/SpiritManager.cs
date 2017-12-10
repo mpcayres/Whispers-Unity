@@ -62,4 +62,15 @@ public class SpiritManager : MonoBehaviour{
         }
     }
 
+    public static void RefreshSpirits()
+    {
+        bool[] goodDestroyedAux = { false, false, false, false, false };
+        bool[] evilDestroyedAux = { false, false, false, false, false };
+        goodDestroyed = goodDestroyedAux;
+        evilDestroyed = evilDestroyedAux;
+
+        goodSpiritGardenKilled = 0;
+        evilSpiritGardenKilled = 0;
+    }
+
 }

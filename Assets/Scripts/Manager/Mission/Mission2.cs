@@ -445,17 +445,4 @@ public class Mission2 : Mission {
         }
     }
 
-    public void AddCountLivingroomDialog()
-    {
-		MissionManager.instance.countLivingroomDialog++;
-	}
-
-    public void AddCountKidRoomDialog()
-    {
-        MissionManager.instance.countKidRoomDialog++;
-    }
-    public void AddCountCorridorDialog()
-    {
-        MissionManager.instance.countCorridorDialog++;
-    }
 }

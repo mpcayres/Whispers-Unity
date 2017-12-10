@@ -197,6 +197,10 @@ public class MissionManager : MonoBehaviour {
         {
             GetComponent<Player>().enabled = false;
             GetComponent<Renderer>().enabled = false;
+            if (rpgTalk.isPlaying)
+            {
+                rpgTalk.EndTalk();
+            }
         }
         else if (previousSceneName.Equals("GameOver"))
         {
