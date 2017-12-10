@@ -26,6 +26,7 @@ public class Mission8 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        MissionManager.instance.invertWorldBlocked = false;
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
@@ -35,6 +36,10 @@ public class Mission8 : Mission {
         isqueiro = player.transform.Find("Isqueiro").gameObject;
         faca = player.transform.Find("Faca").gameObject;
         pedra = player.transform.Find("Pedra").gameObject;
+        //!!!
+        Book.pageQuantity = 5;
+        bool[] pages = { true, true, true, true, true };
+        Book.pages = pages;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -283,19 +288,19 @@ public class Mission8 : Mission {
             GameObject triggerE = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-5.71f, 1.64f, 0), new Vector3(1, 1, 1));
             triggerE.name = "EstanteTrigger";
             triggerE.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            triggerE.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            triggerE.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1.6f);
 
             // Poltrona
             GameObject triggerP = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-1f, 1.6f, 0), new Vector3(1, 1, 1));
             triggerP.name = "PoltronaTrigger";
             triggerP.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            triggerP.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            triggerP.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1.2f);
 
             // Sofa
             GameObject triggerS = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(5.53f, 0.4f, 0), new Vector3(1, 1, 1));
             triggerS.name = "SofaTrigger";
             triggerS.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            triggerS.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            triggerS.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1f);
         }
     }
 
@@ -312,7 +317,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd");
 
-            CreateCorvoCat();
+            //CreateCorvoCat();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
@@ -321,7 +326,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd");
 
-            CreateCorvoBird();
+            //CreateCorvoBird();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;

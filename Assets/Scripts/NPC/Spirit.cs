@@ -8,27 +8,37 @@ public class Spirit : MonoBehaviour {
     public int number;
   
     void Update () {
-    if(health <= 0)
+        if(health <= 0)
         {
-            if (this.gameObject.scene.name.Equals("Jardim") && !isEvil)
+            if (gameObject.scene.name.Equals("Jardim") && !isEvil)
             {
                 SpiritManager.DestroyGoodSpirit(number);
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
-            else if (this.gameObject.scene.name.Equals("Jardim") && isEvil)
+            else if (gameObject.scene.name.Equals("Jardim") && isEvil)
             {
                 SpiritManager.DestroyEvilSpirit(number);
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
 	}
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.gameObject.activeSelf && collision.gameObject.tag.Equals("Flashlight")) 
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        print("TRIGGER: " + collision.gameObject.name);
+        if (gameObject.activeSelf && collision.gameObject.tag.Equals("Flashlight"))
         {
             health -= Time.deltaTime;
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }
