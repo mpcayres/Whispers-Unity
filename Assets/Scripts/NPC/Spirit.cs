@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spirit : MonoBehaviour {
     float health = 3;
-    public bool isEvil = false;
+    public bool isEvil = false, canKill = false;
     public int number;
   
     void Update () {
@@ -18,6 +18,9 @@ public class Spirit : MonoBehaviour {
             else if (gameObject.scene.name.Equals("Jardim") && isEvil)
             {
                 SpiritManager.DestroyEvilSpirit(number);
+                Destroy(gameObject);
+            }else if (canKill && gameObject.scene.name.Equals("Sala"))
+            {
                 Destroy(gameObject);
             }
         }
@@ -34,6 +37,10 @@ public class Spirit : MonoBehaviour {
         if (gameObject.activeSelf && collision.gameObject.tag.Equals("Flashlight"))
         {
             health -= Time.deltaTime;
+        }
+        if(canKill && collision.gameObject.tag.Equals("Player"))
+        {
+            MissionManager.instance.GameOver();
         }
     }
 

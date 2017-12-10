@@ -349,6 +349,10 @@ Alex: Todo acumulados daqueles que moraram aqui.
 Alex: O que é aquilo? Uma página!
 Alex: Preciso lê-la!
 [title=M5GardenSpiritKilledEnd]
+[title=M5BookClosed]
+Alex: O que foi esse grito?!
+Alex: Mãe...? Preciso ir no seu quarto. 
+[title=M5BookClosedEnd]
 [title=M5GardenSceneRepeat]
 [title=M5GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
@@ -358,12 +362,18 @@ Alex: Preciso lê-la!
 [title=M5MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M5LivingroomSceneStart]
+Alex: Esses seres denovo...
+Alex: Parece que eles ficaram mais brilhosos.
 [title=M5LivingroomSceneEnd]
 [title=M5LivingroomSceneRepeat]
 [title=M5LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M5CorridorSceneStart]
+Alex: Acho que preciso sair desse mundo estranho...
 [title=M5CorridorSceneEnd]
+[title=M5TryQuit]
+Alex: O que?!?! Não consigo?
+[title=M5TryQuitEnd]
 [title=M5CorridorSceneRepeat]
 [title=M5CorridorSceneRepeatEnd]
 

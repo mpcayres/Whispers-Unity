@@ -46,8 +46,8 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.FACA);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
-        NewItem(InventoryItems.ISQUEIRO);
-        NewItem(InventoryItems.FLASHLIGHT);*/
+        NewItem(InventoryItems.ISQUEIRO);*/
+        NewItem(InventoryItems.FLASHLIGHT);
     }
 	
 	void Update ()

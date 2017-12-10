@@ -25935,6 +25935,31 @@ Prefab:
       propertyPath: textSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.024017334
+      objectReference: {fileID: 0}
+    - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -120.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -134.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -185
+      objectReference: {fileID: 0}
+    - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
   m_IsPrefabParent: 0
