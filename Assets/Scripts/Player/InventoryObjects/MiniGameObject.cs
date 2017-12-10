@@ -29,10 +29,12 @@ public class MiniGameObject : MonoBehaviour {
             otherItem = false;
             InitImage();
         }
-        else
+        else if(Inventory.GetCurrentItemType() != item)
         {
             otherItem = true;
+            StopMiniGame();
         }
+
         if (activated && !achievedGoal && !otherItem && !MissionManager.instance.paused && !MissionManager.instance.blocked)
         {
             if (timeLeft > 0)
@@ -45,25 +47,11 @@ public class MiniGameObject : MonoBehaviour {
                 MissionManager.instance.pausedObject = true;
                 timeLeft = timeMax;
                 anim.SetActive(true);
-                if (item == Inventory.InventoryItems.FOSFORO)
-                {
-                    flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
-                }
+                flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
             }
             else if (Input.GetKeyDown(KeyCode.X) || timeLeft <= 0)
             {
-                MissionManager.instance.pausedObject = false;
-                timeLeft = 0;
-                if (refreshTimeMax)
-                {
-                    counter = 0;
-                    InitImage();
-                }
-                anim.SetActive(false);
-                if (item == Inventory.InventoryItems.FOSFORO)
-                {
-                    Destroy(flare);
-                }
+                StopMiniGame();
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -90,16 +78,23 @@ public class MiniGameObject : MonoBehaviour {
             if(counter >= counterMax)
             {
                 achievedGoal = true;
-                timeLeft = counter = 0;
-                MissionManager.instance.pausedObject = false;
-                anim.SetActive(false);
-                if (item == Inventory.InventoryItems.FOSFORO)
-                {
-                    Destroy(flare);
-                }
+                StopMiniGame();
             }
         }
 
+    }
+
+    private void StopMiniGame()
+    {
+        MissionManager.instance.pausedObject = false;
+        timeLeft = 0;
+        if (refreshTimeMax)
+        {
+            counter = 0;
+            InitImage();
+        }
+        anim.SetActive(false);
+        Destroy(flare);
     }
 
     private void InitImage()
@@ -108,21 +103,25 @@ public class MiniGameObject : MonoBehaviour {
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
+            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
         }
         else if (item == Inventory.InventoryItems.ISQUEIRO)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -45f));
+            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
+            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 100);
         }
         else if (item == Inventory.InventoryItems.FACA)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 50);
         }
         else if (item == Inventory.InventoryItems.PEDRA)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 50);
         }
 
         anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);

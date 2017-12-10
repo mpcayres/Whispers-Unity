@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Mission8 : Mission {
     enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT, MAE_CAT, FINAL_CAT,
-        CORVO_APARECE_BIRD, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD };
+        CORVO_APARECE_BIRD, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
     enumMission secao;
 
     bool hasPanela = false, endCat = false;
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     Book book;
-    GameObject player, fosforo, isqueiro, faca, pedra, luminariaCorredor, luminariaQuarto;
+    GameObject player, fosforo, isqueiro, faca, pedra, luminariaCorredor, luminariaQuarto, fireEvent;
 
+    // ANALISAR DIFICULDADE DO NIVEL E DOS DIFERENTES OBJETOS
     public override void InitMission()
     {
         sceneInit = "QuartoKid";
@@ -89,9 +90,21 @@ public class Mission8 : Mission {
                 fosforo.GetComponent<MiniGameObject>().activated = false;
                 isqueiro.GetComponent<MiniGameObject>().activated = false;
 
-                if (estanteTrigger) estanteBurn = true;
-                if (poltronaTrigger) poltronaBurn = true;
-                if (sofaTrigger) sofaBurn = true;
+                if (estanteTrigger)
+                {
+                    estanteBurn = true;
+                    fireEvent.transform.Find("FogoEstante2").gameObject.SetActive(true);
+                }
+                if (poltronaTrigger)
+                {
+                    poltronaBurn = true;
+                    fireEvent.transform.Find("FogoPoltrona").gameObject.SetActive(true);
+                }
+                if (sofaTrigger)
+                {
+                    sofaBurn = true;
+                    fireEvent.transform.Find("FogoSofa").gameObject.SetActive(true);
+                }
 
                 if (estanteBurn && poltronaBurn && sofaBurn)
                 {
@@ -119,8 +132,6 @@ public class Mission8 : Mission {
             if ((MissionManager.instance.currentSceneName.Equals("Corredor") && luminariaCorredor.GetComponent<Lamp>().Changed()) ||
                 (MissionManager.instance.currentSceneName.Equals("QuartoMae") && luminariaQuarto.GetComponent<Lamp>().Changed()))
             {
-                faca.GetComponent<MiniGameObject>().achievedGoal = false;
-                pedra.GetComponent<MiniGameObject>().achievedGoal = false;
                 EspecificaEnum((int)enumMission.FINAL_BIRD);
             }
         }
@@ -147,6 +158,9 @@ public class Mission8 : Mission {
             triggerF.name = "FaiscaQuartoTrigger";
             triggerF.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerF.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+
+            // FireEvent
+            fireEvent = GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject;
         }
     }
 
@@ -205,6 +219,11 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
+
+        if (secao == enumMission.FINAL_CAT)
+        {
+            EspecificaEnum((int) enumMission.FINAL);
+        }
     }
 
     public override void SetQuartoKid()
@@ -234,8 +253,13 @@ public class Mission8 : Mission {
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO)
         {
+            // Porta momentaneamente travada
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
+
+            // Gato
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().FollowPlayer();
         }
     }
 
@@ -264,6 +288,9 @@ public class Mission8 : Mission {
             triggerF.name = "FaiscaQuartoTrigger";
             triggerF.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerF.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+
+            // FireEvent
+            fireEvent = GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject;
         }
     }
 
@@ -301,6 +328,36 @@ public class Mission8 : Mission {
             triggerS.name = "SofaTrigger";
             triggerS.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerS.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1f);
+
+            // FireEvent
+            fireEvent = GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventCat").gameObject;
+            fireEvent.SetActive(true);
+            fireEvent.transform.Find("FumacaArmario").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoArmario").gameObject.SetActive(false);
+            fireEvent.transform.Find("FumacaSofa").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoSofa").gameObject.SetActive(false);
+            fireEvent.transform.Find("FumacaCriado").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoCriado").gameObject.SetActive(false);
+            fireEvent.transform.Find("FumacaEstante").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoEstante1").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoEstante2").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoEstante3").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoCadeira").gameObject.SetActive(false);
+            fireEvent.transform.Find("FumacaPoltrona").gameObject.SetActive(false);
+            fireEvent.transform.Find("FogoPoltrona").gameObject.SetActive(false);
+
+            if (estanteBurn)
+            {
+                fireEvent.transform.Find("FogoEstante2").gameObject.SetActive(true);
+            }
+            if (poltronaBurn)
+            {
+                fireEvent.transform.Find("FogoPoltrona").gameObject.SetActive(true);
+            }
+            if (sofaBurn)
+            {
+                fireEvent.transform.Find("FogoSofa").gameObject.SetActive(true);
+            }
         }
     }
 
@@ -336,7 +393,7 @@ public class Mission8 : Mission {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = true;
 
-            Corvo.instance.FollowPlayer();
+            //Corvo.instance.FollowPlayer();
         }
         else if (secao == enumMission.MAE_CAT)
         {
@@ -344,9 +401,28 @@ public class Mission8 : Mission {
 
             MissionManager.instance.AddObject("mom", "", new Vector3(-3.1f, 1f, -0.5f), new Vector3(0.3f, 0.3f, 1));
         }
+        else if (secao == enumMission.FINAL_CAT)
+        {
+            Corvo.instance.Stop();
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+
+            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat", "M8LivingroomSceneRepeatEnd");
+        }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
             MissionManager.instance.rpgTalk.NewTalk("M8KitchenSceneRepeat", "M8KitchenSceneRepeatEnd");
+        }
+        else if (secao == enumMission.FINAL_BIRD)
+        {
+            fireEvent.SetActive(true);
+            Corvo.instance.Stop();
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            MissionManager.instance.blocked = true;
+            MissionManager.instance.Invoke("InvokeMission", 5f);
+        }
+        else if (secao == enumMission.FINAL)
+        {
+            // FIM DO JOGO
         }
     }
 
@@ -463,6 +539,10 @@ public class Mission8 : Mission {
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
             MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd");
+        }
+        else if (secao == enumMission.FINAL_BIRD)
+        {
+            EspecificaEnum((int)enumMission.FINAL);
         }
     }
 

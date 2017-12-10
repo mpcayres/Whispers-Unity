@@ -483,6 +483,7 @@ Alex: Onde a minha mãe está? O que ele fez?
 Alex: Vou queimar algumas coisas daqui...
 [title=M8LivingroomSceneEnd]
 [title=M8LivingroomSceneRepeat]
+Alex: Mãe! Atze! Vamos sair daqui...
 [title=M8LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M8CorridorSceneStart]
