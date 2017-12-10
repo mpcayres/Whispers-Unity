@@ -18,7 +18,7 @@ public class ScenerySounds : MonoBehaviour
 
     public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-    public bool Night = true;
+    public bool Night = false;
     public bool EnableSound = true;
 
     public int NightLoop = 0;
