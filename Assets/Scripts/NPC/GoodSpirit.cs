@@ -12,6 +12,7 @@ public class GoodSpirit : MonoBehaviour {
             if (this.gameObject.scene.name.Equals("Jardim"))
             {
                 SpiritManager.goodSpiritGardenKilled++;
+                //Destroy(this.gameObject);
             }
         }
 	}
