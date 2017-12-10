@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lamp : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     public bool colliding = false;
+    private bool change = false;
 
     void Start()
     {
@@ -19,6 +20,12 @@ public class Lamp : MonoBehaviour {
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+            change = true;
         }
+    }
+
+    public bool Changed()
+    {
+        return change;
     }
 }

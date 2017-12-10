@@ -17,11 +17,7 @@ public class MiniGameObject : MonoBehaviour {
     void Start()
     {
         anim = GameObject.Find("HUDCanvas").gameObject.transform.Find("AnimMiniGame").gameObject;
-        if (item == Inventory.InventoryItems.FOSFORO)
-        {
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 270));
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
-        }
+        InitImage();
     }
 
     void Update()
@@ -47,7 +43,11 @@ public class MiniGameObject : MonoBehaviour {
             {
                 MissionManager.instance.pausedObject = false;
                 timeLeft = 0;
-                if (refreshTimeMax) counter = 0;
+                if (refreshTimeMax)
+                {
+                    counter = 0;
+                    InitImage();
+                }
                 anim.SetActive(false);
                 if (item == Inventory.InventoryItems.FOSFORO)
                 {
@@ -76,5 +76,14 @@ public class MiniGameObject : MonoBehaviour {
             }
         }
 
+    }
+
+    private void InitImage()
+    {
+        if (item == Inventory.InventoryItems.FOSFORO)
+        {
+            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+        }
     }
 }

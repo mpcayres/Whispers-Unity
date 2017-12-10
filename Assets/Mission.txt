@@ -448,6 +448,10 @@ Alex: Acho que agora sei como destruí-lo...
 Alex: Preciso incendiá-lo!
 Alex: O mais lonje possível dos quartos.
 [title=Dica8PCEnd]
+[title=M8MomCat]
+Mãe: O que você está fazendo? O que está acontecendo?
+Alex: Mãe, só peço que acredite em mim...
+[title=M8MomCatEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
@@ -461,6 +465,7 @@ Alex: Agora que tenho todas as páginas, preciso entendê-las...
 Alex: O gás!!!
 [title=M8KitchenSceneEnd]
 [title=M8KitchenSceneRepeat]
+Alex: Tenho que fazer uma faísca!
 [title=M8KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M8GardenSceneStart]
@@ -469,6 +474,7 @@ Alex: O gás!!!
 [title=M8GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M8MomRoomSceneStart]
+Alex: Onde a minha mãe está? O que ele fez?
 [title=M8MomRoomSceneEnd]
 [title=M8MomRoomSceneRepeat]
 [title=M8MomRoomSceneRepeatEnd]
