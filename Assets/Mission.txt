@@ -317,8 +317,13 @@ Alex: Deve ter algo naquele armário…
 ----------------------------------- ESPECIAL -----------------------------------
 [title=Dica5]
 Alex: Tenho que tomar cuidado.
-Alex: Algumas podem estar naquele mundo invertido estranho.
+Alex: Algumas podem estar naquele mundo estranho.
 [title=Dica5End]
+[title=DicaMundoInvertido5]
+Alex: O que são essas coisas?
+Alex: Elas parecem tentar falar comigo.
+Alex: "Precisamos de Luz!"... O que isso quer dizer?
+[title=DicaMundoInvertido5End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
@@ -337,6 +342,13 @@ Alex: O que são essas páginas espalhadas?
 Alex: Acho que são do livro.
 Alex: Vou tentar reuni-las.
 [title=M5GardenSceneEnd]
+[title=M5GardenSpiritKilled]
+Alex: Eles se foram... 
+Alex: Pareciam como sentimentos...
+Alex: Todo acumulados daqueles que moraram aqui.
+Alex: O que é aquilo? Uma página!
+Alex: Preciso lê-la!
+[title=M5GardenSpiritKilledEnd]
 [title=M5GardenSceneRepeat]
 [title=M5GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
