@@ -39,14 +39,15 @@ public class Inventory : MonoBehaviour {
         box = Resources.Load<Sprite>("Sprites/UI/box");
         selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
         missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        
         // Adiciona todos os objetos, para testar
-        NewItem(InventoryItems.RACAO);
+        /*NewItem(InventoryItems.RACAO);
         NewItem(InventoryItems.TAMPA);
         NewItem(InventoryItems.FACA);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);
-        NewItem(InventoryItems.FLASHLIGHT);
+        NewItem(InventoryItems.FLASHLIGHT);*/
     }
 	
 	void Update ()

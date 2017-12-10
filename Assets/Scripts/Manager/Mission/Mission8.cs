@@ -38,10 +38,11 @@ public class Mission8 : Mission {
         isqueiro = player.transform.Find("Isqueiro").gameObject;
         faca = player.transform.Find("Faca").gameObject;
         pedra = player.transform.Find("Pedra").gameObject;
+        
         // Adiciona todas as páginas, para testar
-        Book.pageQuantity = 5;
+        /*Book.pageQuantity = 5;
         bool[] pages = { true, true, true, true, true };
-        Book.pages = pages;
+        Book.pages = pages;*/
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -552,6 +553,8 @@ public class Mission8 : Mission {
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
         main.startSpeed = 2; // velocidade dos pássaros
+        main.duration = 8f; // tempo do ciclo de ataque dos pássaros
+        main.startLifetime = 8f; // tempo de vida dos pássaros - em geral, coloco igual ao tempo do ciclo
     }
 
     private void CreateCorvoBird()
@@ -561,5 +564,7 @@ public class Mission8 : Mission {
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.8f;
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
         main.startSpeed = 3;
+        main.duration = 5f;
+        main.startLifetime = 5f;
     }
  }
