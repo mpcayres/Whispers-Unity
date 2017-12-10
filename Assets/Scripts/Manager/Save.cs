@@ -12,6 +12,8 @@ public class Save
     public float pathBird = 0;
     public float pathCat = 0;
     public int lifeTampa = 0;
-    public bool mission2ContestaMae = false;
     public bool mission1AssustaGato = false;
+    public bool mission2ContestaMae = false;
+    public bool mission4QuebraSozinho = false;
+    public bool mission8BurnCorredor = false;
 }
