@@ -25,6 +25,9 @@ public class Mission9 : Mission {
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
         player = GameObject.FindGameObjectWithTag("Player").gameObject;
+
+        GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject.SetActive(false);
+        GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -219,9 +222,6 @@ public class Mission9 : Mission {
 
         if (Cat.instance != null) Cat.instance.DestroyCat();
 
-        // Mãe
-        MissionManager.instance.AddObject("mom", "", new Vector3(2.04f, 0.94f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-
         if (endCat)
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventCat").gameObject.SetActive(true);
@@ -233,6 +233,9 @@ public class Mission9 : Mission {
         else
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject.SetActive(true);
+
+            // Mãe
+            MissionManager.instance.AddObject("mom", "", new Vector3(2.04f, 0.94f, -0.5f), new Vector3(0.3f, 0.3f, 1));
 
             if (!MissionManager.instance.mission8BurnCorredor)
             {
