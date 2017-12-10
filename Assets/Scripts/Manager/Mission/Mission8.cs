@@ -139,6 +139,7 @@ public class Mission8 : Mission {
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
+                    MissionManager.instance.mission8BurnCorredor = true;
                     EspecificaEnum((int)enumMission.FINAL_BIRD);
                 }
             }
@@ -146,6 +147,7 @@ public class Mission8 : Mission {
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
+                    MissionManager.instance.mission8BurnCorredor = false;
                     EspecificaEnum((int)enumMission.FINAL_BIRD);
                 }
             }

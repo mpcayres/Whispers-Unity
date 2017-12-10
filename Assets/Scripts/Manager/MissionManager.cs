@@ -9,9 +9,10 @@ public class MissionManager : MonoBehaviour {
     public static MissionManager instance;
     public Mission mission;
     public string previousSceneName, currentSceneName;
-    public bool mission2ContestaMae = false;
     public bool mission1AssustaGato = false;
+    public bool mission2ContestaMae = false;
     public bool mission4QuebraSozinho = false;
+    public bool mission8BurnCorredor = false;
 
     public bool paused = false;
     public bool pausedObject = false;
@@ -111,41 +112,44 @@ public class MissionManager : MonoBehaviour {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
-        // teste, depois colocar pelo menu
+        // CHEATS
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeMission(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeMission(2);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			ChangeMission(3);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			ChangeMission(4);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
 			ChangeMission(5);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha6))
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
 		{
 			ChangeMission(6);
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha7))
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
 		{
 			ChangeMission(7);
 		}
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
 		{
 			ChangeMission(8);
 		}
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ChangeMission(9);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             LoadGame(0);
         }
@@ -241,8 +245,10 @@ public class MissionManager : MonoBehaviour {
         {
             save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
         }
-        save.mission2ContestaMae = mission2ContestaMae;
         save.mission1AssustaGato = mission1AssustaGato;
+        save.mission2ContestaMae = mission2ContestaMae;
+        save.mission4QuebraSozinho = mission4QuebraSozinho;
+        save.mission8BurnCorredor = mission8BurnCorredor;
 
         return save;
     }
@@ -281,8 +287,10 @@ public class MissionManager : MonoBehaviour {
             {
                 GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = save.lifeTampa;
             }
-            mission2ContestaMae = save.mission2ContestaMae;
             mission1AssustaGato = save.mission1AssustaGato;
+            mission2ContestaMae = save.mission2ContestaMae;
+            mission4QuebraSozinho = save.mission4QuebraSozinho;
+            mission8BurnCorredor = save.mission8BurnCorredor;
 
             Debug.Log("Game Loaded " + m);
 
@@ -334,14 +342,7 @@ public class MissionManager : MonoBehaviour {
 
         if (mission != null)
         {
-            if(m != 9)
-            {
-                levelText.text = "Chapter " + m;
-            }
-            else
-            {
-                levelText.enabled = false;
-            }
+            levelText.text = "Chapter " + m;
             levelImage.SetActive(true);
             showMissionStart = true;
             mission.InitMission();
