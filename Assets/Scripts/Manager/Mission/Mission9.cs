@@ -239,7 +239,7 @@ public class Mission9 : Mission {
 
             if (!MissionManager.instance.mission8BurnCorredor)
             {
-                player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
+                player.GetComponent<Player>().ChangePositionDefault(0, -1f, 0);
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
@@ -264,8 +264,8 @@ public class Mission9 : Mission {
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
-        player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
-        GameObject.Find("MainCamera").transform.position = new Vector3(0, -1, -20);
+        player.GetComponent<Player>().ChangePositionDefault(0, -1, 0);
+        GameObject.Find("MainCamera").transform.position = new Vector3(0, 0, -20);
 
         if (Cat.instance != null) Cat.instance.DestroyCat();
 
