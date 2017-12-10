@@ -35,6 +35,8 @@ TagManager:
   - Fire
   - Corvo
   - Pagina
+  - GoodSpirit
+  - EvilSpirit
   layers:
   - Default
   - TransparentFX

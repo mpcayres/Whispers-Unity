@@ -7,8 +7,10 @@ public class Page : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Book.AddPage(number);
-        Destroy(this.gameObject);
-        
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Book.AddPage(number);
+            Destroy(this.gameObject);
+        }
     }
 }
