@@ -354,7 +354,7 @@ Alex: O que é aquilo? Uma página!
 Alex: Preciso lê-la!
 [title=M5GardenSpiritKilledEnd]
 [title=M5BookClosed]
-Alex: O que foi esse grito?!
+Alex: O que foi essa sensação?!
 Alex: Mãe...? Preciso ir no seu quarto. 
 [title=M5BookClosedEnd]
 [title=M5GardenSceneRepeat]
@@ -386,7 +386,6 @@ Alex: O que?!?! Não consigo?
 -------------------------------------- MISSAO 6 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=Dica6]
-Alex: Parece ter algo de errado aqui.
 [title=Dica6End]
 ----------------------------------- ESCOLHAS -----------------------------------
 
@@ -407,13 +406,26 @@ Alex: Parece ter algo de errado aqui.
 [title=M6GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M6MomRoomSceneStart]
+Alex: Parece ter algo de errado aqui...
+Alex: Mãe?
+Alex: O que é isso em cima de você?
+Alex: Ela está dormindo... está doente!! 
+Alex: Preciso fazer algo para ajudá-la!
+Alex: Será que a lanterna irá funcionar aqui também?
 [title=M6MomRoomSceneEnd]
+[title=M6AfterFlashlight]
+Alex: Parece que a lanterna só o deixa mais nervoso...
+[title=M6AfterFlashlightEnd]
+[title=M6AfterFlashlightShutdown]
+Alex: Será que esse monstro apareceu devido aos
+Alex: sentimentos negativos de mamãe?
+Alex: Preciso encontrar uma forma de assustá-lo.
+Alex: Devo ver se não deixei nada passar no jardim.
+[title=M6AfterFlashlightShutdownEnd]
 [title=M6MomRoomSceneRepeat]
 [title=M6MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M6LivingroomSceneStart]
-Alex: Estranho, não consigo sair.
-Alex: O que eu faço agora?
 [title=M6LivingroomSceneEnd]
 [title=M6LivingroomSceneRepeat]
 [title=M6LivingroomSceneRepeatEnd]
