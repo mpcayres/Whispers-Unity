@@ -406,6 +406,8 @@ Alex: O que?!?! Não consigo?
 [title=M6KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M6GardenSceneStart]
+Alex: Atze?
+Alex: O que são essas folhas?
 [title=M6GardenSceneEnd]
 [title=M6GardenSceneRepeat]
 [title=M6GardenSceneRepeatEnd]
