@@ -7012,6 +7012,54 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &159358567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 159358568}
+  - component: {fileID: 159358569}
+  m_Layer: 0
+  m_Name: SoundPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159358568
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159358567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 933830032}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159358569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159358567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b62b98b0a668a847b5b7598d2c50c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bat1: {fileID: 8300000, guid: b3685314e6ac18641a640f2605a3256e, type: 3}
+  bat2: {fileID: 8300000, guid: 75355c211dab43a48aee1ca0942e5a90, type: 3}
+  crow: {fileID: 8300000, guid: b5a7c4b7f3f26b64db32dbb52e95b680, type: 3}
+  owl: {fileID: 8300000, guid: 5f53164899f1cf24c8b2ac54d55e0db2, type: 3}
+  wolf1: {fileID: 8300000, guid: 1e3972e432e9a8449a5df2d78e56f8fe, type: 3}
+  wolf2: {fileID: 8300000, guid: 428c738b6b4aa054bb9e4f0a658e1c38, type: 3}
+  EnableSound: 1
+  NightLoop: 0
 --- !u!1 &166087458 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1022813121452730, guid: ec04b9b417439fb4d9a24a13df283fbe,
@@ -25918,12 +25966,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 301.52798
+      value: 310.52798
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 213.333
+      value: 210.333
       objectReference: {fileID: 0}
     - target: {fileID: 114614734401517286, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -54956,12 +55004,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 303
+      value: 312
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 188
+      value: 185
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
