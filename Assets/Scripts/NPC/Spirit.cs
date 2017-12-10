@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Spirit : MonoBehaviour {
     float health = 3;
+    bool assimilatedHealth = false;
+    public static float newHealth = 0;
     public bool isEvil = false, canKill = false;
     public int number;
+    public static int maxEvilKilled = 4;
+
   
     void Update () {
+        if (newHealth != 0 && assimilatedHealth == false)
+        {
+            health = newHealth;
+            assimilatedHealth = true;
+        }
+
         if(health <= 0)
         {
             if (gameObject.scene.name.Equals("Jardim") && !isEvil)
@@ -19,8 +29,17 @@ public class Spirit : MonoBehaviour {
             {
                 SpiritManager.DestroyEvilSpirit(number);
                 Destroy(gameObject);
-            }else if (canKill && gameObject.scene.name.Equals("Sala"))
+            }else if (gameObject.scene.name.Equals("Sala"))
             {
+                if (isEvil)
+                {
+                    maxEvilKilled--;
+                    if(maxEvilKilled < 0)
+                    {
+                        //maxEvilKilled = 5;
+                        MissionManager.instance.GameOver();
+                    }
+                }
                 Destroy(gameObject);
             }
         }

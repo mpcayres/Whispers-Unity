@@ -433,7 +433,12 @@ Alex: Devo ver se não deixei nada passar no jardim.
 [title=M6MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M6LivingroomSceneStart]
+Alex: Eles estão bloqueando o caminho...
+Alex: Aquilo ali é uma página?!
 [title=M6LivingroomSceneEnd]
+[title=M6LivingroomTipStart]
+Alex: Acho que eu deveria parar de iluminar os roxos...
+[title=M6LivingroomTipEnd]
 [title=M6LivingroomSceneRepeat]
 [title=M6LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
