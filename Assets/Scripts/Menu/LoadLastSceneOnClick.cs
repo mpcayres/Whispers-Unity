@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
- 
- public class LoadLastSceneOnClick : MonoBehaviour
+using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
+
+public class LoadLastSceneOnClick : MonoBehaviour
  {
- 
-     public void LoadLastScene()
+
+    public Image black;
+    public Animator anim;
+    public void LoadLastScene()
      {
-         MissionManager.instance.ContinueGame();
+        StartCoroutine(FadingLoad());
      }
- 
- } 
+    IEnumerator FadingLoad()
+    {
+        anim.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        MissionManager.instance.ContinueGame();
+
+    }
+
+} 

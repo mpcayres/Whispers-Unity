@@ -1,11 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
 
-public class NewGame : MonoBehaviour {
+public class NewGame : MonoBehaviour
+{
 
-	public void OnClick ()
+    public Image black;
+    public Animator anim;
+
+    public void OnClick()
     {
-        PlayerPrefs.SetInt("Mission", -1);
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        StartCoroutine(FadingNewGame());
     }
+    IEnumerator FadingNewGame()
+    {
+        anim.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        PlayerPrefs.SetInt("Mission", -1);
+        SceneManager.LoadScene(6, LoadSceneMode.Single);
+
+    }
+
 }

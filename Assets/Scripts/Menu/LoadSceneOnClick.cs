@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
 
 public class LoadSceneOnClick : MonoBehaviour {
 
-	public void LoadByIndex(int sceneIndex)
+    public Image black;
+    public Animator anim;
+    public void LoadByIndex(int sceneIndex)
 	{
-		SceneManager.LoadScene(sceneIndex);
+        StartCoroutine(FadingLoad(sceneIndex));
 	}
+
+    IEnumerator FadingLoad(int sceneIndex)
+    {
+        anim.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(sceneIndex);
+
+    }
 }

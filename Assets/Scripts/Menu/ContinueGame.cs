@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
 
 public class ContinueGame : MonoBehaviour {
 
+    public Image black;
+    public Animator anim;
+
     public void OnClick()
     {
+        StartCoroutine(FadingContinue());
+    }
+
+    IEnumerator FadingContinue()
+    {
+        anim.SetBool("Fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
         PlayerPrefs.SetInt("Mission", 0);
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        SceneManager.LoadScene(6, LoadSceneMode.Single);
+
     }
 }

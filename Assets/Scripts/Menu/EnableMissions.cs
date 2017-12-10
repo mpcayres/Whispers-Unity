@@ -27,13 +27,6 @@ public class EnableMissions : MonoBehaviour{
 
 
     }
-
-    //void LoadMission()
-    //{
-    //    string temp = this.gameObject.transform.Find("Text").gameObject.GetComponent<UnityEngine.UI.Text>().text;
-    //    missionNumber = int.Parse(temp);
-    //    MissionManager.instance.LoadGame(missionNumber);
-    //}
-
+    
 
 }
