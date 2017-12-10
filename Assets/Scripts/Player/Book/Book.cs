@@ -11,7 +11,8 @@ public class Book : MonoBehaviour {
     private bool lastPageSeen = false, seenAll = false;
 
     public static bool bookBlocked = true;
-  
+    public static bool show = false;
+
     GameObject book, page1, page2,pagebonus;
     MissionManager missionManager;
 
