@@ -485,6 +485,9 @@ Alex: Vou queimar algumas coisas daqui...
 [title=M8LivingroomSceneRepeat]
 Alex: Mãe! Atze! Vamos sair daqui...
 [title=M8LivingroomSceneRepeatEnd]
+[title=M8LivingroomSceneRepeat2]
+Alex: Atze??? O que fizeram com a minha família?
+[title=M8LivingroomSceneRepeat2End]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M8CorridorSceneStart]
 [title=M8CorridorSceneEnd]

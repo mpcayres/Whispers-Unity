@@ -250,7 +250,8 @@ public class Player : MonoBehaviour {
             corvoScene = MissionManager.instance.currentSceneName;
             if (Corvo.instance != null)
             {
-                Invoke("ChangeCorvoPosition", 2f);
+                Corvo.instance.gameObject.SetActive(false);
+                Invoke("ChangeCorvoPosition", 1.5f);
             }
         }
         
@@ -258,9 +259,10 @@ public class Player : MonoBehaviour {
 
     public void ChangeCorvoPosition()
     {
-        if (MissionManager.instance.currentSceneName.Equals(corvoScene))
+        if (MissionManager.instance.currentSceneName.Equals(corvoScene) && Corvo.instance != null)
         {
             Corvo.instance.ChangePosition(corvoPositionX, corvoPositionY);
+            Corvo.instance.gameObject.SetActive(true);
         }
     }
 

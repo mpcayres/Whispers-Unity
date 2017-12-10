@@ -12,10 +12,11 @@ public class Mission8 : Mission {
     bool hasPanela = false, endCat = false;
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
+    bool falaMae = false, falaGato = false;
     Book book;
-    GameObject player, fosforo, isqueiro, faca, pedra, luminariaCorredor, luminariaQuarto, fireEvent;
+    GameObject player, fosforo, isqueiro, faca, pedra, luminaria, fireEvent;
 
-    // ANALISAR DIFICULDADE DO NIVEL E DOS DIFERENTES OBJETOS
+    // ANALISAR DIFICULDADE DO NIVEL E DOS DIFERENTES OBJETOS - FACA, PEDRO, FOSFORO, ISQUEIRO
     public override void InitMission()
     {
         sceneInit = "QuartoKid";
@@ -37,7 +38,7 @@ public class Mission8 : Mission {
         isqueiro = player.transform.Find("Isqueiro").gameObject;
         faca = player.transform.Find("Faca").gameObject;
         pedra = player.transform.Find("Pedra").gameObject;
-        //!!!
+        // Adiciona todas as páginas, para testar
         Book.pageQuantity = 5;
         bool[] pages = { true, true, true, true, true };
         Book.pages = pages;
@@ -124,15 +125,28 @@ public class Mission8 : Mission {
             {
                 faca.GetComponent<MiniGameObject>().achievedGoal = false;
                 pedra.GetComponent<MiniGameObject>().achievedGoal = false;
+
+                faca.GetComponent<MiniGameObject>().activated = false;
+                pedra.GetComponent<MiniGameObject>().activated = false;
+
                 EspecificaEnum((int) enumMission.BOTIJAO_BIRD);
             }
         }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
-            if ((MissionManager.instance.currentSceneName.Equals("Corredor") && luminariaCorredor.GetComponent<Lamp>().Changed()) ||
-                (MissionManager.instance.currentSceneName.Equals("QuartoMae") && luminariaQuarto.GetComponent<Lamp>().Changed()))
+            if (MissionManager.instance.currentSceneName.Equals("Corredor") && luminaria != null)
             {
-                EspecificaEnum((int)enumMission.FINAL_BIRD);
+                if (luminaria.GetComponent<Lamp>().Changed())
+                {
+                    EspecificaEnum((int)enumMission.FINAL_BIRD);
+                }
+            }
+            else if (MissionManager.instance.currentSceneName.Equals("QuartoMae") && luminaria != null)
+            {
+                if (luminaria.GetComponent<Lamp>().Changed())
+                {
+                    EspecificaEnum((int)enumMission.FINAL_BIRD);
+                }
             }
         }
     }
@@ -153,11 +167,7 @@ public class Mission8 : Mission {
         if (secao == enumMission.BOTIJAO_BIRD)
         {
             // Luminaria com faisca
-            luminariaQuarto = GameObject.Find("Luminaria").gameObject;
-            GameObject triggerF = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-5.88f, 0.64f, 0), new Vector3(1, 1, 1));
-            triggerF.name = "FaiscaQuartoTrigger";
-            triggerF.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            triggerF.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            luminaria = GameObject.Find("Luminaria").gameObject;
 
             // FireEvent
             fireEvent = GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject;
@@ -205,7 +215,7 @@ public class Mission8 : Mission {
             GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
             trigger.name = "GasTrigger";
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            trigger.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
         }
     }
 
@@ -256,10 +266,6 @@ public class Mission8 : Mission {
             // Porta momentaneamente travada
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
-
-            // Gato
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
-            cat.GetComponent<Cat>().FollowPlayer();
         }
     }
 
@@ -283,11 +289,7 @@ public class Mission8 : Mission {
         if (secao == enumMission.BOTIJAO_BIRD)
         {
             // Luminaria com faisca
-            luminariaQuarto = GameObject.Find("Luminaria").gameObject;
-            GameObject triggerF = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(3.16f, 2.14f, 0), new Vector3(1, 1, 1));
-            triggerF.name = "FaiscaQuartoTrigger";
-            triggerF.GetComponent<Collider2D>().offset = new Vector2(0, 0);
-            triggerF.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
+            luminaria = GameObject.Find("Luminaria").gameObject;
 
             // FireEvent
             fireEvent = GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject;
@@ -358,6 +360,23 @@ public class Mission8 : Mission {
             {
                 fireEvent.transform.Find("FogoSofa").gameObject.SetActive(true);
             }
+
+            if (Cat.instance == null)
+            {
+                // Gato
+                GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+                cat.GetComponent<Cat>().speed = 2.4f;
+                cat.GetComponent<Cat>().FollowPlayer();
+            }
+        }
+        else if (secao == enumMission.CORVO_ATACA_BIRD || secao == enumMission.BOTIJAO_BIRD)
+        {
+            // Fala sobre gato sumido
+            GameObject triggerG = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-4.96f, -2f, 0), new Vector3(1, 1, 1));
+            triggerG.name = "GatoTrigger";
+            triggerG.GetComponent<Collider2D>().offset = new Vector2(0, 0);
+            triggerG.GetComponent<BoxCollider2D>().size = new Vector2(6f, 1f);
+            
         }
     }
 
@@ -374,7 +393,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd");
 
-            //CreateCorvoCat();
+            CreateCorvoCat();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
@@ -383,7 +402,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd");
 
-            //CreateCorvoBird();
+            CreateCorvoBird();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
@@ -393,7 +412,8 @@ public class Mission8 : Mission {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = true;
 
-            //Corvo.instance.FollowPlayer();
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            Corvo.instance.FollowPlayer();
         }
         else if (secao == enumMission.MAE_CAT)
         {
@@ -422,15 +442,21 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.FINAL)
         {
-            // FIM DO JOGO
+            MissionManager.instance.ChangeMission(9);
         }
     }
 
     public override void AreaTriggered(string tag)
     {
-        if (tag.Equals("MomTrigger"))
+        if (tag.Equals("EnterMomTrigger") && !falaMae)
         {
             MissionManager.instance.rpgTalk.NewTalk("M8MomRoomSceneStart", "M8MomRoomSceneEnd");
+            falaMae = true;
+        }
+        else if (tag.Equals("EnterGatoTrigger") && !falaGato)
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat2", "M8LivingroomSceneRepeat2End");
+            falaGato = true;
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
@@ -462,7 +488,7 @@ public class Mission8 : Mission {
                 fosforo.GetComponent<MiniGameObject>().posFlareY = 0.4f;
                 isqueiro.GetComponent<MiniGameObject>().posFlareX = 5.53f;
                 isqueiro.GetComponent<MiniGameObject>().posFlareY = 0.5f;
-                sofaTrigger = false;
+                sofaTrigger = true;
             }
             else if (tag.Equals("ExitEstanteTrigger") || tag.Equals("ExitPoltronaTrigger") || tag.Equals("ExitSofaTrigger"))
             {
@@ -488,52 +514,25 @@ public class Mission8 : Mission {
                 pedra.GetComponent<MiniGameObject>().activated = false;
             }
         }
-        else if (secao == enumMission.BOTIJAO_BIRD)
-        {
-            if (tag.Equals("FaiscaCorredorTrigger"))
-            {
-                faca.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                faca.GetComponent<MiniGameObject>().posFlareY = 1f;
-                pedra.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                pedra.GetComponent<MiniGameObject>().posFlareY = 1f;
-                faca.GetComponent<MiniGameObject>().activated = true;
-                pedra.GetComponent<MiniGameObject>().activated = true;
-            }
-            else if (tag.Equals("ExitFaiscaCorredorTrigger"))
-            {
-                faca.GetComponent<MiniGameObject>().activated = false;
-                pedra.GetComponent<MiniGameObject>().activated = false;
-            }
-            else if (tag.Equals("FaiscaQuartoTrigger"))
-            {
-                faca.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                faca.GetComponent<MiniGameObject>().posFlareY = 1f;
-                pedra.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                pedra.GetComponent<MiniGameObject>().posFlareY = 1f;
-                faca.GetComponent<MiniGameObject>().activated = true;
-                pedra.GetComponent<MiniGameObject>().activated = true;
-            }
-            else if (tag.Equals("ExitFaiscaQuartoTrigger"))
-            {
-                faca.GetComponent<MiniGameObject>().activated = false;
-                pedra.GetComponent<MiniGameObject>().activated = false;
-            }
-        }
     }
 
     public override void InvokeMission()
     {
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
-            if (secao == enumMission.CORVO_APARECE_CAT)
+            if (secao == enumMission.CORVO_ATACA_CAT)
             {
                 CreateCorvoCat();
                 player.GetComponent<Player>().ChangeCorvoPosition();
+                Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                Corvo.instance.FollowPlayer();
             }
-            else if (secao == enumMission.CORVO_APARECE_BIRD)
+            else if (secao == enumMission.CORVO_ATACA_BIRD)
             {
                 CreateCorvoBird();
                 player.GetComponent<Player>().ChangeCorvoPosition();
+                Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                Corvo.instance.FollowPlayer();
             }
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
@@ -549,20 +548,18 @@ public class Mission8 : Mission {
     private void CreateCorvoCat()
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
-        corvo.GetComponent<Corvo>().speed = 0.3f;
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 1f;
+        corvo.GetComponent<Corvo>().speed = 0.3f; // velocidade do corvo
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-        main.startSpeed = 2;
-        corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+        main.startSpeed = 2; // velocidade dos pássaros
     }
 
     private void CreateCorvoBird()
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
         corvo.GetComponent<Corvo>().speed = 0.3f;
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 1.5f;
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.8f;
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
         main.startSpeed = 3;
-        corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
     }
  }

@@ -316,7 +316,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103832579489714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8, y: -0.441, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4039270905943078}
@@ -705,9 +705,9 @@ MonoBehaviour:
   item: 4
   activated: 0
   achievedGoal: 0
-  timeMax: 10
-  counterMax: 50
-  refreshTimeMax: 0
+  timeMax: 5
+  counterMax: 20
+  refreshTimeMax: 1
   posFlareX: 0
   posFlareY: 0
 --- !u!114 &114336094573981668
@@ -724,8 +724,8 @@ MonoBehaviour:
   item: 3
   activated: 0
   achievedGoal: 0
-  timeMax: 6
-  counterMax: 30
+  timeMax: 5
+  counterMax: 20
   refreshTimeMax: 1
   posFlareX: 0
   posFlareY: 0
@@ -1024,9 +1024,9 @@ MonoBehaviour:
   item: 6
   activated: 0
   achievedGoal: 0
-  timeMax: 12
-  counterMax: 60
-  refreshTimeMax: 0
+  timeMax: 5
+  counterMax: 20
+  refreshTimeMax: 1
   posFlareX: 0
   posFlareY: 0
 --- !u!114 &114889501630432840
