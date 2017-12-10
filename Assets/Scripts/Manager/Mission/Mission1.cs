@@ -23,6 +23,10 @@ public class Mission1 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
