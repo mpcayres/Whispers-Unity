@@ -36,7 +36,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.INICIO)
         {
-            if (window.ObjectOpened() /*|| CursorLockMode.ObjectOpened()*/)
+            if (window.IsActive() /*|| CursorLockMode.ObjectOpened()*/)
             {
                 EspecificaEnum((int) enumMission.GATO_APARECEU);
             }
@@ -334,7 +334,7 @@ public class Mission1 : Mission {
         {
             MissionManager.instance.scenerySounds.PlayScare(3);
             MissionManager.instance.AddObject("CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
-            MissionManager.instance.Invoke("InvokeMission", 10f);
+            MissionManager.instance.Invoke("InvokeMission", 7f);
         }
         else if (secao == enumMission.MAE_QUARTO)
         {

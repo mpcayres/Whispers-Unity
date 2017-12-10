@@ -7,7 +7,6 @@ public class Inventory : MonoBehaviour {
 
     [System.Serializable]
     public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, ISQUEIRO, LIVRO };
-    [System.Serializable]
     public class DataItems
     {
         public InventoryItems type;
@@ -28,7 +27,7 @@ public class Inventory : MonoBehaviour {
     static GameObject menuItem;
     MissionManager missionManager;
 
-    void Start ()
+    void Awake ()
     {
         listItems = new List<DataItems>();
         menu = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu").gameObject;
@@ -47,7 +46,7 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);*/
-        NewItem(InventoryItems.FLASHLIGHT);
+        //NewItem(InventoryItems.FLASHLIGHT);
     }
 	
 	void Update ()
@@ -128,63 +127,68 @@ public class Inventory : MonoBehaviour {
         
     }
 
+    public static int GetCurrentItem()
+    {
+        return currentItem;
+    }
+
+    public static InventoryItems GetCurrentItemType()
+    {
+        if (currentItem == -1) return InventoryItems.DEFAULT;
+        return listItems[currentItem].type;
+    }
+
+    public static List<DataItems> GetInventory()
+    {
+        return listItems;
+    }
+
+    public static List<InventoryItems> GetInventoryItems()
+    {
+        List<InventoryItems> list = new List<InventoryItems>();
+
+        for (int i = 0; i < listItems.Count; i++)
+        {
+            list.Add(listItems[i].type);
+        }
+
+        return list;
+    }
+
     public static void SetCurrentItem(int pos)
     {
         currentItem = pos;
-        if (!menuItem.activeSelf) menuItem.SetActive(true);
-        menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
-        menuItem.GetComponent<Image>().preserveAspect = true;
+        if (pos != -1)
+        {
+            if (!menuItem.activeSelf) menuItem.SetActive(true);
+            menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
+            menuItem.GetComponent<Image>().preserveAspect = true;
+        }
     }
 
-    public static void SetInventory(List<DataItems> inv)
+    public static void SetCurrentItemBeforeLoad(int pos)
     {
-        listItems = inv;
-        if (HasItemType(InventoryItems.FLASHLIGHT))
+        currentItem = pos;
+    }
+
+    public static void SetInventory(List<InventoryItems> invItems)
+    {
+        for (int i = 0; i < invItems.Count; i++)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.VELA))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.FOSFORO))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.FACA))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.TAMPA))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.PEDRA))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.RACAO))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.ISQUEIRO))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
-        }
-        else if (HasItemType(InventoryItems.LIVRO))
-        {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(true);
+            NewItem(invItems[i]);
         }
     }
 
     public static void NewItem(InventoryItems selectItem)
     {
         // Não permite ter mais de um mesmo objeto no inventário
-        foreach (DataItems i in listItems)
-        {
-            if (selectItem == i.type)
+        if (listItems.Count > 0) {
+            foreach (DataItems i in listItems)
             {
-                return;
+                if (selectItem == i.type)
+                {
+                    return;
+                }
             }
         }
 
@@ -307,22 +311,6 @@ public class Inventory : MonoBehaviour {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(false);
         }
 
-    }
-
-    public static int GetCurrentItem()
-    {
-        return currentItem;
-    }
-
-    public static InventoryItems GetCurrentItemType()
-    {
-        if (currentItem == -1) return InventoryItems.DEFAULT;
-        return listItems[currentItem].type;
-    }
-
-    public static List<DataItems> GetInventory()
-    {
-        return listItems;
     }
 
     public static bool HasItemType(InventoryItems item)

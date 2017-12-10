@@ -69,8 +69,6 @@ public class MissionManager : MonoBehaviour {
                 LoadGame(missionSelected);
             }
 
-            Invoke("HideLevelImage", startMissionDelay);
-
             rpgTalk.OnMadeChoice += OnMadeChoice;
         }
         else if (instance != this)
@@ -242,7 +240,7 @@ public class MissionManager : MonoBehaviour {
     {
         Save save = new Save();
         
-        save.inventory = Inventory.GetInventory();
+        save.inventory = Inventory.GetInventoryItems();
         save.mission = missionSelected;
         save.currentItem = Inventory.GetCurrentItem();
         save.pathBird = pathBird;
@@ -250,6 +248,10 @@ public class MissionManager : MonoBehaviour {
         if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
         {
             save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
+        }
+        else
+        {
+            save.lifeTampa = 0;
         }
         save.mission1AssustaGato = mission1AssustaGato;
         save.mission2ContestaMae = mission2ContestaMae;
@@ -286,7 +288,7 @@ public class MissionManager : MonoBehaviour {
 
             SetMission(save.mission);
             Inventory.SetInventory(save.inventory);
-            if(save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
+            if (save.currentItem != -1) Inventory.SetCurrentItemBeforeLoad(save.currentItem);
             pathBird = save.pathBird;
             pathCat = save.pathCat;
             if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
@@ -311,7 +313,7 @@ public class MissionManager : MonoBehaviour {
     public void SetMission(int m)
     {
         missionSelected = m;
-        print("MISSAO: " + m);
+        print("MISSAO: " + missionSelected);
 
 		switch(missionSelected){
 		case 1:
@@ -352,6 +354,7 @@ public class MissionManager : MonoBehaviour {
             levelImage.SetActive(true);
             showMissionStart = true;
             mission.InitMission();
+            Invoke("HideLevelImage", startMissionDelay);
         }
         else {
             showMissionStart = false;
