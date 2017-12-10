@@ -251,7 +251,8 @@ Alex: Preciso de algo para não me machucar quebrando.
 Alex: Acho melhor destruir algo no corredor, pra ela conseguir ouvir.
 [title=IndicarNecessidadeEnd]
 [title=VerdadeOuMentira]
-Mãe: Foi você que quebrou o vaso?
+Mãe: O que está fazendo aqui?!
+Mãe: Foi você que quebrou o vaso!?
 [question=4] O que quer fazer agora?
 [choice]Falar a verdade
 [choice]Mentir 

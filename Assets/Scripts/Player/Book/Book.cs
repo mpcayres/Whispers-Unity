@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Book : MonoBehaviour {
 
-    private static bool[] pages = { false, false, false, false, false };
-    private static int pageQuantity;
+    public static bool[] pages = { false, false, false, false, false };
+    public static int pageQuantity;
     private int pageShowing; // 0 - 2
     private bool lastPageSeen = false, seenAll = false;
+
+    public static bool show = false;
   
     GameObject book, page1, page2,pagebonus;
     MissionManager missionManager;
@@ -39,6 +41,8 @@ public class Book : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked
             && !MissionManager.instance.pausedObject)
         {
+
+            show = false;
             ShowBook();
         }
 
@@ -115,7 +119,7 @@ public class Book : MonoBehaviour {
         }
     }
 
-    void ShowBook()
+    public void ShowBook()
     {
         if(book.activeSelf)
         {
