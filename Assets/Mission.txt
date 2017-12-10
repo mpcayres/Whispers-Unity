@@ -224,7 +224,7 @@ Alex: Acho que devo tentar de novo.
 -------------------------------------- MISSAO 4 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=OQ]
-Alex: Atze, você quebrou o vaso da mamãe.
+Alex: Já era o vaso da mamãe.
 [title=OQEnd]
 [title=NadaAqui]
 Alex: Nada aqui.

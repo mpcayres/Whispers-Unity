@@ -231,7 +231,7 @@ public class Inventory : MonoBehaviour {
         }
         else if (selectItem == InventoryItems.LIVRO)
         {
-            file = "livro";
+            file = "book";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(true);
         }
 
