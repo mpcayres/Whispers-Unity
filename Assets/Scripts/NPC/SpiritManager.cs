@@ -6,10 +6,13 @@ public class SpiritManager : MonoBehaviour{
     public static int goodSpiritGardenKilled = 0;
     public static int evilSpiritGardenKilled = 0;
 
-    MissionManager missionManager;
+    static MissionManager missionManager;
     public bool canSummom = false;
     private bool active = false;
     public GameObject[] goodSpiritVector;
+    public GameObject[] evilSpiritVector;
+    private static bool[] goodDestroyed = { false, false, false, false, false };
+    private static bool[] evilDestroyed = { false, false, false, false, false };
 
     private void Start()
     {
@@ -18,16 +21,14 @@ public class SpiritManager : MonoBehaviour{
 
     private void Update()
     {
-        print(active);
-        print(missionManager.invertWorld);
-        print(goodSpiritVector.Length);
-
         if (!active && missionManager.invertWorld)
         {
-            for(int i = 0; i< goodSpiritVector.Length; i++)
+            for(int i = 0; i < goodSpiritVector.Length; i++)
             {
-                goodSpiritVector[i].SetActive(true);
-                print("A");
+                if (!goodDestroyed[i])
+                    goodSpiritVector[i].SetActive(true);
+                if (!evilDestroyed[i])
+                    evilSpiritVector[i].SetActive(true);
             }
             active = true;
         }
@@ -35,11 +36,30 @@ public class SpiritManager : MonoBehaviour{
         {
             for (int i = 0; i < goodSpiritVector.Length; i++)
             {
-                goodSpiritVector[i].SetActive(false);
-                print("B");
+                if(!goodDestroyed[i])
+                    goodSpiritVector[i].SetActive(false);
+                if (!evilDestroyed[i])
+                    evilSpiritVector[i].SetActive(false);
             }
             active = false;
         }
     }
-     
+
+    public static void DestroyGoodSpirit(int number)
+    {
+        goodDestroyed[number] = true;
+        goodSpiritGardenKilled++;
+    }
+
+    public static void DestroyEvilSpirit(int number)
+    {
+        evilDestroyed[number] = true;
+        evilSpiritGardenKilled++;
+
+        if(evilSpiritGardenKilled >= 3)
+        {
+            missionManager.GameOver();
+        }
+    }
+
 }
