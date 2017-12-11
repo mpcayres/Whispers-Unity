@@ -21,7 +21,7 @@ Alex: Atze?
 [title=M1KidRoomSceneCatEnd]
 [title=M1KidRoomSceneRepeat]
 Mãe: Mais um pesadelo? 
-Alex: Mãe... estou com medo.
+Alex: Mãe, estou com medo.
 Mãe: Tudo vai ficar bem. Só volte a dormir.
 Mãe: Vou voltar para o meu quarto agora.
 [title=M1KidRoomSceneRepeatEnd]
@@ -82,7 +82,7 @@ Alex: Eu não gosto de ficar sozinho, eu não gosto de você!
 Alex: Vamos, Atze!
 [title=M2Q1C0End]
 [title=M2Q1C0_2]
-Alex: Precisamos pegar uma arma Atze.
+Alex: Precisamos pegar uma arma, Atze.
 Alex: Vamos nos defender do que está nos assombrando!
 [title=M2Q1C0_2End]
 [title=M2Q1C1]
@@ -90,7 +90,7 @@ Alex: Tudo bem, mamãe.
 Alex: Ao menos Atze pode ficar ao meu lado...
 [title=M2Q1C1End]
 [title=M2Q1C1_2]
-Alex: Atze vamos pegar uma vela!
+Alex: Atze, vamos pegar uma vela!
 Alex: Assim podemos dormir com um pouco de luz a noite!
 [title=M2Q1C1_2End]
 
@@ -140,7 +140,7 @@ Alex: Mamãe, eu posso dormir com a senhora essa noite?
 Alex: Eu tenho medo do que está vindo no escuro.
 Mãe: Me desculpe bebê, mamãe se mexe muito a noite.
 Mãe: Você não iria conseguir dormir ao meu lado.
-Mãe: Além disso, você precisa lidar com seus medos sozinho.
+Mãe: Além disso, você precisa lidar com seus medos por conta própria.
 [question=1]O que quer dizer para a mamãe?
 [choice]"Você não me entende!! Eu não gosto de ficar sozinho, eu não gosto de você!"
 [choice]"Tudo bem mamãe, ao menos Atze pode ficar ao meu lado..."
@@ -356,14 +356,16 @@ Alex: Vou tentar reuni-las.
 [title=M5GardenSceneEnd]
 [title=M5GardenSpiritKilled]
 Alex: Eles se foram... 
-Alex: Pareciam como sentimentos...
-Alex: Todo acumulados daqueles que moraram aqui.
+Alex: Parecia ser como os sentimentos acumulados.
+Alex: Mas de quem?
+Alex: Daqueles que moraram aqui?
 Alex: O que é aquilo? Uma página!
 Alex: Preciso lê-la!
 [title=M5GardenSpiritKilledEnd]
 [title=M5BookClosed]
 Alex: O que foi essa sensação?!
-Alex: Mãe...? Preciso ir no seu quarto. 
+Alex: Mãe...? Estou com um mal pressentimento.
+Alex: Preciso ir no quarto dela. 
 [title=M5BookClosedEnd]
 [title=M5GardenSceneRepeat]
 [title=M5GardenSceneRepeatEnd]
@@ -413,7 +415,7 @@ Alex: Atze?
 Alex: O que são essas folhas?
 Alex: Hm... Essas folhas secas só servem para...
 Atze: Miau!
-Alex: Queima-las?
+Alex: Queimá-las?
 Alex: Como isso vai ajudar a salvar a mamãe?
 Alex: Ah! Assustar o monstro?
 Alex: Ele vai achar que vou queimar a casa...
@@ -438,6 +440,7 @@ Alex: Parece ter algo de errado aqui...
 Alex: Mãe?
 Alex: O que é isso em cima de você?
 Alex: Ela está dormindo... está doente!! 
+Alex: Ou pior!
 Alex: Preciso fazer algo para ajudá-la!
 Alex: Será que a lanterna irá funcionar aqui também?
 [title=M6MomRoomSceneEnd]
