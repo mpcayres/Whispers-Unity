@@ -10,7 +10,17 @@ public class Spirit : MonoBehaviour {
     public int number;
     public static int maxEvilKilled = 4;
 
-  
+    public AudioClip sound;
+
+    private AudioSource source { get { return GetComponent<AudioSource>(); } }
+
+    void Start() {
+
+        gameObject.AddComponent<AudioSource>();
+        source.clip = sound;
+        source.playOnAwake = false;
+    }
+
     void Update () {
         if (newHealth != 0 && assimilatedHealth == false)
         {
@@ -56,6 +66,8 @@ public class Spirit : MonoBehaviour {
         if (gameObject.activeSelf && collision.gameObject.tag.Equals("Flashlight"))
         {
             health -= Time.deltaTime;
+            if (!source.isPlaying)
+                source.PlayOneShot(sound);
         }
         if(canKill && collision.gameObject.tag.Equals("Player"))
         {
