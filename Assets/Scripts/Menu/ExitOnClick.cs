@@ -17,8 +17,8 @@ public class ExitOnClick : MonoBehaviour {
     {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        UnityEditor.EditorApplication.isPlaying = false;
         #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
         #else
 		Application.Quit ();
         #endif

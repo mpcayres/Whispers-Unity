@@ -13,8 +13,12 @@ public class Mission8 : Mission {
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     bool falaMae = false, falaGato = false;
+    bool changed = false;
+    float portaDefaultX, portaDefaultY;
     Book book;
     GameObject player, fosforo, isqueiro, faca, pedra, luminaria, fireEvent;
+
+    bool birdsActive = false;
 
     // ANALISAR DIFICULDADE DO NIVEL E DOS DIFERENTES OBJETOS - FACA, PEDRO, FOSFORO, ISQUEIRO
     public override void InitMission()
@@ -29,6 +33,7 @@ public class Mission8 : Mission {
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         MissionManager.instance.invertWorldBlocked = false;
+        MissionManager.instance.invertWorld = false;
         Book.bookBlocked = false;
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
@@ -39,15 +44,33 @@ public class Mission8 : Mission {
         isqueiro = player.transform.Find("Isqueiro").gameObject;
         faca = player.transform.Find("Faca").gameObject;
         pedra = player.transform.Find("Pedra").gameObject;
-        
+
+
         // Adiciona todas as páginas, para testar
-        /*Book.pageQuantity = 5;
+        Book.pageQuantity = 5;
         bool[] pages = { true, true, true, true, true };
-        Book.pages = pages;*/
+        Book.pages = pages;
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
+        if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+        {
+
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            if (porta.GetComponent<Collider2D>().isTrigger == true && !changed)
+            {
+                MissionManager.instance.scenerySounds2.PlayDoorOpen(1);
+                changed = true;
+                porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
+                porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
+            }
+        }
         if (secao == enumMission.NIGHT)
         {
             if (!MissionManager.instance.GetMissionStart())
@@ -153,6 +176,18 @@ public class Mission8 : Mission {
                 }
             }
         }
+        if(GameObject.Find("BirdEmitterCollider"))
+            birdsActive = GameObject.Find("BirdEmitterCollider").gameObject.activeInHierarchy;
+        if (birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
+        {
+            float value = Random.value;
+            if (value > 0)
+                MissionManager.instance.scenerySounds.PlayBird(4);
+            else
+                MissionManager.instance.scenerySounds.PlayBird(1);
+
+        }
+
     }
 
     public override void SetCorredor()
@@ -269,7 +304,12 @@ public class Mission8 : Mission {
         {
             // Porta momentaneamente travada
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            portaDefaultX = porta.transform.position.x;
+            portaDefaultY = porta.transform.position.y;
+            float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
             porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
         }
     }
 
@@ -391,11 +431,11 @@ public class Mission8 : Mission {
 
         if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneEnd");
+            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
         }
         else if (secao == enumMission.CORVO_APARECE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd");
+            MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
 
             CreateCorvoCat();
 
@@ -404,7 +444,7 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd");
+            MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
 
             CreateCorvoBird();
 
@@ -413,15 +453,15 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
         {
-            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = true;
-
-            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-            Corvo.instance.FollowPlayer();
+            //GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            //porta.GetComponent<Collider2D>().isTrigger = true;
+            //Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            //Corvo.instance.FollowPlayer();
+            MissionManager.instance.Invoke("InvokeMission", 3f);
         }
         else if (secao == enumMission.MAE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd");
+            MissionManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
 
             MissionManager.instance.AddObject("mom", "", new Vector3(-3.1f, 1f, -0.5f), new Vector3(0.3f, 0.3f, 1));
         }
@@ -522,6 +562,15 @@ public class Mission8 : Mission {
 
     public override void InvokeMission()
     {
+        if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
+        {
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = true;
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            Corvo.instance.FollowPlayer();
+        }
+
+
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             if (secao == enumMission.CORVO_ATACA_CAT)

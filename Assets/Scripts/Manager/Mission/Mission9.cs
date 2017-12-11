@@ -30,6 +30,12 @@ public class Mission9 : Mission {
         GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
 
         Book.bookBlocked = false;
+        MissionManager.instance.invertWorld = false;
+
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
