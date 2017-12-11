@@ -9,7 +9,7 @@ public class Mission8 : Mission {
         CORVO_APARECE_BIRD, CORVO_ATACA_BIRD_INIT, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
     enumMission secao;
 
-    bool hasPanela = false, endCat = false;
+    bool hasPanela = false, endCat = false, invertLocal = false;
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     bool falaMae = false, falaGato = false;
@@ -59,6 +59,19 @@ public class Mission8 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
+        if (MissionManager.instance.invertWorld && !invertLocal)
+        {
+            invertLocal = true;
+            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+            mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
+        }
+        else if (!MissionManager.instance.invertWorld && invertLocal)
+        {
+            invertLocal = false;
+            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+            mainLight.transform.Rotate(new Vector3(40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
+        }
+
         if (secao == enumMission.NIGHT)
         {
             if (!MissionManager.instance.GetMissionStart())
