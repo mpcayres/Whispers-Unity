@@ -488,8 +488,6 @@ Alex: Acho que eu deveria parar de iluminar os roxos...
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M7KidRoomSceneStart]
-Alex: Quantas páginas será que ainda faltam?
-Alex: Elas parecem estar contando algo...
 [title=M7KidRoomSceneEnd]
 [title=M7KidRoomSceneRepeat]
 [title=M7KidRoomSceneRepeatEnd]
@@ -505,6 +503,8 @@ Alex: Elas parecem estar contando algo...
 [title=M7GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M7MomRoomSceneStart]
+Alex: Quantas páginas será que ainda faltam?
+Alex: Elas parecem estar contando algo...
 [title=M7MomRoomSceneEnd]
 [title=M7MomRoomSceneRepeat]
 [title=M7MomRoomSceneRepeatEnd]
