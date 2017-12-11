@@ -408,7 +408,25 @@ Alex: O que?!?! Não consigo?
 [title=M6GardenSceneStart]
 Alex: Atze?
 Alex: O que são essas folhas?
+Alex: Hm... Essas folhas secas só servem para...
+Atze: Miau!
+Alex: Isso! Queimá-las!
+Alex: Mas não sei se isso vai ajudar
+Alex: a tirar aquele monstro de cima de mamãe!
+Alex: Preciso de algo maior.
 [title=M6GardenSceneEnd]
+[title=M6IncorrectTree]
+Alex: Acho que seria melhor uma árvore perto de casa...
+[title=M6IncorrectTreeEnd]
+[title=M6HasEverything]
+Alex: Ótimo, eu posso facilmente acender a árvore!
+[title=M6HasEverythingEnd]
+[title=M6HasntEverything]
+Alex: Eu precisaria de algo para atear fogo nessa árvore.
+[title=M6HasntEverythingEnd]
+[title=M6FireTree]
+Alex: Preciso ver se isso funcionou!!
+[title=M6FireTreeEnd]
 [title=M6GardenSceneRepeat]
 [title=M6GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
@@ -429,6 +447,15 @@ Alex: sentimentos negativos de mamãe?
 Alex: Preciso encontrar uma forma de assustá-lo.
 Alex: Devo ver se não deixei nada passar no jardim.
 [title=M6AfterFlashlightShutdownEnd]
+[title=M6BeforeFinal]
+Alex: Achei uma página! Aquele mostro sumiu daqui...
+Alex: Minha mãe parece bem melhor.
+Alex: Agora só falta ver se consigo sair desse mundo.
+[title=M6BeforeFinalEnd]
+[title=M6Final]
+Alex: Ufa, consegui!
+Alex: Mas... por que está tudo tão escuro?
+[title=M6FinalEnd]
 [title=M6MomRoomSceneRepeat]
 [title=M6MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
