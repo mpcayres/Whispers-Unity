@@ -297,7 +297,7 @@ public class Mission2 : Mission {
                 corvo.GetComponent<Corvo>().speed = 0.1f;
                 corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f;
                 var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-                main.startSpeed = 1;
+                main.startSpeed = 0.8f;
 
                 MissionManager.instance.Invoke("InvokeMission", 5f);
             }

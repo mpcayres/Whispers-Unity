@@ -209,6 +209,8 @@ public class Mission8 : Mission {
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
 
+        GameObject.Find("VasoNaoEmpurravel").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/vasoPlanta_quebrado");
+
         if (secao == enumMission.BOTIJAO_BIRD)
         {
             // Luminaria com faisca
@@ -666,11 +668,11 @@ public class Mission8 : Mission {
 
     private GameObject CreateCorvoCat()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
-        corvo.GetComponent<Corvo>().speed = 0.2f; // velocidade do corvo
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(3.5f, 4.8f, 1));
+        corvo.GetComponent<Corvo>().speed = 0.08f; // velocidade do corvo
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-        main.startSpeed = 1; // velocidade dos pássaros
+        main.startSpeed = 0.8f; // velocidade dos pássaros
         main.duration = 8f; // tempo do ciclo de ataque dos pássaros
         main.startLifetime = 8f; // tempo de vida dos pássaros - em geral, coloco igual ao tempo do ciclo
 
@@ -679,11 +681,11 @@ public class Mission8 : Mission {
 
     private GameObject CreateCorvoBird()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(5.2f, 5.2f, 1));
-        corvo.GetComponent<Corvo>().speed = 0.25f;
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.8f;
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4f, 5.2f, 1));
+        corvo.GetComponent<Corvo>().speed = 0.08f;
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.6f;
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-        main.startSpeed = 1.5f;
+        main.startSpeed = 1f;
         main.duration = 6f;
         main.startLifetime = 6f;
 
