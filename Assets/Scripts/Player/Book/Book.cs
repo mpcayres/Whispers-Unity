@@ -39,8 +39,8 @@ public class Book : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && !MissionManager.instance.blocked
-            && !MissionManager.instance.pausedObject && !bookBlocked)
+        if ((Input.GetKeyDown(KeyCode.J) || (Input.GetKeyDown(KeyCode.X) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
+            && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
         }

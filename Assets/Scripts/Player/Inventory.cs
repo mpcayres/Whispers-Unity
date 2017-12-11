@@ -47,18 +47,17 @@ public class Inventory : MonoBehaviour {
     void Start ()
     {
         // Adiciona todos os objetos, para testar
-        NewItem(InventoryItems.RACAO);
+        /*NewItem(InventoryItems.RACAO);
         NewItem(InventoryItems.TAMPA);
         NewItem(InventoryItems.FACA);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);
-        NewItem(InventoryItems.FLASHLIGHT);
+        NewItem(InventoryItems.FLASHLIGHT);*/
 
         gameObject.AddComponent<AudioSource>();
         source.clip = sound;
         source.playOnAwake = false;
-
     }
 	
 	void Update ()
@@ -176,6 +175,7 @@ public class Inventory : MonoBehaviour {
         currentItem = pos;
         if (pos != -1)
         {
+            if(menuItem == null) menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
             if (!menuItem.activeSelf) menuItem.SetActive(true);
             menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
             menuItem.GetComponent<Image>().preserveAspect = true;
@@ -194,6 +194,7 @@ public class Inventory : MonoBehaviour {
     {
 
         // Não permite ter mais de um mesmo objeto no inventário
+        if (listItems == null) listItems = new List<DataItems>();
         if (listItems.Count > 0) {
             foreach (DataItems i in listItems)
             {

@@ -231,6 +231,12 @@ Alex: Acho que devo tentar de novo.
 
 -------------------------------------- MISSAO 4 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
+[title=M4DicaCorredor]
+Alex: Talvez se eu tentasse ir para aquele lugar de novo...
+[title=M4DicaCorredorEnd]
+[title=M4DicaQuartoMae]
+Alex: Não posso chegar perto...
+[title=M4DicaQuartoMaeEnd]
 [title=OQ]
 Alex: Já era o vaso da mamãe.
 [title=OQEnd]
@@ -249,7 +255,7 @@ Alex: Você consegue me ajudar, Atze?
 Alex: Tenho que distraí-la.
 Alex: Eu poderia fazer um grande barulho.
 Alex: Acho melhor destruir algo no corredor.
-Alex: pra ela conseguir ouvir.
+Alex: Assim ela conseguirá ouvir.
 [question=3] O que quer fazer agora?
 [choice]Convencer o gato a quebrar algo
 [choice]Quebrar algo sozinho 
@@ -257,11 +263,6 @@ Alex: pra ela conseguir ouvir.
 [title=EuJaTenhoIsso]
 Alex: Eu já tenho isso.
 [title=EuJaTenhoIssoEnd]
-[title=IndicarNecessidade]
-Alex: Preciso de algo para não me machucar quebrando.
-Alex: Acho melhor destruir algo no corredor.
-Alex: pra ela conseguir ouvir.
-[title=IndicarNecessidadeEnd]
 [title=VerdadeOuMentira]
 Mãe: O que está fazendo aqui?!
 Mãe: Foi você que quebrou o vaso!?
@@ -350,8 +351,7 @@ Alex: "Precisamos de Luz!"... O que isso quer dizer?
 [title=M5KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M5GardenSceneStart]
-Alex: O que são essas páginas espalhadas?
-Alex: Acho que são do livro.
+Alex: Esse livro está faltando várias páginas.
 Alex: Vou tentar reuni-las.
 [title=M5GardenSceneEnd]
 [title=M5GardenSpiritKilled]

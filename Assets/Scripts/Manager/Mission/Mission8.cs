@@ -272,6 +272,7 @@ public class Mission8 : Mission {
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
 
+        // Pedra, caso não tenha
         if (!Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
         {
             GameObject pedra1 = GameObject.Find("monte_pedra").gameObject;
@@ -289,6 +290,9 @@ public class Mission8 : Mission {
             scenePickUpObject2.sprite2 = pedra2.GetComponent<SpriteRenderer>().sprite;
             scenePickUpObject2.blockAfterPick = true;
             scenePickUpObject2.item = Inventory.InventoryItems.PEDRA;
+
+            GameObject pedra = MissionManager.instance.AddObject("PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1.3f));
+            pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
         }
 
         if (!Inventory.HasItemType(Inventory.InventoryItems.FACA) && !Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
