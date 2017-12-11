@@ -180,6 +180,11 @@ public class Mission8 : Mission {
 
     public override void SetCorredor()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         MissionManager.instance.scenerySounds.StopSound();
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -203,6 +208,11 @@ public class Mission8 : Mission {
 
     public override void SetCozinha()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         MissionManager.instance.scenerySounds.PlayDrop();
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -248,6 +258,11 @@ public class Mission8 : Mission {
 
     public override void SetJardim()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -255,6 +270,30 @@ public class Mission8 : Mission {
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             MissionManager.instance.Invoke("InvokeMission", 2f);
+        }
+
+        if (!Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
+        {
+            GameObject pedra1 = GameObject.Find("monte_pedra").gameObject;
+            pedra1.tag = "ScenePickUpObject";
+            ScenePickUpObject scenePickUpObject = pedra1.AddComponent<ScenePickUpObject>();
+            scenePickUpObject.sprite1 = pedra1.GetComponent<SpriteRenderer>().sprite;
+            scenePickUpObject.sprite2 = pedra1.GetComponent<SpriteRenderer>().sprite;
+            scenePickUpObject.blockAfterPick = true;
+            scenePickUpObject.item = Inventory.InventoryItems.PEDRA;
+
+            GameObject pedra2 = GameObject.Find("monte_pedra (1)").gameObject;
+            pedra2.tag = "ScenePickUpObject";
+            ScenePickUpObject scenePickUpObject2 = pedra2.AddComponent<ScenePickUpObject>();
+            scenePickUpObject2.sprite1 = pedra2.GetComponent<SpriteRenderer>().sprite;
+            scenePickUpObject2.sprite2 = pedra2.GetComponent<SpriteRenderer>().sprite;
+            scenePickUpObject2.blockAfterPick = true;
+            scenePickUpObject2.item = Inventory.InventoryItems.PEDRA;
+        }
+
+        if (!Inventory.HasItemType(Inventory.InventoryItems.FACA) && !Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M8PedraJardim", "M8PedraJardimEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
         }
 
         if (secao == enumMission.FINAL_CAT)
@@ -265,6 +304,11 @@ public class Mission8 : Mission {
 
     public override void SetQuartoKid()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -303,6 +347,11 @@ public class Mission8 : Mission {
 
     public override void SetQuartoMae()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -499,7 +548,7 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
-            if (tag.Equals("EstanteTrigger") && !estanteBurn)
+            if (tag.Equals("EnterEstanteTrigger") && !estanteBurn)
             {
                 fosforo.GetComponent<MiniGameObject>().activated = true;
                 isqueiro.GetComponent<MiniGameObject>().activated = true;
@@ -509,7 +558,7 @@ public class Mission8 : Mission {
                 isqueiro.GetComponent<MiniGameObject>().posFlareY = 1.64f;
                 estanteTrigger = true;
             }
-            else if (tag.Equals("PoltronaTrigger") && !poltronaBurn)
+            else if (tag.Equals("EnterPoltronaTrigger") && !poltronaBurn)
             {
                 fosforo.GetComponent<MiniGameObject>().activated = true;
                 isqueiro.GetComponent<MiniGameObject>().activated = true;
@@ -519,7 +568,7 @@ public class Mission8 : Mission {
                 isqueiro.GetComponent<MiniGameObject>().posFlareY = 1.6f;
                 poltronaTrigger = true;
             }
-            else if (tag.Equals("SofaTrigger") && !sofaBurn)
+            else if (tag.Equals("EnterSofaTrigger") && !sofaBurn)
             {
                 fosforo.GetComponent<MiniGameObject>().activated = true;
                 isqueiro.GetComponent<MiniGameObject>().activated = true;
@@ -538,8 +587,12 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_BIRD)
         {
-            if (tag.Equals("GasTrigger"))
+            if (tag.Equals("EnterGasTrigger"))
             {
+                if (!Inventory.HasItemType(Inventory.InventoryItems.FACA) && !Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
+                {
+                    MissionManager.instance.rpgTalk.NewTalk("M8PedraCozinha", "M8PedraCozinhaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+                }
                 faca.GetComponent<MiniGameObject>().posFlareX = -4.1f;
                 faca.GetComponent<MiniGameObject>().posFlareY = 1f;
                 pedra.GetComponent<MiniGameObject>().posFlareX = -4.1f;
@@ -596,7 +649,7 @@ public class Mission8 : Mission {
 
     private GameObject CreateCorvoCat()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(5f, 5f, 1));
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
         corvo.GetComponent<Corvo>().speed = 0.2f; // velocidade do corvo
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
@@ -609,13 +662,13 @@ public class Mission8 : Mission {
 
     private GameObject CreateCorvoBird()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
-        corvo.GetComponent<Corvo>().speed = 0.3f;
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(5.2f, 5.2f, 1));
+        corvo.GetComponent<Corvo>().speed = 0.25f;
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.8f;
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-        main.startSpeed = 3;
-        main.duration = 5f;
-        main.startLifetime = 5f;
+        main.startSpeed = 1.5f;
+        main.duration = 6f;
+        main.startLifetime = 6f;
 
         return corvo;
     }

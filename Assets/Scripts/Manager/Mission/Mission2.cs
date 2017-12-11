@@ -428,7 +428,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
-            if (tag.Equals("VelaTrigger"))
+            if (tag.Equals("EnterVelaTrigger"))
             {
                 vela.GetComponent<PlaceObject>().inArea = true;
             }
@@ -439,7 +439,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            if (tag.Equals("VelaTrigger"))
+            if (tag.Equals("EnterVelaTrigger"))
             {
                 fosforo.GetComponent<MiniGameObject>().activated = true;
             }

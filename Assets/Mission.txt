@@ -478,6 +478,7 @@ Alex: Acho que eu deveria parar de iluminar os roxos...
 [title=M6CorridorSceneRepeatEnd]
 
 
+
 -------------------------------------- MISSAO 7 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 ----------------------------------- ESCOLHAS -----------------------------------
@@ -516,6 +517,7 @@ Alex: Elas parecem estar contando algo...
 [title=M7CorridorSceneRepeatEnd]
 
 
+
 -------------------------------------- MISSAO 8 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=Dica8PB]
@@ -533,6 +535,12 @@ Mãe: O que você está fazendo?
 Mãe: O que está acontecendo?
 Alex: Mãe, só peço que acredite em mim...
 [title=M8MomCatEnd]
+[title=M8PedraCozinha]
+Alex: Preciso achar algo para destruir o cabo do gás...
+[title=M8PedraCozinhaEnd]
+[title=M8PedraJardim]
+Alex: Deve ter algo aqui para me ajudar.
+[title=M8PedraJardimEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
