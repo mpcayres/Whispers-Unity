@@ -27,9 +27,8 @@ public class Inventory : MonoBehaviour {
     static GameObject menuItem;
     MissionManager missionManager;
 
-    void Awake ()
+    private void Awake()
     {
-        listItems = new List<DataItems>();
         menu = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu").gameObject;
         menu.SetActive(false);
         menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
@@ -38,6 +37,11 @@ public class Inventory : MonoBehaviour {
         box = Resources.Load<Sprite>("Sprites/UI/box");
         selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
         missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+    }
+
+    void Start ()
+    {
+        listItems = new List<DataItems>();
         
         // Adiciona todos os objetos, para testar
         /*NewItem(InventoryItems.RACAO);
