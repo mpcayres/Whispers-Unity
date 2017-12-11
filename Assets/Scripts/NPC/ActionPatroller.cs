@@ -12,29 +12,36 @@ public class ActionPatroller : MonoBehaviour {
 
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
-
-        if (changeSizeByDirection)
+        if (target != null)
         {
-            int direction = target.GetComponent<Patroller>().GetDirection(); ;
-            switch (direction)
+            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
+
+            if (changeSizeByDirection)
             {
-                case 0:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
-                    break;
-                case 1:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
-                    break;
-                case 2:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
-                    break;
-                case 3:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-                    break;
-                default:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-                    break;
+                int direction = target.GetComponent<Patroller>().GetDirection(); ;
+                switch (direction)
+                {
+                    case 0:
+                        GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
+                        break;
+                    case 1:
+                        GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
+                        break;
+                    case 2:
+                        GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
+                        break;
+                    case 3:
+                        GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+                        break;
+                    default:
+                        GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+                        break;
+                }
             }
+        }
+        else
+        {
+            target = GameObject.FindGameObjectWithTag(tagAction);
         }
     }
 
