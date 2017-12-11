@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 
 public class Mission8 : Mission {
-    enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT, MAE_CAT, FINAL_CAT,
-        CORVO_APARECE_BIRD, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
+    enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT_INIT, CORVO_ATACA_CAT, MAE_CAT, FINAL_CAT,
+        CORVO_APARECE_BIRD, CORVO_ATACA_BIRD_INIT, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
     enumMission secao;
 
     bool hasPanela = false, endCat = false;
@@ -59,18 +59,6 @@ public class Mission8 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-        if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
-        {
-
-            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            if (porta.GetComponent<Collider2D>().isTrigger == true && !changed)
-            {
-                MissionManager.instance.scenerySounds2.PlayDoorOpen(1);
-                changed = true;
-                porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
-                porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
-            }
-        }
         if (secao == enumMission.NIGHT)
         {
             if (!MissionManager.instance.GetMissionStart())
@@ -96,14 +84,14 @@ public class Mission8 : Mission {
         {
             if (!MissionManager.instance.rpgTalk.isPlaying)
             {
-                EspecificaEnum((int)enumMission.CORVO_ATACA_CAT);
+                EspecificaEnum((int)enumMission.CORVO_ATACA_CAT_INIT);
             }
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
             if (!MissionManager.instance.rpgTalk.isPlaying)
             {
-                EspecificaEnum((int)enumMission.CORVO_ATACA_BIRD);
+                EspecificaEnum((int)enumMission.CORVO_ATACA_BIRD_INIT);
             }
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
@@ -451,13 +439,20 @@ public class Mission8 : Mission {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<Collider2D>().isTrigger = false;
         }
+        else if (secao == enumMission.CORVO_ATACA_CAT_INIT || secao == enumMission.CORVO_ATACA_BIRD_INIT)
+        {
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = true;
+            MissionManager.instance.scenerySounds2.PlayDoorOpen(1);
+            porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
+            porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
+
+            MissionManager.instance.Invoke("InvokeMission", 3f);
+        }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
         {
-            //GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            //porta.GetComponent<Collider2D>().isTrigger = true;
-            //Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-            //Corvo.instance.FollowPlayer();
-            MissionManager.instance.Invoke("InvokeMission", 3f);
+            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            Corvo.instance.FollowPlayer();
         }
         else if (secao == enumMission.MAE_CAT)
         {
@@ -562,31 +557,32 @@ public class Mission8 : Mission {
 
     public override void InvokeMission()
     {
-        if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
-        {
-            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = true;
-            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-            Corvo.instance.FollowPlayer();
-        }
-
-
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             if (secao == enumMission.CORVO_ATACA_CAT)
             {
-                CreateCorvoCat();
-                player.GetComponent<Player>().ChangeCorvoPosition();
-                Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-                Corvo.instance.FollowPlayer();
+                GameObject corvo = CreateCorvoCat();
+                corvo.GetComponent<Corvo>().ChangePosition(
+                    player.GetComponent<Player>().GetCorvoPositionX(), player.GetComponent<Player>().GetCorvoPositionY());
+                corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                corvo.GetComponent<Corvo>().FollowPlayer();
             }
             else if (secao == enumMission.CORVO_ATACA_BIRD)
             {
-                CreateCorvoBird();
-                player.GetComponent<Player>().ChangeCorvoPosition();
-                Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-                Corvo.instance.FollowPlayer();
+                GameObject corvo = CreateCorvoBird();
+                corvo.GetComponent<Corvo>().ChangePosition(
+                    player.GetComponent<Player>().GetCorvoPositionX(), player.GetComponent<Player>().GetCorvoPositionY());
+                corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                corvo.GetComponent<Corvo>().FollowPlayer();
             }
+        }
+        else if  (secao == enumMission.CORVO_ATACA_CAT_INIT)
+        {
+            EspecificaEnum((int)enumMission.CORVO_ATACA_CAT);
+        }
+        else if (secao == enumMission.CORVO_ATACA_BIRD_INIT)
+        {
+            EspecificaEnum((int)enumMission.CORVO_ATACA_BIRD);
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
@@ -598,18 +594,20 @@ public class Mission8 : Mission {
         }
     }
 
-    private void CreateCorvoCat()
+    private GameObject CreateCorvoCat()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
-        corvo.GetComponent<Corvo>().speed = 0.3f; // velocidade do corvo
+        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(5f, 5f, 1));
+        corvo.GetComponent<Corvo>().speed = 0.2f; // velocidade do corvo
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
         var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
-        main.startSpeed = 2; // velocidade dos pássaros
+        main.startSpeed = 1; // velocidade dos pássaros
         main.duration = 8f; // tempo do ciclo de ataque dos pássaros
         main.startLifetime = 8f; // tempo de vida dos pássaros - em geral, coloco igual ao tempo do ciclo
+
+        return corvo;
     }
 
-    private void CreateCorvoBird()
+    private GameObject CreateCorvoBird()
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
         corvo.GetComponent<Corvo>().speed = 0.3f;
@@ -618,5 +616,8 @@ public class Mission8 : Mission {
         main.startSpeed = 3;
         main.duration = 5f;
         main.startLifetime = 5f;
+
+        return corvo;
     }
+
  }

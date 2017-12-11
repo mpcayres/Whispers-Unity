@@ -37,7 +37,7 @@ public class Cat : MonoBehaviour {
 	
 	void Update () {
 
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        spriteRenderer.sortingOrder = -12 + Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         if (followingPlayer)
         {
