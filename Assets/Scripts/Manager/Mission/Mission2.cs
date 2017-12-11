@@ -82,6 +82,12 @@ public class Mission2 : Mission {
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
+        if (MissionManager.instance.previousSceneName.Equals("QuartoKid") &&
+            (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2))
+        {
+            MissionManager.instance.rpgTalk.NewTalk("M2CorridorSceneRepeat", "M2CorridorSceneRepeatEnd");
+        }
+
         MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.INICIO_SOZINHO)
         {
@@ -265,6 +271,8 @@ public class Mission2 : Mission {
                 trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
 
                 fosforo = GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject;
+
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
             }
             else if (secao == enumMission.FINAL_CONTESTA)
             {
@@ -351,7 +359,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
 

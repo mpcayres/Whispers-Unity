@@ -2,6 +2,7 @@
 [title=Trancada]
 Alex: A porta está trancada.
 [title=TrancadaEnd]
+
 -------------------------------------- MISSAO 1 ----------------------------------------------------
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M1Q0C0]
@@ -59,6 +60,8 @@ Alex: Atze?
 [title=M1CorridorSceneRepeat]
 [title=M1CorridorSceneRepeatEnd]
 
+
+
 -------------------------------------- MISSAO 2 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=M2AllObjectsRespeita]
@@ -83,13 +86,12 @@ Alex: Precisamos pegar uma arma Atze.
 Alex: Vamos nos defender do que está nos assombrando!
 [title=M2Q1C0_2End]
 [title=M2Q1C1]
-Alex: Tudo bem mamãe.
-Alex: ao menos Atze pode ficar ao meu lado...
+Alex: Tudo bem, mamãe.
+Alex: Ao menos Atze pode ficar ao meu lado...
 [title=M2Q1C1End]
 [title=M2Q1C1_2]
 Alex: Atze vamos pegar uma vela!
 Alex: Assim podemos dormir com um pouco de luz a noite!
-Alex: Preciso colocar a vela em algum local e acendê-la.
 [title=M2Q1C1_2End]
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
@@ -110,6 +112,7 @@ Alex: Eu preciso de algo para atacar...
 Alex: Eu preciso de algo para me defender...
 [title=M2KidRoomSceneTampaEnd]
 [title=M2KidRoomSceneRepeat]
+Alex: Preciso colocar a vela em algum local e acendê-la.
 [title=M2KidRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M2LivingRoomSceneStart]
@@ -143,6 +146,7 @@ Mãe: Além disso, você precisa lidar com seus medos sozinho.
 [choice]"Tudo bem mamãe, ao menos Atze pode ficar ao meu lado..."
 [title=M2CorridorSceneEnd]
 [title=M2CorridorSceneRepeat]
+Alex: Eu não posso deixar ela me ver.
 [title=M2CorridorSceneRepeatEnd]
 
 

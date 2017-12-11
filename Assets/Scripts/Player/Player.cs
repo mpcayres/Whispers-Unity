@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     MovingObject auxOnObject;
 
     public int direction = 0, wantedDirection = 0;
+    private string lastSceneGameOver = "";
     private float corvoPositionX, corvoPositionY;
     private string corvoScene;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
@@ -174,24 +175,35 @@ public class Player : MonoBehaviour {
     {
         playerState = Actions.DEFAULT;
 
+        string previousSceneName = "";
+        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        {
+            previousSceneName = lastSceneGameOver;
+        }
+        else if(!MissionManager.instance.currentSceneName.Equals("GameOver"))
+        {
+            lastSceneGameOver = MissionManager.instance.previousSceneName;
+            previousSceneName = MissionManager.instance.previousSceneName;
+        }
+
         if (!MissionManager.instance.currentSceneName.Equals(MissionManager.instance.previousSceneName))
         {
             if (MissionManager.instance.currentSceneName.Equals("Corredor"))
             {
-                if (MissionManager.instance.previousSceneName.Equals("Sala"))
+                if (previousSceneName.Equals("Sala"))
                 {
                     rb.position = new Vector2((float)-9.8, (float)-0.6);
                 }
-                else if (MissionManager.instance.previousSceneName.Equals("QuartoMae"))
+                else if (previousSceneName.Equals("QuartoMae"))
                 {
                     rb.position = new Vector2((float)-1.6, (float)-0.3);
                     ChangeDirection(3);
                 }
-                else if (MissionManager.instance.previousSceneName.Equals("Cozinha"))
+                else if (previousSceneName.Equals("Cozinha"))
                 {
                     rb.position = new Vector2((float)2.95, (float)-0.6);
                 }
-                //else if (MissionManager.instance.previousSceneName.Equals("QuartoKid"))
+                //else if (previousSceneName.Equals("QuartoKid"))
                 else
                 {
                     rb.position = new Vector2((float)11.9, (float)-0.3);
@@ -218,11 +230,11 @@ public class Player : MonoBehaviour {
             }
             else if (MissionManager.instance.currentSceneName.Equals("Sala"))
             {
-                if (MissionManager.instance.previousSceneName.Equals("Jardim"))
+                if (previousSceneName.Equals("Jardim"))
                 {
                     rb.position = new Vector2((float)2.35, (float)-2.0);
                 }
-                //else if (MissionManager.instance.previousSceneName.Equals("Corredor"))
+                //else if (previousSceneName.Equals("Corredor"))
                 else
                 {
                     rb.position = new Vector2((float)-3.15, (float)0.85);
