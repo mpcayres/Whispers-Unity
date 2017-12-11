@@ -63,6 +63,7 @@ public class MissionManager : MonoBehaviour {
             {
                 missionSelected = 1;
                 SetMission(missionSelected);
+                SaveGame(0);
             }
             else
             {
@@ -288,7 +289,7 @@ public class MissionManager : MonoBehaviour {
 
             SetMission(save.mission);
             Inventory.SetInventory(save.inventory);
-            if (save.currentItem != -1) Inventory.SetCurrentItemBeforeLoad(save.currentItem);
+            if (save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
             pathBird = save.pathBird;
             pathCat = save.pathCat;
             if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))

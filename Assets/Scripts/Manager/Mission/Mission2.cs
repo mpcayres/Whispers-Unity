@@ -74,6 +74,14 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
+        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        {
+            GameObject player = GameObject.Find("Player").gameObject;
+            GameObject cat = MissionManager.instance.AddObject(
+                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().FollowPlayer();
+        }
+
         MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.INICIO_SOZINHO)
         {
@@ -127,6 +135,14 @@ public class Mission2 : Mission {
 
 	public override void SetCozinha()
 	{
+        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        {
+            GameObject player = GameObject.Find("Player").gameObject;
+            GameObject cat = MissionManager.instance.AddObject(
+                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().FollowPlayer();
+        }
+
         MissionManager.instance.scenerySounds.PlayDrop();
         //MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
 
@@ -174,6 +190,14 @@ public class Mission2 : Mission {
 
     public override void SetQuartoKid()
     {
+        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        {
+            GameObject player = GameObject.Find("Player").gameObject;
+            GameObject cat = MissionManager.instance.AddObject(
+                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().FollowPlayer();
+        }
+
         if (MissionManager.instance.previousSceneName.Equals("GameOver") && 
             (secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
         {
@@ -182,7 +206,7 @@ public class Mission2 : Mission {
 
         if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -0.8f, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
         else if (secao == enumMission.RESPEITA_MAE)
@@ -268,6 +292,14 @@ public class Mission2 : Mission {
 
     public override void SetSala()
     {
+        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        {
+            GameObject player = GameObject.Find("Player").gameObject;
+            GameObject cat = MissionManager.instance.AddObject(
+                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().FollowPlayer();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
 
@@ -354,7 +386,7 @@ public class Mission2 : Mission {
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
             Vector3 posCorvo = Corvo.instance.transform.position;
             target1.position = posCorvo;
-            target2.position = new Vector3(-1.7f, 0.6f, -0.5f);
+            target2.position = new Vector3(-2f, 0.6f, -0.5f);
             Transform[] targets = { target1, target2 };
             Cat.instance.targets = targets;
 

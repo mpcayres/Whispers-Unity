@@ -77,7 +77,7 @@ public class Mission1 : Mission {
                 birdsActive = true;
 
             }
-            if(birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying   )
+            if(birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
             {
                 float value = Random.value;
                 if(value > 0)
@@ -357,7 +357,7 @@ public class Mission1 : Mission {
         {
             areaTriggered = true;
         }
-        else if (tag.Equals("TVTrigger") && secao == enumMission.LANTERNA_ENCONTRADA)
+        else if (tag.Equals("TVTrigger") && secao == enumMission.LANTERNA_ENCONTRADA && !birdsActive)
         {
             EspecificaEnum((int)enumMission.CORVO_VISTO);
         }
