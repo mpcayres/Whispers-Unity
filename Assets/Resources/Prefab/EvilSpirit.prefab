@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4387523443874510
 Transform:
   m_ObjectHideFlags: 1
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726150566347500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.26, y: 1.45, z: 0.043066263}
+  m_LocalPosition: {x: 2.3796666, y: 1.5121521, z: 0.043066263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,6 +72,7 @@ MonoBehaviour:
   isEvil: 1
   canKill: 0
   number: 4
+  sound: {fileID: 8300000, guid: 15c04f0a49579464fb193515f32bfbad, type: 3}
 --- !u!198 &198564932315432766
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -132,7 +133,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 675374226
+  randomSeed: -1141187767
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3404,8 +3405,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: c10b1630d5621ec48a17223c3c102023, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 79aff852550e55c48bf4029fef1595a6, type: 2}
+  - {fileID: 2100000, guid: 79aff852550e55c48bf4029fef1595a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

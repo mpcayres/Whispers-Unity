@@ -413,10 +413,10 @@ Alex: Atze?
 Alex: O que são essas folhas?
 Alex: Hm... Essas folhas secas só servem para...
 Atze: Miau!
-Alex: Isso! Queimá-las!
-Alex: Mas não sei se isso vai ajudar
-Alex: a tirar aquele monstro de cima de mamãe!
-Alex: Preciso de algo maior.
+Alex: Queima-las?
+Alex: Como isso vai ajudar a salvar a mamãe?
+Alex: Ah! Assustar o monstro?
+Alex: Ele vai achar que vou queimar a casa...
 [title=M6GardenSceneEnd]
 [title=M6IncorrectTree]
 Alex: Acho que seria melhor uma árvore perto de casa...
@@ -446,9 +446,9 @@ Alex: Parece que a lanterna só o deixa mais nervoso...
 [title=M6AfterFlashlightEnd]
 [title=M6AfterFlashlightShutdown]
 Alex: Será que esse monstro apareceu devido aos
-Alex: sentimentos negativos de mamãe?
+Alex: sentimentos negativos da mamãe?
 Alex: Preciso encontrar uma forma de assustá-lo.
-Alex: Devo ver se não deixei nada passar no jardim.
+Alex: Vou ver se não deixei nada passar no jardim.
 [title=M6AfterFlashlightShutdownEnd]
 [title=M6BeforeFinal]
 Alex: Achei uma página! Aquele mostro sumiu daqui...

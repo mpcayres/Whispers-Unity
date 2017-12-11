@@ -28,10 +28,8 @@ public class Inventory : MonoBehaviour {
     MissionManager missionManager;
 
     public AudioClip sound;
-    public static AudioClip soundNewItem;
 
     private AudioSource source { get { return GetComponent<AudioSource>(); } }
-    private AudioSource sourceNI { get { return GetComponent<AudioSource>(); } }
 
     private void Awake()
     {
@@ -49,13 +47,13 @@ public class Inventory : MonoBehaviour {
     void Start ()
     {
         // Adiciona todos os objetos, para testar
-        /*NewItem(InventoryItems.RACAO);
+        NewItem(InventoryItems.RACAO);
         NewItem(InventoryItems.TAMPA);
         NewItem(InventoryItems.FACA);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
-        NewItem(InventoryItems.ISQUEIRO);*/
-        //NewItem(InventoryItems.FLASHLIGHT);
+        NewItem(InventoryItems.ISQUEIRO);
+        NewItem(InventoryItems.FLASHLIGHT);
 
         gameObject.AddComponent<AudioSource>();
         source.clip = sound;
