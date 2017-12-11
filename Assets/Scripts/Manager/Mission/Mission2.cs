@@ -175,9 +175,9 @@ public class Mission2 : Mission {
     public override void SetQuartoKid()
     {
         if (MissionManager.instance.previousSceneName.Equals("GameOver") && 
-            (secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
+            (secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
         {
-            EspecificaEnum((int)enumMission.FINAL_CONTESTA);
+            secao = enumMission.FINAL_CONTESTA; // está fora do EspecificaEnum pq não é para chamar a fala de lá e aí ficava mais fácil
         }
 
         if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
@@ -248,7 +248,7 @@ public class Mission2 : Mission {
                 faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
                 tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
 
-                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(0.4f, 0.4f, 1));
+                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(3f, 3f, 1));
                 corvo.GetComponent<SpriteRenderer>().color = Color.black;
                 corvo.GetComponent<Corvo>().speed = 0.1f;
                 corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f;
