@@ -82,6 +82,7 @@ MonoBehaviour:
   isEvil: 0
   canKill: 1
   number: 0
+  sound: {fileID: 8300000, guid: 7edaf733bffa6c34f8dda42cd2e4d8f1, type: 3}
 --- !u!198 &198475691224858486
 ParticleSystem:
   m_ObjectHideFlags: 1

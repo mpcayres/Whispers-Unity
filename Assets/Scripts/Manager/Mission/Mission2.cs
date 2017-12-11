@@ -127,13 +127,25 @@ public class Mission2 : Mission {
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae patrulha
-            // TODO: ADICIONAR MAIS MOVIMENTOS PARA MAE, PARA NAO SER UM CAMINHO TAO OBVIO
-            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(0f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Patroller>().isPatroller = true;
-            Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
-            target1.position = new Vector3(6.8f, 0f, -0.5f);
-            target2.position = new Vector3(-2.6f, 0f, -0.5f);
-            Transform[] momTargets = { target1, target2 };
+            Transform target1 = new GameObject().transform, target2 = new GameObject().transform, target3 = new GameObject().transform;
+            Transform target4 = new GameObject().transform, target5 = new GameObject().transform, target6 = new GameObject().transform;
+            Transform target7 = new GameObject().transform, target8 = new GameObject().transform, target9 = new GameObject().transform;
+            target1.position = new Vector3(6f, -0.3f, -0.5f);
+            target2.position = new Vector3(6f, 0.5f, -0.5f);
+            target3.position = new Vector3(6f, -0.3f, -0.5f);
+            if (Random.value > 0)
+                target4.position = new Vector3(8f, -0.3f, -0.5f);
+            else
+                target5.position = new Vector3(7f, -0.3f, -0.5f);
+            target6.position = new Vector3(-3f, -0.3f, -0.5f);
+            if (Random.value > 0)
+                target7.position = new Vector3(3f, -0.3f, -0.5f);
+            else
+                target8.position = new Vector3(5f, -0.3f, -0.5f);
+            target9.position = new Vector3(-3f, -0.3f, -0.5f);
+            Transform[] momTargets = { target1, target2, target3, target4, target5, target6, target7, target8, target9 };
             mom.GetComponent<Patroller>().targets = momTargets;
             MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(0.7f, 0.7f, 1));
         }
