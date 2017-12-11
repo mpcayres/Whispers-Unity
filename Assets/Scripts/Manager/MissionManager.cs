@@ -351,7 +351,7 @@ public class MissionManager : MonoBehaviour {
 
         if (mission != null)
         {
-            levelText.text = "Chapter " + m;
+            levelText.text = "Chapter  " + m;
             levelImage.SetActive(true);
             showMissionStart = true;
             mission.InitMission();
