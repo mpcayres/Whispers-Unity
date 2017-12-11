@@ -27,6 +27,12 @@ public class Inventory : MonoBehaviour {
     static GameObject menuItem;
     MissionManager missionManager;
 
+    public AudioClip sound;
+    public static AudioClip soundNewItem;
+
+    private AudioSource source { get { return GetComponent<AudioSource>(); } }
+    private AudioSource sourceNI { get { return GetComponent<AudioSource>(); } }
+
     private void Awake()
     {
         menu = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu").gameObject;
@@ -50,12 +56,19 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);*/
         //NewItem(InventoryItems.FLASHLIGHT);
+
+        gameObject.AddComponent<AudioSource>();
+        source.clip = sound;
+        source.playOnAwake = false;
+
     }
 	
 	void Update ()
     {
         if (Input.GetKeyDown(KeyCode.I) && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
+            if(!source.isPlaying)
+                source.PlayOneShot(sound);
             ShowInventoryMenu();
         }
 
@@ -181,6 +194,7 @@ public class Inventory : MonoBehaviour {
 
     public static void NewItem(InventoryItems selectItem)
     {
+
         // Não permite ter mais de um mesmo objeto no inventário
         if (listItems.Count > 0) {
             foreach (DataItems i in listItems)

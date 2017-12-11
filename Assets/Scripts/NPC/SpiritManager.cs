@@ -36,10 +36,14 @@ public class SpiritManager : MonoBehaviour{
         {
             for (int i = 0; i < goodSpiritVector.Length; i++)
             {
-                if(!goodDestroyed[i])
+                if (!goodDestroyed[i])
+                {
                     goodSpiritVector[i].SetActive(false);
+                }
                 if (!evilDestroyed[i])
+                {
                     evilSpiritVector[i].SetActive(false);
+                }
             }
             active = false;
         }
