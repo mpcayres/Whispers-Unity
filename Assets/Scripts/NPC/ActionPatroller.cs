@@ -20,10 +20,10 @@ public class ActionPatroller : MonoBehaviour {
             switch (direction)
             {
                 case 0:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
+                    GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
                     break;
                 case 1:
-                    GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
+                    GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
                     break;
                 case 2:
                     GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
@@ -32,6 +32,7 @@ public class ActionPatroller : MonoBehaviour {
                     GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
                     break;
                 default:
+                    GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                     break;
             }
         }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour {
     public static Cat instance;
-    private bool followingPlayer = false;
-    private bool isPatroller = false;
     public bool followWhenClose = true;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
-
     public float speed;
+
+    private bool followingPlayer = false;
+    private bool isPatroller = false;
+    private int direction = 5, oldDirection = 5;
+
     GameObject player;
     public Animator animator;
-    private bool directionChanged = true;
-    private int direction = 0;
     SpriteRenderer spriteRenderer;
 
     public Transform[] targets;
@@ -35,7 +35,6 @@ public class Cat : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
 	void Update () {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
@@ -46,56 +45,48 @@ public class Cat : MonoBehaviour {
 
             if (dist > 0.6f)
             {
-                Vector3 aux = player.transform.position;
 
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) >
                     Mathf.Abs(player.transform.position.y - transform.position.y))
                 {
                     if (player.transform.position.x > transform.position.x)
                     {
-                        aux.x -= 0.3f;
-                        animator.SetInteger("direction", 2);
-                        animator.SetTrigger("changeState");
+                        direction = 0;
                     }
                     else
                     {
-                        aux.x += 0.3f;
-                        animator.SetInteger("direction", 3);
-                        animator.SetTrigger("changeState");
+                        direction = 1;
                     }
-                }
-                else { 
-                    if (player.transform.position.y < transform.position.y)
-                    {
-                        aux.y += 0.3f;
-                        animator.SetInteger("direction", 4);
-                        animator.SetTrigger("changeState");
-                    }
-                    else
-                    {
-                        aux.y -= 0.3f;
-                        animator.SetInteger("direction", 5);
-                        animator.SetTrigger("changeState");
-                    }
-                }
-                
-                transform.position = Vector3.MoveTowards(transform.position, aux, speed * Time.deltaTime);
-            }
-            else
-            {
-                if (player.transform.position.y > transform.position.y)
-                {
-                    animator.SetInteger("direction", 1);
-                    animator.SetTrigger("changeState");
                 }
                 else
                 {
-                    animator.SetInteger("direction", 0);
-                    animator.SetTrigger("changeState");
+                    if (player.transform.position.y < transform.position.y)
+                    {
+                        direction = 2;
+                    }
+                    else
+                    {
+                        direction = 3;
+                    }
+                }
+                
+                transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
+            }
+            else
+            {
+                if (player.transform.position.y < transform.position.y)
+                {
+                    direction = 4;
+                }
+                else
+                {
+                    direction = 5;
                 }
             }
-        }
 
+            ChangeDirectionAnimation();
+
+        }
         else if (isPatroller)
         {
             GotoNextPoint();
@@ -107,11 +98,7 @@ public class Cat : MonoBehaviour {
     {
         float step = speed * Time.deltaTime;
 
-        if (targets.Length == 0)
-            return;
-
-        animator.SetTrigger("changeState");
-        ChangeDirection();
+        if (targets.Length == 0) return;
 
         transform.position = Vector3.MoveTowards(transform.position, targets[destPoint].position, step);
 
@@ -121,22 +108,22 @@ public class Cat : MonoBehaviour {
             
             if(destPoint + 1 == targets.Length && destroyEndPath)
             {
-                animator.SetTrigger("changeState");
-                animator.SetInteger("direction", 0);
                 Destroy(gameObject);
             }
             else if (destPoint + 1 == targets.Length && stopEndPath)
             {
-                animator.SetTrigger("changeState");
-                animator.SetInteger("direction", 0);
                 Stop();
-                // Mudar animacao, ficar parado
             }
             else
             {
                 destPoint = (destPoint + 1) % targets.Length;
+                ChangeDirection();
             }
             
+        }
+        else
+        {
+            ChangeDirection();
         }
 
     }
@@ -147,17 +134,26 @@ public class Cat : MonoBehaviour {
             Mathf.Abs(targets[destPoint].position.x - transform.position.x))
         {
             if (targets[destPoint].position.x > transform.position.x)
-                animator.SetInteger("direction", 2);
+            {
+                direction = 0;
+            }
             else
-                animator.SetInteger("direction", 3);
+            {
+                direction = 1;
+            }
         }
         else
         {
             if (targets[destPoint].position.y > transform.position.y)
-                animator.SetInteger("direction", 4);
+            {
+                direction = 2;
+            }
             else
-                animator.SetInteger("direction", 5);
+            {
+                direction = 3;
+            }
         }
+        ChangeDirectionAnimation();
     }
 
     public void ChangePosition(float x, float y)
@@ -181,10 +177,22 @@ public class Cat : MonoBehaviour {
     {
         followingPlayer = false;
         isPatroller = false;
+        direction = 5;
+        ChangeDirectionAnimation();
     }
 
     public void DestroyCat()
     {
         Destroy(gameObject);
+    }
+
+    void ChangeDirectionAnimation()
+    {
+        if (oldDirection != direction)
+        {
+            animator.SetInteger("direction", direction);
+            animator.SetTrigger("changeDirection");
+            oldDirection = direction;
+        }
     }
 }

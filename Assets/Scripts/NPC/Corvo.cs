@@ -9,13 +9,14 @@ public class Corvo : MonoBehaviour {
     public float speed;
     public float timeBirdsFollow = 1f;
 
-    public Transform[] targets;
-    public Animator animator;
+    private int direction = 4, oldDirection = 4;
+
     GameObject player;
     SpriteRenderer spriteRenderer;
     GameObject birdEmitter;
-    private bool directionChanged = true;
-    private int direction = 0;
+    public Animator animator;
+
+    public Transform[] targets;
     private int destPoint = 0;
 
     void Start()
@@ -59,45 +60,41 @@ public class Corvo : MonoBehaviour {
                 {
                     if (player.transform.position.x > transform.position.x)
                     {
-                        animator.SetInteger("direction", 2);
-                        animator.SetTrigger("changeState");
+                        direction = 0;
                     }
                     else
                     {
-                        animator.SetInteger("direction", 3);
-                        animator.SetTrigger("changeState");
+                        direction = 1;
                     }
                 }
                 else
                 {
                     if (player.transform.position.y < transform.position.y)
                     {
-                        animator.SetInteger("direction", 4);
-                        animator.SetTrigger("changeState");
+                        direction = 2;
                     }
                     else
                     {
-                        animator.SetInteger("direction", 5);
-                        animator.SetTrigger("changeState");
+                        direction = 3;
                     }
                 }
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
             }
             else
             {
-                if (player.transform.position.y > transform.position.y)
+                if (player.transform.position.y < transform.position.y)
                 {
-                    animator.SetInteger("direction", 1);
-                    animator.SetTrigger("changeState");
+                    direction = 4;
                 }
                 else
                 {
-                    animator.SetInteger("direction", 0);
-                    animator.SetTrigger("changeState");
+                    direction = 5;
                 }
             }
-        }
 
+            ChangeDirectionAnimation();
+
+        }
         else if (isPatroller)
         {
             GotoNextPoint();
@@ -109,17 +106,13 @@ public class Corvo : MonoBehaviour {
     {
         float step = speed * Time.deltaTime;
 
-        if (targets.Length == 0)
-            return;
-
-        ChangeDirection();
+        if (targets.Length == 0) return;
 
         transform.position = Vector3.MoveTowards(transform.position, targets[destPoint].position, step);
 
         float dist = Vector3.Distance(targets[destPoint].position, transform.position);
         if (dist < 0.4f)
         {
-            animator.SetTrigger("changeState");
             if (destPoint + 1 == targets.Length && destroyEndPath)
             {
                 Destroy(gameObject);
@@ -127,13 +120,17 @@ public class Corvo : MonoBehaviour {
             else if (destPoint + 1 == targets.Length && stopEndPath)
             {
                 Stop();
-                // Mudar animacao, ficar parado
             }
             else
             {
                 destPoint = (destPoint + 1) % targets.Length;
+                ChangeDirection();
             }
 
+        }
+        else
+        {
+            ChangeDirection();
         }
 
     }
@@ -144,27 +141,31 @@ public class Corvo : MonoBehaviour {
             Mathf.Abs(targets[destPoint].position.x - transform.position.x))
         {
             if (targets[destPoint].position.x > transform.position.x)
-                animator.SetInteger("direction", 2);
+            {
+                direction = 0;
+            }
             else
-                animator.SetInteger("direction", 3);
+            {
+                direction = 1;
+            }
         }
         else
         {
             if (targets[destPoint].position.y > transform.position.y)
-                animator.SetInteger("direction", 4);
+            {
+                direction = 2;
+            }
             else
-                animator.SetInteger("direction", 5);
+            {
+                direction = 3;
+            }
         }
+        ChangeDirectionAnimation();
     }
 
     public void ChangePosition(float x, float y)
     {
         transform.position = new Vector3(x, y, transform.position.z);
-    }
-
-    public int GetDirection()
-    {
-        return direction;
     }
 
     public void FollowPlayer()
@@ -183,11 +184,23 @@ public class Corvo : MonoBehaviour {
     {
         followingPlayer = false;
         isPatroller = false;
+        direction = 4;
+        ChangeDirectionAnimation();
     }
 
     public void DestroyRaven()
     {
         Destroy(gameObject);
         if (ActionCorvo.instance != null) ActionCorvo.instance.DestroyAction(); 
+    }
+
+    void ChangeDirectionAnimation()
+    {
+        if (oldDirection != direction)
+        {
+            animator.SetInteger("direction", direction);
+            animator.SetTrigger("changeDirection");
+            oldDirection = direction;
+        }
     }
 }
