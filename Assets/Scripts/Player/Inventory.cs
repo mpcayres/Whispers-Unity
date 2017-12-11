@@ -37,12 +37,11 @@ public class Inventory : MonoBehaviour {
         box = Resources.Load<Sprite>("Sprites/UI/box");
         selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
         missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        if (listItems == null) listItems = new List<DataItems>();
     }
 
     void Start ()
     {
-        listItems = new List<DataItems>();
-        
         // Adiciona todos os objetos, para testar
         /*NewItem(InventoryItems.RACAO);
         NewItem(InventoryItems.TAMPA);
@@ -151,9 +150,11 @@ public class Inventory : MonoBehaviour {
     {
         List<InventoryItems> list = new List<InventoryItems>();
 
-        for (int i = 0; i < listItems.Count; i++)
-        {
-            list.Add(listItems[i].type);
+        if (listItems != null) {
+            for (int i = 0; i < listItems.Count; i++)
+            {
+                list.Add(listItems[i].type);
+            }
         }
 
         return list;
@@ -168,11 +169,6 @@ public class Inventory : MonoBehaviour {
             menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
             menuItem.GetComponent<Image>().preserveAspect = true;
         }
-    }
-
-    public static void SetCurrentItemBeforeLoad(int pos)
-    {
-        currentItem = pos;
     }
 
     public static void SetInventory(List<InventoryItems> invItems)
