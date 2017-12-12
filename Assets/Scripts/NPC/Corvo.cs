@@ -197,7 +197,7 @@ public class Corvo : MonoBehaviour {
 
     void ChangeDirectionAnimation()
     {
-        if (oldDirection != direction)
+        if (oldDirection != direction && animator != null)
         {
             animator.SetInteger("direction", direction);
             animator.SetTrigger("changeDirection");

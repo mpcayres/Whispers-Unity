@@ -1316,7 +1316,7 @@ public class RPGTalk : MonoBehaviour {
 	/// </summary>
 	/// <param name="jumpQuestions">If set to <c>true</c> goes to the end of the talk, even if there were questions between it</param>
 	public void EndTalk(bool jumpQuestions = false) {
-		if (textUI && textUI.gameObject.activeInHierarchy) {
+		if (textUI && textUI.gameObject.activeInHierarchy && rpgtalkElements != null) {
 			cutscenePosition = rpgtalkElements.Count - 1;
 			if (!shouldStayOnScreen) {
 				CleanDirtySprites ();

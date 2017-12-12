@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1103832579489714
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 61343407655216614}
   - component: {fileID: 50105999824673716}
   - component: {fileID: 114966263676562284}
+  - component: {fileID: 82755673366926274}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -160,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4219609607804878}
   - component: {fileID: 114614734401517286}
+  - component: {fileID: 82312094991017760}
   m_Layer: 0
   m_Name: RPGTalk Holder
   m_TagString: Untagged
@@ -215,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1700450108064472
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1797769485256672
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4039270905943078
 Transform:
   m_ObjectHideFlags: 1
@@ -348,7 +350,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103832579489714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 2.338, z: -1}
+  m_LocalPosition: {x: 3.28, y: 2.29, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4434496203682220}
@@ -398,7 +400,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756442850427892}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.9999995}
   m_LocalScale: {x: 2.1847737, y: 2.1847742, z: 2.9624066}
   m_Children: []
@@ -554,7 +556,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.75}
+    oldSize: {x: 1.4166666, y: 1.8333334}
     newSize: {x: 1.6, y: 2.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -572,7 +574,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f702ff262de210e47b859501c2692bcf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -643,6 +645,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!82 &82312094991017760
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1568976406969704}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 49c855462770641229c932e59dd505e5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &82470496665088498
 AudioSource:
   m_ObjectHideFlags: 1
@@ -652,7 +734,87 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82755673366926274
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103832579489714}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b73832a9c6642ef4488f13d5c5606de7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -830,7 +992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.5
-  m_Text: New Text
+  m_Text: 'Alex: Deve ter algo aqui para me ajudar.'
 --- !u!114 &114308661339279998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -845,9 +1007,9 @@ MonoBehaviour:
   item: 4
   activated: 0
   achievedGoal: 0
-  timeMax: 5
-  counterMax: 20
-  refreshTimeMax: 1
+  timeMax: 10
+  counterMax: 40
+  refreshTimeMax: 0
   posFlareX: 0
   posFlareY: 0
 --- !u!114 &114336094573981668
@@ -864,8 +1026,8 @@ MonoBehaviour:
   item: 3
   activated: 0
   achievedGoal: 0
-  timeMax: 5
-  counterMax: 20
+  timeMax: 7
+  counterMax: 30
   refreshTimeMax: 1
   posFlareX: 0
   posFlareY: 0
@@ -1000,19 +1162,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9695343170627764fb5d49dea6fe06fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousSceneName: 
-  currentSceneName: 
-  mission1AssustaGato: 0
+  previousSceneName: Sala
+  currentSceneName: Jardim
+  mission1AssustaGato: 1
   mission2ContestaMae: 0
   mission4QuebraSozinho: 0
   mission8BurnCorredor: 0
   paused: 0
   pausedObject: 0
   blocked: 0
-  pathBird: 0
-  pathCat: 0
+  pathBird: 26
+  pathCat: 11
   invertWorld: 0
-  invertWorldBlocked: 1
+  invertWorldBlocked: 0
   playerProtected: 0
   rpgTalk: {fileID: 114614734401517286}
   scenerySounds: {fileID: 114365670633547336}
@@ -1047,14 +1209,14 @@ MonoBehaviour:
   otherCamera: {fileID: 0}
   txtToParse: {fileID: 4900000, guid: b51189599ee49be459453e5171734ddc, type: 3}
   enableQuickSkip: 1
-  callbackScript: {fileID: 0}
-  callbackFunction: AddCountKidRoomDialog
+  callbackScript: {fileID: 114600373000498978}
+  callbackFunction: 
   animatorWhenTalking: {fileID: 0}
   animatorBooleanName: 
   animatorIntName: 
-  cutscenePosition: 0
+  cutscenePosition: 1
   textSpeed: 30
-  currentChar: 0
+  currentChar: 40
   blinkWhenReady: {fileID: 0}
   variables: []
   shouldUsePhotos: 0
@@ -1066,15 +1228,15 @@ MonoBehaviour:
   passWithMouse: 1
   passWithInputButton: JumpText
   enablePass: 1
-  lineToStart: 
-  lineToBreak: 
+  lineToStart: M8PedraJardim
+  lineToBreak: M8PedraJardimEnd
   wordWrap: 1
   maxCharInWidth: 50
   maxCharInHeight: 50
   sprites: []
   spritesUsed: []
-  actualTextSpeed: 0
-  isPlaying: 0
+  actualTextSpeed: 30
+  isPlaying: 1
   choicePrefab: {fileID: 1247332935544908, guid: 4d99072a8a9e841559a3835c7bcbb357,
     type: 2}
   choicesParent: {fileID: 224570043974314930}
@@ -1151,8 +1313,8 @@ MonoBehaviour:
   playerState: 0
   movespeed: 0.01
   runningFactor: 3
-  animator: {fileID: 0}
-  direction: 0
+  animator: {fileID: 95882510258092630}
+  direction: 2
   wantedDirection: 0
 --- !u!114 &114887878784356826
 MonoBehaviour:
@@ -1168,9 +1330,9 @@ MonoBehaviour:
   item: 6
   activated: 0
   achievedGoal: 0
-  timeMax: 5
-  counterMax: 20
-  refreshTimeMax: 1
+  timeMax: 10
+  counterMax: 50
+  refreshTimeMax: 0
   posFlareX: 0
   posFlareY: 0
 --- !u!114 &114889501630432840
@@ -1289,8 +1451,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d71aae0d6ae411a4cb3849be1853bb58, type: 3}
+  m_SortingOrder: -229
+  m_Sprite: {fileID: 21300082, guid: d71aae0d6ae411a4cb3849be1853bb58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -88,7 +88,7 @@ public class MiniGameObject : MonoBehaviour {
 
     }
 
-    private void StopMiniGame()
+    public void StopMiniGame()
     {
         //print("STOPMINIMAGE" + item);
         MissionManager.instance.pausedObject = false;
@@ -98,8 +98,8 @@ public class MiniGameObject : MonoBehaviour {
             counter = 0;
             InitImage();
         }
-        anim.SetActive(false);
-        Destroy(flare);
+        if(anim != null) anim.SetActive(false);
+        if(flare != null) Destroy(flare);
         playing = false;
     }
 
@@ -111,26 +111,29 @@ public class MiniGameObject : MonoBehaviour {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 100);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(180, 0, 180));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
-
-        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+        
     }
 }
