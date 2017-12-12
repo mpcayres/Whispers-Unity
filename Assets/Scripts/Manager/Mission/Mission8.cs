@@ -714,13 +714,13 @@ public class Mission8 : Mission {
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(3.5f, 4.8f, 1));
         corvo.GetComponent<Corvo>().speed = 0.08f; // velocidade do corvo
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f; // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
         var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 10)); // min, max pássaros por burst e tempo para outro ciclo
         main.startSpeed = 0.8f; // velocidade dos pássaros
         main.duration = 10f; // tempo do ciclo de ataque dos pássaros        
-        main.startLifetime = 20f; // tempo de vida dos pássaros
+        main.startLifetime = 18f; // tempo de vida dos pássaros, tem que ser menor que o ciclo
         main.maxParticles = 20;
 
         return corvo;
@@ -736,7 +736,7 @@ public class Mission8 : Mission {
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 8));
         main.startSpeed = 1f;
         main.duration = 8f;
-        main.startLifetime = 16f;
+        main.startLifetime = 14f;
         main.maxParticles = 20;
 
         return corvo;

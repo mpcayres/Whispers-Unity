@@ -44,10 +44,6 @@ public class Corvo : MonoBehaviour {
     {
 
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        
-        if (birdEmitter.activeSelf && birdEmitter.GetComponent<ParticleSystem>().time <= timeBirdsFollow) {
-            birdEmitter.transform.LookAt(player.transform);
-        }
 
         if (followingPlayer)
         {
@@ -99,6 +95,16 @@ public class Corvo : MonoBehaviour {
         else if (isPatroller)
         {
             GotoNextPoint();
+        }
+
+        if (birdEmitter.activeSelf /*&& birdEmitter.GetComponent<ParticleSystem>().time <= timeBirdsFollow*/)
+        {
+            //birdEmitter.transform.LookAt(player.transform);
+            //da forma comentada ele só segue o player por um período de tempo
+            //porém assim acontecia de pássaros já existentes do nada mudarem a posição
+            Vector3 dir = player.transform.position - transform.position;
+            Quaternion rot = Quaternion.LookRotation(dir);
+            birdEmitter.transform.rotation = Quaternion.Lerp(birdEmitter.transform.rotation, rot, timeBirdsFollow/2 * Time.deltaTime);
         }
 
     }
