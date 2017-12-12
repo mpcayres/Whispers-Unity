@@ -50,6 +50,14 @@ public class Mission9 : Mission {
                 EspecificaEnum((int)enumMission.INICIO);
             }
         }
+        else if (endCat && MissionManager.instance.currentSceneName.Equals("Jardim") && Cat.instance == null)
+        {
+            // Gato, correção de um erro
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().followWhenClose = false;
+            cat.GetComponent<Cat>().Stop();
+            cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
+        }
     }
 
     public override void SetCorredor()
