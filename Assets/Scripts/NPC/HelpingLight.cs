@@ -13,7 +13,7 @@ public class HelpingLight : MonoBehaviour
 
     private int destPoint = 0;
 
-    public static bool PlayerInside;
+    public bool PlayerInside;
   
     // Update is called once per frame
     void Update()
@@ -56,6 +56,7 @@ public class HelpingLight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PlayerInside = true;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -68,6 +69,9 @@ public class HelpingLight : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        if (gameObject.activeSelf && collision.gameObject.tag.Equals("Player"))
+        {
+            PlayerInside = false;
+        }
     }
 }

@@ -37,6 +37,7 @@ TagManager:
   - Pagina
   - GoodSpirit
   - EvilSpirit
+  - HelpingLight
   layers:
   - Default
   - TransparentFX
