@@ -137,6 +137,8 @@ public class Mission9 : Mission {
 
         if (Cat.instance != null) Cat.instance.DestroyCat();
 
+        GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventTree").gameObject.SetActive(true);
+
         if (endCat)
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventCat").gameObject.SetActive(true);
@@ -250,7 +252,7 @@ public class Mission9 : Mission {
 
             if (!MissionManager.instance.mission8BurnCorredor)
             {
-                player.GetComponent<Player>().ChangePositionDefault(2.2f, 1f, 0);
+                player.GetComponent<Player>().ChangePositionDefault(2.6f, 1.1f, 0);
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
@@ -392,6 +394,7 @@ public class Mission9 : Mission {
         }
         else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
         {
+            if (Corvo.instance != null) Corvo.instance.DestroyRaven();
             EspecificaEnum((int)enumMission.FINAL);
         }
     }

@@ -211,6 +211,7 @@ public class MissionManager : MonoBehaviour {
             Destroy(gameObject);
             Destroy(hud);
             if (Cat.instance != null) Cat.instance.DestroyCat();
+            if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         }
 
         InvertWorld(invertWorld);
