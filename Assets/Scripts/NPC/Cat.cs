@@ -200,9 +200,16 @@ public class Cat : MonoBehaviour {
     {
         if (oldDirection != direction)
         {
+            if (animator == null) animator = GetComponent<Animator>();
             animator.SetInteger("direction", direction);
             animator.SetTrigger("changeDirection");
             oldDirection = direction;
         }
+    }
+
+    public void ChangeDirectionAnimation(int d)
+    {
+        direction = d;
+        ChangeDirectionAnimation();
     }
 }

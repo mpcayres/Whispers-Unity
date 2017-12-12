@@ -183,12 +183,15 @@ public class Mission9 : Mission {
             MissionManager.instance.blocked = false;
 
             // Gato
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().followWhenClose = false;
             cat.GetComponent<Cat>().Stop();
+            cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
 
             // Mãe
-            MissionManager.instance.AddObject("mom", "", new Vector3(0.46f, 1.98f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mae = MissionManager.instance.AddObject("mom", "", new Vector3(0.46f, 1.98f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            mae.GetComponent<Patroller>().Stop();
+            mae.GetComponent<Patroller>().ChangeDirectionAnimation(5);
         }
         else
         {

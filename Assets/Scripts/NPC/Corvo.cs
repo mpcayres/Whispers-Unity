@@ -31,7 +31,7 @@ public class Corvo : MonoBehaviour {
             birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
 
             GameObject action = MissionManager.instance.AddObject(
-                "ActionCorvo", "", new Vector3(0f, 0f, 0), new Vector3(1*transform.localScale.x/5, 1 * transform.localScale.y / 5, 1));
+                "ActionCorvo", "", new Vector3(transform.position.x, transform.position.y, 0), new Vector3(1*transform.localScale.x/5, 1 * transform.localScale.y / 5, 1));
             var main = birdEmitter.GetComponent<ParticleSystem>().main;
         }
         else if (instance != this)

@@ -9,7 +9,7 @@ public class Mission8 : Mission {
         CORVO_APARECE_BIRD, CORVO_ATACA_BIRD_INIT, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
     enumMission secao;
 
-    bool hasPanela = false, endCat = false, invertLocal = false, gameOverSet = false;
+    bool hasPanela = false, endCat = false, invertLocal = false, gameOverSet = false, stopMiniGame = false;
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     bool falaMae = false, falaGato = false;
@@ -59,6 +59,22 @@ public class Mission8 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
+        if (MissionManager.instance.currentSceneName.Equals("GameOver") && !stopMiniGame)
+        {
+            if (fosforo != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO)
+                fosforo.GetComponent<MiniGameObject>().StopMiniGame();
+            if (isqueiro != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
+                isqueiro.GetComponent<MiniGameObject>().StopMiniGame();
+            if (faca != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
+                faca.GetComponent<MiniGameObject>().StopMiniGame();
+            if (pedra != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
+                pedra.GetComponent<MiniGameObject>().StopMiniGame();
+            stopMiniGame = true;
+        }
+        else if (MissionManager.instance.previousSceneName.Equals("GameOver") && stopMiniGame)
+        {
+            stopMiniGame = false;
+        }
 
         if (MissionManager.instance.invertWorld && !invertLocal)
         {
@@ -178,16 +194,19 @@ public class Mission8 : Mission {
                 }
             }
         }
-        if(GameObject.Find("BirdEmitterCollider"))
-            birdsActive = GameObject.Find("BirdEmitterCollider").gameObject.activeInHierarchy;
-        if (birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
-        {
-            float value = Random.value;
-            if (value > 0)
-                MissionManager.instance.scenerySounds.PlayBird(4);
-            else
-                MissionManager.instance.scenerySounds.PlayBird(1);
 
+        if (GameObject.Find("BirdEmitterCollider"))
+        {
+            birdsActive = GameObject.Find("BirdEmitterCollider").gameObject.activeInHierarchy;
+            if (birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
+            {
+                float value = Random.value;
+                if (value > 0)
+                    MissionManager.instance.scenerySounds.PlayBird(4);
+                else
+                    MissionManager.instance.scenerySounds.PlayBird(1);
+
+            }
         }
 
     }
@@ -250,9 +269,6 @@ public class Mission8 : Mission {
 
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
-            faca.GetComponent<MiniGameObject>().StopMiniGame();
-            pedra.GetComponent<MiniGameObject>().StopMiniGame();
-
             gameOverSet = true;
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
@@ -265,21 +281,7 @@ public class Mission8 : Mission {
             panela.GetComponent<ScenePickUpObject>().enabled = true;
         }
 
-        if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
-        {
-            // Isqueiro
-            GameObject armario = GameObject.Find("Armario2").gameObject;
-            SceneObject sceneObject = armario.GetComponent<SceneObject>();
-            armario.tag = "ScenePickUpObject";
-            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
-            scenePickUpObject.sprite1 = sceneObject.sprite1;
-            scenePickUpObject.sprite2 = sceneObject.sprite2;
-            scenePickUpObject.positionSprite = sceneObject.positionSprite;
-            scenePickUpObject.scale = sceneObject.scale;
-            scenePickUpObject.isUp = sceneObject.isUp;
-            scenePickUpObject.item = Inventory.InventoryItems.ISQUEIRO;
-        }
-        else if (secao == enumMission.CORVO_ATACA_BIRD)
+        if (secao == enumMission.CORVO_ATACA_BIRD)
         {
             // Botijao
             GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
@@ -449,16 +451,30 @@ public class Mission8 : Mission {
 
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
-            fosforo.GetComponent<MiniGameObject>().StopMiniGame();
-            isqueiro.GetComponent<MiniGameObject>().StopMiniGame();
-
             gameOverSet = true;
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
 
         if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
-            MissionManager.instance.Invoke("InvokeMission", 1.2f);
+            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd", false);
+
+            if (secao == enumMission.MAE_CAT)
+            {
+                EspecificaEnum((int)enumMission.MAE_CAT);
+            }
+
+            // Isqueiro
+            GameObject armario = GameObject.Find("escrivaninha").gameObject;
+            SceneObject sceneObject = armario.GetComponent<SceneObject>();
+            armario.tag = "ScenePickUpObject";
+            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
+            scenePickUpObject.sprite1 = sceneObject.sprite1;
+            scenePickUpObject.sprite2 = sceneObject.sprite2;
+            scenePickUpObject.positionSprite = sceneObject.positionSprite;
+            scenePickUpObject.scale = sceneObject.scale;
+            scenePickUpObject.isUp = sceneObject.isUp;
+            scenePickUpObject.item = Inventory.InventoryItems.ISQUEIRO;
 
             estanteTrigger = poltronaTrigger = sofaTrigger = false;
 
@@ -577,7 +593,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
 
-            MissionManager.instance.AddObject("mom", "", new Vector3(-3.1f, 1f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            MissionManager.instance.AddObject("mom", "", new Vector3(-3.1f, 1.3f, -0.5f), new Vector3(0.3f, 0.3f, 1));
         }
         else if (secao == enumMission.FINAL_CAT)
         {
@@ -600,6 +616,7 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.FINAL)
         {
+            if (Cat.instance != null) Cat.instance.DestroyCat();
             MissionManager.instance.ChangeMission(9);
         }
     }
@@ -708,10 +725,6 @@ public class Mission8 : Mission {
         else if (secao == enumMission.CORVO_ATACA_BIRD_INIT)
         {
             EspecificaEnum((int)enumMission.CORVO_ATACA_BIRD);
-        }
-        else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
-        {
-            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd", false);
         }
         else if (secao == enumMission.FINAL_BIRD)
         {
