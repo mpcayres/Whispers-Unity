@@ -125,14 +125,14 @@ public class MiniGameObject : MonoBehaviour {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(180, 0, 180));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * ( 160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
         }
         
     }

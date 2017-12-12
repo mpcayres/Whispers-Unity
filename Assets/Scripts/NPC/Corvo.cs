@@ -175,6 +175,14 @@ public class Corvo : MonoBehaviour {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
+    public void LookAtPlayer()
+    {
+        if (birdEmitter != null && player != null)
+        {
+            birdEmitter.transform.LookAt(player.transform);
+        }
+    }
+
     public void FollowPlayer()
     {
         isPatroller = false;

@@ -275,6 +275,7 @@ public class Player : MonoBehaviour {
         {
             Corvo.instance.ChangePosition(corvoPositionX, corvoPositionY);
             Corvo.instance.gameObject.SetActive(true);
+            Corvo.instance.LookAtPlayer();
         }
     }
 
