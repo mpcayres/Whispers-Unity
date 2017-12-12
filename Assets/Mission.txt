@@ -488,7 +488,13 @@ Alex: Acho que eu deveria parar de iluminar os roxos...
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M7KidRoomSceneStart]
+Alex: !!!!!
+Alex: O que é isso?! Uma página!
+Alex: Muito obrigado por me ajudar a chegar aqui seguro!
 [title=M7KidRoomSceneEnd]
+[title=M7PagePicked]
+Alex: Espera, parece que não falta mais nenhuma página!!
+[title=M7PagePickedEnd]
 [title=M7KidRoomSceneRepeat]
 [title=M7KidRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA COZINHA -----------------------------------
@@ -504,8 +510,14 @@ Alex: Acho que eu deveria parar de iluminar os roxos...
 ----------------------------------- CENAS NO QUARTO DA MÃE -----------------------------------
 [title=M7MomRoomSceneStart]
 Alex: Quantas páginas será que ainda faltam?
-Alex: Elas parecem estar contando algo...
+Alex: Com esse escuro repentino...
+Alex: Preciso de um lugar seguro para ver o livro direito!
 [title=M7MomRoomSceneEnd]
+[title=M7LightFull]
+Alex: O que é essa luz?!
+Alex: Seriam aqueles sentimentos que ajudei!?
+Alex: Ela deve ter aparecido por algum motivo...
+[title=M7LightFullEnd]
 [title=M7MomRoomSceneRepeat]
 [title=M7MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
@@ -515,6 +527,7 @@ Alex: Elas parecem estar contando algo...
 [title=M7LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M7CorridorSceneStart]
+Alex: Duas? E agora... qual devo escolher?
 [title=M7CorridorSceneEnd]
 [title=M7CorridorSceneRepeat]
 [title=M7CorridorSceneRepeatEnd]
