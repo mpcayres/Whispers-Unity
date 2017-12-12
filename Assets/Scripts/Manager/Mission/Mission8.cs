@@ -711,7 +711,7 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd");
+            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd", false);
         }
         else if (secao == enumMission.FINAL_BIRD)
         {

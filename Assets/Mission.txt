@@ -505,7 +505,6 @@ Alex: Acho que não posso sair de dentro do círculo...
 [title=M7KidRoomSceneStart]
 Alex: !!!!!
 Alex: O que é isso?! Uma página!
-Alex: Muito obrigado por me ajudar a chegar aqui seguro!
 [title=M7KidRoomSceneEnd]
 [title=M7PagePicked]
 Alex: Espera, parece que não falta mais nenhuma página!!
@@ -528,7 +527,9 @@ Alex: Quantas páginas será que ainda faltam?
 Alex: Com esse escuro repentino...
 Alex: Fica complicado ver o livro desse jeito.
 Alex: Pra não dizer perigoso até...
-Alex: Preciso de um lugar seguro para ver o livro direito!
+Alex: Calma... Cadê o Atze?
+Alex: Onde será que ele foi?
+Alex: Atze?!?
 [title=M7MomRoomSceneEnd]
 [title=M7LightFull]
 Alex: O que é essa luz?!
