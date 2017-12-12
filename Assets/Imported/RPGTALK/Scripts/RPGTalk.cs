@@ -1427,7 +1427,6 @@ public class RPGTalk : MonoBehaviour {
 			}
 
             //my addition - enable player movement
-            MissionManager.instance.paused = false;
             MissionManager.instance.blocked = false;
 
 
@@ -1486,7 +1485,6 @@ public class RPGTalk : MonoBehaviour {
         if (block)
         {
             //my addition - stop player movement
-            MissionManager.instance.paused = true;
             MissionManager.instance.blocked = true;
         }
     }
