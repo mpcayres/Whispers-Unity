@@ -66,7 +66,7 @@ public class Corvo : MonoBehaviour {
                 }
                 else
                 {
-                    if (player.transform.position.y < transform.position.y)
+                    if (player.transform.position.y > transform.position.y)
                     {
                         direction = 2;
                     }

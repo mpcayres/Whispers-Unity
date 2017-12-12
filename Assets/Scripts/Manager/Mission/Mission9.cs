@@ -75,9 +75,33 @@ public class Mission9 : Mission {
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject.SetActive(true);
 
+            // Porta bloqueada
+            GameObject porta = GameObject.Find("DoorToLivingRoom").gameObject;
+            porta.GetComponent<Collider2D>().isTrigger = false;
+
+            // Porta bloqueada
+            GameObject portaF = GameObject.Find("DoorToKidRoom").gameObject;
+            float portaFDefaultY = portaF.transform.position.y;
+            float posXF = portaF.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaF.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            portaF.GetComponent<Collider2D>().isTrigger = false;
+            portaF.transform.position = new Vector3(portaF.transform.position.x - posXF, portaFDefaultY, portaF.transform.position.z);
+
+            // Porta bloqueada
+            GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject;
+            float portaMaeDefaultY = portaMae.transform.position.y;
+            float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
+
+            // Porta bloqueada
+            GameObject portaK = GameObject.Find("DoorToKitchen").gameObject;
+            portaK.GetComponent<Collider2D>().isTrigger = false;
+
             if (MissionManager.instance.mission8BurnCorredor)
             {
-                player.GetComponent<Player>().ChangePositionDefault(-6f, 0.6f, 0);
+                player.GetComponent<Player>().ChangePositionDefault(-6f, -0.4f, 0);
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
@@ -101,6 +125,11 @@ public class Mission9 : Mission {
 
     public override void SetCozinha()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 2;
@@ -151,6 +180,7 @@ public class Mission9 : Mission {
             player.GetComponent<Renderer>().enabled = true;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             player.layer = LayerMask.NameToLayer("Player");
+            MissionManager.instance.blocked = false;
 
             // Gato
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, 0), new Vector3(0.15f, 0.15f, 1));
@@ -199,6 +229,14 @@ public class Mission9 : Mission {
         {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject.SetActive(true);
 
+            // Porta bloqueada
+            GameObject porta = GameObject.Find("DoorToAlley").gameObject;
+            float portaDefaultY = porta.transform.position.y;
+            float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
+
             // Gato
             GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().followWhenClose = false;
@@ -227,6 +265,11 @@ public class Mission9 : Mission {
 
     public override void SetQuartoMae()
     {
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
@@ -249,6 +292,14 @@ public class Mission9 : Mission {
 
             // Mãe
             MissionManager.instance.AddObject("mom", "", new Vector3(2.04f, 0.94f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+
+            // Porta bloqueada
+            GameObject portaMae = GameObject.Find("DoorToAlley").gameObject;
+            float portaMaeDefaultY = portaMae.transform.position.y;
+            float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             if (!MissionManager.instance.mission8BurnCorredor)
             {
@@ -331,7 +382,7 @@ public class Mission9 : Mission {
             MissionManager.instance.InvertWorld(true);
             if (endCat)
             {
-                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(3f, 3f, 1));
+                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(4.5f, 4.5f, 1));
                 corvo.GetComponent<SpriteRenderer>().color = Color.gray;
             }
             else
@@ -339,6 +390,8 @@ public class Mission9 : Mission {
                 GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
                 corvo.GetComponent<SpriteRenderer>().color = Color.gray;
             }
+
+            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(false);
 
             MissionManager.instance.Invoke("InvokeMission", 8f);
         }
@@ -349,6 +402,7 @@ public class Mission9 : Mission {
             emitter.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
             var emAux = emitter.GetComponent<ParticleSystem>();
             var main = emAux.main;
+            emitter.GetComponent<ParticleSystemRenderer>().sortingOrder = 1;
             emAux.emission.SetBurst(0, new ParticleSystem.Burst(0, 30, 30, 0, 10));
             main.maxParticles = 30;
             emitter.SetActive(true);
@@ -394,7 +448,6 @@ public class Mission9 : Mission {
         }
         else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
         {
-            if (Corvo.instance != null) Corvo.instance.DestroyRaven();
             EspecificaEnum((int)enumMission.FINAL);
         }
     }
