@@ -46,7 +46,7 @@ public class Mission8 : Mission {
         pedra = player.transform.Find("Pedra").gameObject;
 
 
-        // Adiciona todas as páginas, para testar
+        // Adiciona todas as páginas
         Book.pageQuantity = 5;
         bool[] pages = { true, true, true, true, true };
         Book.pages = pages;

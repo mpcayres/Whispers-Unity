@@ -6,20 +6,20 @@ using UnityEngine;
 public class Book : MonoBehaviour {
 
     public static bool[] pages = { false, false, false, false, false };
-    public static int pageQuantity;
+    public static int pageQuantity = 0;
     private int pageShowing; // 0 - 2
     private bool lastPageSeen = false, seenAll = false;
 
     public static bool bookBlocked = true;
     public static bool show = false;
 
-    GameObject book, page1, page2,pagebonus;
+    GameObject book, page1, page2, pagebonus;
     MissionManager missionManager;
 
     Sprite pg1, pg2, pg3, pg4, pg5, pg6, pg78;
 
-	void Start () {
-        pageQuantity = 0;
+	void Start ()
+    {
         book = GameObject.Find("HUDCanvas").transform.Find("Book").gameObject;
         page1 = GameObject.Find("HUDCanvas").transform.Find("Book/Page 1").gameObject;
         page2 = GameObject.Find("HUDCanvas").transform.Find("Book/Page 2").gameObject;
@@ -39,7 +39,7 @@ public class Book : MonoBehaviour {
     void Update()
     {
         if ((Input.GetKeyDown(KeyCode.J) || (Input.GetKeyDown(KeyCode.X) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
-            && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
+            && !Inventory.open && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
         }

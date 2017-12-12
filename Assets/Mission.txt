@@ -338,6 +338,16 @@ Alex: Elas parecem tentar falar comigo.
 Alex: "Precisamos de Luz!"... O que isso quer dizer?
 [title=DicaMundoInvertido5End]
 ----------------------------------- ESCOLHAS -----------------------------------
+[title=M5Q5C0]
+Atze: Grrrr.
+Alex: Atze... Não me faça fazer isso...
+Atze: Grrrrrrr.
+Alex: Ok... Mas não me deixe sozinho!
+[title=M5Q5C0End]
+[title=M5Q5C1]
+Alex: Vamos, Atze!
+Alex: Precisamos descobrir o que está acontecendo.
+[title=M5Q5C1End]
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M5KidRoomSceneStart]
@@ -365,7 +375,6 @@ Alex: Preciso lê-la!
 [title=M5BookClosed]
 Alex: O que foi essa sensação?!
 Alex: Mãe...? Estou com um mal pressentimento.
-Alex: Preciso ir no quarto dela. 
 [title=M5BookClosedEnd]
 [title=M5GardenSceneRepeat]
 [title=M5GardenSceneRepeatEnd]
@@ -376,7 +385,7 @@ Alex: Preciso ir no quarto dela.
 [title=M5MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M5LivingroomSceneStart]
-Alex: Esses seres denovo...
+Alex: Esses seres de novo...
 Alex: Parece que eles ficaram mais brilhosos.
 [title=M5LivingroomSceneEnd]
 [title=M5LivingroomSceneRepeat]
@@ -387,6 +396,9 @@ Alex: Acho que preciso sair desse mundo estranho...
 [title=M5CorridorSceneEnd]
 [title=M5TryQuit]
 Alex: O que?!?! Não consigo?
+[question=5] O que quer fazer agora?
+[choice]Procurar onde se esconder
+[choice]Investigar o que está acontecendo
 [title=M5TryQuitEnd]
 [title=M5CorridorSceneRepeat]
 [title=M5CorridorSceneRepeatEnd]

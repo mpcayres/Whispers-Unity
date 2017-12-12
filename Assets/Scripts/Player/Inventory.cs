@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour {
     private static List<DataItems> listItems;
     private static int currentItem = -1;
     private int previousItem = -1;
+    public static bool open = false;
 
     GameObject menu, slotsPanel, imagesPanel;
     Sprite box, selectedBox;
@@ -62,7 +63,7 @@ public class Inventory : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        if (Input.GetKeyDown(KeyCode.I) && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !Book.show)
         {
             if(!source.isPlaying)
                 source.PlayOneShot(sound);
@@ -103,6 +104,7 @@ public class Inventory : MonoBehaviour {
     {
         if (menu.activeSelf)
         {
+            open = false;
             menu.SetActive(false);
             missionManager.paused = false;
             if (currentItem != -1)
@@ -115,6 +117,7 @@ public class Inventory : MonoBehaviour {
         }
         else
         {
+            open = true;
             menu.SetActive(true);
             missionManager.paused = true;
             int count = 0;
@@ -341,4 +344,5 @@ public class Inventory : MonoBehaviour {
        
         return false;
     }
+
 }
