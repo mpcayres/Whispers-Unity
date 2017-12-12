@@ -58,6 +58,14 @@ public class Mission9 : Mission {
             cat.GetComponent<Cat>().Stop();
             cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
         }
+        if (secao == enumMission.QUARTO_KID_CORVO_ATACA && !MissionManager.instance.scenerySounds.source.isPlaying)
+        {
+            MissionManager.instance.scenerySounds.PlayBird(1);
+        }
+        if (secao == enumMission.QUARTO_KID_CORVO && !MissionManager.instance.scenerySounds.source.isPlaying)
+        {
+            MissionManager.instance.scenerySounds.PlayDemon(1);
+        }
     }
 
     public override void SetCorredor()
@@ -408,6 +416,7 @@ public class Mission9 : Mission {
         }
         else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
         {
+            MissionManager.instance.scenerySounds.StopSound();
             GameObject emitter = Corvo.instance.transform.Find("BirdEmitterCollider").gameObject;
             Corvo.instance.timeBirdsFollow = 0f;
             emitter.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -418,11 +427,18 @@ public class Mission9 : Mission {
             main.maxParticles = 30;
             emitter.SetActive(true);
 
+            //se quiser deixar os corvos mais rápidos
+            float hSliderValue = 3.0F;
+            main.simulationSpeed = hSliderValue;
+            main.startSpeed = hSliderValue;
+
+            //mudanças de tamanho
+            main.startSize = 1.5F;
             MissionManager.instance.Invoke("InvokeMission", 5f);
         }
         else if (secao == enumMission.FINAL)
         {
-            // FIM DO JOGO
+            // FIM DO JOGO XD
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
