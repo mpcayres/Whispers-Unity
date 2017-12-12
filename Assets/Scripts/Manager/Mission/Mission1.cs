@@ -23,6 +23,10 @@ public class Mission1 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+
+        MissionManager.instance.invertWorld = false;
+        MissionManager.instance.invertWorldBlocked = true;
+
         if (MissionManager.instance.rpgTalk.isPlaying)
         {
             MissionManager.instance.rpgTalk.EndTalk();

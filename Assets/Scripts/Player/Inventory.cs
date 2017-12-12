@@ -179,7 +179,7 @@ public class Inventory : MonoBehaviour {
         if (pos != -1)
         {
             if(menuItem == null) menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
-            if (!menuItem.activeSelf) menuItem.SetActive(true);
+            if (!menuItem.activeSelf && !(MissionManager.instance.mission is Mission9)) menuItem.SetActive(true);
             menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
             menuItem.GetComponent<Image>().preserveAspect = true;
         }

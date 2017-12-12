@@ -32,9 +32,20 @@ public class Mission8 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-        MissionManager.instance.invertWorldBlocked = false;
-        MissionManager.instance.invertWorld = false;
         Book.bookBlocked = false;
+
+        MissionManager.instance.invertWorld = false;
+        MissionManager.instance.invertWorldBlocked = false;
+
+        // Adiciona todas as páginas
+        Book.pageQuantity = 5;
+        bool[] pages = { true, true, true, true, true };
+        Book.pages = pages;
+
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
@@ -44,17 +55,6 @@ public class Mission8 : Mission {
         isqueiro = player.transform.Find("Isqueiro").gameObject;
         faca = player.transform.Find("Faca").gameObject;
         pedra = player.transform.Find("Pedra").gameObject;
-
-
-        // Adiciona todas as páginas
-        Book.pageQuantity = 5;
-        bool[] pages = { true, true, true, true, true };
-        Book.pages = pages;
-        if (MissionManager.instance.rpgTalk.isPlaying)
-        {
-            MissionManager.instance.rpgTalk.EndTalk();
-        }
-
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão

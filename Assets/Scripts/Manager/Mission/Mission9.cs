@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 public class Mission9 : Mission {
-    enum enumMission { NIGHT, INICIO, SALA, CORREDOR, QUARTO_MAE, COZINHA, QUARTO_KID, FINAL };
+    enum enumMission { NIGHT, INICIO, SALA, CORREDOR, QUARTO_MAE, COZINHA, QUARTO_KID, QUARTO_KID_CORVO, QUARTO_KID_CORVO_ATACA, FINAL };
     enumMission secao;
 
     bool endCat = false;
@@ -24,18 +24,21 @@ public class Mission9 : Mission {
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
-        player = GameObject.FindGameObjectWithTag("Player").gameObject;
-
-        GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject.SetActive(false);
-        GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
 
         Book.bookBlocked = false;
+
         MissionManager.instance.invertWorld = false;
+        MissionManager.instance.invertWorldBlocked = false;
 
         if (MissionManager.instance.rpgTalk.isPlaying)
         {
             MissionManager.instance.rpgTalk.EndTalk();
         }
+
+        player = GameObject.FindGameObjectWithTag("Player").gameObject;
+
+        GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject.SetActive(false);
+        GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -74,7 +77,7 @@ public class Mission9 : Mission {
 
             if (MissionManager.instance.mission8BurnCorredor)
             {
-                player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
+                player.GetComponent<Player>().ChangePositionDefault(-6f, 0.6f, 0);
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
@@ -247,7 +250,7 @@ public class Mission9 : Mission {
 
             if (!MissionManager.instance.mission8BurnCorredor)
             {
-                player.GetComponent<Player>().ChangePositionDefault(0, -1f, 0);
+                player.GetComponent<Player>().ChangePositionDefault(2.2f, 1f, 0);
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
@@ -321,6 +324,35 @@ public class Mission9 : Mission {
         {
             SceneManager.LoadScene("QuartoKid", LoadSceneMode.Single);
         }
+        else if (secao == enumMission.QUARTO_KID_CORVO)
+        {
+            MissionManager.instance.InvertWorld(true);
+            if (endCat)
+            {
+                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(3f, 3f, 1));
+                corvo.GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+            else
+            {
+                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
+                corvo.GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+
+            MissionManager.instance.Invoke("InvokeMission", 8f);
+        }
+        else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
+        {
+            GameObject emitter = Corvo.instance.transform.Find("BirdEmitterCollider").gameObject;
+            Corvo.instance.timeBirdsFollow = 0f;
+            emitter.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            var emAux = emitter.GetComponent<ParticleSystem>();
+            var main = emAux.main;
+            emAux.emission.SetBurst(0, new ParticleSystem.Burst(0, 30, 30, 0, 10));
+            main.maxParticles = 30;
+            emitter.SetActive(true);
+
+            MissionManager.instance.Invoke("InvokeMission", 5f);
+        }
         else if (secao == enumMission.FINAL)
         {
             // FIM DO JOGO
@@ -351,6 +383,14 @@ public class Mission9 : Mission {
             EspecificaEnum((int)enumMission.QUARTO_KID);
         }
         else if (secao == enumMission.QUARTO_KID)
+        {
+            EspecificaEnum((int)enumMission.QUARTO_KID_CORVO);
+        }
+        else if (secao == enumMission.QUARTO_KID_CORVO)
+        {
+            EspecificaEnum((int)enumMission.QUARTO_KID_CORVO_ATACA);
+        }
+        else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
         {
             EspecificaEnum((int)enumMission.FINAL);
         }
