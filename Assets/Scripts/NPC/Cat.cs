@@ -167,10 +167,20 @@ public class Cat : MonoBehaviour {
         followingPlayer = true;
     }
 
+    public bool IsFollowing()
+    {
+        return followingPlayer;
+    }
+
     public void Patrol()
     {
         followingPlayer = false;
         isPatroller = true;
+    }
+
+    public bool IsPatroller()
+    {
+        return isPatroller;
     }
 
     public void Stop()

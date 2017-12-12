@@ -436,7 +436,7 @@ Alex: Ele vai achar que vou queimar a casa...
 Alex: Acho que seria melhor uma árvore perto de casa...
 [title=M6IncorrectTreeEnd]
 [title=M6HasEverything]
-Alex: Ótimo, eu posso facilmente acender a árvore!
+Alex: Perfeito, posso acender essa árvore!
 [title=M6HasEverythingEnd]
 [title=M6HasntEverything]
 Alex: Eu precisaria de algo para atear fogo nessa árvore.
