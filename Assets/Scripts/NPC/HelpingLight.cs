@@ -56,7 +56,6 @@ public class HelpingLight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerInside = true;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
