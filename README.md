@@ -13,6 +13,8 @@ Um jogo de terror psicológico focado na exploração do ambiente e realização
 
 * Objetivo (como ganha e como perde):
 
+O jogador deve seguir o fluxo da história completando as diferentes missões enquanto evita o contato com inimigos ou com áreas do cenário consideradas proibidas. As escolhas do jogador durante o jogo afetarão qual final será liberado.
+
 * História do jogo: 
 
 Era uma vez uma casa bastante majestosa, que abrigava uma família rica e próspera. Essa casa podia ser encontrada depois de trilhas, que adentram uma densa floresta, a qual possuía diversos pinheiros... altos, finos e escuros, seus galhos eram sem vida, permitindo que os gritos e os ruídos de animais selvagens, pudessem ecoar por entre o vento gélido que ali permeava, seja de noite, ou de dia. O único lugar caloroso de toda a floresta é esta casa, ou ao menos, era, depois do infortúnio cair sobre os moradores dali, suas dívidas não paravam de crescer, os mais velhos encontraram o vício, a futilidade e até mesmo a insanidade, não havia um único dia que os Cullman não lastimassem para os céus. Havia uma luz no final do túnel, quando na 8ª geração da família, os Cullman decidiram utilizar seu único herdeiro para forçar um casamento com outra família nobre, de olho unicamente no dote que iriam conseguir. Pouco antes do suplicante casamento, a mãe do noivo veio a falecer... causas? Desconhecidas. Pouco tempo depois, um após o outro, cada parente mais velho viria a definhar, até que o herdeiro que se tornou pai, foi a última vítima. Felizmente a dívida havia diminuído, junto com a quantidade de pessoas que moravam ali. No final, sobrou apenas a Viúva de seu casamento arranjado, assim como o fruto de seu “amor”, uma criança que surgiu diante de tanta desgraça.
@@ -30,6 +32,7 @@ O jogo traz as aventuras de uma criança sendo coagida por um ser misterioso que
    * Subir em objeto móvel (Ctrl+C)
    * Ação em mini-game (Espaço)
    * Mundo invertido (E)
+   * Livro (J)
 
 
 
