@@ -257,6 +257,7 @@ public class Player : MonoBehaviour {
             !MissionManager.instance.previousSceneName.Equals("GameOver") &&
             !MissionManager.instance.currentSceneName.Equals("GameOver"))
         {
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
             corvoPositionX = rb.position.x;
             corvoPositionY = rb.position.y;
             corvoScene = MissionManager.instance.currentSceneName;

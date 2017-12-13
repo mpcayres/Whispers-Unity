@@ -287,8 +287,7 @@ public class MissionManager : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + m + ".save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
-
-            SetMission(save.mission);
+            
             Inventory.SetInventory(save.inventory);
             if (save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
             pathBird = save.pathBird;
@@ -301,6 +300,9 @@ public class MissionManager : MonoBehaviour {
             mission2ContestaMae = save.mission2ContestaMae;
             mission4QuebraSozinho = save.mission4QuebraSozinho;
             mission8BurnCorredor = save.mission8BurnCorredor;
+
+            SetMission(save.mission);
+            SaveGame(0);
 
             Debug.Log("Game Loaded " + m);
 
