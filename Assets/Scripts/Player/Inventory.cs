@@ -187,9 +187,16 @@ public class Inventory : MonoBehaviour {
 
     public static void SetInventory(List<InventoryItems> invItems)
     {
-        for (int i = 0; i < invItems.Count; i++)
+        if (invItems != null) {
+            for (int i = 0; i < invItems.Count; i++)
+            {
+                NewItem(invItems[i]);
+            }
+        }
+        else
         {
-            NewItem(invItems[i]);
+            listItems = new List<DataItems>();
+            currentItem = -1;
         }
     }
 

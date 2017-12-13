@@ -58,6 +58,7 @@ public class MissionManager : MonoBehaviour {
 
             hud = GameObject.Find("HUDCanvas").gameObject;
 
+            Inventory.SetInventory(null);
             missionSelected = PlayerPrefs.GetInt("Mission");
             if (missionSelected == -1)
             {
