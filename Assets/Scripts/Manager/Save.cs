@@ -13,7 +13,7 @@ public class Save
     public float pathBird = 0;
     public float pathCat = 0;
 
-    public int lifeTampa = 0;
+    public int lifeTampa = 80;
 
     public bool mission1AssustaGato = false;
     public bool mission2ContestaMae = false;

@@ -240,6 +240,7 @@ public class Inventory : MonoBehaviour {
         {
             file = "tampa";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(true);
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
         }
         else if (selectItem == InventoryItems.PEDRA)
         {

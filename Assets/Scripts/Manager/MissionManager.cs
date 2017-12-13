@@ -62,7 +62,18 @@ public class MissionManager : MonoBehaviour {
             if (missionSelected == -1)
             {
                 missionSelected = 1;
+
                 Inventory.SetInventory(null);
+                pathBird = 0;
+                pathCat = 0;
+
+                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
+
+                mission1AssustaGato = false;
+                mission2ContestaMae = false;
+                mission4QuebraSozinho = false;
+                mission8BurnCorredor = false;
+
                 SetMission(missionSelected);
                 SaveGame(0);
             }
