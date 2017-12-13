@@ -187,6 +187,7 @@ public class Inventory : MonoBehaviour {
 
     public static void SetInventory(List<InventoryItems> invItems)
     {
+        listItems = new List<DataItems>();
         if (invItems != null) {
             for (int i = 0; i < invItems.Count; i++)
             {
@@ -195,7 +196,6 @@ public class Inventory : MonoBehaviour {
         }
         else
         {
-            listItems = new List<DataItems>();
             currentItem = -1;
         }
     }
