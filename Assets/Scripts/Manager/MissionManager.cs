@@ -456,40 +456,40 @@ public class MissionManager : MonoBehaviour {
 	public void OnMadeChoice(int questionId, int choiceID)
     {
 		if (questionId == 0) { // escolha final da missão 1
-			if (choiceID == 0) {
+			if (choiceID == 0) { // assustar gato
 				pathBird += 2;
                 rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
-			} else {
-				pathCat += 5;
+			} else { // ficar com gato
+				pathCat += 4;
                 rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
 			}
 		}
 		else if (questionId == 1) { // escolha final da missão 2
-			if (choiceID == 0) {
+			if (choiceID == 0) { // contestar mãe
 				pathBird += 6;
 				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
-			} else {
+			} else { // respeitar mãe
 				pathCat += 5;
 				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
 			}
 		}
         else if (questionId == 2) { // escolha final da missão 3
-            if (choiceID == 0) {
-                pathBird += 5;
+            if (choiceID == 0) { // mentir
+                pathBird += 4;
                 rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
-            } else {
-                pathCat += 5;
+            } else { // contar a verdade
+                pathCat += 4;
                 rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
             }
         }
         else if (questionId == 3) { // escolha inicial da missão 4 - escolha de quem vai quebrar o vaso
             if (choiceID == 0) { // quebra com o gato
-                pathCat += 3;
+                pathCat += 4;
                 mission4QuebraSozinho = false;
                 rpgTalk.NewTalk("M4Q3C0", "M4Q3C0End");
             }
             else{ // quebra sozinho
-                pathBird += 3;
+                pathBird += 4;
                 mission4QuebraSozinho = true;
                 rpgTalk.NewTalk("M4Q3C1", "M4Q3C1End"); //essa escolha está sem fala definida. falas vazias não devem ser chamadas.
             }
@@ -506,11 +506,11 @@ public class MissionManager : MonoBehaviour {
         }
         if (questionId == 5) { // escolha final da missão 5
             if (choiceID == 0) { // esconder
-                pathBird += 3;
+                pathBird += 4;
                 rpgTalk.NewTalk("M5Q5C0", "M5Q5C0End");
             }
             else { // investigar
-                pathCat += 3;
+                pathCat += 5;
                 rpgTalk.NewTalk("M5Q5C1", "M5Q5C1End");
             }
         }

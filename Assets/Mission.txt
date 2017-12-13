@@ -547,8 +547,9 @@ Alex: Atze!! O que está fazendo ai?
 Alex: Atze, o que está fazendo?
 Atze: Miaaau...
 Alex: Por que está arisco dessa forma!?
-Alex: O que? O Livro?! Espere...
+Alex: O quê? O livro?! Espere...
 Alex: Você quer que eu leia ele?
+Alex: Aqui não é seguro...
 Alex: Preciso ir para meu quarto para isso!
 Atze: Miau!
 Alex: Você deve ficar bem! Eu já volto!
@@ -558,8 +559,9 @@ Alex: Você deve ficar bem! Eu já volto!
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M7CorridorSceneStart]
 Alex: Se multiplicou em duas!
-Alex: Creio que eu deveria procurar por Atze
-Alex: Ele deve estar na sala...
+Alex: Que barulho é esse?
+Alex: Parece estar vindo da sala...
+Alex: Será que é o Atze?
 [title=M7CorridorSceneEnd]
 [title=M7Corridor2]
 Alex: Outra?!

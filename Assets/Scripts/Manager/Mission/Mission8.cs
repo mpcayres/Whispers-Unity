@@ -732,14 +732,14 @@ public class Mission8 : Mission {
         }
     }
 
-    //!!!!
+    //PathBird e PathCat variam entre 0 e 30
     //Quando mais no caminho do gato, mais fraco o corvo
     public GameObject CreateCorvoCat()
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.08f; //-(MissionManager.instance.pathCat/1000); // velocidade do corvo
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.6f; //-(MissionManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
+        corvo.GetComponent<Corvo>().speed = 0.1f - (MissionManager.instance.pathCat/1000); // velocidade do corvo
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.7f - (MissionManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
         var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 10)); // min, max pássaros por burst e tempo para outro ciclo
@@ -751,14 +751,13 @@ public class Mission8 : Mission {
         return corvo;
     }
 
-    //!!!!
     //Quando mais no caminho do corvo, mais forte ele será
     public GameObject CreateCorvoBird()
     {
         GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.08f; //+(MissionManager.instance.pathBird/1000);
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.6f; //+(MissionManager.instance.pathBird/100);
+        corvo.GetComponent<Corvo>().speed = 0.08f + (MissionManager.instance.pathBird/1000);
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f + (MissionManager.instance.pathBird/100);
         var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 8));
