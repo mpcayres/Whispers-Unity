@@ -7,6 +7,7 @@ public class LoadSceneOnClick : MonoBehaviour {
 
     public Image black;
     public Animator anim;
+
     public void LoadByIndex(int sceneIndex)
 	{
         StartCoroutine(FadingLoad(sceneIndex));
