@@ -541,14 +541,29 @@ Alex: Ela deve ter aparecido por algum motivo...
 [title=M7MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M7LivingroomSceneStart]
+Alex: Atze!! O que está fazendo ai?
 [title=M7LivingroomSceneEnd]
+[title=M7TalkedAtze]
+Alex: Atze, o que está fazendo?
+Atze: Miaaau...
+Alex: Por que está arisco dessa forma!?
+Alex: O que? O Livro?! Espere...
+Alex: Você quer que eu leia ele?
+Alex: Preciso ir para meu quarto para isso!
+Atze: Miau!
+Alex: Você deve ficar bem! Eu já volto!
+[title=M7TalkedAtzeEnd]
 [title=M7LivingroomSceneRepeat]
 [title=M7LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M7CorridorSceneStart]
 Alex: Se multiplicou em duas!
-Alex: E agora... qual devo escolher?
+Alex: Creio que eu deveria procurar por Atze
+Alex: Ele deve estar na sala...
 [title=M7CorridorSceneEnd]
+[title=M7Corridor2]
+Alex: Outra?!
+[title=M7Corridor2End]
 [title=M7CorridorSceneRepeat]
 [title=M7CorridorSceneRepeatEnd]
 
