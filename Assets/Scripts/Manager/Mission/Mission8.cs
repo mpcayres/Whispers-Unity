@@ -36,6 +36,7 @@ public class Mission8 : Mission {
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = false;
+        MissionManager.instance.paused = false;
 
         // Adiciona todas as páginas
         Book.pageQuantity = 5;

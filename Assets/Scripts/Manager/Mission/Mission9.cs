@@ -25,10 +25,11 @@ public class Mission9 : Mission {
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
 
-        Book.bookBlocked = false;
+        Book.bookBlocked = true;
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = false;
+        MissionManager.instance.paused = false;
 
         if (MissionManager.instance.rpgTalk.isPlaying)
         {
@@ -72,7 +73,7 @@ public class Mission9 : Mission {
     {
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
-        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 5;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
         GameObject.Find("MainCamera").transform.position = new Vector3(0, 0, -20);
 
@@ -148,7 +149,7 @@ public class Mission9 : Mission {
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
-        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 2;
+        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
         GameObject.Find("MainCamera").transform.position = new Vector3(0, 0, -20);
 
@@ -346,7 +347,7 @@ public class Mission9 : Mission {
     {
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
-        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
+        GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
         player.GetComponent<Player>().ChangePositionDefault(0, -1, 0);
         GameObject.Find("MainCamera").transform.position = new Vector3(0, 0, -20);
 
@@ -422,7 +423,7 @@ public class Mission9 : Mission {
             emitter.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
             var emAux = emitter.GetComponent<ParticleSystem>();
             var main = emAux.main;
-            emitter.GetComponent<ParticleSystemRenderer>().sortingOrder = 1;
+            emitter.GetComponent<ParticleSystemRenderer>().sortingOrder = 2;
             emAux.emission.SetBurst(0, new ParticleSystem.Burst(0, 30, 30, 0, 10));
             main.maxParticles = 30;
             emitter.SetActive(true);

@@ -23,9 +23,11 @@ public class Mission1 : Mission {
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        Book.bookBlocked = true;
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = true;
+        MissionManager.instance.paused = false;
 
         if (MissionManager.instance.rpgTalk.isPlaying)
         {
@@ -118,7 +120,7 @@ public class Mission1 : Mission {
         if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.AddObject("catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 6;
 
             // Porta Sala
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;

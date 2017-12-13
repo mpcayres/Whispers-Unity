@@ -45924,12 +45924,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 326.26794
+      value: 437.76797
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 215.67099
+      value: 190.67097
       objectReference: {fileID: 0}
     - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -49835,6 +49835,11 @@ Prefab:
     - target: {fileID: 1408963207443948, guid: 4671ab9d1be982144bad25b694ca36a1, type: 2}
       propertyPath: m_Name
       value: novelo
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664822956047212, guid: 4671ab9d1be982144bad25b694ca36a1,
+        type: 2}
+      propertyPath: rotateSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4671ab9d1be982144bad25b694ca36a1, type: 2}
@@ -141151,12 +141156,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 324.5
+      value: 436
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 188
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

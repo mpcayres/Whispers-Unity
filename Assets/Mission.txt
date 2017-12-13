@@ -155,7 +155,7 @@ Alex: Eu não posso deixar ela me ver.
 ----------------------------------- ESPECIAL -----------------------------------
 [title=M3Painting]
 Alex: O que você quer me mostrar com isso?
-Alex: É só o quadro dos meus bisavós.
+Alex: São só o quadro dos meus bisavós.
 Alex: Talvez eu deva me concentrar!!
 [title=M3PaintingEnd]
 [title=M3MundoInvertido]
