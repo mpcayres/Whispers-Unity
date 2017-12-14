@@ -112,8 +112,11 @@ public class Mission2 : Mission {
             portaSala.GetComponent<Collider2D>().isTrigger = false;
 
             // Porta Quarto Mae
-            GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject;
+            GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject; float portaMaeDefaultY = portaMae.transform.position.y;
+            float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
             portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae
             MissionManager.instance.AddObject("mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
