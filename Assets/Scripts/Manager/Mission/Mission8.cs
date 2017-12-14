@@ -204,9 +204,9 @@ public class Mission8 : Mission {
                 MissionManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
                 if (value > 0)
-                    MissionManager.instance.scenerySounds.PlayBird(4);
-                else
                     MissionManager.instance.scenerySounds.PlayBird(1);
+                else
+                    MissionManager.instance.scenerySounds.PlayBird(4);
 
             }
         }
