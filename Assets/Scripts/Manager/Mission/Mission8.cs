@@ -201,6 +201,7 @@ public class Mission8 : Mission {
             birdsActive = GameObject.Find("BirdEmitterCollider").gameObject.activeInHierarchy;
             if (birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
             {
+                MissionManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
                 if (value > 0)
                     MissionManager.instance.scenerySounds.PlayBird(4);

@@ -83,15 +83,17 @@ public class Mission1 : Mission {
                 birdsActive = true;
 
             }
-            if(birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
+            if(birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying && (!MissionManager.instance.currentSceneName.Equals("GameOver") || !MissionManager.instance.currentSceneName.Equals("MainMenu")))
             {
+                MissionManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
                 if(value > 0)
-                    MissionManager.instance.scenerySounds.PlayBird(4);
-                else
                     MissionManager.instance.scenerySounds.PlayBird(1);
+                else
+                    MissionManager.instance.scenerySounds.PlayBird(4);
 
             }
+            
         }
     }
 

@@ -30,6 +30,8 @@ public class ParticleCollision : MonoBehaviour {
             }
             else
             {
+                MissionManager.instance.scenerySounds.StopSound();
+                MissionManager.instance.scenerySounds2.StopSound();
                 MissionManager.instance.GameOver();
             }
         }
