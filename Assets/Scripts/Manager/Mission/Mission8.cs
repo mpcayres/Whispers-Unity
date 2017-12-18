@@ -30,26 +30,21 @@ public class Mission8 : Mission {
         MissionManager.initDir = 3;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
-        if (Cat.instance != null) Cat.instance.DestroyCat();
-        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         Book.bookBlocked = false;
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = false;
-        MissionManager.instance.paused = false;
+
+        SetInitialSettings();
 
         // Adiciona todas as páginas
         Book.pageQuantity = 5;
         bool[] pages = { true, true, true, true, true };
         Book.pages = pages;
 
-        if (MissionManager.instance.rpgTalk.isPlaying)
-        {
-            MissionManager.instance.rpgTalk.EndTalk();
-        }
-
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
+
         book = GameObject.Find("Player").gameObject.GetComponent<Book>();
         player = GameObject.Find("Player").gameObject;
         fosforo = player.transform.Find("Fosforo").gameObject;

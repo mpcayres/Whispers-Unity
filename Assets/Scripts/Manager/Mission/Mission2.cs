@@ -18,18 +18,12 @@ public class Mission2 : Mission {
         MissionManager.initDir = 1;
         SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
         secao = enumMission.NIGHT;
-        if (Cat.instance != null) Cat.instance.DestroyCat();
-        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
         Book.bookBlocked = true;
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = true;
-        MissionManager.instance.paused = false;
 
-        if (MissionManager.instance.rpgTalk.isPlaying)
-        {
-            MissionManager.instance.rpgTalk.EndTalk();
-        }
+        SetInitialSettings();
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão

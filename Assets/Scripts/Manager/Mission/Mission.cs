@@ -61,4 +61,33 @@ public abstract class Mission {
 
     public virtual void InvokeMissionChoice(int id) { } // para chamar após uma escolha ser feita
 
+    public void SetInitialSettings()
+    {
+        if (Cat.instance != null) Cat.instance.DestroyCat();
+        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+
+        MissionManager.instance.paused = false;
+
+        GameObject player = GameObject.Find("Player").gameObject;
+        GameObject fosforo = player.transform.Find("Fosforo").gameObject;
+        GameObject isqueiro = player.transform.Find("Isqueiro").gameObject;
+        GameObject faca = player.transform.Find("Faca").gameObject;
+        GameObject pedra = player.transform.Find("Pedra").gameObject;
+
+        fosforo.GetComponent<MiniGameObject>().achievedGoal = false;
+        isqueiro.GetComponent<MiniGameObject>().achievedGoal = false;
+        faca.GetComponent<MiniGameObject>().achievedGoal = false;
+        pedra.GetComponent<MiniGameObject>().achievedGoal = false;
+
+        fosforo.GetComponent<MiniGameObject>().activated = false;
+        isqueiro.GetComponent<MiniGameObject>().activated = false;
+        faca.GetComponent<MiniGameObject>().activated = false;
+        pedra.GetComponent<MiniGameObject>().activated = false;
+
+        if (MissionManager.instance.rpgTalk.isPlaying)
+        {
+            MissionManager.instance.rpgTalk.EndTalk();
+        }
+    }
+
 }
