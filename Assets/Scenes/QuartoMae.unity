@@ -35573,12 +35573,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 436
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 188
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -57117,6 +57117,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -91.135}
+--- !u!1001 &1218207958
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340735131217686, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217756300063088, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+      propertyPath: m_Name
+      value: RPGTalk Localization Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1233489579
 Prefab:
   m_ObjectHideFlags: 0
@@ -106086,12 +106132,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 441.56796
+      value: 260.56796
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 191.11198
+      value: 216.11198
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
