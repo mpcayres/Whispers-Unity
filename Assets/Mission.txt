@@ -183,8 +183,8 @@ Mãe: O que está acontecendo aqui?
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M3Q2C0]
 Alex: Não aconteceu nada!! Não importa!
-Alex: Então o que está fazendo ai parado?!
-Alex: Ande e saia daqui para eu limpar a casa!
+Mãe: Então o que está fazendo ai parado?!
+Mãe: Ande e saia daqui para eu limpar a casa!
 [title=M3Q2C0End]
 [title=M3Q2C1]
 Alex: Eu não sei, eu vi coisas estranhas ontem e hoje! 
