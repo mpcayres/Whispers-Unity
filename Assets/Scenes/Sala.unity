@@ -39033,6 +39033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e8a672f80ad8147bdbf0f357b38e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpened: 1
 --- !u!50 &488090635
 Rigidbody2D:
   serializedVersion: 4
@@ -39064,10 +39065,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000023841858, y: 0.007039875}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -39078,7 +39079,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.882548, y: 0.7750594}
+  m_Size: {x: 0.882548, y: 0.8}
   m_EdgeRadius: 0
 --- !u!212 &488090637
 SpriteRenderer:
@@ -45970,12 +45971,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 256.76797
+      value: 436.26797
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 215.67099
+      value: 187.17099
       objectReference: {fileID: 0}
     - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -49775,7 +49776,12 @@ Prefab:
     - target: {fileID: 61055017254824202, guid: 67d62a30fbe42204aa6f89286e0fbd97,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.99324274
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61055017254824202, guid: 67d62a30fbe42204aa6f89286e0fbd97,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 2.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67d62a30fbe42204aa6f89286e0fbd97, type: 2}
@@ -53476,6 +53482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e8a672f80ad8147bdbf0f357b38e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpened: 1
 --- !u!1 &725294630
 GameObject:
   m_ObjectHideFlags: 0
@@ -141202,12 +141209,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 255
+      value: 434.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 188
+      value: 159.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

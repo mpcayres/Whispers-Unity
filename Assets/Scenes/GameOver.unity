@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa95b626bd99f7b4db4418a0368fad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 0}
-  anim: {fileID: 0}
+  black: {fileID: 714124967}
+  anim: {fileID: 714124968}
 --- !u!114 &51816587
 MonoBehaviour:
   m_ObjectHideFlags: 0

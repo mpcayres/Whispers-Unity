@@ -99,17 +99,17 @@ public class Mission2 : Mission {
         {
             // Porta Cozinha
             GameObject portaCozinha = GameObject.Find("DoorToKitchen").gameObject;
-            portaCozinha.GetComponent<Collider2D>().isTrigger = false;
+            portaCozinha.GetComponent<SceneDoor>().isOpened = false;
 
             // Porta Sala
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
-            portaSala.GetComponent<Collider2D>().isTrigger = false;
+            portaSala.GetComponent<SceneDoor>().isOpened = false;
 
             // Porta Quarto Mae
             GameObject portaMae = GameObject.Find("DoorToMomRoom").gameObject; float portaMaeDefaultY = portaMae.transform.position.y;
             float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.GetComponent<SceneDoor>().isOpened = false;
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae
@@ -126,7 +126,7 @@ public class Mission2 : Mission {
             float portaMaeDefaultY = portaMae.transform.position.y;
             float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.GetComponent<SceneDoor>().isOpened = false;
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae patrulha
@@ -273,7 +273,7 @@ public class Mission2 : Mission {
             float portaDefaultY = porta.transform.position.y;
             float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
 
             if (secao == enumMission.FINAL_RESPEITA)

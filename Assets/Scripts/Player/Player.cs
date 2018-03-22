@@ -128,32 +128,32 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-        MissionManager.instance.paused = true;
+        /*MissionManager.instance.paused = true;
 
-		switch (other.tag) {
-			case "DoorToLivingroom":
-				SceneManager.LoadScene(1);
-			    break;
-		    case "DoorToAlley":
-			    SceneManager.LoadScene(2);
-			    break;
-		    case "DoorToGarden":
-			    SceneManager.LoadScene(3);
-			    break;
-		    case "DoorToKitchen":
-			    SceneManager.LoadScene(4);
-			    break;
-		    case "DoorToMomRoom":
-			    SceneManager.LoadScene(5);
-			    break;
-		    case "DoorToKidRoom":
-			    SceneManager.LoadScene(6);
-			    break;
-		default:
-			MissionManager.instance.paused = false;
-			    break;
-		}
-
+        switch (other.tag)
+        {
+            case "DoorToLivingroom":
+                SceneManager.LoadScene(1);
+                break;
+            case "DoorToAlley":
+                SceneManager.LoadScene(2);
+                break;
+            case "DoorToGarden":
+                SceneManager.LoadScene(3);
+                break;
+            case "DoorToKitchen":
+                SceneManager.LoadScene(4);
+                break;
+            case "DoorToMomRoom":
+                SceneManager.LoadScene(5);
+                break;
+            case "DoorToKidRoom":
+                SceneManager.LoadScene(6);
+                break;
+            default:
+                MissionManager.instance.paused = false;
+                break;
+        }*/
     }
 
     public void ChangeDirection(int newDirection)

@@ -390,7 +390,7 @@ public class Mission8 : Mission {
             portaDefaultY = porta.transform.position.y;
             float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
         }
     }
@@ -558,7 +558,7 @@ public class Mission8 : Mission {
             CreateCorvoCat();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
@@ -567,12 +567,12 @@ public class Mission8 : Mission {
             CreateCorvoBird();
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
         }
         else if (secao == enumMission.CORVO_ATACA_CAT_INIT || secao == enumMission.CORVO_ATACA_BIRD_INIT)
         {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = true;
+            porta.GetComponent<SceneDoor>().isOpened = true;
             MissionManager.instance.scenerySounds2.PlayDoorOpen(1);
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
             porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);

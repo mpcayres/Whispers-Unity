@@ -94,14 +94,14 @@ public class Mission9 : Mission {
 
             // Porta bloqueada
             GameObject porta = GameObject.Find("DoorToLivingRoom").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
 
             // Porta bloqueada
             GameObject portaF = GameObject.Find("DoorToKidRoom").gameObject;
             float portaFDefaultY = portaF.transform.position.y;
             float posXF = portaF.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             portaF.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            portaF.GetComponent<Collider2D>().isTrigger = false;
+            portaF.GetComponent<SceneDoor>().isOpened = false;
             portaF.transform.position = new Vector3(portaF.transform.position.x - posXF, portaFDefaultY, portaF.transform.position.z);
 
             // Porta bloqueada
@@ -109,12 +109,12 @@ public class Mission9 : Mission {
             float portaMaeDefaultY = portaMae.transform.position.y;
             float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.GetComponent<SceneDoor>().isOpened = false;
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Porta bloqueada
             GameObject portaK = GameObject.Find("DoorToKitchen").gameObject;
-            portaK.GetComponent<Collider2D>().isTrigger = false;
+            portaK.GetComponent<SceneDoor>().isOpened = false;
 
             if (MissionManager.instance.mission8BurnCorredor)
             {
@@ -191,7 +191,7 @@ public class Mission9 : Mission {
 
             // Porta bloqueada
             GameObject porta = GameObject.Find("DoorToLivingRoom").gameObject;
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
 
             // Player
             player.GetComponent<Renderer>().enabled = true;
@@ -254,7 +254,7 @@ public class Mission9 : Mission {
             float portaDefaultY = porta.transform.position.y;
             float posX = porta.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            porta.GetComponent<Collider2D>().isTrigger = false;
+            porta.GetComponent<SceneDoor>().isOpened = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
 
             // Gato
@@ -318,7 +318,7 @@ public class Mission9 : Mission {
             float portaMaeDefaultY = portaMae.transform.position.y;
             float posX = portaMae.GetComponent<SpriteRenderer>().bounds.size.x / 5;
             portaMae.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
-            portaMae.GetComponent<Collider2D>().isTrigger = false;
+            portaMae.GetComponent<SceneDoor>().isOpened = false;
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             if (!MissionManager.instance.mission8BurnCorredor)
