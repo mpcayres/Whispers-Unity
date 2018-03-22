@@ -138,7 +138,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33073365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: -88, z: 0}
+  m_LocalPosition: {x: -174.5, y: -59.5, z: 0}
   m_LocalScale: {x: 0.9998921, y: 0.9998921, z: 0.9998921}
   m_Children:
   - {fileID: 1355900598}
@@ -288,7 +288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Escolha a miss\xE3o"
+  m_Text: Choose the mission
 --- !u!222 &53237962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 66106359}
   - component: {fileID: 66106358}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SpanishText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 97392135}
   - component: {fileID: 97392134}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NewGameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Novo Jogo
+  m_Text: New Game
 --- !u!222 &97392135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 142187796}
   - component: {fileID: 142187795}
   m_Layer: 5
-  m_Name: Text
+  m_Name: EnglishText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 212467963}
   - component: {fileID: 212467962}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BackControlsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,7 +837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Voltar
+  m_Text: Back
 --- !u!222 &212467963
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -980,7 +980,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330160400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25, y: -88, z: 0}
+  m_LocalPosition: {x: 154.5, y: -59.5, z: 0}
   m_LocalScale: {x: 0.9998921, y: 0.9998921, z: 0.9998921}
   m_Children: []
   m_Father: {fileID: 532451448}
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 393257222}
   - component: {fileID: 393257221}
   m_Layer: 5
-  m_Name: LoadGame
+  m_Name: LoadGamePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,7 +1200,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393257219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45, y: -18, z: 0}
+  m_LocalPosition: {x: -134.5, y: 10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 53237960}
@@ -1786,7 +1786,7 @@ GameObject:
   - component: {fileID: 531434717}
   - component: {fileID: 531434716}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ExitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,7 +1842,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Sair
+  m_Text: Exit
 --- !u!222 &531434717
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1932,7 +1932,7 @@ RectTransform:
   m_GameObject: {fileID: 532451444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.04, z: 90}
-  m_LocalScale: {x: 0.025385927, y: 0.025385927, z: 0.025385927}
+  m_LocalScale: {x: 0.029921971, y: 0.029921971, z: 0.029921971}
   m_Children:
   - {fileID: 411349721}
   - {fileID: 1395941354}
@@ -1976,7 +1976,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 594775278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.999878, y: -18, z: 0}
+  m_LocalPosition: {x: -134.50012, y: 10.5, z: 0}
   m_LocalScale: {x: 1.0001603, y: 1.0001603, z: 1.0001603}
   m_Children:
   - {fileID: 1730548751}
@@ -3334,7 +3334,7 @@ GameObject:
   - component: {fileID: 1171022298}
   - component: {fileID: 1171022297}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PtBRText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4259,7 +4259,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1387976129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25, y: 88, z: 0}
+  m_LocalPosition: {x: 154.5, y: 59.5, z: 0}
   m_LocalScale: {x: 0.99989206, y: 0.99989206, z: 0.99989206}
   m_Children: []
   m_Father: {fileID: 532451448}
@@ -4296,7 +4296,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395941353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45, y: -18, z: 0}
+  m_LocalPosition: {x: -134.5, y: 10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434870758}
@@ -4597,7 +4597,7 @@ GameObject:
   - component: {fileID: 1505699996}
   - component: {fileID: 1505699995}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FrenchText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4655,7 +4655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: FRENCH
+  m_Text: "FRAN\xC7AIS"
 --- !u!222 &1505699996
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4674,7 +4674,7 @@ GameObject:
   - component: {fileID: 1514640020}
   - component: {fileID: 1514640019}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ControlsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4730,7 +4730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Controles
+  m_Text: Controls
 --- !u!222 &1514640020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4748,7 +4748,7 @@ GameObject:
   - component: {fileID: 1569818965}
   - component: {fileID: 1569818964}
   m_Layer: 5
-  m_Name: Text
+  m_Name: LoadGameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4804,7 +4804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Carregar Jogo
+  m_Text: Load Game
 --- !u!222 &1569818965
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 1633695870}
   - component: {fileID: 1633695869}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BackLoadGameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4881,7 +4881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Voltar
+  m_Text: Back
 --- !u!222 &1633695870
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5193,7 +5193,7 @@ GameObject:
   - component: {fileID: 1730548753}
   - component: {fileID: 1730548752}
   m_Layer: 5
-  m_Name: MissionLabel
+  m_Name: OptionsLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5251,7 +5251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Text language
+  m_Text: Language
 --- !u!222 &1730548753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5650,7 +5650,7 @@ GameObject:
   - component: {fileID: 1882281951}
   - component: {fileID: 1882281950}
   m_Layer: 5
-  m_Name: Text
+  m_Name: JapaneseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5727,7 +5727,7 @@ GameObject:
   - component: {fileID: 1884060060}
   - component: {fileID: 1884060059}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OptionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5864,7 +5864,7 @@ GameObject:
   - component: {fileID: 1886572505}
   - component: {fileID: 1886572504}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BackOptionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5922,7 +5922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Voltar
+  m_Text: Back
 --- !u!222 &1886572505
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6094,7 +6094,7 @@ GameObject:
   - component: {fileID: 1917424819}
   - component: {fileID: 1917424818}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ContinueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6150,7 +6150,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Continuar
+  m_Text: Continue
 --- !u!222 &1917424819
 CanvasRenderer:
   m_ObjectHideFlags: 0
