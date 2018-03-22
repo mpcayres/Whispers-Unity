@@ -63,10 +63,17 @@ namespace RPGTALK.Localization
 		public static RPGTalkLocalization singleton;
 
 		void Awake(){
-			singleton = this;
-			//This object often is the same in every scene, so we don't need to create it more than once.
-			DontDestroyOnLoad (gameObject);
-		}
+            if (singleton == null)
+            {
+                singleton = this;
+                //This object often is the same in every scene, so we don't need to create it more than once.
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (singleton != this)
+            {
+                Destroy(gameObject);
+            }
+        }
 
 		/// <summary>
 		/// Given a base text, returns the textAsset for the actual language
