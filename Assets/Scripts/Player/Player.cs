@@ -44,25 +44,25 @@ public class Player : MonoBehaviour {
                     move = runningFactor * movespeed;
                     isRunning = true;
                 }
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(MissionManager.instance.keyRight))
                 {
                     rb.position = new Vector2(rb.position.x + move, rb.position.y);
                     isWalking = true;
                     direction = 0;
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow))
+                else if (Input.GetKey(MissionManager.instance.keyLeft))
                 {
                     rb.position = new Vector2(rb.position.x - move, rb.position.y);
                     isWalking = true;
                     direction = 1;
                 }
-                else if (Input.GetKey(KeyCode.UpArrow))
+                else if (Input.GetKey(MissionManager.instance.keyUp))
                 {
                     rb.position = new Vector2(rb.position.x, rb.position.y + move);
                     isWalking = true;
                     direction = 2;
                 }
-                else if (Input.GetKey(KeyCode.DownArrow))
+                else if (Input.GetKey(MissionManager.instance.keyDown))
                 {
                     rb.position = new Vector2(rb.position.x, rb.position.y - move);
                     isWalking = true;
@@ -84,26 +84,26 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                if (Input.GetKey(KeyCode.LeftControl))
+                if (Input.GetKey(MissionManager.instance.keySpecial))
                 {
-                    if (Input.GetKeyDown(KeyCode.C))
+                    if (Input.GetKeyDown(MissionManager.instance.keyMove))
                     {
                         auxOnObject.MoveUp();
                     }
                 }
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(MissionManager.instance.keyRight))
                 {
                     direction = 0;
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow))
+                else if (Input.GetKey(MissionManager.instance.keyLeft))
                 {
                     direction = 1;
                 }
-                else if (Input.GetKey(KeyCode.UpArrow))
+                else if (Input.GetKey(MissionManager.instance.keyUp))
                 {
                     direction = 2;
                 }
-                else if (Input.GetKey(KeyCode.DownArrow))
+                else if (Input.GetKey(MissionManager.instance.keyDown))
                 {
                     direction = 3;
                 }
@@ -314,6 +314,7 @@ public class Player : MonoBehaviour {
         {
             playerState = Actions.DEFAULT;
             auxOnObject.GetComponent<Collider2D>().enabled = true;
+            GetComponent<Collider2D>().enabled = true;
         }
         yield break;
         Debug.Log("You'll never see this"); // produces a dead code warning

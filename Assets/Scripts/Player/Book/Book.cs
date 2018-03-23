@@ -38,7 +38,7 @@ public class Book : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.J) || (Input.GetKeyDown(KeyCode.X) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
+        if ((Input.GetKeyDown(MissionManager.instance.keyJournal) || (Input.GetKeyDown(MissionManager.instance.keyUseObject) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
             && !Inventory.open && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
@@ -90,7 +90,7 @@ public class Book : MonoBehaviour {
             }
         }
 
-        if(book.activeSelf && (Input.GetKeyDown(KeyCode.RightArrow))){
+        if(book.activeSelf && (Input.GetKeyDown(MissionManager.instance.keyRight))){
             if(pageShowing == 0 && pageQuantity >= 2 && pageShowing != 2) {
                 page1.SetActive(false); page2.SetActive(false);
                 pageShowing++; 
@@ -106,7 +106,7 @@ public class Book : MonoBehaviour {
                 pageShowing++;
             }
         }
-        if (book.activeSelf && (Input.GetKeyDown(KeyCode.LeftArrow)))
+        if (book.activeSelf && (Input.GetKeyDown(MissionManager.instance.keyLeft)))
         {
             if (pageShowing != 0)
             {

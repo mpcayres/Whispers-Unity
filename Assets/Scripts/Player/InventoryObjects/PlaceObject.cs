@@ -13,7 +13,7 @@ public class PlaceObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Inventory.GetCurrentItemType() == item && inArea && Input.GetKeyDown(KeyCode.X))
+        if (Inventory.GetCurrentItemType() == item && inArea && Input.GetKeyDown(MissionManager.instance.keyUseObject))
         {
             Inventory.DeleteItem(item);
         }

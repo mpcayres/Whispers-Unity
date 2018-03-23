@@ -40,7 +40,7 @@ public class SceneMultipleObject : MonoBehaviour {
             timeLeft -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && colliding &&
+        if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
             !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {

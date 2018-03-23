@@ -36,24 +36,24 @@ public class MovingObject : MonoBehaviour {
         }
         if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
         {
-            if (Input.GetKey(KeyCode.LeftControl) && canMoveUp)
+            if (Input.GetKey(MissionManager.instance.keySpecial) && canMoveUp)
             {
-                if (Input.GetKeyDown(KeyCode.C))
+                if (Input.GetKeyDown(MissionManager.instance.keyMove))
                 {
                     MoveUp();
                 }
             }
             else if (script.playerState != Player.Actions.ON_OBJECT)
             {
-                if (Input.GetKeyDown(KeyCode.C)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                if (Input.GetKeyDown(MissionManager.instance.keyMove)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
                     InitMove();
                 }
-                else if (Input.GetKey(KeyCode.C))
+                else if (Input.GetKey(MissionManager.instance.keyMove))
                 {
                     Move();
                 }
-                else if (Input.GetKeyUp(KeyCode.C))
+                else if (Input.GetKeyUp(MissionManager.instance.keyMove))
                 {
                     EndMove();
                 }
@@ -119,6 +119,7 @@ public class MovingObject : MonoBehaviour {
                 originalX = player.transform.position.x;
                 originalY = player.transform.position.y;
                 GetComponent<Collider2D>().enabled = false;
+                player.GetComponent<Collider2D>().enabled = false;
                 if (originalDirection == 0)
                 {
                     script.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);

@@ -44,7 +44,7 @@ public class MiniGameObject : MonoBehaviour {
                 timeLeft -= Time.deltaTime;
             }
 
-            if (Input.GetKeyDown(KeyCode.X) && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (Input.GetKeyDown(MissionManager.instance.keyUseObject) && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 //print("STARTMINIGAME" + item);
                 MissionManager.instance.pausedObject = true;
@@ -53,11 +53,11 @@ public class MiniGameObject : MonoBehaviour {
                 flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
                 playing = true;
             }
-            else if ((Input.GetKeyDown(KeyCode.X) || timeLeft <= 0) && playing)
+            else if ((Input.GetKeyDown(MissionManager.instance.keyUseObject) || timeLeft <= 0) && playing)
             {
                 StopMiniGame();
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            else if (Input.GetKeyDown(MissionManager.instance.keyMiniGame))
             {
                 counter++;
                 if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.ISQUEIRO)

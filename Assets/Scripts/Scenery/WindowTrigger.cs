@@ -32,7 +32,7 @@ public class WindowTrigger : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Z) && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+		if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
 		{
 			ChangeSprite();
 		}

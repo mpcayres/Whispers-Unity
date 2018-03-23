@@ -16,7 +16,7 @@ public class Lamp : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (Input.GetKeyDown(KeyCode.Z) && colliding &&
+        if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;

@@ -38,6 +38,12 @@ public class MissionManager : MonoBehaviour {
     public ScenerySounds scenerySounds;
     public ScenerySounds2 scenerySounds2;
 
+    public KeyCode keyUp = KeyCode.UpArrow, keyDown = KeyCode.DownArrow, keyLeft = KeyCode.LeftArrow, keyRight = KeyCode.RightArrow,
+        keyInvert = KeyCode.E, keyJournal = KeyCode.J, keyInventory = KeyCode.I,
+        keyMove = KeyCode.C, keyInteract = KeyCode.Z, keyUseObject = KeyCode.X, 
+        keySpecial = KeyCode.LeftControl, keyMiniGame = KeyCode.Space,
+        keySkip = KeyCode.Space, keyExit = KeyCode.Escape;
+
     public void Awake()
     {
         if (instance == null)
@@ -97,22 +103,22 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.EndTalk();
             }
 
-            if (!blocked && !paused && Input.GetKeyDown(KeyCode.E) && !invertWorldBlocked)
+            if (!blocked && !paused && Input.GetKeyDown(keyInvert) && !invertWorldBlocked)
             {
-                MissionManager.instance.scenerySounds.PlayDemon(6);
+                scenerySounds.PlayDemon(6);
                 InvertWorld(!invertWorld);
             }
 
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(keySkip))
             {
                 HideLevelImage();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(keyExit))
         {
             MissionManager.LoadScene(0);
         }

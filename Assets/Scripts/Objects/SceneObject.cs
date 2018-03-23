@@ -38,7 +38,7 @@ public class SceneObject : MonoBehaviour {
 
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
-            if (Input.GetKeyDown(KeyCode.Z) && colliding &&
+            if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
             !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
