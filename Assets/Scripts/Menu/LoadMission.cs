@@ -8,7 +8,7 @@ public class LoadMission : MonoBehaviour{
         int missionNumber = int.Parse(temp);
 
         PlayerPrefs.SetInt("Mission", missionNumber);
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        MissionManager.LoadScene(3);
     }
 
 }

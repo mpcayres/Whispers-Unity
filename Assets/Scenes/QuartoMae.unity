@@ -14776,6 +14776,11 @@ Prefab:
       propertyPath: canMoveUp
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
+        type: 2}
+      propertyPath: prefName
+      value: QuartoMae_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
   m_IsPrefabParent: 0
@@ -39196,6 +39201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e8a672f80ad8147bdbf0f357b38e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpened: 1
 --- !u!1 &972272113
 GameObject:
   m_ObjectHideFlags: 0

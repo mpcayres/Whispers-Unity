@@ -42,22 +42,22 @@ public class SceneDoor : MonoBehaviour
             switch (gameObject.tag)
             {
                 case "DoorToLivingroom":
-                    SceneManager.LoadScene(1);
+                    MissionManager.LoadScene(1);
                     break;
                 case "DoorToAlley":
-                    SceneManager.LoadScene(2);
+                    MissionManager.LoadScene(2);
                     break;
                 case "DoorToGarden":
-                    SceneManager.LoadScene(3);
+                    MissionManager.LoadScene(3);
                     break;
                 case "DoorToKitchen":
-                    SceneManager.LoadScene(4);
+                    MissionManager.LoadScene(4);
                     break;
                 case "DoorToMomRoom":
-                    SceneManager.LoadScene(5);
+                    MissionManager.LoadScene(5);
                     break;
                 case "DoorToKidRoom":
-                    SceneManager.LoadScene(6);
+                    MissionManager.LoadScene(6);
                     break;
                 default:
                     MissionManager.instance.paused = false;

@@ -38,14 +38,6 @@ public class MissionManager : MonoBehaviour {
     public ScenerySounds scenerySounds;
     public ScenerySounds2 scenerySounds2;
 
-    public int countKidRoomDialog = -1;
-	public int countMomRoomDialog = -1;
-	public int countLivingroomDialog = -1;
-	public int countKitchenDialog = -1;
-	public int countGardenDialog = -1;
-	public int countCorridorDialog = -1;
-
-
     public void Awake()
     {
         if (instance == null)
@@ -82,7 +74,7 @@ public class MissionManager : MonoBehaviour {
                 LoadGame(missionSelected);
             }
 
-            rpgTalk.OnMadeChoice += OnMadeChoice;
+            rpgTalk.OnChoiceMade += OnChoiceMade;
         }
         else if (instance != this)
         {
@@ -122,7 +114,7 @@ public class MissionManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            MissionManager.LoadScene(0);
         }
 
         // CHEATS
@@ -179,6 +171,42 @@ public class MissionManager : MonoBehaviour {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public static void LoadScene(string name)
+    {
+        SaveMovingObjectsPosition();
+        SceneManager.LoadScene(name);
+    }
+
+    public static void LoadScene(int index)
+    {
+        SaveMovingObjectsPosition();
+        SceneManager.LoadScene(index);
+    }
+
+    private static void SaveMovingObjectsPosition()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            {
+                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
+                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
+            }
+        }
+    }
+
+    public void DeleteAllPlayerPrefs()
+    {
+        string language = "";
+        if (PlayerPrefs.HasKey("Language"))
+        {
+            language = PlayerPrefs.GetString("Language");
+        }
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetString("Language", language);
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         previousSceneName = currentSceneName;
@@ -195,13 +223,13 @@ public class MissionManager : MonoBehaviour {
             {
                 initMission = false;
                 initX = initY = 0;
-                countKidRoomDialog = 0;
-                countMomRoomDialog = 0;
-                countLivingroomDialog = 0;
-                countKitchenDialog = 0;
-                countGardenDialog = 0;
-                countCorridorDialog = 0;
             }
+        }
+
+        if (previousSceneName.Equals("GameOver"))
+        {
+            GetComponent<Player>().enabled = true;
+            GetComponent<Renderer>().enabled = true;
         }
 
         if (currentSceneName.Equals("GameOver"))
@@ -212,11 +240,6 @@ public class MissionManager : MonoBehaviour {
             {
                 rpgTalk.EndTalk();
             }
-        }
-        else if (previousSceneName.Equals("GameOver"))
-        {
-            GetComponent<Player>().enabled = true;
-            GetComponent<Renderer>().enabled = true;
         }
         else if (currentSceneName.Equals("MainMenu"))
         {
@@ -229,6 +252,18 @@ public class MissionManager : MonoBehaviour {
         InvertWorld(invertWorld);
 
         if(mission != null) mission.LoadMissionScene();
+
+        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            {
+                print("POSNEW: " + i.GetComponent<MovingObject>().prefName);
+                i.GetComponent<MovingObject>().ChangePosition(
+                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "X"),
+                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "Y"));
+            }
+        }
     }
 
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
@@ -379,13 +414,6 @@ public class MissionManager : MonoBehaviour {
 
     public void ChangeMission(int m)
     {
-		countKidRoomDialog = 0;
-		countMomRoomDialog = 0;
-		countLivingroomDialog = 0;
-		countKitchenDialog = 0;
-		countGardenDialog = 0;
-		countCorridorDialog = 0;
-
         SetMission(m);
         SaveGame(0);
         SaveGame(missionSelected);
@@ -398,12 +426,12 @@ public class MissionManager : MonoBehaviour {
         InvertWorld(false);
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        MissionManager.LoadScene("GameOver");
     }
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(previousSceneName, LoadSceneMode.Single);
+        MissionManager.LoadScene(previousSceneName);
         blocked = false;
         hud.SetActive(true);
     }
@@ -425,75 +453,33 @@ public class MissionManager : MonoBehaviour {
         mission.InvokeMission();
     }
 
-    public void AddCountKidRoomDialog()
-    {
-		countKidRoomDialog++;
-	}
-
-	public void AddCountMomRoomDialog()
-    {
-		countMomRoomDialog++;
-	}
-
-	public void AddCountKitchenDialog()
-    {
-		countKitchenDialog++;
-	}
-
-	public void AddCountGardenDialog()
-    {
-		countGardenDialog++;
-	}
-
-	public void AddCountCorridorDialog()
-    {
-		countCorridorDialog++;
-	}
-
-	public void AddCountLivingroomDialog()
-    {
-		countCorridorDialog++;
-	}
-		
-	/*
-	public void OnNewTalk(){
-		paused = true;
-		blocked = true;
-	}
-	public void OnEndTalk(){
-		paused = false;
-		blocked = false;
-	}*/
-
-
-
-	public void OnMadeChoice(int questionId, int choiceID)
+	public void OnChoiceMade(int questionId, int choiceID)
     {
 		if (questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) { // assustar gato
 				pathBird += 2;
-                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse);;
 			} else { // ficar com gato
 				pathCat += 4;
-                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse);;
 			}
 		}
 		else if (questionId == 1) { // escolha final da missão 2
 			if (choiceID == 0) { // contestar mãe
 				pathBird += 6;
-				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse);;
 			} else { // respeitar mãe
 				pathCat += 5;
-				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse);;
 			}
 		}
         else if (questionId == 2) { // escolha final da missão 3
             if (choiceID == 0) { // mentir
                 pathBird += 4;
-                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse);;
             } else { // contar a verdade
                 pathCat += 4;
-                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse, MissionManager.instance, "AddCountLivingroomDialog");
+                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse);;
             }
         }
         else if (questionId == 3) { // escolha inicial da missão 4 - escolha de quem vai quebrar o vaso

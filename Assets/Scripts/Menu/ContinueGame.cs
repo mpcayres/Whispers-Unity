@@ -18,7 +18,7 @@ public class ContinueGame : MonoBehaviour {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
         PlayerPrefs.SetInt("Mission", 0);
-        SceneManager.LoadScene(6, LoadSceneMode.Single);
+        MissionManager.LoadScene(6);
 
     }
 }

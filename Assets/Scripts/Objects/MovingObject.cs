@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 
 public class MovingObject : MonoBehaviour {
-    GameObject player;
     public bool canMoveUp = false;
     public bool colliding = false;
+    public string prefName = ""; // Padrão: nome da cena + _ + identificador
+
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
+
+    GameObject player;
     Player script;
+
     float distanceWantedX = 0.4f;
     float distanceWantedY = 0.45f;
     int originalDirection;
     float originalX, originalY;
 
-    void Start ()
+    void Awake ()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -161,14 +165,9 @@ public class MovingObject : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void ChangePosition(float x, float y)
     {
-
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
+        rb.position = new Vector2(x, y);
     }
 
 }

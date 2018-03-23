@@ -28,7 +28,7 @@ public class Mission8 : Mission {
         MissionManager.initX = (float) 1.5;
         MissionManager.initY = (float) 0.2;
         MissionManager.initDir = 3;
-        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        MissionManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = false;
 

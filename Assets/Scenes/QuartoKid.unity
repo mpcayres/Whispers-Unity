@@ -5394,6 +5394,11 @@ Prefab:
       propertyPath: canMoveUp
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
+        type: 2}
+      propertyPath: prefName
+      value: QuartoKid_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
   m_IsPrefabParent: 0

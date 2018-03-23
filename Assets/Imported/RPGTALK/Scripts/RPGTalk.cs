@@ -271,7 +271,7 @@ public class RPGTalk : MonoBehaviour {
 
 	//Event to be called when a it play next line in the talk
 	public delegate void MadeAChoiceAction(int questionID, int choiceNumber);
-	public event MadeAChoiceAction OnMadeChoice;
+	public event MadeAChoiceAction OnChoiceMade;
 
 
 	void Start(){
@@ -1134,7 +1134,7 @@ public class RPGTalk : MonoBehaviour {
 
 	/// <summary>
 	/// Function to be called by the buttons when the user makes a choice.
-	/// This passes the talk and call the OnMadeChoice event
+	/// This passes the talk and call the OnChoiceMade event
 	/// </summary>
 	public void MadeAChoice(int questionID, int choiceNumber){
 		foreach (RPGTalkQuestion q in questions) {
@@ -1144,8 +1144,8 @@ public class RPGTalk : MonoBehaviour {
 		}
 		enablePass = true;
 		PlayNext ();
-		if (OnMadeChoice != null) {
-			OnMadeChoice (questionID, choiceNumber);
+		if (OnChoiceMade != null) {
+			OnChoiceMade (questionID, choiceNumber);
 		}
 		//delete all the buttons (and other childs) in the buttons parent
 		foreach (Transform child in choicesParent) {

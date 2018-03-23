@@ -16,7 +16,7 @@ public class Mission2 : Mission {
         MissionManager.initX = (float)1.5;
         MissionManager.initY = (float)-1.0;
         MissionManager.initDir = 1;
-        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        MissionManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = true;
 
@@ -40,7 +40,7 @@ public class Mission2 : Mission {
                 {
                     EspecificaEnum((int)enumMission.INICIO_GATO);
                 }
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
         }
         else if (secao == enumMission.RESPEITA_MAE2)
@@ -249,22 +249,22 @@ public class Mission2 : Mission {
 
             if (!Inventory.HasItemType(Inventory.InventoryItems.VELA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneVela", "M2KidRoomSceneVelaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneVela", "M2KidRoomSceneVelaEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
             else if (!Inventory.HasItemType(Inventory.InventoryItems.FOSFORO))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFosforo", "M2KidRoomSceneFosforoEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFosforo", "M2KidRoomSceneFosforoEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
         }
         else if (secao == enumMission.CONTESTA_MAE2)
         {
             if (!Inventory.HasItemType(Inventory.InventoryItems.FACA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFaca", "M2KidRoomSceneFacaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFaca", "M2KidRoomSceneFacaEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
             else if (!Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneTampa", "M2KidRoomSceneTampaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneTampa", "M2KidRoomSceneTampaEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
         }
         else if (secao == enumMission.FINAL_RESPEITA || secao == enumMission.FINAL_CONTESTA)
@@ -287,7 +287,7 @@ public class Mission2 : Mission {
 
                 fosforo = GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject;
 
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse);;
             }
             else if (secao == enumMission.FINAL_CONTESTA)
             {
@@ -350,7 +350,7 @@ public class Mission2 : Mission {
 
         if (secao == enumMission.ENCONTRA_MAE)
         {
-            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
@@ -362,15 +362,15 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.CONTESTA_MAE2)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
@@ -389,7 +389,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_CONTESTA)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
@@ -418,7 +418,7 @@ public class Mission2 : Mission {
             Corvo.instance.targets = targetsCorvo;
             Corvo.instance.speed = 0.6f;
 
-            MissionManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", MissionManager.instance.rpgTalk.txtToParse);;
 
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
         }

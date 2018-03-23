@@ -19,12 +19,15 @@ public class Mission1 : Mission {
         MissionManager.initX = (float) -2.5;
         MissionManager.initY = (float) 0.7;
         MissionManager.initDir = 0;
-        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        MissionManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = true;
 
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = true;
+
+        PlayerPrefs.DeleteKey("Corredor_0X");
+        PlayerPrefs.DeleteKey("Corredor_0Y");
 
         SetInitialSettings();
     }
@@ -97,7 +100,7 @@ public class Mission1 : Mission {
         MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountCorridorDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
             MissionManager.instance.scenerySounds.PlayCat(2);
         }
 
@@ -140,8 +143,9 @@ public class Mission1 : Mission {
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
 
             // Objeto movel que atrapalha
-            MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso", 
+            GameObject chair = MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso", 
                 new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
+            chair.GetComponent<MovingObject>().prefName = "Corredor_0";
 
             // gato andando para sala
             MissionManager.instance.scenerySounds.PlayCat(3);
@@ -227,7 +231,7 @@ public class Mission1 : Mission {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SceneDoor>().isOpened = false;
 
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
 
     }
@@ -300,11 +304,11 @@ public class Mission1 : Mission {
 
         if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse);;
 
             // Porta abrindo
             MissionManager.instance.scenerySounds.PlayCat(2);
@@ -344,7 +348,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
-            SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+            MissionManager.LoadScene(sceneInit);
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
@@ -384,10 +388,12 @@ public class Mission1 : Mission {
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
             MissionManager.instance.AddObject("catFollower", "", new Vector3(1.7f, 0.7f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "AddCountKidRoomDialog");
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse);;
         }
         else if (secao == enumMission.FINAL)
         {
+            PlayerPrefs.DeleteKey("Corredor_0X");
+            PlayerPrefs.DeleteKey("Corredor_0Y");
             MissionManager.instance.ChangeMission(2);
         }
     }

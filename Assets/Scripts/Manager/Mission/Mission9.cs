@@ -19,7 +19,7 @@ public class Mission9 : Mission {
         MissionManager.initX = (float)1.54;
         MissionManager.initY = (float)1.75;
         MissionManager.initDir = 2;
-        SceneManager.LoadScene(sceneInit, LoadSceneMode.Single);
+        MissionManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
@@ -379,23 +379,23 @@ public class Mission9 : Mission {
         MissionManager.instance.Print("SECAO: " + secao);
         if (secao == enumMission.SALA)
         {
-            SceneManager.LoadScene("Sala", LoadSceneMode.Single);
+            MissionManager.LoadScene("Sala");
         }
         else if (secao == enumMission.CORREDOR)
         {
-            SceneManager.LoadScene("Corredor", LoadSceneMode.Single);
+            MissionManager.LoadScene("Corredor");
         }
         else if (secao == enumMission.QUARTO_MAE)
         {
-            SceneManager.LoadScene("QuartoMae", LoadSceneMode.Single);
+            MissionManager.LoadScene("QuartoMae");
         }
         else if (secao == enumMission.COZINHA)
         {
-            SceneManager.LoadScene("Cozinha", LoadSceneMode.Single);
+            MissionManager.LoadScene("Cozinha");
         }
         else if (secao == enumMission.QUARTO_KID)
         {
-            SceneManager.LoadScene("QuartoKid", LoadSceneMode.Single);
+            MissionManager.LoadScene("QuartoKid");
         }
         else if (secao == enumMission.QUARTO_KID_CORVO)
         {
@@ -440,7 +440,7 @@ public class Mission9 : Mission {
         else if (secao == enumMission.FINAL)
         {
             // FIM DO JOGO XD
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            MissionManager.LoadScene("MainMenu");
         }
     }
 

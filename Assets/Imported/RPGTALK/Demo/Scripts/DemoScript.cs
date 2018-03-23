@@ -34,7 +34,7 @@ public class DemoScript : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		render = GetComponent<SpriteRenderer> ();
 		//In the tagsDemo scene, we want to do something when we make a choice...
-		rpgTalk.OnMadeChoice += OnMadeChoice;
+		rpgTalk.OnChoiceMade += OnChoiceMade;
 	}
 
 	// Update is called once per frame
@@ -128,7 +128,7 @@ public class DemoScript : MonoBehaviour {
 
 	//In the TagsDemo scene, when we make a choice let's find out what we chose
 	//and change the current language based on it
-	void OnMadeChoice(int questionId, int choiceID){
+	void OnChoiceMade(int questionId, int choiceID){
 		if (choiceID == 0) {
 			LanguageSettings.actualLanguage = SupportedLanguages.EN_US;
 		} else {
