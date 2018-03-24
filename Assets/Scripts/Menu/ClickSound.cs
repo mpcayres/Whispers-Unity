@@ -21,10 +21,7 @@ public class ClickSound : MonoBehaviour
         source.playOnAwake = false;
        button.onClick.AddListener(() => PlaySoud());
     }
-
-
-
-    // Update is called once per frame
+    
     void PlaySoud()
 
     {
