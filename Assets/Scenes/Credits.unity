@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994028200}
   - component: {fileID: 994028201}
+  - component: {fileID: 994028202}
   m_Layer: 0
   m_Name: Credits
   m_TagString: Untagged
@@ -310,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 994028199}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 161, y: 0, z: 0.7335827}
+  m_LocalPosition: {x: 5, y: 0, z: 0.7335827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137288091}
@@ -335,6 +336,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &994028202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994028199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d892b34515af9474d8074204968ff1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1038080635
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +371,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1038080635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -144.94131, y: -368.59998, z: -0.7335827}
+  m_LocalPosition: {x: 0, y: -357, z: -0.7335827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 994028200}
@@ -367,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144.9413, y: -368.6}
-  m_SizeDelta: {x: 600.8, y: 901.5}
+  m_AnchoredPosition: {x: 0, y: -357}
+  m_SizeDelta: {x: 600.8, y: 1049.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038080637
 MonoBehaviour:
@@ -404,14 +416,15 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Ingrid Santana Lopes\nMarcos Paulo Cayres Rosa\nRenn\xEA Ruan Alves Oliveira\n\n\nCibele
     ....\nIngrid Santana Lopes\nMilena ...\n-\nRenn\xEA Ruan Alves Oliveira\nVictor
-    ...\n\n\nART ASSETS\n2D Pixel Trees (By Grumpy Diamond Assets)\nPixel Texture
-    Pack Add-On For Isometric Shooter (By Assetcrew)\n\nSOUND ASSETS\nDark Magic (By
-    Mgw Sound Design)\nFree Horror Music Pack (By Akuma Kira)\nHorror And Sci-Fi Ambience
-    Loops Lite (By Seth O\u2019dale)\nJungle Animal Sounds Fx (By Laali Unit)\nRetro
-    Ui Sounds (By Alessandro Fam\xE0)\nScream Volume 1 - Sample Pack (By Christopher
-    Escalante)\nWestern Demo Audio And Music (By John Leonard French)\n\nSCRIPTING
-    ASSETS\nRpgtalk (By Seize Studios)\n\nEFFECTS ASSETS\nCinema Themes 2 (By Cinema
-    Suite)\n\n\nCarla Denise Castanho"
+    ...\n\n\nIngrid Santana Lopes\nMarcos Paulo Cayres Rosa\nRenn\xEA Ruan Alves Oliveira\n\n\nIngrid
+    Santana Lopes\nMarcos Paulo Cayres Rosa\n\n\nART ASSETS\n2D Pixel Trees (By Grumpy
+    Diamond Assets)\nPixel Texture Pack Add-On For Isometric Shooter (By Assetcrew)\n\nSOUND
+    ASSETS\nDark Magic (By Mgw Sound Design)\nFree Horror Music Pack (By Akuma Kira)\nHorror
+    And Sci-Fi Ambience Loops Lite (By Seth O\u2019dale)\nJungle Animal Sounds Fx
+    (By Laali Unit)\nRetro Ui Sounds (By Alessandro Fam\xE0)\nScream Volume 1 - Sample
+    Pack (By Christopher Escalante)\nWestern Demo Audio And Music (By John Leonard
+    French)\n\nSCRIPTING ASSETS\nRpgtalk (By Seize Studios)\n\nEFFECTS ASSETS\nCinema
+    Themes 2 (By Cinema Suite)\n\n\nCarla Denise Castanho"
 --- !u!222 &1038080638
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -443,7 +456,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1137288090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -144.94133, y: -372.40002, z: -0.7335827}
+  m_LocalPosition: {x: 0, y: -349, z: -0.7335827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 994028200}
@@ -451,8 +464,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144.94131, y: -372.4}
-  m_SizeDelta: {x: 246.6, y: 953.5}
+  m_AnchoredPosition: {x: 0, y: -349}
+  m_SizeDelta: {x: 246.6, y: 1073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137288092
 MonoBehaviour:
@@ -501,6 +514,17 @@ MonoBehaviour:
 
 
 
+    Script
+
+
+
+
+
+    English Translation
+
+
+
+
     Downloaded Assets
 
 
@@ -523,8 +547,6 @@ MonoBehaviour:
 
 
     Special Thanks
-
-
 
 
 
