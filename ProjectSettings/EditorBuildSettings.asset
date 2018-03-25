@@ -29,3 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 5e9f166e89750724e9b142c031087f07
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 99f77e4dcf8de414eac8ddced4913f08
+  - enabled: 1
+    path: Assets/Scenes/Banheiro.unity
+    guid: 99b2b1d0633f7ba4fb77445ad7d6522f

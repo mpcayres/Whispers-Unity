@@ -38,6 +38,7 @@ TagManager:
   - GoodSpirit
   - EvilSpirit
   - HelpingLight
+  - DoorToBathroom
   layers:
   - Default
   - TransparentFX
