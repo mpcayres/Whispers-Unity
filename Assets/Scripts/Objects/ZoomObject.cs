@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ZoomObject : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class ZoomObject : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (colliding && Input.GetKeyDown(MissionManager.instance.keyInteract) && !MissionManager.instance.blocked && !MissionManager.instance.paused)
+        if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") && !MissionManager.instance.blocked && !MissionManager.instance.paused)
         {
             if (!showImage) {
                 if (!MissionManager.instance.pausedObject) {

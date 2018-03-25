@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class SceneObject : MonoBehaviour {
     public Sprite sprite1;
@@ -38,7 +39,7 @@ public class SceneObject : MonoBehaviour {
 
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
-            if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
+            if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
             !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {

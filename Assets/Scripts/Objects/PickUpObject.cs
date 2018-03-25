@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PickUpObject : MonoBehaviour {
     public bool colliding = false;
@@ -21,7 +20,7 @@ public class PickUpObject : MonoBehaviour {
     {
         if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
         {
-            if (colliding && Input.GetKeyDown(MissionManager.instance.keyInteract) &&
+            if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
                 !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
             {
                 Inventory.NewItem(item);
@@ -33,7 +32,7 @@ public class PickUpObject : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         colliding = true;
-        if (colliding && Input.GetKeyDown(MissionManager.instance.keyInteract) &&
+        if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             Inventory.NewItem(item);

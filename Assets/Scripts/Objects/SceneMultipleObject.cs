@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class SceneMultipleObject : MonoBehaviour {
 
@@ -40,7 +41,7 @@ public class SceneMultipleObject : MonoBehaviour {
             timeLeft -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
+        if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
             !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {

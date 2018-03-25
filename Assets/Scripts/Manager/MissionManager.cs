@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class MissionManager : MonoBehaviour {
 
@@ -38,11 +39,13 @@ public class MissionManager : MonoBehaviour {
     public ScenerySounds scenerySounds;
     public ScenerySounds2 scenerySounds2;
 
+
+    //using UnityStandardAssets.CrossPlatformInput;
+    //CrossPlatformInputManager.Get
     public KeyCode keyUp = KeyCode.UpArrow, keyDown = KeyCode.DownArrow, keyLeft = KeyCode.LeftArrow, keyRight = KeyCode.RightArrow,
         keyInvert = KeyCode.E, keyJournal = KeyCode.J, keyInventory = KeyCode.I,
-        keyMove = KeyCode.C, keyInteract = KeyCode.Z, keyUseObject = KeyCode.X, 
-        keySpecial = KeyCode.LeftControl, keyMiniGame = KeyCode.Space,
-        keySkip = KeyCode.Space, keyExit = KeyCode.Escape;
+        keyMove = KeyCode.C, keyInteract = KeyCode.Z, keyUseObject = KeyCode.X,
+        keySpecial = KeyCode.LeftControl, keyMiniGame = KeyCode.Space;
 
     public void Awake()
     {
@@ -98,12 +101,12 @@ public class MissionManager : MonoBehaviour {
                 mission.UpdateMission();
             }
 
-            if (Input.GetKeyDown(KeyCode.End))
+            if (CrossPlatformInputManager.GetButtonDown("EndText"))
             {
                 rpgTalk.EndTalk();
             }
 
-            if (!blocked && !paused && Input.GetKeyDown(keyInvert) && !invertWorldBlocked)
+            if (!blocked && !paused && CrossPlatformInputManager.GetButtonDown("keyInvert") && !invertWorldBlocked)
             {
                 scenerySounds.PlayDemon(6);
                 InvertWorld(!invertWorld);
@@ -112,13 +115,13 @@ public class MissionManager : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKeyDown(keySkip))
+            if (CrossPlatformInputManager.GetButtonDown("JumpText"))
             {
                 HideLevelImage();
             }
         }
 
-        if (Input.GetKeyDown(keyExit))
+        if (CrossPlatformInputManager.GetButtonDown("Exit"))
         {
             MissionManager.LoadScene(0);
         }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Flashlight : MonoBehaviour {
     Player player;
@@ -13,7 +14,7 @@ public class Flashlight : MonoBehaviour {
 	void Update ()
     {
         //0 = east, 1 = west, 2 = north, 3 = south
-        if (Input.GetKeyDown(MissionManager.instance.keyUseObject) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT &&
+        if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Image = UnityEngine.UI.Image;
+﻿using Image = UnityEngine.UI.Image;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Book : MonoBehaviour {
 
@@ -38,7 +37,7 @@ public class Book : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(MissionManager.instance.keyJournal) || (Input.GetKeyDown(MissionManager.instance.keyUseObject) && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
+        if ((CrossPlatformInputManager.GetButtonDown("keyJournal") || (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
             && !Inventory.open && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
@@ -90,7 +89,7 @@ public class Book : MonoBehaviour {
             }
         }
 
-        if(book.activeSelf && (Input.GetKeyDown(MissionManager.instance.keyRight))){
+        if(book.activeSelf && (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)){
             if(pageShowing == 0 && pageQuantity >= 2 && pageShowing != 2) {
                 page1.SetActive(false); page2.SetActive(false);
                 pageShowing++; 
@@ -106,7 +105,7 @@ public class Book : MonoBehaviour {
                 pageShowing++;
             }
         }
-        if (book.activeSelf && (Input.GetKeyDown(MissionManager.instance.keyLeft)))
+        if (book.activeSelf && (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0))
         {
             if (pageShowing != 0)
             {
