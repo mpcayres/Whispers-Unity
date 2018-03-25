@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlaceObject : MonoBehaviour {
     public Inventory.InventoryItems item;
@@ -13,7 +14,7 @@ public class PlaceObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Inventory.GetCurrentItemType() == item && inArea && Input.GetKeyDown(MissionManager.instance.keyUseObject))
+        if (Inventory.GetCurrentItemType() == item && inArea && CrossPlatformInputManager.GetButtonDown("keyUseObject"))
         {
             Inventory.DeleteItem(item);
         }

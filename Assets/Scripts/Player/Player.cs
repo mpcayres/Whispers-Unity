@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
@@ -39,30 +39,30 @@ public class Player : MonoBehaviour {
 
             if (playerState != Actions.ON_OBJECT)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (CrossPlatformInputManager.GetButton("keyRun"))
                 {
                     move = runningFactor * movespeed;
                     isRunning = true;
                 }
-                if (Input.GetKey(MissionManager.instance.keyRight))
+                if (CrossPlatformInputManager.GetAxis("Horizontal") > 0)
                 {
                     rb.position = new Vector2(rb.position.x + move, rb.position.y);
                     isWalking = true;
                     direction = 0;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyLeft))
+                else if (CrossPlatformInputManager.GetAxis("Horizontal") < 0)
                 {
                     rb.position = new Vector2(rb.position.x - move, rb.position.y);
                     isWalking = true;
                     direction = 1;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyUp))
+                else if (CrossPlatformInputManager.GetAxis("Vertical") > 0)
                 {
                     rb.position = new Vector2(rb.position.x, rb.position.y + move);
                     isWalking = true;
                     direction = 2;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyDown))
+                else if (CrossPlatformInputManager.GetAxis("Vertical") < 0)
                 {
                     rb.position = new Vector2(rb.position.x, rb.position.y - move);
                     isWalking = true;
@@ -84,26 +84,26 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                if (Input.GetKey(MissionManager.instance.keySpecial))
+                if (CrossPlatformInputManager.GetButton("keySpecial"))
                 {
-                    if (Input.GetKeyDown(MissionManager.instance.keyMove))
+                    if (CrossPlatformInputManager.GetButtonDown("keyMove"))
                     {
                         auxOnObject.MoveUp();
                     }
                 }
-                if (Input.GetKey(MissionManager.instance.keyRight))
+                if (CrossPlatformInputManager.GetAxis("Horizontal") > 0)
                 {
                     direction = 0;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyLeft))
+                else if (CrossPlatformInputManager.GetAxis("Horizontal") < 0)
                 {
                     direction = 1;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyUp))
+                else if (CrossPlatformInputManager.GetAxis("Vertical") > 0)
                 {
                     direction = 2;
                 }
-                else if (Input.GetKey(MissionManager.instance.keyDown))
+                else if (CrossPlatformInputManager.GetAxis("Vertical") < 0)
                 {
                     direction = 3;
                 }

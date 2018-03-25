@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Lamp : MonoBehaviour {
     SpriteRenderer spriteRenderer;
@@ -16,7 +15,7 @@ public class Lamp : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding &&
+        if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class SelectOnInput : MonoBehaviour {
 
@@ -17,7 +17,7 @@ public class SelectOnInput : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
-        if (Input.GetAxisRaw ("Vertical") != 0 && buttonSelected == false) 
+        if (CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && buttonSelected == false) 
         {
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;

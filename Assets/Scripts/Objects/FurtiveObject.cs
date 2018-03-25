@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class FurtiveObject : MonoBehaviour {
     GameObject player;
@@ -24,7 +25,7 @@ public class FurtiveObject : MonoBehaviour {
                 timeLeft -= Time.deltaTime;
             }
 
-            if (player.GetComponent<Renderer>().enabled && Input.GetKeyDown(MissionManager.instance.keyInteract)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (player.GetComponent<Renderer>().enabled && CrossPlatformInputManager.GetButtonDown("keyInteract")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 player.GetComponent<Renderer>().enabled = false;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
@@ -32,7 +33,7 @@ public class FurtiveObject : MonoBehaviour {
                 MissionManager.instance.pausedObject = true;
                 timeLeft = timeMax;
             }
-            else if (!player.GetComponent<Renderer>().enabled && (Input.GetKeyDown(MissionManager.instance.keyInteract) || timeLeft <= 0))
+            else if (!player.GetComponent<Renderer>().enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
             {
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

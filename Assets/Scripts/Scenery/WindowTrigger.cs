@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class WindowTrigger : MonoBehaviour {
 
@@ -32,7 +31,7 @@ public class WindowTrigger : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(MissionManager.instance.keyInteract) && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+		if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
 		{
 			ChangeSprite();
 		}

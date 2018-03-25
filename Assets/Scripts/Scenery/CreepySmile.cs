@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class CreepySmile : MonoBehaviour {
     public float blinkTime;
@@ -18,7 +17,7 @@ public class CreepySmile : MonoBehaviour {
 	void Update () {
         count += Time.deltaTime;
 
-        float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
+        float tiltAroundZ = CrossPlatformInputManager.GetAxis("Horizontal") * tiltAngle;
         Quaternion aux = Quaternion.Euler(0 , 0, tiltAroundZ);
         transform.rotation = Quaternion.Slerp(transform.rotation, aux, Time.deltaTime * smooth);
 

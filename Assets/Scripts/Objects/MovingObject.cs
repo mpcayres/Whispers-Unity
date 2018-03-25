@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class MovingObject : MonoBehaviour {
     public bool canMoveUp = false;
@@ -36,24 +37,24 @@ public class MovingObject : MonoBehaviour {
         }
         if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
         {
-            if (Input.GetKey(MissionManager.instance.keySpecial) && canMoveUp)
+            if (CrossPlatformInputManager.GetButtonDown("keySpecial") && canMoveUp)
             {
-                if (Input.GetKeyDown(MissionManager.instance.keyMove))
+                if (CrossPlatformInputManager.GetButtonDown("keyMove"))
                 {
                     MoveUp();
                 }
             }
             else if (script.playerState != Player.Actions.ON_OBJECT)
             {
-                if (Input.GetKeyDown(MissionManager.instance.keyMove)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                if (CrossPlatformInputManager.GetButtonDown("keyMove")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
                     InitMove();
                 }
-                else if (Input.GetKey(MissionManager.instance.keyMove))
+                else if (CrossPlatformInputManager.GetButton("keyMove"))
                 {
                     Move();
                 }
-                else if (Input.GetKeyUp(MissionManager.instance.keyMove))
+                else if (CrossPlatformInputManager.GetButtonUp("keyMove"))
                 {
                     EndMove();
                 }

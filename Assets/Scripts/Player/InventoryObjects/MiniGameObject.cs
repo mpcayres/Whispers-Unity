@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Image = UnityEngine.UI.Image;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class MiniGameObject : MonoBehaviour {
     public Inventory.InventoryItems item;
@@ -44,7 +43,7 @@ public class MiniGameObject : MonoBehaviour {
                 timeLeft -= Time.deltaTime;
             }
 
-            if (Input.GetKeyDown(MissionManager.instance.keyUseObject) && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 //print("STARTMINIGAME" + item);
                 MissionManager.instance.pausedObject = true;
@@ -53,11 +52,11 @@ public class MiniGameObject : MonoBehaviour {
                 flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
                 playing = true;
             }
-            else if ((Input.GetKeyDown(MissionManager.instance.keyUseObject) || timeLeft <= 0) && playing)
+            else if ((CrossPlatformInputManager.GetButtonDown("keyUseObject") || timeLeft <= 0) && playing)
             {
                 StopMiniGame();
             }
-            else if (Input.GetKeyDown(MissionManager.instance.keyMiniGame))
+            else if (CrossPlatformInputManager.GetButtonDown("keyMiniGame"))
             {
                 counter++;
                 if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.ISQUEIRO)
