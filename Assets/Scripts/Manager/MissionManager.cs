@@ -39,14 +39,6 @@ public class MissionManager : MonoBehaviour {
     public ScenerySounds scenerySounds;
     public ScenerySounds2 scenerySounds2;
 
-
-    //using UnityStandardAssets.CrossPlatformInput;
-    //CrossPlatformInputManager.Get
-    public KeyCode keyUp = KeyCode.UpArrow, keyDown = KeyCode.DownArrow, keyLeft = KeyCode.LeftArrow, keyRight = KeyCode.RightArrow,
-        keyInvert = KeyCode.E, keyJournal = KeyCode.J, keyInventory = KeyCode.I,
-        keyMove = KeyCode.C, keyInteract = KeyCode.Z, keyUseObject = KeyCode.X,
-        keySpecial = KeyCode.LeftControl, keyMiniGame = KeyCode.Space;
-
     public void Awake()
     {
         if (instance == null)
@@ -123,7 +115,7 @@ public class MissionManager : MonoBehaviour {
 
         if (CrossPlatformInputManager.GetButtonDown("Exit"))
         {
-            MissionManager.LoadScene(0);
+            LoadScene(0);
         }
 
         // CHEATS
@@ -435,12 +427,12 @@ public class MissionManager : MonoBehaviour {
         InvertWorld(false);
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-        MissionManager.LoadScene("GameOver");
+        LoadScene("GameOver");
     }
 
     public void ContinueGame()
     {
-        MissionManager.LoadScene(previousSceneName);
+        LoadScene(previousSceneName);
         blocked = false;
         hud.SetActive(true);
     }
