@@ -19,11 +19,12 @@ public class MissionManager : MonoBehaviour {
     public bool pausedObject = false;
     public bool blocked = false;
 
-    int missionSelected;
+    int missionSelected, missionUnlocked;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
     public static int initDir = 0;
 
+    public int numberPages, sideQuests;
     public float pathBird, pathCat;
     public bool invertWorld = false;
     public bool invertWorldBlocked = true;
@@ -290,12 +291,18 @@ public class MissionManager : MonoBehaviour {
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
-        
+
+        save.currentMission = missionSelected;
+        if (missionUnlocked <= missionSelected) {
+            save.unlockedMission = missionSelected;
+        }
+        else
+        {
+            save.unlockedMission = missionUnlocked;
+        }
+
         save.inventory = Inventory.GetInventoryItems();
-        save.mission = missionSelected;
         save.currentItem = Inventory.GetCurrentItem();
-        save.pathBird = pathBird;
-        save.pathCat = pathCat;
         if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
         {
             save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
@@ -304,6 +311,14 @@ public class MissionManager : MonoBehaviour {
         {
             save.lifeTampa = 0;
         }
+
+
+        save.numberPages = numberPages;
+        save.sideQuests = sideQuests;
+
+        save.pathBird = pathBird;
+        save.pathCat = pathCat;
+        
         save.mission1AssustaGato = mission1AssustaGato;
         save.mission2ContestaMae = mission2ContestaMae;
         save.mission4QuebraSozinho = mission4QuebraSozinho;
@@ -339,18 +354,24 @@ public class MissionManager : MonoBehaviour {
             
             Inventory.SetInventory(save.inventory);
             if (save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
-            pathBird = save.pathBird;
-            pathCat = save.pathCat;
             if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
                 GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = save.lifeTampa;
             }
+
+            numberPages = save.numberPages;
+            sideQuests = save.sideQuests;
+
+            pathBird = save.pathBird;
+            pathCat = save.pathCat;
+           
             mission1AssustaGato = save.mission1AssustaGato;
             mission2ContestaMae = save.mission2ContestaMae;
             mission4QuebraSozinho = save.mission4QuebraSozinho;
             mission8BurnCorredor = save.mission8BurnCorredor;
 
-            SetMission(save.mission);
+            missionUnlocked = save.unlockedMission;
+            SetMission(save.currentMission);
             SaveGame(0);
 
             Debug.Log("Game Loaded " + m);

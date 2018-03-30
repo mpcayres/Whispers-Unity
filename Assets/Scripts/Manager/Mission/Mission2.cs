@@ -16,7 +16,7 @@ public class Mission2 : Mission {
         MissionManager.initY = (float)-1.0;
         MissionManager.initDir = 1;
         MissionManager.LoadScene(sceneInit);
-        secao = enumMission.FINAL_CONTESTA;//enumMission.NIGHT;
+        secao = enumMission.NIGHT;
         Book.bookBlocked = true;
 
         MissionManager.instance.invertWorld = false;
@@ -475,7 +475,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
-         //   EspecificaEnum((int)enumMission.FINAL_CONTESTA_GATO); //!!!!
+            EspecificaEnum((int)enumMission.FINAL_CONTESTA_GATO);
         }
         else if (secao == enumMission.FINAL_CONTESTA_GATO)
         {
