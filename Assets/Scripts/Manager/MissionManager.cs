@@ -248,6 +248,7 @@ public class MissionManager : MonoBehaviour {
             Destroy(hud);
             if (Cat.instance != null) Cat.instance.DestroyCat();
             if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+            if (CorvBabies.instance != null) CorvBabies.instance.DestroyCorvBabies();
         }
 
         InvertWorld(invertWorld);
@@ -427,6 +428,7 @@ public class MissionManager : MonoBehaviour {
         InvertWorld(false);
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        if (CorvBabies.instance != null) CorvBabies.instance.DestroyCorvBabies();
         LoadScene("GameOver");
     }
 
