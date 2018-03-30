@@ -36,7 +36,7 @@ public class Mission1 : Mission {
     {
         if (secao == enumMission.NIGHT)
         {
-            if (!MissionManager.instance.GetMissionStart())
+            if (!MissionManager.instance.showMissionStart)
             {
                 EspecificaEnum((int)enumMission.INICIO);
             }

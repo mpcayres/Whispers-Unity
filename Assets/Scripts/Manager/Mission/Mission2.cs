@@ -29,7 +29,7 @@ public class Mission2 : Mission {
     {
         if (secao == enumMission.NIGHT)
         {
-            if (!MissionManager.instance.GetMissionStart())
+            if (!MissionManager.instance.showMissionStart)
             {
                 if (MissionManager.instance.mission1AssustaGato)
                 {

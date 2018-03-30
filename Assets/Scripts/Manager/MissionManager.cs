@@ -8,38 +8,52 @@ using UnityStandardAssets.CrossPlatformInput;
 public class MissionManager : MonoBehaviour {
 
     public static MissionManager instance;
+
+    // MISSÕES
     public Mission mission;
+    public int currentMission, unlockedMission;
+    public static bool initMission = false;
+    public static float initX = 0, initY = 0;
+    public static int initDir = 0;
+
+    // CENAS
     public string previousSceneName, currentSceneName;
+
+    // EXTRAS
+    public int numberPages, sideQuests;
+
+    // ESCOLHAS
+    public float pathBird, pathCat;
+
+    // ESCOLHAS ESPECÍFICAS
     public bool mission1AssustaGato = false;
     public bool mission2ContestaMae = false;
     public bool mission4QuebraSozinho = false;
     public bool mission8BurnCorredor = false;
 
+    // CONIDÇÕES DO JOGO
     public bool paused = false;
     public bool pausedObject = false;
     public bool blocked = false;
-
-    int missionSelected, missionUnlocked;
-    public static bool initMission = false;
-    public static float initX = 0, initY = 0;
-    public static int initDir = 0;
-
-    public int numberPages, sideQuests;
-    public float pathBird, pathCat;
     public bool invertWorld = false;
     public bool invertWorldBlocked = true;
     public bool playerProtected = false;
 
-    private GameObject hud;
+    // HUD - INÍCIO MISSÃO
+    public bool showMissionStart = true;
     float startMissionDelay = 3f;
-    bool showMissionStart = true;
-    private Text levelText;
+    private GameObject hud;
     private GameObject levelImage;
+    private Text levelText;
+
+    // RPG TALK
     public RPGTalk rpgTalk;
 
+    // SONS
     public ScenerySounds scenerySounds;
     public ScenerySounds2 scenerySounds2;
 
+    // CRIAÇÃO JOGO
     public void Awake()
     {
         if (instance == null)
@@ -52,28 +66,32 @@ public class MissionManager : MonoBehaviour {
 
             hud = GameObject.Find("HUDCanvas").gameObject;
 
-            missionSelected = PlayerPrefs.GetInt("Mission");
-            if (missionSelected == -1)
+            currentMission = PlayerPrefs.GetInt("Mission");
+            if (currentMission == -1)
             {
-                missionSelected = 1;
+                currentMission = 1;
+                unlockedMission = 1;
 
                 Inventory.SetInventory(null);
+                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
+
+                numberPages = 0;
+                sideQuests = 0;
+
                 pathBird = 0;
                 pathCat = 0;
-
-                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
 
                 mission1AssustaGato = false;
                 mission2ContestaMae = false;
                 mission4QuebraSozinho = false;
                 mission8BurnCorredor = false;
 
-                SetMission(missionSelected);
+                SetMission(currentMission);
                 SaveGame(0);
             }
             else
             {
-                LoadGame(missionSelected);
+                LoadGame(currentMission);
             }
 
             rpgTalk.OnChoiceMade += OnChoiceMade;
@@ -84,6 +102,7 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    // ATUALIZAÇÕES DO JOGO
     public void Update()
     {
         if (!showMissionStart)
@@ -114,6 +133,7 @@ public class MissionManager : MonoBehaviour {
             }
         }
 
+        // CONDIÇÃO PARA SAIR - MENU
         if (CrossPlatformInputManager.GetButtonDown("Exit"))
         {
             LoadScene(0);
@@ -163,16 +183,9 @@ public class MissionManager : MonoBehaviour {
 
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    /************ FUNÇÕES DE CENA ************/
 
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
+    // FUNÇÕES DE MUDANÇA DE CENA
     public static void LoadScene(string name)
     {
         SaveMovingObjectsPosition();
@@ -185,30 +198,18 @@ public class MissionManager : MonoBehaviour {
         SceneManager.LoadScene(index);
     }
 
-    private static void SaveMovingObjectsPosition()
+    // FUNÇÕES PARA CONTAR MUDANÇA DE CENA
+    private void OnEnable()
     {
-        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
-        foreach (GameObject i in list)
-        {
-            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
-            {
-                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
-                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
-            }
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void DeleteAllPlayerPrefs()
+    private void OnDisable()
     {
-        string language = "";
-        if (PlayerPrefs.HasKey("Language"))
-        {
-            language = PlayerPrefs.GetString("Language");
-        }
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetString("Language", language);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    // FUNÇÃO APÓS MUDANÇA DE CENA
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         previousSceneName = currentSceneName;
@@ -269,36 +270,60 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    /************ FUNÇÕES DE OBJETO ************/
+
+    // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
         GameObject moveInstance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
-        if(sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
+        if (sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         moveInstance.transform.localScale = scale;
         return moveInstance;
     }
 
-    public void InvertWorld(bool sel)
+    // SALVAR POSIÇÃO DE OBJETOS MÓVEIS
+    private static void SaveMovingObjectsPosition()
     {
-        invertWorld = sel;
-        if (!currentSceneName.Equals("GameOver") && !currentSceneName.Equals("MainMenu"))
+        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
+        foreach (GameObject i in list)
         {
-            GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
+            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            {
+                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
+                PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
+            }
         }
     }
 
+    // DELETAR TODAS AS POSIÇÕES DE OBJETOS MÓVEIS
+    public void DeleteAllPlayerPrefs()
+    {
+        string language = "";
+        if (PlayerPrefs.HasKey("Language"))
+        {
+            language = PlayerPrefs.GetString("Language");
+        }
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetString("Language", language);
+        PlayerPrefs.SetInt("Mission", currentMission);
+    }
+
+    /************ FUNÇÕES DE SAVE ************/
+
+    // CRIAR SAVE
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
 
-        save.currentMission = missionSelected;
-        if (missionUnlocked <= missionSelected) {
-            save.unlockedMission = missionSelected;
+        save.mission = currentMission;
+        if (unlockedMission <= currentMission) {
+            save.unlockedMission = currentMission;
         }
         else
         {
-            save.unlockedMission = missionUnlocked;
+            save.unlockedMission = unlockedMission;
         }
 
         save.inventory = Inventory.GetInventoryItems();
@@ -327,6 +352,7 @@ public class MissionManager : MonoBehaviour {
         return save;
     }
 
+    // SALVAR JOGO
     public void SaveGame(int m)
     {
         Save save = CreateSaveGameObject();
@@ -341,6 +367,7 @@ public class MissionManager : MonoBehaviour {
         Debug.Log("Game Saved " + m);
     }
 
+    // CARREGAR JOGO
     public void LoadGame(int m)
     {
         if (File.Exists(Application.persistentDataPath + "/gamesave" + m + ".save"))
@@ -370,8 +397,8 @@ public class MissionManager : MonoBehaviour {
             mission4QuebraSozinho = save.mission4QuebraSozinho;
             mission8BurnCorredor = save.mission8BurnCorredor;
 
-            missionUnlocked = save.unlockedMission;
-            SetMission(save.currentMission);
+            unlockedMission = save.unlockedMission;
+            SetMission(save.mission);
             SaveGame(0);
 
             Debug.Log("Game Loaded " + m);
@@ -384,12 +411,15 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    /************ FUNÇÕES DE MISSÃO ************/
+
+    // INICIALIZAR MISSÃO
     public void SetMission(int m)
     {
-        missionSelected = m;
-        print("MISSAO: " + missionSelected);
+        currentMission = m;
+        print("MISSAO: " + currentMission);
 
-		switch(missionSelected){
+		switch(currentMission){
 		case 1:
 			mission = new Mission1();
 			break;
@@ -418,6 +448,9 @@ public class MissionManager : MonoBehaviour {
             mission = new Mission9();
             break;
         }
+
+        ExtrasManager.SideQuestsManager();
+        ExtrasManager.PagesManager();
         
         levelImage = hud.transform.Find("LevelImage").gameObject;
         levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
@@ -435,13 +468,15 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    // MUDAR MISSÃO
     public void ChangeMission(int m)
     {
         SetMission(m);
         SaveGame(0);
-        SaveGame(missionSelected);
+        SaveGame(currentMission);
     }
 
+    // FINALIZAR JOGO
     public void GameOver()
     {
         blocked = true;
@@ -453,6 +488,7 @@ public class MissionManager : MonoBehaviour {
         LoadScene("GameOver");
     }
 
+    // CONTINUAR JOGO
     public void ContinueGame()
     {
         LoadScene(previousSceneName);
@@ -460,24 +496,42 @@ public class MissionManager : MonoBehaviour {
         hud.SetActive(true);
     }
 
-    void HideLevelImage()
+    /************ FUNÇÕES ESPECIAIS ************/
+
+    // INVERTER MUNDO
+    public void InvertWorld(bool sel)
     {
-        levelImage.SetActive(false);
-        showMissionStart = false;
+        invertWorld = sel;
+        if (!currentSceneName.Equals("GameOver") && !currentSceneName.Equals("MainMenu"))
+        {
+            GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
+        }
     }
 
-    public bool GetMissionStart()
-    {
-        return showMissionStart;
-    }
-
+    // AUXILIAR PARA INVOCAÇÃO NAS MISSÕES
     public void InvokeMission()
     {
         print("INVOKEMISSION");
         mission.InvokeMission();
     }
 
-	public void OnChoiceMade(int questionId, int choiceID)
+    // AUXILIAR PARA IMPRIMIR NAS MISSÕES
+    public void Print(string text)
+    {
+        print(text);
+    }
+
+    // ESCONDER IMAGEM INICIAL
+    void HideLevelImage()
+    {
+        levelImage.SetActive(false);
+        showMissionStart = false;
+    }
+
+    /************ FUNÇÕES DE ESCOLHA ************/
+
+    // FUNÇÃO APÓS ESCOLHA SER FEITA
+    public void OnChoiceMade(int questionId, int choiceID)
     {
 		if (questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) { // assustar gato
@@ -539,11 +593,6 @@ public class MissionManager : MonoBehaviour {
             }
         }
         mission.InvokeMissionChoice(choiceID);
-    }
-
-    public void Print(string text)
-    {
-        print(text);
     }
     
 }
