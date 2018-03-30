@@ -536,28 +536,28 @@ public class MissionManager : MonoBehaviour {
 		if (questionId == 0) { // escolha final da missão 1
 			if (choiceID == 0) { // assustar gato
 				pathBird += 2;
-                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse);;
+                rpgTalk.NewTalk ("M1Q0C0", "M1Q0C0End", rpgTalk.txtToParse);
 			} else { // ficar com gato
 				pathCat += 4;
-                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse);;
+                rpgTalk.NewTalk ("M1Q0C1", "M1Q0C1End", rpgTalk.txtToParse);
 			}
 		}
 		else if (questionId == 1) { // escolha final da missão 2
 			if (choiceID == 0) { // contestar mãe
 				pathBird += 6;
-				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse);;
+				rpgTalk.NewTalk ("M2Q1C0", "M2Q1C0End", rpgTalk.txtToParse);
 			} else { // respeitar mãe
 				pathCat += 5;
-				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse);;
+				rpgTalk.NewTalk ("M2Q1C1", "M2Q1C1End", rpgTalk.txtToParse);
 			}
 		}
         else if (questionId == 2) { // escolha final da missão 3
             if (choiceID == 0) { // mentir
                 pathBird += 4;
-                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse);;
+                rpgTalk.NewTalk ("M3Q2C0", "M3Q2C0End", rpgTalk.txtToParse);
             } else { // contar a verdade
                 pathCat += 4;
-                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse);;
+                rpgTalk.NewTalk ("M3Q2C1", "M3Q2C1End", rpgTalk.txtToParse);
             }
         }
         else if (questionId == 3) { // escolha inicial da missão 4 - escolha de quem vai quebrar o vaso

@@ -164,7 +164,7 @@ namespace UnityStandardAssets.ImageEffects
             float bokehBlurAmplifier = bokeh ? BOKEH_EXTRA_BLUR : 1.0f;
 
             bool  blurForeground = quality > Dof34QualitySetting.OnlyBackground;
-            float focal01Size = focalSize / (_camera.farClipPlane - _camera.nearClipPlane);;
+            float focal01Size = focalSize / (_camera.farClipPlane - _camera.nearClipPlane);
 
             if (simpleTweakMode) {
                 focalDistance01 = objectFocus ? (_camera.WorldToViewportPoint (objectFocus.position)).z / (_camera.farClipPlane) : FocalDistance01 (focalPoint);

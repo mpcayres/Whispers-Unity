@@ -100,7 +100,7 @@ public class Mission1 : Mission {
         MissionManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
+            MissionManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
             MissionManager.instance.scenerySounds.PlayCat(2);
         }
 
@@ -231,7 +231,7 @@ public class Mission1 : Mission {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SceneDoor>().isOpened = false;
 
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse);;
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse);
         }
 
     }
@@ -304,11 +304,11 @@ public class Mission1 : Mission {
 
         if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);;
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse);;
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse);
 
             // Porta abrindo
             MissionManager.instance.scenerySounds.PlayCat(2);
@@ -335,16 +335,19 @@ public class Mission1 : Mission {
         {
             MissionManager.instance.scenerySounds.PlayBird(1);
             MissionManager.instance.blocked = true;
-            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
+            //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
+            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+            mainLight.transform.Rotate(new Vector3(25, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
+            MissionManager.instance.AddObject("BlinkMainLight", "", new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
             //MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(2, 2, 1));
-            MissionManager.instance.Invoke("InvokeMission", 7f);
+            MissionManager.instance.Invoke("InvokeMission", 5f);
         }
         else if (secao == enumMission.SMILE)
         {
             MissionManager.instance.scenerySounds.PlayScare(3);
             //MissionManager.instance.AddObject("CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
-            MissionManager.instance.Invoke("InvokeMission", 5f);
+            MissionManager.instance.Invoke("InvokeMission", 2f);
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
@@ -388,7 +391,7 @@ public class Mission1 : Mission {
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
             MissionManager.instance.AddObject("catFollower", "", new Vector3(1.7f, 0.7f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse);;
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.FINAL)
         {

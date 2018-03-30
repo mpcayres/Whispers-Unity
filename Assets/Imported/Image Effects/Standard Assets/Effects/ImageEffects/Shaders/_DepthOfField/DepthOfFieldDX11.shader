@@ -93,7 +93,7 @@ Shader "Hidden/Dof/DX11Dof"
 		float4 offs = 0;
 		offs.xy = float2(3.0, 3.0) + 2.0f * floor(scale2 + float2(0.5,0.5));
 
-		float2 rs = ((float2(1.0, 1.0) + 2.0f * (scale2 + float2(0.5,0.5))));;
+		float2 rs = ((float2(1.0, 1.0) + 2.0f * (scale2 + float2(0.5,0.5))));
 		float2 f2 = offs.xy / rs;
 
 		float energyAdjustment = (_BokehParams.y) / (rs.x*rs.y);

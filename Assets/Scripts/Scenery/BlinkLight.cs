@@ -18,8 +18,7 @@ public class BlinkLight : MonoBehaviour {
 		while (true)
 		{
 			yield return new WaitForSeconds(Random.Range(minWaitTime,maxWaitTime));
-			testLight.enabled = ! testLight.enabled;
-
+			testLight.enabled = !testLight.enabled;
 		}
 	}
 }
