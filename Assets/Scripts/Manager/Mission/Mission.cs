@@ -76,12 +76,12 @@ public abstract class Mission {
 
         fosforo.GetComponent<MiniGameObject>().achievedGoal = false;
         isqueiro.GetComponent<MiniGameObject>().achievedGoal = false;
-        faca.GetComponent<MiniGameObject>().achievedGoal = false;
+        //faca.GetComponent<MiniGameObject>().achievedGoal = false;
         pedra.GetComponent<MiniGameObject>().achievedGoal = false;
 
         fosforo.GetComponent<MiniGameObject>().activated = false;
         isqueiro.GetComponent<MiniGameObject>().activated = false;
-        faca.GetComponent<MiniGameObject>().activated = false;
+        //faca.GetComponent<MiniGameObject>().activated = false;
         pedra.GetComponent<MiniGameObject>().activated = false;
 
         if (MissionManager.instance.rpgTalk.isPlaying)
