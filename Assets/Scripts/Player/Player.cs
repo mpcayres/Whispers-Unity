@@ -228,6 +228,11 @@ public class Player : MonoBehaviour {
                 rb.position = new Vector2((float)-3.8, (float)-0.45);
                 ChangeDirection(3);
             }
+            else if (MissionManager.instance.currentSceneName.Equals("Banheiro"))
+            {
+                rb.position = new Vector2((float)2.171, (float)0.284);
+                ChangeDirection(3);
+            }
             else if (MissionManager.instance.currentSceneName.Equals("Sala"))
             {
                 if (previousSceneName.Equals("Jardim"))
