@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4448678045504650}
-  - component: {fileID: 114308661339279998}
+  - component: {fileID: 114995704474709184}
   m_Layer: 8
   m_Name: Faca
   m_TagString: Untagged
@@ -350,7 +350,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103832579489714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 2.338, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4434496203682220}
@@ -993,25 +993,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1.5
   m_Text: 'Alex: Deve ter algo aqui para me ajudar.'
---- !u!114 &114308661339279998
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728289650718478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f6598d84fff314684a4b40e8d0116f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: 4
-  activated: 0
-  achievedGoal: 0
-  timeMax: 10
-  counterMax: 40
-  refreshTimeMax: 0
-  posFlareX: 0
-  posFlareY: 0
 --- !u!114 &114336094573981668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1162,8 +1143,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9695343170627764fb5d49dea6fe06fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMission: 0
+  unlockedMission: 0
   previousSceneName: Sala
   currentSceneName: Jardim
+  numberPages: 0
+  sideQuests: 0
+  pathBird: 26
+  pathCat: 11
   mission1AssustaGato: 1
   mission2ContestaMae: 0
   mission4QuebraSozinho: 0
@@ -1171,20 +1158,13 @@ MonoBehaviour:
   paused: 0
   pausedObject: 0
   blocked: 0
-  pathBird: 26
-  pathCat: 11
   invertWorld: 0
   invertWorldBlocked: 0
   playerProtected: 0
+  showMissionStart: 1
   rpgTalk: {fileID: 114614734401517286}
   scenerySounds: {fileID: 114365670633547336}
   scenerySounds2: {fileID: 114918750010813636}
-  countKidRoomDialog: 0
-  countMomRoomDialog: 0
-  countLivingroomDialog: 0
-  countKitchenDialog: 0
-  countGardenDialog: 0
-  countCorridorDialog: 0
 --- !u!114 &114614734401517286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1418,6 +1398,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e05ed0e63ac05f448d5515f52d53b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114995704474709184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1728289650718478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7c9ad0a5388794eaa6b30db21f537b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: 0
 --- !u!212 &212312604558996582
 SpriteRenderer:
   m_ObjectHideFlags: 1
