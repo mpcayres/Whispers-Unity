@@ -14,7 +14,7 @@ Alex: Can you sleep with me, Atze?
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M1KidRoomSceneStart]
 Alex: Hm? Is it morning already? 
-Alex: What? The door is opened?
+Alex:　I'll check out in the window.
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneCat]
 Alex: Atze?
