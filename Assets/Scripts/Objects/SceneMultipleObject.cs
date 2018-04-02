@@ -17,6 +17,8 @@ public class SceneMultipleObject : MonoBehaviour {
     float posX, posY, posXdefault, posYdefault;
     float timeLeft = 0;
     public float timeMax = (float) 0.25;
+    public AudioClip noise;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     void Start()
     {
@@ -55,6 +57,10 @@ public class SceneMultipleObject : MonoBehaviour {
             spriteRenderer.sprite = sprite1[cont++];
             if (cont >= sprite1.Length) cont = 0;
             timeLeft = timeMax;
+        }
+        if (!source.isPlaying && sprite2Selected)
+        {
+           source.PlayOneShot(noise);
         }
     }
 
