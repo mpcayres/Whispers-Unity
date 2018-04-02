@@ -116,6 +116,11 @@ public class Mission1 : Mission {
         portaMae.GetComponent<SceneDoor>().isOpened = false;
         portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
+        // Objeto movel que atrapalha
+        GameObject chair = MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso",
+            new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
+        chair.GetComponent<MovingObject>().prefName = "Corredor_0";
+
         if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.AddObject("catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
@@ -141,11 +146,6 @@ public class Mission1 : Mission {
             MissionManager.instance.pausedObject = true;
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
-
-            // Objeto movel que atrapalha
-            GameObject chair = MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso", 
-                new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
-            chair.GetComponent<MovingObject>().prefName = "Corredor_0";
 
             // gato andando para sala
             MissionManager.instance.scenerySounds.PlayCat(3);

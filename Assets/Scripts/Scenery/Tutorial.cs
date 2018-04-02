@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Tutorial : MonoBehaviour
 {
+    bool again;
+    public string keyName1, keyName2;
     int repeatTime = 2;
     bool exit = false;
     public AudioClip click;
@@ -11,26 +14,16 @@ public class Tutorial : MonoBehaviour
     public AudioSource source { get { return GetComponent<AudioSource>(); } }
     void Start()
     {
+        again = true;
         source.playOnAwake = false;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == 1)
-        {
-            if (!source.isPlaying && !invoked)
-            {
-                Invoke("Show", repeatTime);
-                invoked = true;
-            }
-        }
         if (exit)
         {
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
-    }
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == 1)
+        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == 1 && again)
         {
             if (!source.isPlaying && !invoked)
             {
@@ -38,9 +31,30 @@ public class Tutorial : MonoBehaviour
                 invoked = true;
             }
         }
+        if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2))
+        {
+            exit = true;
+            again = false;
+        }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+
         if (exit)
         {
-             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == 1 && again)
+        {
+            if (!source.isPlaying && !invoked)
+            {
+                Invoke("Show", repeatTime);
+                invoked = true;
+            }
+        }
+        if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2)){
+            exit = true;
+            again = false;
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -49,6 +63,11 @@ public class Tutorial : MonoBehaviour
         {
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             exit = true;
+        }
+        if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2)){
+            exit = true;
+            again = false;
+            invoked = true;
         }
     }
 

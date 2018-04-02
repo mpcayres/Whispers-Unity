@@ -4637,7 +4637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &620365198
 Transform:
   m_ObjectHideFlags: 0
@@ -82846,7 +82846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1906961855
 AudioSource:
   m_ObjectHideFlags: 0
@@ -82938,6 +82938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1c4e3d41dd584aac6c3d7fb6a0191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyName1: keyInteract
+  keyName2: keyInteract
   click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
 --- !u!61 &1906961857
 BoxCollider2D:
