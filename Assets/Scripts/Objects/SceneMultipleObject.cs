@@ -58,7 +58,7 @@ public class SceneMultipleObject : MonoBehaviour {
             if (cont >= sprite1.Length) cont = 0;
             timeLeft = timeMax;
         }
-        if (!source.isPlaying && sprite2Selected)
+        if (!source.isPlaying && !sprite1Selected)
         {
            source.PlayOneShot(noise);
         }
