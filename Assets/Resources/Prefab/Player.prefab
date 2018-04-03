@@ -1296,7 +1296,7 @@ MonoBehaviour:
   animator: {fileID: 95882510258092630}
   direction: 2
   wantedDirection: 0
-  steps: {fileID: 8300000, guid: fca8f0e6e6dee4a74ad60a9818eaa84e, type: 3}
+  steps: {fileID: 8300000, guid: 0014d196cabeb47c090691ff38da85fa, type: 3}
   stepsGrass: {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
 --- !u!114 &114887878784356826
 MonoBehaviour:
