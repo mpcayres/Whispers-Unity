@@ -350,7 +350,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103832579489714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 3.91, y: -0.4, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4434496203682220}
@@ -1296,6 +1296,8 @@ MonoBehaviour:
   animator: {fileID: 95882510258092630}
   direction: 2
   wantedDirection: 0
+  steps: {fileID: 8300000, guid: fca8f0e6e6dee4a74ad60a9818eaa84e, type: 3}
+  stepsGrass: {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
 --- !u!114 &114887878784356826
 MonoBehaviour:
   m_ObjectHideFlags: 1

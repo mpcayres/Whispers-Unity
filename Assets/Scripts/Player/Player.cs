@@ -18,17 +18,22 @@ public class Player : MonoBehaviour {
     private float corvoPositionX, corvoPositionY;
     private string corvoScene;
     int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
+    
+    public AudioClip steps, stepsGrass;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     void Start ()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        source.playOnAwake = false;
     }
 	
 	void Update ()
     {
 
+       
         if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             bool isWalking = false, isRunning = false;
@@ -76,10 +81,34 @@ public class Player : MonoBehaviour {
                 animator.SetBool("isWalking", isWalking);
                 animator.SetBool("isRunning", isRunning);
 
+                
+
                 if (playerState == Actions.MOVING_OBJECT)
                 {
                     wantedDirection = direction;
                     direction = oldDirection;
+                }
+
+                //barulho dos passos
+                if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+                {
+                    source.clip = stepsGrass;
+                }
+                else
+                {
+                    source.clip = steps;
+                }
+                if ( isWalking && !source.isPlaying)
+                {
+                    source.PlayDelayed(0.5f);
+                }
+                else if (isRunning && !source.isPlaying)
+                {
+                    source.PlayDelayed(0.2f);
+                }
+                else if (!(isWalking || isRunning))
+                {
+                    source.Stop();
                 }
             }
             else

@@ -7390,36 +7390,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.1194153
-      objectReference: {fileID: 0}
     - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -92
+      value: -73.8
       objectReference: {fileID: 0}
-    - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
+    - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.1194153
+      propertyPath: m_LocalPosition.y
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 300.85797
+      value: 183.85799
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 169.57098
+      value: 125.571
       objectReference: {fileID: 0}
-    - target: {fileID: 114600373000498978, guid: 063980b53742ff1448b88d2562035754,
+    - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
-      propertyPath: scenerySounds2
+      propertyPath: m_LocalPosition.x
+      value: 2.2525177
+      objectReference: {fileID: 0}
+    - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13.800003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.2525177
+      objectReference: {fileID: 0}
+    - target: {fileID: 224570043974314930, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -44.300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 114833596618350534, guid: 063980b53742ff1448b88d2562035754,
+        type: 2}
+      propertyPath: steps
       value: 
-      objectReference: {fileID: 191206952}
+      objectReference: {fileID: 8300000, guid: 0014d196cabeb47c090691ff38da85fa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063980b53742ff1448b88d2562035754, type: 2}
   m_IsPrefabParent: 0
@@ -7428,12 +7443,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1103832579489714, guid: 063980b53742ff1448b88d2562035754,
     type: 2}
   m_PrefabInternal: {fileID: 191206950}
---- !u!114 &191206952 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114918750010813636, guid: 063980b53742ff1448b88d2562035754,
-    type: 2}
-  m_PrefabInternal: {fileID: 191206950}
-  m_Script: {fileID: 11500000, guid: e66d328a23def92478de2c28dfceef45, type: 3}
 --- !u!1001 &193344701
 Prefab:
   m_ObjectHideFlags: 0
@@ -93025,12 +93034,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 303
+      value: 186
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 141.5
+      value: 97.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

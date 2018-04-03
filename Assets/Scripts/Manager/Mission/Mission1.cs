@@ -124,8 +124,8 @@ public class Mission1 : Mission {
         if (secao == enumMission.GATO_APARECEU)
         {
             MissionManager.instance.AddObject("catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 6;
-
+            GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+            GameObject.Find("MainCamera").GetComponent<Camera>().transform.position = new Vector3(0f, 0f, -20f);
             // Porta Sala
             GameObject portaSala = GameObject.Find("DoorToLivingRoom").gameObject;
             portaSala.GetComponent<SceneDoor>().isOpened = false;
@@ -145,6 +145,7 @@ public class Mission1 : Mission {
 
             MissionManager.instance.pausedObject = true;
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
+            GameObject.Find("MainCamera").GetComponent<Camera>().transform.position = new Vector3(0f, 0f, -20f);
             MissionManager.instance.Invoke("InvokeMission", 2.5f);
 
             // gato andando para sala
