@@ -9,6 +9,7 @@ public class ContinueGame : MonoBehaviour {
 
     public void OnClick(int save)
     {
+        PlayerPrefs.SetInt("Mission", 0);
         PlayerPrefs.SetInt("CurrentSaveNumber", save);
         StartCoroutine(FadingContinue());
     }
@@ -17,7 +18,6 @@ public class ContinueGame : MonoBehaviour {
     {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        PlayerPrefs.SetInt("Mission", 0);
         MissionManager.LoadScene(6);
     }
 }

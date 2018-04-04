@@ -20,7 +20,8 @@ public class PreferencesManager : MonoBehaviour {
         else
         {
             string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + 0 + "*.save");
-            RectTransform rect = FindDeepChild(transform, "ContinueSavesContent").gameObject.GetComponent<RectTransform>();
+            GameObject saveContent = FindDeepChild(transform, "ContinueSavesContent").gameObject;
+            RectTransform rect = saveContent.gameObject.GetComponent<RectTransform>();
             rect.sizeDelta = new Vector2(rect.sizeDelta.x, 30 * files.Length);
             foreach (string f in files)
             {
@@ -32,7 +33,7 @@ public class PreferencesManager : MonoBehaviour {
                 string[] parts = f.Split('.');
                 string part = parts[parts.Length - 2];
                 string i = part.Substring(part.Length - 1);
-                AddButton("SaveButton", i + ": " + save.time, i, FindDeepChild(transform, "ContinueSavesContent").gameObject);
+                AddButton("SaveButton", i + ": " + save.time, 0, i, saveContent);
             }
         }
 
@@ -81,6 +82,33 @@ public class PreferencesManager : MonoBehaviour {
         // Mudar imagem dos controles
     }
 
+    public void SetSaveMenu(int m)
+    {
+        string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + m + "*.save");
+
+        GameObject saveContent = FindDeepChild(transform, "LoadGameSavesContent").gameObject;
+        foreach (Transform child in saveContent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        RectTransform rect = saveContent.gameObject.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(rect.sizeDelta.x, 30 * files.Length);
+
+        foreach (string f in files)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(f, FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
+
+            string[] parts = f.Split('.');
+            string part = parts[parts.Length - 2];
+            string i = part.Substring(part.Length - 1);
+            AddButton("ContinueButton", i + ": " + save.time, m, i, saveContent);
+        }
+    }
+
     public static Transform FindDeepChild(Transform aParent, string aName)
     {
         var result = aParent.Find(aName);
@@ -94,9 +122,9 @@ public class PreferencesManager : MonoBehaviour {
         return null;
     }
 
-    GameObject AddButton(string name, string text, string numSave, GameObject parent)
+    GameObject AddButton(string name, string text, int mission, string numSave, GameObject parent)
     {
-        // print("UI: " + name + " > " + text);
+        //print("UI: " + name + " >" + mission + "< [" + text + "]");
         GameObject instance =
             Instantiate(Resources.Load("Prefab/UI/" + name) as GameObject);
 
@@ -109,6 +137,10 @@ public class PreferencesManager : MonoBehaviour {
             instance.GetComponent<ContinueGame>().black = transform.Find("BlackSquare").GetComponent<Image>();
             instance.GetComponent<ContinueGame>().anim = transform.Find("BlackSquare").GetComponent<Animator>();
             instance.GetComponent<Button>().onClick.AddListener(delegate { instance.GetComponent<ContinueGame>().OnClick(int.Parse(numSave)); });
+        }
+        else if (name.Equals("ContinueButton"))
+        {
+            instance.GetComponent<Button>().onClick.AddListener(delegate { instance.GetComponent<LoadMission>().OnSaveClick(mission, int.Parse(numSave)); });
         }
 
         return instance;
