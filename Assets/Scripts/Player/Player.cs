@@ -351,7 +351,7 @@ public class Player : MonoBehaviour {
             GetComponent<Collider2D>().enabled = true;
         }
         yield break;
-        Debug.Log("You'll never see this"); // produces a dead code warning
+        //Debug.Log("You'll never see this"); // produces a dead code warning
     }
 
 }

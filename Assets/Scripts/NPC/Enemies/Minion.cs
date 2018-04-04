@@ -66,4 +66,13 @@ public class Minion : Follower {
             GotoNextPoint();
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        print("Collision: " + other.collider.tag);
+        if (other.collider.tag.Equals("Player"))
+        {
+            MissionManager.instance.GameOver();
+        }
+    }
 }

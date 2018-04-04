@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class BlinkMainLight : MonoBehaviour {
 
 
-	GameObject light;
+	GameObject lightMain;
     public bool destroyChangeScene = true;
 	public float minWaitTime = 0.2f;
 	public float maxWaitTime = 0.3f;
@@ -19,7 +19,7 @@ public class BlinkMainLight : MonoBehaviour {
             nTimes++;
         }
         print("OP" + nTimes);
-        light = GameObject.Find("MainLight").gameObject;
+        lightMain = GameObject.Find("MainLight").gameObject;
 		StartCoroutine(Flashing());
 	}
 
@@ -28,7 +28,7 @@ public class BlinkMainLight : MonoBehaviour {
 		while (nTimes == -1 || nTimes > cont)
 		{
 			yield return new WaitForSeconds(Random.Range(minWaitTime,maxWaitTime));
-			light.SetActive(!light.activeSelf);
+			lightMain.SetActive(!lightMain.activeSelf);
             cont++;
             print("C" + cont);
         }

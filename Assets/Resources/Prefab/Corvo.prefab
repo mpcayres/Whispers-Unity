@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 95362615765529424}
   - component: {fileID: 61855625590709372}
   - component: {fileID: 50318696087106856}
-  - component: {fileID: 114216241225602436}
+  - component: {fileID: 114031394400129998}
   m_Layer: 0
   m_Name: Corvo
   m_TagString: Corvo
@@ -138,6 +138,26 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114031394400129998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1384326300624860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d351c6ff1153ab4dad9f53b6d5a9212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.1
+  animator: {fileID: 0}
+  isPatroller: 0
+  destroyEndPath: 0
+  stopEndPath: 0
+  targets: []
+  followWhenClose: 0
+  followingPlayer: 0
+  timeBirdsFollow: 1
 --- !u!114 &114064068479877738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,25 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b625b11ac44024d94a2dcf5fec9e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114216241225602436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1384326300624860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bca57848eb94da48aa87ed297e13bac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followingPlayer: 0
-  isPatroller: 0
-  destroyEndPath: 0
-  stopEndPath: 0
-  speed: 0.1
-  timeBirdsFollow: 1
-  animator: {fileID: 0}
-  targets: []
 --- !u!198 &198431158289831394
 ParticleSystem:
   m_ObjectHideFlags: 1

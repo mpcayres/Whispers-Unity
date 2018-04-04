@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
 public class Follower : Patroller {
-    public bool followWhenClose = true;
+    public bool followWhenClose = false;
+    public bool followingPlayer = false;
 
     protected GameObject player;
-
-    protected bool followingPlayer = false;
     
     void Start () {
         animator = GetComponent<Animator>();

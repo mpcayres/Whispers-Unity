@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4631127162410214}
-  - component: {fileID: 114797972462778732}
+  - component: {fileID: 114876291829516576}
   m_Layer: 0
   m_Name: CorvBabies
   m_TagString: CorvBabies
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b625b11ac44024d94a2dcf5fec9e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114797972462778732
+--- !u!114 &114876291829516576
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -91,16 +91,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1769926207432774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de25c1e8478518e4f80172986ecae24a, type: 3}
+  m_Script: {fileID: 11500000, guid: d1ea7db7a1f7c944dbad26e425a4558f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingPlayer: 0
+  speed: 0
+  animator: {fileID: 0}
   isPatroller: 0
   destroyEndPath: 0
   stopEndPath: 0
-  speed: 0
-  timeBirdsFollow: 1
   targets: []
+  followWhenClose: 0
+  timeBirdsFollow: 1
 --- !u!198 &198033555588709796
 ParticleSystem:
   m_ObjectHideFlags: 1

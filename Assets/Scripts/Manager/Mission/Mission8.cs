@@ -13,7 +13,7 @@ public class Mission8 : Mission {
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     bool falaMae = false, falaGato = false;
-    bool changed = false;
+
     float portaDefaultX, portaDefaultY;
     Book book;
     GameObject player, fosforo, isqueiro, faca, pedra, luminaria, fireEvent;

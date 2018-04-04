@@ -338,7 +338,7 @@ public class Mission1 : Mission {
             MissionManager.instance.blocked = true;
             //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
             GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
-            mainLight.transform.Rotate(new Vector3(25, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
+            mainLight.transform.Rotate(new Vector3(-25, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
             MissionManager.instance.AddObject("BlinkMainLight", "", new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
             //MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(2, 2, 1));

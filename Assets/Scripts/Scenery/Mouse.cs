@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Mouse : MonoBehaviour
 {
-    public Animation animation { get { return GetComponent<Animation>(); } }
+    public Animation animationMouse { get { return GetComponent<Animation>(); } }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            animation.Play("Mouse");
+            animationMouse.Play("Mouse");
         }
     }
 }

@@ -6,7 +6,7 @@ public class Mission2 : Mission {
         FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
 
-    GameObject vela, velaFixa, fosforo, faca, tampa;
+    GameObject vela, velaFixa, fosforo;//, faca, tampa;
 
     public override void InitMission()
     {
@@ -291,8 +291,8 @@ public class Mission2 : Mission {
             else if (secao == enumMission.FINAL_CONTESTA)
             {
                 // Corvo atacando
-                faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
-                tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
+                //faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
+                //tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
                 MissionManager.instance.Print("CORVO");
                 GameObject corvo = MissionManager.instance.AddObject("CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
                 corvo.GetComponent<CorvBabies>().speed = 0.1f;
