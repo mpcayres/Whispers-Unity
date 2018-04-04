@@ -25,13 +25,11 @@ public class ChangeLanguage : MonoBehaviour {
         switch (language) {
             case 1:
                 PlayerPrefs.SetString("Language", "EN_US");
-                LanguageSettings.actualLanguage = SupportedLanguages.EN_US;
-                script.ChangeTextMenu("New Game", "Continue", "Load Game", "Choose the mission", "Controls", "Options", "Language", "Exit", "Back");
+                script.SetTextLanguage();
                 break;
             case 2:
                 PlayerPrefs.SetString("Language", "PT_BR");
-                LanguageSettings.actualLanguage = SupportedLanguages.PT_BR;
-                script.ChangeTextMenu("Novo Jogo", "Continuar", "Carregar Jogo", "Escolha a missão", "Controles", "Opções", "Idioma", "Sair", "Voltar");
+                script.SetTextLanguage();
                 break;
         }
     }

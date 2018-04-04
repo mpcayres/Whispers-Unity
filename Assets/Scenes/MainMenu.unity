@@ -865,6 +865,7 @@ RectTransform:
   m_LocalScale: {x: 0.9999341, y: 0.9999341, z: 0.9999341}
   m_Children:
   - {fileID: 1900563420}
+  - {fileID: 1077489301}
   - {fileID: 1787444187}
   - {fileID: 754248600}
   m_Father: {fileID: 532451448}
@@ -2346,7 +2347,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 402854083}
   m_HandleRect: {fileID: 402854082}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.57527244
   m_Size: 0.27666667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3195,7 +3196,7 @@ RectTransform:
   m_Children:
   - {fileID: 1010326172}
   m_Father: {fileID: 265956332}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4283,7 +4284,7 @@ GameObject:
   - component: {fileID: 1010326174}
   - component: {fileID: 1010326173}
   m_Layer: 5
-  m_Name: BackLoadGameText
+  m_Name: BackLoadGameSubText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4657,6 +4658,84 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070947530}
+--- !u!1 &1077489300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1071508415775376, guid: 3ab17fc91cdbc5343ac5326ba9f01334,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1077489301}
+  - component: {fileID: 1077489303}
+  - component: {fileID: 1077489302}
+  m_Layer: 5
+  m_Name: WarningSaveLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1077489301
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224614304678649888, guid: 3ab17fc91cdbc5343ac5326ba9f01334,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077489300}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 265956332}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -75}
+  m_SizeDelta: {x: 296, y: 30.199997}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1077489302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114055073300206340, guid: 3ab17fc91cdbc5343ac5326ba9f01334,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077489300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b284a6525342f44599e9ce79e37c2d61, type: 3}
+    m_FontSize: 10
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "*O jogo n\xE3o ser\xE1 salvo"
+--- !u!222 &1077489303
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222651107389702252, guid: 3ab17fc91cdbc5343ac5326ba9f01334,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077489300}
 --- !u!1 &1080493559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4669,7 +4748,7 @@ GameObject:
   - component: {fileID: 1080493562}
   - component: {fileID: 1080493561}
   m_Layer: 5
-  m_Name: BackLoadGameText
+  m_Name: BackContinueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7202,7 +7281,7 @@ RectTransform:
   - {fileID: 712879635}
   - {fileID: 526284942}
   m_Father: {fileID: 265956332}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
