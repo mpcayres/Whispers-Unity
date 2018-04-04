@@ -440,7 +440,7 @@ public class MissionManager : MonoBehaviour {
 
             SetMission(save.mission);
 
-            Debug.Log("Game Loaded " + m);
+            Debug.Log("Game Loaded " + m + " [" + PlayerPrefs.GetInt("CurrentSaveNumber") + "]");
 
             paused = false;
         }
