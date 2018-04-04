@@ -3,8 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 
-public class NewGame : MonoBehaviour
-{
+public class NewGame : MonoBehaviour {
 
     public Image black;
     public Animator anim;
@@ -13,6 +12,7 @@ public class NewGame : MonoBehaviour
     {
         StartCoroutine(FadingNewGame());
     }
+
     IEnumerator FadingNewGame()
     {
         anim.SetBool("Fade", true);

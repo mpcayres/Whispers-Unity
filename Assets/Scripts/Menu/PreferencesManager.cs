@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using RPGTALK.Localization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class PreferencesManager : MonoBehaviour {
 
@@ -21,7 +21,35 @@ public class PreferencesManager : MonoBehaviour {
                     break;
             }
         }
-	}
+
+        // Adaptar para mais de um save
+        if (!MissionManager.FilePatternExists(Application.persistentDataPath, "gamesave" + 0 + "*.save"))
+        {
+            FindDeepChild(transform, "ContinueButton").gameObject.SetActive(false);
+        }
+        else
+        {
+            string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + 0 + "*.save");
+            foreach (string f in files)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(f, FileMode.Open);
+                Save save = (Save)bf.Deserialize(file);
+                file.Close();
+
+                string[] parts = f.Split('.');
+                string part = parts[parts.Length - 2];
+                string i = part.Substring(part.Length - 1);
+                AddButton("SaveButton", i + ": " + save.time, i, FindDeepChild(transform, "ContinueSavesPanel").gameObject);
+            }
+        }
+
+        if (!MissionManager.FilePatternExists(Application.persistentDataPath, "gamesave*.save"))
+        {
+            FindDeepChild(transform, "LoadGameButton").gameObject.SetActive(false);
+        }
+        
+    }
 
     public void ChangeTextMenu(string newGame, string continueGame, string loadGame, string missionLabel, string controls, string options, string optionsLabel, string exit, string back)
     {
@@ -51,4 +79,25 @@ public class PreferencesManager : MonoBehaviour {
         }
         return null;
     }
+
+    GameObject AddButton(string name, string text, string numSave, GameObject parent)
+    {
+        // print("UI: " + name + " > " + text);
+        GameObject instance =
+            Instantiate(Resources.Load("Prefab/UI/" + name) as GameObject);
+
+        instance.transform.SetParent(parent.transform);
+        instance.GetComponent<RectTransform>().transform.localScale = new Vector3(1,1,1);
+        if (text != "") instance.transform.Find("Text").GetComponent<Text>().text = text;
+
+        if (name.Equals("SaveButton"))
+        {
+            instance.GetComponent<ContinueGame>().black = transform.Find("BlackSquare").GetComponent<Image>();
+            instance.GetComponent<ContinueGame>().anim = transform.Find("BlackSquare").GetComponent<Animator>();
+            instance.GetComponent<Button>().onClick.AddListener(delegate { instance.GetComponent<ContinueGame>().OnClick(int.Parse(numSave)); });
+        }
+
+        return instance;
+    }
+    
 }

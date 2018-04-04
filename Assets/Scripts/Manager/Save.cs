@@ -3,9 +3,10 @@
 [System.Serializable]
 public class Save
 {
+    public string time;
+
     // MISSÕES
     public int mission = 0; // atual
-    public int unlockedMission = 0; // desbloqueadas
 
     // INVENTÁRIO
     public List<Inventory.InventoryItems> inventory = new List<Inventory.InventoryItems>(); // completo

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -11,7 +12,7 @@ public class MissionManager : MonoBehaviour {
 
     // MISSÕES
     public Mission mission;
-    public int currentMission, unlockedMission;
+    public int currentMission;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
     public static int initDir = 0;
@@ -67,10 +68,19 @@ public class MissionManager : MonoBehaviour {
             hud = GameObject.Find("HUDCanvas").gameObject;
 
             currentMission = PlayerPrefs.GetInt("Mission");
+            // Salva o jogo somente quando jogar através do New Game ou Continue
+            if (currentMission == -1 || currentMission == 0)
+            {
+                PlayerPrefs.SetInt("SaveGame", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("SaveGame", 1);
+            }
+
             if (currentMission == -1)
             {
                 currentMission = 1;
-                unlockedMission = 1;
 
                 Inventory.SetInventory(null);
                 GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
@@ -87,7 +97,7 @@ public class MissionManager : MonoBehaviour {
                 mission8BurnCorredor = false;
 
                 SetMission(currentMission);
-                SaveGame(0);
+                SaveGame(1, -1);
             }
             else
             {
@@ -301,13 +311,23 @@ public class MissionManager : MonoBehaviour {
     public void DeleteAllPlayerPrefs()
     {
         string language = "";
+        int currentSave = 0, maxSave = 0;
         if (PlayerPrefs.HasKey("Language"))
         {
             language = PlayerPrefs.GetString("Language");
         }
+        if (PlayerPrefs.HasKey("CurrentSaveGame"))
+        {
+            currentSave = PlayerPrefs.GetInt("CurrentSaveGame");
+        }
+        if (PlayerPrefs.HasKey("MaxSaveGame"))
+        {
+            maxSave = PlayerPrefs.GetInt("MaxSaveGame");
+        }
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetString("Language", language);
-        PlayerPrefs.SetInt("Mission", currentMission);
+        PlayerPrefs.SetInt("CurrentSaveGame", currentSave);
+        PlayerPrefs.SetInt("MaxSaveGame", maxSave);
     }
 
     /************ FUNÇÕES DE SAVE ************/
@@ -318,13 +338,6 @@ public class MissionManager : MonoBehaviour {
         Save save = new Save();
 
         save.mission = currentMission;
-        if (unlockedMission <= currentMission) {
-            save.unlockedMission = currentMission;
-        }
-        else
-        {
-            save.unlockedMission = unlockedMission;
-        }
 
         save.inventory = Inventory.GetInventoryItems();
         save.currentItem = Inventory.GetCurrentItem();
@@ -349,33 +362,61 @@ public class MissionManager : MonoBehaviour {
         save.mission4QuebraSozinho = mission4QuebraSozinho;
         save.mission8BurnCorredor = mission8BurnCorredor;
 
+        save.time = DateTime.UtcNow.ToString();
+
         return save;
     }
 
     // SALVAR JOGO
-    public void SaveGame(int m)
+    public void SaveGame(int m, int opt)
     {
         Save save = CreateSaveGameObject();
         
         BinaryFormatter bf = new BinaryFormatter();
-        // m = 0 -> continue
-        // m > 0 -> select mission
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + m + ".save");
-        bf.Serialize(file, save);
-        file.Close();
+        // opt = -1 -> new game
+        // opt = 0 -> continue
+        if ((opt == -1 || opt == 0) && PlayerPrefs.HasKey("SaveGame") && PlayerPrefs.GetInt("SaveGame") == 0)
+        {
+            int numSave = 0;
+            if (PlayerPrefs.HasKey("CurrentSaveNumber"))
+            {
+                numSave = PlayerPrefs.GetInt("CurrentSaveNumber");
+                if (opt == -1)
+                {
+                    numSave++;
+                    PlayerPrefs.SetInt("CurrentSaveNumber", numSave);
+                    PlayerPrefs.SetInt("MaxSaveNumber", numSave);
+                }
+            }
+            else
+            {
+                PlayerPrefs.SetInt("CurrentSaveNumber", numSave);
+                PlayerPrefs.SetInt("MaxSaveNumber", numSave);
+            }
+
+            FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + 0 + "_" + numSave + ".save");
+            bf.Serialize(file, save);
+            file.Close();
+
+            FileStream fileMission = File.Create(Application.persistentDataPath + "/gamesave" + m + "_" + numSave + ".save");
+            bf.Serialize(fileMission, save);
+            fileMission.Close();
+
+            Debug.Log("Game Saved " + m);
+        }
         
-        Debug.Log("Game Saved " + m);
     }
 
     // CARREGAR JOGO
     public void LoadGame(int m)
     {
-        if (File.Exists(Application.persistentDataPath + "/gamesave" + m + ".save"))
+        if (PlayerPrefs.HasKey("CurrentSaveNumber") && 
+            File.Exists(Application.persistentDataPath + "/gamesave" + m + "_" + PlayerPrefs.GetInt("CurrentSaveNumber") + ".save"))
         {
             paused = true;
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + m + ".save", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + m + "_" + PlayerPrefs.GetInt("CurrentSaveNumber") + ".save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
             
@@ -397,9 +438,7 @@ public class MissionManager : MonoBehaviour {
             mission4QuebraSozinho = save.mission4QuebraSozinho;
             mission8BurnCorredor = save.mission8BurnCorredor;
 
-            unlockedMission = save.unlockedMission;
             SetMission(save.mission);
-            SaveGame(0);
 
             Debug.Log("Game Loaded " + m);
 
@@ -472,8 +511,7 @@ public class MissionManager : MonoBehaviour {
     public void ChangeMission(int m)
     {
         SetMission(m);
-        SaveGame(0);
-        SaveGame(currentMission);
+        SaveGame(currentMission, 0);
     }
 
     // FINALIZAR JOGO
@@ -506,6 +544,23 @@ public class MissionManager : MonoBehaviour {
         {
             GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
         }
+    }
+
+    // AUXILIAR PARA RETORNAR NOMES DE ARQUIVO SEGUINDO PADRÃO
+    public static string[] GetFilesByPattern(string path, string pattern)
+    {
+        string[] files = Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly);
+        if (files.Length > 0)
+        {
+            return files;
+        }
+        return null;
+    }
+
+    // AUXILIAR PARA IDENTIFICAÇÃO DA EXISTÊNCIA DE PADRÕES DE ARQUIVO
+    public static bool FilePatternExists(string path, string pattern)
+    {
+        return (GetFilesByPattern(path, pattern) != null);
     }
 
     // AUXILIAR PARA INVOCAÇÃO NAS MISSÕES

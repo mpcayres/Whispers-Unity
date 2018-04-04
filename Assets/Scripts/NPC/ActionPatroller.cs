@@ -3,11 +3,19 @@
 public class ActionPatroller : MonoBehaviour {
     GameObject target;
     public string tagAction = "Mom";
+    public string nameAction = "";
     public bool changeSizeByDirection = true;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag(tagAction);
+        if (nameAction.Equals(""))
+        {
+            target = GameObject.FindGameObjectWithTag(tagAction);
+        }
+        else
+        {
+            target = GameObject.Find(nameAction);
+        }
     }
 
     void Update()
@@ -41,7 +49,14 @@ public class ActionPatroller : MonoBehaviour {
         }
         else
         {
-            target = GameObject.FindGameObjectWithTag(tagAction);
+            if (nameAction.Equals(""))
+            {
+                target = GameObject.FindGameObjectWithTag(tagAction);
+            }
+            else
+            {
+                target = GameObject.Find(nameAction);
+            }
         }
     }
 

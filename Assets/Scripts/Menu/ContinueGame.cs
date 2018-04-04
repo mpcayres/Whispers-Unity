@@ -8,8 +8,9 @@ public class ContinueGame : MonoBehaviour {
     public Image black;
     public Animator anim;
 
-    public void OnClick()
+    public void OnClick(int save)
     {
+        PlayerPrefs.SetInt("CurrentSaveGame", save);
         StartCoroutine(FadingContinue());
     }
 

@@ -66,6 +66,11 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<Cat>().FollowPlayer();
         }
+        else if (collision.gameObject.tag.Equals("Enemy") &&
+            collision.gameObject.GetComponent<Minion>().followWhenClose && !collision.gameObject.GetComponent<Minion>().IsFollowing())
+        {
+            collision.gameObject.GetComponent<Minion>().FollowPlayer();
+        }
 
     }
 
