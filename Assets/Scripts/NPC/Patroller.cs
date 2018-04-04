@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Patroller : MonoBehaviour {
     public float speed;
@@ -8,13 +6,12 @@ public class Patroller : MonoBehaviour {
     public bool isPatroller = false;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
-
-    int direction = 4, oldDirection = 4;
-
-    SpriteRenderer spriteRenderer;
-
     public Transform[] targets;
-    private int destPoint = 0;
+
+    protected SpriteRenderer spriteRenderer;
+
+    protected int direction = 4, oldDirection = 4;
+    protected int destPoint = 0;
 
     void Start()
     {
@@ -32,7 +29,7 @@ public class Patroller : MonoBehaviour {
         }
     }
 
-    void GotoNextPoint()
+    protected void GotoNextPoint()
     {
         float step = speed * Time.deltaTime;
 
@@ -64,7 +61,7 @@ public class Patroller : MonoBehaviour {
 
     }
 
-    void ChangeDirection()
+    protected void ChangeDirection()
     {
         if (Mathf.Abs(targets[destPoint].position.y - transform.position.y) <
             Mathf.Abs(targets[destPoint].position.x - transform.position.x))
@@ -104,7 +101,7 @@ public class Patroller : MonoBehaviour {
         ChangeDirectionAnimation();
     }
 
-    void ChangeDirectionAnimation()
+    protected void ChangeDirectionAnimation()
     {
         if (oldDirection != direction)
         {

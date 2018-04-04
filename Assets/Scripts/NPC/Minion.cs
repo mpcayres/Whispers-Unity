@@ -1,26 +1,17 @@
 ﻿using UnityEngine;
 
-public class Cat : Follower {
-    public static Cat instance;
-    
-    void Start () {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-            animator = GetComponent<Animator>();
-            player = GameObject.FindGameObjectWithTag("Player");
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+public class Minion : Follower {
+   
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-	
-	void Update () {
 
-        spriteRenderer.sortingOrder = -12 + Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    void Update()
+    {
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         if (followingPlayer)
         {
@@ -52,7 +43,7 @@ public class Cat : Follower {
                         direction = 3;
                     }
                 }
-                
+
                 transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
             }
             else
@@ -74,11 +65,5 @@ public class Cat : Follower {
         {
             GotoNextPoint();
         }
-
-    }
-
-    public void DestroyCat()
-    {
-        Destroy(gameObject);
     }
 }

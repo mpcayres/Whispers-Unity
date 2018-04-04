@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 
-public class Cat : Follower {
-    public static Cat instance;
+public class Follower : Patroller {
+    public bool followWhenClose = true;
+
+    protected GameObject player;
+
+    protected bool followingPlayer = false;
     
     void Start () {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-            animator = GetComponent<Animator>();
-            player = GameObject.FindGameObjectWithTag("Player");
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+        animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
 	void Update () {
@@ -77,8 +72,36 @@ public class Cat : Follower {
 
     }
 
-    public void DestroyCat()
+    public void ChangePosition(float x, float y)
     {
-        Destroy(gameObject);
+        transform.position = new Vector3(x, y, transform.position.z);
+    }
+
+    public void FollowPlayer()
+    {
+        isPatroller = false;
+        followingPlayer = true;
+    }
+
+    public bool IsFollowing()
+    {
+        return followingPlayer;
+    }
+
+    public void Patrol()
+    {
+        followingPlayer = false;
+        isPatroller = true;
+    }
+
+    public bool IsPatroller()
+    {
+        return isPatroller;
+    }
+
+    public new void Stop()
+    {
+        followingPlayer = false;
+        base.Stop();
     }
 }
