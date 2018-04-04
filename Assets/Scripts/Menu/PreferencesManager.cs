@@ -30,6 +30,8 @@ public class PreferencesManager : MonoBehaviour {
         else
         {
             string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + 0 + "*.save");
+            RectTransform rect = FindDeepChild(transform, "ContinueSavesContent").gameObject.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(rect.sizeDelta.x, 30 * files.Length);
             foreach (string f in files)
             {
                 BinaryFormatter bf = new BinaryFormatter();
@@ -40,7 +42,7 @@ public class PreferencesManager : MonoBehaviour {
                 string[] parts = f.Split('.');
                 string part = parts[parts.Length - 2];
                 string i = part.Substring(part.Length - 1);
-                AddButton("SaveButton", i + ": " + save.time, i, FindDeepChild(transform, "ContinueSavesPanel").gameObject);
+                AddButton("SaveButton", i + ": " + save.time, i, FindDeepChild(transform, "ContinueSavesContent").gameObject);
             }
         }
 
