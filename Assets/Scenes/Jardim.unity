@@ -34619,8 +34619,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497b8ce6283056348a0c332cd02537bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodSpiritVector: []
-  evilSpiritVector: []
+  goodSpiritVector:
+  - {fileID: 971118416}
+  - {fileID: 2024910593}
+  - {fileID: 311662546}
+  - {fileID: 1535334170}
+  - {fileID: 675096050}
+  evilSpiritVector:
+  - {fileID: 765388864}
+  - {fileID: 1581731368}
+  - {fileID: 350249358}
+  - {fileID: 702404940}
+  - {fileID: 1783836471}
 --- !u!1 &1359933433
 GameObject:
   m_ObjectHideFlags: 0
