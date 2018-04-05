@@ -49,6 +49,56 @@ public class SpiritManager : MonoBehaviour{
         }
     }
 
+    public static void GenerateSpiritMap()
+    {
+        Spirit.maxEvilKilled = 4;
+
+        float x = -2.1f, y = 0.8f;
+        float maxX = 12;
+        int sequencia = 0, aux2 = -1;
+        for (int j = 0; j < 4; j++)
+        {
+            if (j == 1)
+            {
+                maxX = 18;
+            }
+            for (int i = 0; i < maxX; i++)
+            {
+
+                int aux = Random.Range(0, 4);
+                if (aux2 == aux)
+                {
+                    sequencia++;
+                    if (sequencia == 3)
+                    {
+                        aux = (aux + 1) % 4;
+                    }
+                }
+                else
+                {
+                    sequencia = 0;
+                }
+                switch (aux)
+                {
+                    case 1:
+                        MissionManager.instance.AddObject("Scenery/GoodSpiritAux", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        break;
+                    case 2:
+                        MissionManager.instance.AddObject("Scenery/EvilSpiritAux", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        break;
+                    default:
+                        MissionManager.instance.AddObject("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        break;
+                }
+                aux2 = aux;
+                x += 0.9f;
+            }
+            y -= 1f;
+            x = -7.5f;
+        }
+        Spirit.newHealth = 2;
+    }
+
     public static void DestroyGoodSpirit(int number)
     {
         goodDestroyed[number] = true;

@@ -77,7 +77,7 @@ public class Mission2 : Mission {
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = MissionManager.instance.AddObject(
-                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+                "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
@@ -159,7 +159,7 @@ public class Mission2 : Mission {
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = MissionManager.instance.AddObject(
-                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+                "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
@@ -214,7 +214,7 @@ public class Mission2 : Mission {
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = MissionManager.instance.AddObject(
-                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+                "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
@@ -317,7 +317,7 @@ public class Mission2 : Mission {
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = MissionManager.instance.AddObject(
-                "catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
+                "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 

@@ -224,8 +224,8 @@ public class MissionManager : MonoBehaviour {
     {
         previousSceneName = currentSceneName;
         currentSceneName = scene.name;
-        print("OLDSCENE" + previousSceneName);
-        print("NEWSCENE" + currentSceneName);
+        //print("OLDSCENE" + previousSceneName);
+        //print("NEWSCENE" + currentSceneName);
 
         if (!initMission) {
             GetComponent<Player>().ChangePosition();
@@ -285,6 +285,7 @@ public class MissionManager : MonoBehaviour {
     // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
+        print("ADD OBJECT: " + name);
         GameObject moveInstance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
