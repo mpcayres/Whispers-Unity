@@ -78,4 +78,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagAction: Mom
+  nameAction: 
   changeSizeByDirection: 1

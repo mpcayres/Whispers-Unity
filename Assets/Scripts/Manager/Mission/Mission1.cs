@@ -117,13 +117,13 @@ public class Mission1 : Mission {
         portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
         // Objeto movel que atrapalha
-        GameObject chair = MissionManager.instance.AddObject("MovingObject", "Sprites/Objects/Scene/vaso",
+        GameObject chair = MissionManager.instance.AddObject("Objects/MovingObject", "Sprites/Objects/Scene/vaso",
             new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
         chair.GetComponent<MovingObject>().prefName = "Corredor_0";
 
         if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
             GameObject.Find("MainCamera").GetComponent<Camera>().transform.position = new Vector3(0f, 0f, -20f);
             // Porta Sala
@@ -136,7 +136,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_COZINHA)
         {
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().Patrol();
             Transform aux = new GameObject().transform;
             aux.position = new Vector3(-9.8f, -0.4f, -0.5f);
@@ -227,7 +227,7 @@ public class Mission1 : Mission {
         {
             GameObject.Find("Flashlight").gameObject.GetComponent<Flashlight>().EnableFlashlight(false);
             MissionManager.instance.GetComponent<Player>().ChangePositionDefault(-2.5f, 0.7f, 0);
-            MissionManager.instance.AddObject("mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
 
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SceneDoor>().isOpened = false;
@@ -279,12 +279,12 @@ public class Mission1 : Mission {
         GameObject portaCorredor = GameObject.Find("DoorToAlley").gameObject;
         portaCorredor.GetComponent<SceneDoor>().isOpened = false;
 
-        GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
+        GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
         trigger.name = "AreaTrigger";
         trigger.GetComponent<Collider2D>().offset = new Vector2(2.68f, 0);
         trigger.GetComponent<BoxCollider2D>().size = new Vector2(10.2f, 5f);
 
-        GameObject trigger2 = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
+        GameObject trigger2 = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
         trigger2.name = "TVTrigger";
         trigger2.GetComponent<Collider2D>().offset = new Vector2(7f, -0.4f);
         trigger2.GetComponent<BoxCollider2D>().size = new Vector2(1.55f, 0.8f);
@@ -339,15 +339,14 @@ public class Mission1 : Mission {
             //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
             GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
             mainLight.transform.Rotate(new Vector3(-25, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
-            MissionManager.instance.AddObject("BlinkMainLight", "", new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
+            MissionManager.instance.AddObject("Effects/BlinkMainLight", "", new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
-            //MissionManager.instance.AddObject("CorvoSombra", "", new Vector3(10.5f, 0, 0), new Vector3(2, 2, 1));
             MissionManager.instance.Invoke("InvokeMission", 5f);
         }
         else if (secao == enumMission.SMILE)
         {
             MissionManager.instance.scenerySounds.PlayScare(3);
-            //MissionManager.instance.AddObject("CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
+            //MissionManager.instance.AddObject("Effects/CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
         else if (secao == enumMission.MAE_QUARTO)
@@ -391,7 +390,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(1.7f, 0.7f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(1.7f, 0.7f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneChoice", "M1KidRoomSceneChoiceEnd", MissionManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.FINAL)

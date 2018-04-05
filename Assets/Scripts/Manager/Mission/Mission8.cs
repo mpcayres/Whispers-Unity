@@ -281,7 +281,7 @@ public class Mission8 : Mission {
         if (secao == enumMission.CORVO_ATACA_BIRD)
         {
             // Botijao
-            GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
+            GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
             trigger.name = "GasTrigger";
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
@@ -330,7 +330,7 @@ public class Mission8 : Mission {
             scenePickUpObject2.blockAfterPick = true;
             scenePickUpObject2.item = Inventory.InventoryItems.PEDRA;
 
-            GameObject pedra = MissionManager.instance.AddObject("PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1.3f));
+            GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1.3f));
             pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
         }
 
@@ -371,12 +371,12 @@ public class Mission8 : Mission {
         if (MissionManager.instance.mission2ContestaMae)
         {
             // Arranhao
-            MissionManager.instance.AddObject("Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
+            MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
         }
         else
         {
             // Vela
-            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            GameObject velaFixa = MissionManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
@@ -419,7 +419,7 @@ public class Mission8 : Mission {
         }
 
         // Mae sumida
-        GameObject triggerM = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-2.21f, -3.39f, 0), new Vector3(1, 1, 1));
+        GameObject triggerM = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-2.21f, -3.39f, 0), new Vector3(1, 1, 1));
         triggerM.name = "MaeTrigger";
         triggerM.GetComponent<Collider2D>().offset = new Vector2(0, 0);
         triggerM.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
@@ -476,19 +476,19 @@ public class Mission8 : Mission {
             estanteTrigger = poltronaTrigger = sofaTrigger = false;
 
             // Estante
-            GameObject triggerE = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-5.71f, 1.64f, 0), new Vector3(1, 1, 1));
+            GameObject triggerE = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-5.71f, 1.64f, 0), new Vector3(1, 1, 1));
             triggerE.name = "EstanteTrigger";
             triggerE.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerE.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1.6f);
 
             // Poltrona
-            GameObject triggerP = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-1f, 1.6f, 0), new Vector3(1, 1, 1));
+            GameObject triggerP = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1f, 1.6f, 0), new Vector3(1, 1, 1));
             triggerP.name = "PoltronaTrigger";
             triggerP.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerP.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1.2f);
 
             // Sofa
-            GameObject triggerS = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(5.53f, 0.4f, 0), new Vector3(1, 1, 1));
+            GameObject triggerS = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(5.53f, 0.4f, 0), new Vector3(1, 1, 1));
             triggerS.name = "SofaTrigger";
             triggerS.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerS.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1f);
@@ -526,7 +526,7 @@ public class Mission8 : Mission {
             if (Cat.instance == null)
             {
                 // Gato
-                GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+                GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
                 cat.GetComponent<Cat>().speed = 2.4f;
                 cat.GetComponent<Cat>().FollowPlayer();
             }
@@ -534,7 +534,7 @@ public class Mission8 : Mission {
         else if (secao == enumMission.CORVO_ATACA_BIRD || secao == enumMission.BOTIJAO_BIRD)
         {
             // Fala sobre gato sumido
-            GameObject triggerG = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-4.96f, -2f, 0), new Vector3(1, 1, 1));
+            GameObject triggerG = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.96f, -2f, 0), new Vector3(1, 1, 1));
             triggerG.name = "GatoTrigger";
             triggerG.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerG.GetComponent<BoxCollider2D>().size = new Vector2(6f, 1f);
@@ -590,7 +590,7 @@ public class Mission8 : Mission {
         {
             MissionManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
 
-            MissionManager.instance.AddObject("mom", "", new Vector3(-3.1f, 1.3f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-3.1f, 1.3f, -0.5f), new Vector3(0.3f, 0.3f, 1));
         }
         else if (secao == enumMission.FINAL_CAT)
         {
@@ -733,7 +733,7 @@ public class Mission8 : Mission {
     //Quando mais no caminho do gato, mais fraco o corvo
     public GameObject CreateCorvoCat()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
+        GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
         corvo.GetComponent<Corvo>().speed = 0.1f - (MissionManager.instance.pathCat/1000); // velocidade do corvo
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.7f - (MissionManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
@@ -751,7 +751,7 @@ public class Mission8 : Mission {
     //Quando mais no caminho do corvo, mais forte ele será
     public GameObject CreateCorvoBird()
     {
-        GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
+        GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
         corvo.GetComponent<Corvo>().speed = 0.08f + (MissionManager.instance.pathBird/1000);
         corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f + (MissionManager.instance.pathBird/100);

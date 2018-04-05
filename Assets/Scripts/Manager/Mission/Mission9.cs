@@ -54,7 +54,7 @@ public class Mission9 : Mission {
         else if (endCat && MissionManager.instance.currentSceneName.Equals("Jardim") && Cat.instance == null)
         {
             // Gato, correção de um erro
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().followWhenClose = false;
             cat.GetComponent<Cat>().Stop();
             cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
@@ -200,13 +200,13 @@ public class Mission9 : Mission {
             MissionManager.instance.blocked = false;
 
             // Gato
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().followWhenClose = false;
             cat.GetComponent<Cat>().Stop();
             cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
 
             // Mãe
-            GameObject mae = MissionManager.instance.AddObject("mom", "", new Vector3(0.46f, 1.98f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mae = MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(0.46f, 1.98f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mae.GetComponent<Patroller>().Stop();
             mae.GetComponent<Patroller>().ChangeDirectionAnimation(5);
         }
@@ -258,7 +258,7 @@ public class Mission9 : Mission {
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
 
             // Gato
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().followWhenClose = false;
             cat.GetComponent<Cat>().Stop();
         }
@@ -266,12 +266,12 @@ public class Mission9 : Mission {
         if (MissionManager.instance.mission2ContestaMae)
         {
             // Arranhao
-            MissionManager.instance.AddObject("Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
+            MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
         }
         else
         {
             // Vela
-            GameObject velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            GameObject velaFixa = MissionManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
@@ -311,7 +311,7 @@ public class Mission9 : Mission {
             GameObject.Find("FireEventHolder").gameObject.transform.Find("FireEventBird").gameObject.SetActive(true);
 
             // Mãe
-            MissionManager.instance.AddObject("mom", "", new Vector3(2.04f, 0.94f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(2.04f, 0.94f, -0.5f), new Vector3(0.3f, 0.3f, 1));
 
             // Porta bloqueada
             GameObject portaMae = GameObject.Find("DoorToAlley").gameObject;
@@ -402,12 +402,12 @@ public class Mission9 : Mission {
             MissionManager.instance.InvertWorld(true);
             if (endCat)
             {
-                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(4.5f, 4.5f, 1));
+                GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(4.5f, 4.5f, 1));
                 corvo.GetComponent<SpriteRenderer>().color = Color.gray;
             }
             else
             {
-                GameObject corvo = MissionManager.instance.AddObject("Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
+                GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
                 corvo.GetComponent<SpriteRenderer>().color = Color.gray;
             }
 

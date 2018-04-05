@@ -91,7 +91,7 @@ public class Mission2 : Mission {
         if (secao == enumMission.INICIO_SOZINHO)
         {
             // Gato
-            MissionManager.instance.AddObject("catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
         }
 
         if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
@@ -112,8 +112,8 @@ public class Mission2 : Mission {
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae
-            MissionManager.instance.AddObject("mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-            GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(-1.5f, 0f, 1), new Vector3(1, 1, 1));
+            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1.5f, 0f, 1), new Vector3(1, 1, 1));
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
@@ -129,7 +129,7 @@ public class Mission2 : Mission {
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae patrulha
-            GameObject mom = MissionManager.instance.AddObject("mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mom = MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Patroller>().isPatroller = true;
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform, target3 = new GameObject().transform;
             Transform target4 = new GameObject().transform, target5 = new GameObject().transform, target6 = new GameObject().transform;
@@ -149,7 +149,7 @@ public class Mission2 : Mission {
             target9.position = new Vector3(-3f, -0.3f, -0.5f);
             Transform[] momTargets = { target1, target2, target3, target4, target5, target6, target7, target8, target9 };
             mom.GetComponent<Patroller>().targets = momTargets;
-            MissionManager.instance.AddObject("ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(0.7f, 0.7f, 1));
+            MissionManager.instance.AddObject("NPCs/ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(0.7f, 0.7f, 1));
         }
     }
 
@@ -226,7 +226,7 @@ public class Mission2 : Mission {
 
         if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
-            GameObject cat = MissionManager.instance.AddObject("catFollower", "", new Vector3(2.5f, -0.8f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -0.8f, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
         else if (secao == enumMission.RESPEITA_MAE)
@@ -279,7 +279,7 @@ public class Mission2 : Mission {
             {
                 // Mini-game vela
                 vela = GameObject.Find("Player").gameObject.transform.Find("Vela").gameObject;
-                GameObject trigger = MissionManager.instance.AddObject("AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
+                GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
                 trigger.name = "VelaTrigger";
                 trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
                 trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
@@ -294,7 +294,7 @@ public class Mission2 : Mission {
                 //faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
                 //tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
                 MissionManager.instance.Print("CORVO");
-                GameObject corvo = MissionManager.instance.AddObject("CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
+                GameObject corvo = MissionManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
                 corvo.GetComponent<CorvBabies>().speed = 0.1f;
                 corvo.GetComponent<CorvBabies>().timeBirdsFollow = 0.5f;
                 var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
@@ -372,7 +372,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            velaFixa = MissionManager.instance.AddObject("EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa = MissionManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
 
@@ -422,7 +422,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
-            MissionManager.instance.AddObject("Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
+            MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
             CorvBabies.instance.DestroyCorvBabies();
             Cat.instance.Stop();
             MissionManager.instance.Invoke("InvokeMission", 6f);

@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite1: {fileID: 21300000, guid: d089587f579908749bb7b18fe1aecb07, type: 3}
   sprite2: {fileID: 21300000, guid: 142121aa5cc99f84a9b057336eb705bd, type: 3}
+  positionSprite: 0
+  scale: 1
+  isUp: 0
   colliding: 0
 --- !u!212 &212789227304669240
 SpriteRenderer:

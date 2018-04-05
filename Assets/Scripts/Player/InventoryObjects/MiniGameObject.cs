@@ -49,7 +49,7 @@ public class MiniGameObject : MonoBehaviour {
                 MissionManager.instance.pausedObject = true;
                 timeLeft = timeMax;
                 anim.SetActive(true);
-                flare = MissionManager.instance.AddObject("Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
+                flare = MissionManager.instance.AddObject("Effects/Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
                 playing = true;
             }
             else if ((CrossPlatformInputManager.GetButtonDown("keyUseObject") || timeLeft <= 0) && playing)

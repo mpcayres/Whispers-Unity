@@ -18,7 +18,7 @@ public class Corvo : Follower {
             birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
 
             MissionManager.instance.AddObject(
-                "ActionCorvo", "", new Vector3(transform.position.x, transform.position.y, 0), new Vector3(1*transform.localScale.x/5, 1 * transform.localScale.y / 5, 1));
+                "NPCs/ActionCorvo", "", new Vector3(transform.position.x, transform.position.y, 0), new Vector3(1*transform.localScale.x/5, 1 * transform.localScale.y / 5, 1));
         }
         else if (instance != this)
         {

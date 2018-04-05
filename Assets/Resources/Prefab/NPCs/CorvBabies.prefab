@@ -101,6 +101,7 @@ MonoBehaviour:
   stopEndPath: 0
   targets: []
   followWhenClose: 0
+  followingPlayer: 0
   timeBirdsFollow: 1
 --- !u!198 &198033555588709796
 ParticleSystem:
