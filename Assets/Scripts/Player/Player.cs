@@ -81,8 +81,6 @@ public class Player : MonoBehaviour {
                 animator.SetBool("isWalking", isWalking);
                 animator.SetBool("isRunning", isRunning);
 
-                
-
                 if (playerState == Actions.MOVING_OBJECT)
                 {
                     wantedDirection = direction;
@@ -153,36 +151,6 @@ public class Player : MonoBehaviour {
             animator.SetTrigger("changeDirection");
             oldDirection = -1;
         }
-    }
-
-	private void OnTriggerEnter2D (Collider2D other)
-	{
-        /*MissionManager.instance.paused = true;
-
-        switch (other.tag)
-        {
-            case "DoorToLivingroom":
-                MissionManager.LoadScene(1);
-                break;
-            case "DoorToAlley":
-                MissionManager.LoadScene(2);
-                break;
-            case "DoorToGarden":
-                MissionManager.LoadScene(3);
-                break;
-            case "DoorToKitchen":
-                MissionManager.LoadScene(4);
-                break;
-            case "DoorToMomRoom":
-                MissionManager.LoadScene(5);
-                break;
-            case "DoorToKidRoom":
-                MissionManager.LoadScene(6);
-                break;
-            default:
-                MissionManager.instance.paused = false;
-                break;
-        }*/
     }
 
     public void ChangeDirection(int newDirection)

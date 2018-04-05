@@ -42,13 +42,16 @@ public class MissionManager : MonoBehaviour {
 
     // HUD - INÍCIO MISSÃO
     public bool showMissionStart = true;
-    float startMissionDelay = 3f;
+    private float startMissionDelay = 3f;
     private GameObject hud;
     private GameObject levelImage;
     private Text levelText;
 
     // RPG TALK
     public RPGTalk rpgTalk;
+
+    // SAVE
+    private Save currentSave;
 
     // SONS
     public ScenerySounds scenerySounds;
@@ -198,13 +201,13 @@ public class MissionManager : MonoBehaviour {
     // FUNÇÕES DE MUDANÇA DE CENA
     public static void LoadScene(string name)
     {
-        SaveMovingObjectsPosition();
+        SaveObjectsVariables();
         SceneManager.LoadScene(name);
     }
 
     public static void LoadScene(int index)
     {
-        SaveMovingObjectsPosition();
+        SaveObjectsVariables();
         SceneManager.LoadScene(index);
     }
 
@@ -227,8 +230,12 @@ public class MissionManager : MonoBehaviour {
         //print("OLDSCENE" + previousSceneName);
         //print("NEWSCENE" + currentSceneName);
 
-        if (!initMission) {
+        if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest")) {
             GetComponent<Player>().ChangePosition();
+        }
+        else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest")) {
+            GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+            initX = initY = 0;
         }
         else {
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
@@ -260,24 +267,14 @@ public class MissionManager : MonoBehaviour {
             Destroy(hud);
             if (Cat.instance != null) Cat.instance.DestroyCat();
             if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-            if (CorvBabies.instance != null) CorvBabies.instance.DestroyCorvBabies();
         }
 
         InvertWorld(invertWorld);
 
         if(mission != null) mission.LoadMissionScene();
-
-        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
-        foreach (GameObject i in list)
-        {
-            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
-            {
-                print("POSNEW: " + i.GetComponent<MovingObject>().prefName);
-                i.GetComponent<MovingObject>().ChangePosition(
-                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "X"),
-                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "Y"));
-            }
-        }
+        ExtrasManager.SideQuestsManager();
+        ExtrasManager.PagesManager();
+        SetObjectsVariables();
     }
 
     /************ FUNÇÕES DE OBJETO ************/
@@ -285,13 +282,19 @@ public class MissionManager : MonoBehaviour {
     // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
-        print("ADD OBJECT: " + name);
+        //print("ADD OBJECT: " + name);
         GameObject moveInstance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
         if (sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         moveInstance.transform.localScale = scale;
         return moveInstance;
+    }
+
+    // SALVA AS VARIÁVEIS DE OBJETOS
+    private static void SaveObjectsVariables()
+    {
+        SaveMovingObjectsPosition();
     }
 
     // SALVAR POSIÇÃO DE OBJETOS MÓVEIS
@@ -304,6 +307,28 @@ public class MissionManager : MonoBehaviour {
             {
                 PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
                 PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
+            }
+        }
+    }
+
+    // ESPECIFICA AS VARIÁVEIS DE OBJETOS
+    private void SetObjectsVariables()
+    {
+        SetMovingObjectsPosition();
+    }
+
+    // POSICIONA OS OBJETOS MÓVEIS
+    private void SetMovingObjectsPosition()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            {
+                print("POSNEW: " + i.GetComponent<MovingObject>().prefName);
+                i.GetComponent<MovingObject>().ChangePosition(
+                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "X"),
+                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "Y"));
             }
         }
     }
@@ -350,8 +375,7 @@ public class MissionManager : MonoBehaviour {
         {
             save.lifeTampa = 0;
         }
-
-
+        
         save.numberPages = numberPages;
         save.sideQuests = sideQuests;
 
@@ -368,10 +392,28 @@ public class MissionManager : MonoBehaviour {
         return save;
     }
 
-    // SALVAR JOGO
+    // SALVAR JOGO - COMPLETO
     public void SaveGame(int m, int opt)
     {
         Save save = CreateSaveGameObject();
+        SaveGame(save, m, opt);
+    }
+
+    // SALVAR JOGO - ATUALIZAÇÃO
+    public void UpdateSave()
+    {
+        if (currentSave != null)
+        {
+            currentSave.sideQuests = sideQuests;
+            currentSave.numberPages = numberPages;
+            currentSave.time = DateTime.UtcNow.ToString();
+            SaveGame(currentSave, currentMission, 0);
+        }
+    }
+
+    // SALVAR JOGO
+    private void SaveGame(Save save, int m, int opt)
+    {
         
         BinaryFormatter bf = new BinaryFormatter();
         // opt = -1 -> new game
@@ -418,28 +460,28 @@ public class MissionManager : MonoBehaviour {
 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + m + "_" + PlayerPrefs.GetInt("CurrentSaveNumber") + ".save", FileMode.Open);
-            Save save = (Save)bf.Deserialize(file);
+            currentSave = (Save)bf.Deserialize(file);
             file.Close();
             
-            Inventory.SetInventory(save.inventory);
-            if (save.currentItem != -1) Inventory.SetCurrentItem(save.currentItem);
+            Inventory.SetInventory(currentSave.inventory);
+            if (currentSave.currentItem != -1) Inventory.SetCurrentItem(currentSave.currentItem);
             if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
-                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = save.lifeTampa;
+                GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = currentSave.lifeTampa;
             }
 
-            numberPages = save.numberPages;
-            sideQuests = save.sideQuests;
+            numberPages = currentSave.numberPages;
+            sideQuests = currentSave.sideQuests;
 
-            pathBird = save.pathBird;
-            pathCat = save.pathCat;
+            pathBird = currentSave.pathBird;
+            pathCat = currentSave.pathCat;
            
-            mission1AssustaGato = save.mission1AssustaGato;
-            mission2ContestaMae = save.mission2ContestaMae;
-            mission4QuebraSozinho = save.mission4QuebraSozinho;
-            mission8BurnCorredor = save.mission8BurnCorredor;
+            mission1AssustaGato = currentSave.mission1AssustaGato;
+            mission2ContestaMae = currentSave.mission2ContestaMae;
+            mission4QuebraSozinho = currentSave.mission4QuebraSozinho;
+            mission8BurnCorredor = currentSave.mission8BurnCorredor;
 
-            SetMission(save.mission);
+            SetMission(currentSave.mission);
 
             Debug.Log("Game Loaded " + m + " [" + PlayerPrefs.GetInt("CurrentSaveNumber") + "]");
 
@@ -488,9 +530,6 @@ public class MissionManager : MonoBehaviour {
             mission = new Mission9();
             break;
         }
-
-        ExtrasManager.SideQuestsManager();
-        ExtrasManager.PagesManager();
         
         levelImage = hud.transform.Find("LevelImage").gameObject;
         levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
@@ -523,7 +562,6 @@ public class MissionManager : MonoBehaviour {
         InvertWorld(false);
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-        if (CorvBabies.instance != null) CorvBabies.instance.DestroyCorvBabies();
         LoadScene("GameOver");
     }
 

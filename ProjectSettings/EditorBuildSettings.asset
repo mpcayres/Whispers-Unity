@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Banheiro.unity
     guid: 99b2b1d0633f7ba4fb77445ad7d6522f
+  - enabled: 1
+    path: Assets/Scenes/SideQuest.unity
+    guid: 51d3bedfe56ed514eb3f6a3e96483465

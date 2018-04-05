@@ -1,24 +1,14 @@
 ﻿using UnityEngine;
 
 public class CorvBabies : Follower {
-    public static CorvBabies instance;
     public float timeBirdsFollow = 1f;
 
     protected GameObject birdEmitter;
 
     void Start()
     {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-            player = GameObject.FindGameObjectWithTag("Player");
-            birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
+        birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
     }
     
     void Update()

@@ -6,6 +6,7 @@ public class Mission2 : Mission {
         FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
 
+    GameObject corvoBabies;
     GameObject vela, velaFixa, fosforo;//, faca, tampa;
 
     public override void InitMission()
@@ -294,10 +295,10 @@ public class Mission2 : Mission {
                 //faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
                 //tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
                 MissionManager.instance.Print("CORVO");
-                GameObject corvo = MissionManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
-                corvo.GetComponent<CorvBabies>().speed = 0.1f;
-                corvo.GetComponent<CorvBabies>().timeBirdsFollow = 0.5f;
-                var main = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
+                corvoBabies = MissionManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
+                corvoBabies.GetComponent<CorvBabies>().speed = 0.1f;
+                corvoBabies.GetComponent<CorvBabies>().timeBirdsFollow = 0.5f;
+                var main = corvoBabies.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
                 main.startSpeed = 1.5f;
 
                 MissionManager.instance.Invoke("InvokeMission", 5f);
@@ -392,29 +393,29 @@ public class Mission2 : Mission {
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
             MissionManager.instance.scenerySounds.PlayBird(1);
-            //CorvBabies.instance.GetComponent<CorvBabies>().FollowPlayer();
-            CorvBabies.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            //corvoBabies.GetComponent<CorvBabies>().FollowPlayer();
+            corvoBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
             MissionManager.instance.Invoke("InvokeMission", 40f);
         }
         else if (secao == enumMission.FINAL_CONTESTA_GATO)
         {
-            CorvBabies.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
-            CorvBabies.instance.Stop();
+            corvoBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            corvoBabies.GetComponent<CorvBabies>().Stop();
 
             Cat.instance.followWhenClose = false;
             Cat.instance.stopEndPath = true;
             Cat.instance.Patrol();
             Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
-            Vector3 posCorvo = CorvBabies.instance.transform.position;
+            Vector3 posCorvo = corvoBabies.transform.position;
             target1.position = posCorvo;
             target2.position = new Vector3(-2f, 0.6f, -0.5f);
             Transform[] targets = { target1, target2 };
             Cat.instance.targets = targets;
 
-            CorvBabies.instance.Patrol();
+            corvoBabies.GetComponent<CorvBabies>().Patrol();
             Transform[] targetsCorvo = { target2 };
-            CorvBabies.instance.targets = targetsCorvo;
-            CorvBabies.instance.speed = 0.6f;
+            corvoBabies.GetComponent<CorvBabies>().targets = targetsCorvo;
+            corvoBabies.GetComponent<CorvBabies>().speed = 0.6f;
 
             MissionManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", MissionManager.instance.rpgTalk.txtToParse);
 
@@ -423,7 +424,7 @@ public class Mission2 : Mission {
         else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
             MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
-            CorvBabies.instance.DestroyCorvBabies();
+            corvoBabies.GetComponent<CorvBabies>().DestroyCorvBabies();
             Cat.instance.Stop();
             MissionManager.instance.Invoke("InvokeMission", 6f);
         }
