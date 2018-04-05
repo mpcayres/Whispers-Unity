@@ -9340,7 +9340,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 159.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -68894,7 +68894,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 189.99998
+      value: 186.49997
       objectReference: {fileID: 0}
     - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -69015,7 +69015,7 @@ GameObject:
   - component: {fileID: 1688116806}
   - component: {fileID: 1688116807}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: keyLight
   m_TagString: Lamp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82929,6 +82929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyName1: keyInteract
   keyName2: keyInteract
+  mission: 1
   click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
 --- !u!61 &1906961857
 BoxCollider2D:
@@ -82942,7 +82943,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -18.880135, y: 6.2606087}
+  m_Offset: {x: -18.890526, y: 6.499624}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -82953,7 +82954,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0981388, y: 0.9011116}
+  m_Size: {x: 1.1189213, y: 1.129735}
   m_EdgeRadius: 0
 --- !u!224 &1906961858
 RectTransform:
