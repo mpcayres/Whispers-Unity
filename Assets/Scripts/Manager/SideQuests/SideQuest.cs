@@ -5,7 +5,7 @@ public abstract class SideQuest
     protected bool success = false;
     protected bool hasCat = false, hasRaven = false, invertBlocked = false, wasInverted = false;
     protected string oldScene = "";
-    protected float oldX = 0, oldY = 0, sideX = 0, sideY = 0;
+    protected float oldX = 0, oldY = 0, sideX = 0f, sideY = -0.7f;
     protected int oldDir = 0, sideDir = 0;
 
     public abstract void InitSideQuest();

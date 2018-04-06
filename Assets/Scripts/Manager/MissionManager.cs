@@ -234,7 +234,7 @@ public class MissionManager : MonoBehaviour {
             GetComponent<Player>().ChangePosition();
         }
         else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest")) {
-            if (currentSceneName.Equals("SideQuest"))
+            if (currentSceneName.Equals("SideQuest") && ExtrasManager.sideQuest != null)
             {
                 ExtrasManager.sideQuest.InitSideQuest();
             }
