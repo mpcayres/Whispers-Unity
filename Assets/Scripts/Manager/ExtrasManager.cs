@@ -29,7 +29,7 @@ public class ExtrasManager
 
         if (sideQuest != null)
         {
-            sideQuest.InitSideQuest();
+            MissionManager.LoadScene("SideQuest");
         }   
     }
 

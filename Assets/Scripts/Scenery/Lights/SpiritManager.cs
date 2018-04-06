@@ -1,61 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiritManager : MonoBehaviour{
-    public static int goodSpiritGardenKilled = 0;
-    public static int evilSpiritGardenKilled = 0;
+public class SpiritManager : MonoBehaviour {
+    private static int goodSpiritKilled = 0;
+    private static int evilSpiritKilled = 0;
+    private static int killerSpiritKilled = 0;
 
-    static MissionManager missionManager;
-    public static bool canSummom = false;
-    private bool active = false;
-    public GameObject[] goodSpiritVector;
-    public GameObject[] evilSpiritVector;
-    private static bool[] goodDestroyed = { false, false, false, false, false };
-    private static bool[] evilDestroyed = { false, false, false, false, false };
+    private static int maxEvilKilled = 4;
+    private static int maxKillerKilled = 6;
+
+    private Dictionary<int, GameObject> goodSpiritDictionary = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> evilSpiritDictionary = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> killerSpiritDictionary = new Dictionary<int, GameObject>();
 
     private void Start()
     {
-        missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        goodSpiritKilled = 0;
+        evilSpiritKilled = 0;
+        killerSpiritKilled = 0;
     }
 
     private void Update()
     {
-        if (!active && missionManager.invertWorld && canSummom)
-        {
-            for(int i = 0; i < goodSpiritVector.Length; i++)
-            {
-                if (!goodDestroyed[i])
-                    goodSpiritVector[i].SetActive(true);
-                if (!evilDestroyed[i])
-                    evilSpiritVector[i].SetActive(true);
-            }
-            active = true;
-        }
-        else if (active && !missionManager.invertWorld)
-        {
-            for (int i = 0; i < goodSpiritVector.Length; i++)
-            {
-                if (!goodDestroyed[i])
-                {
-                    goodSpiritVector[i].SetActive(false);
-                }
-                if (!evilDestroyed[i])
-                {
-                    evilSpiritVector[i].SetActive(false);
-                }
-            }
-            active = false;
-        }
+
     }
 
-    public static void GenerateSpiritMap()
+    public void GenerateSpiritMap()
     {
-        Spirit.maxEvilKilled = 4;
-
         float x = -2.1f, y = 0.8f;
         float maxX = 12;
         int sequencia = 0, aux2 = -1;
+        int goodSpiritCount = 0, evilSpiritCount = 0, killerSpiritCount = 0;
+
         for (int j = 0; j < 4; j++)
         {
             if (j == 1)
@@ -78,16 +54,26 @@ public class SpiritManager : MonoBehaviour{
                 {
                     sequencia = 0;
                 }
+                
                 switch (aux)
                 {
                     case 1:
-                        MissionManager.instance.AddObject("Scenery/GoodSpiritAux", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        GameObject goodSpirit = MissionManager.instance.AddObjectWithParent("Scenery/GoodSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                        goodSpiritDictionary.Add(goodSpiritCount, goodSpirit);
+                        goodSpirit.GetComponent<Spirit>().number = goodSpiritCount;
+                        goodSpiritCount++;
                         break;
                     case 2:
-                        MissionManager.instance.AddObject("Scenery/EvilSpiritAux", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        GameObject evilSpirit = MissionManager.instance.AddObjectWithParent("Scenery/EvilSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                        evilSpiritDictionary.Add(evilSpiritCount, evilSpirit);
+                        evilSpirit.GetComponent<Spirit>().number = evilSpiritCount;
+                        evilSpiritCount++;
                         break;
                     default:
-                        MissionManager.instance.AddObject("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1));
+                        GameObject killerSpirit = MissionManager.instance.AddObjectWithParent("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                        killerSpiritDictionary.Add(killerSpiritCount, killerSpirit);
+                        killerSpirit.GetComponent<Spirit>().number = killerSpiritCount;
+                        killerSpiritCount++;
                         break;
                 }
                 aux2 = aux;
@@ -96,35 +82,31 @@ public class SpiritManager : MonoBehaviour{
             y -= 1f;
             x = -7.5f;
         }
-        Spirit.newHealth = 2;
     }
 
-    public static void DestroyGoodSpirit(int number)
+    public static void DestroyGoodSpirit()
     {
-        goodDestroyed[number] = true;
-        goodSpiritGardenKilled++;
+        goodSpiritKilled++;
     }
 
-    public static void DestroyEvilSpirit(int number)
+    public static void DestroyEvilSpirit()
     {
-        evilDestroyed[number] = true;
-        evilSpiritGardenKilled++;
+        evilSpiritKilled++;
 
-        if(evilSpiritGardenKilled >= 3)
+        if (evilSpiritKilled >= maxEvilKilled)
         {
-            missionManager.GameOver();
+            MissionManager.instance.GameOver();
         }
     }
 
-    public static void RefreshSpirits()
+    public static void DestroyKillerSpirit()
     {
-        bool[] goodDestroyedAux = { false, false, false, false, false };
-        bool[] evilDestroyedAux = { false, false, false, false, false };
-        goodDestroyed = goodDestroyedAux;
-        evilDestroyed = evilDestroyedAux;
+        killerSpiritKilled++;
 
-        goodSpiritGardenKilled = 0;
-        evilSpiritGardenKilled = 0;
+        if (killerSpiritKilled >= maxKillerKilled)
+        {
+            MissionManager.instance.GameOver();
+        }
     }
 
 }

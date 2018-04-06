@@ -234,8 +234,11 @@ public class MissionManager : MonoBehaviour {
             GetComponent<Player>().ChangePosition();
         }
         else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest")) {
+            if (currentSceneName.Equals("SideQuest"))
+            {
+                ExtrasManager.sideQuest.InitSideQuest();
+            }
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
-            initX = initY = 0;
         }
         else {
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
@@ -282,13 +285,21 @@ public class MissionManager : MonoBehaviour {
     // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
-        //print("ADD OBJECT: " + name);
-        GameObject moveInstance =
+        print("ADD OBJECT: " + name);
+        GameObject instance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
-        if (sprite != "") moveInstance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
-        moveInstance.transform.localScale = scale;
-        return moveInstance;
+        if (sprite != "") instance.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
+        instance.transform.localScale = scale;
+        return instance;
+    }
+
+    // ADICIONAR OBJETO NA CENA COM PAI ASSOCIADO
+    public GameObject AddObjectWithParent(string name, string sprite, Vector3 position, Vector3 scale, Transform parent)
+    {
+        GameObject instance = AddObject(name, sprite, position, scale);
+        instance.transform.parent = parent;
+        return instance;
     }
 
     // SALVA AS VARIÁVEIS DE OBJETOS

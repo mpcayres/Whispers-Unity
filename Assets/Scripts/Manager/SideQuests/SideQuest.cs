@@ -26,7 +26,6 @@ public abstract class SideQuest
         MissionManager.initX = sideX;
         MissionManager.initY = sideY;
         MissionManager.initDir = sideDir;
-        MissionManager.LoadScene("SideQuest");
 
         if (Cat.instance != null)
         {
