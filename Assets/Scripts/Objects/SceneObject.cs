@@ -2,6 +2,7 @@
 using UnityStandardAssets.CrossPlatformInput;
 
 public class SceneObject : MonoBehaviour {
+    public string prefName = ""; // Padrão: identificador do objeto (SO) + _ + nome da cena + _ + identificador
     public Sprite sprite1;
     public Sprite sprite2;
     public enum PositionSprite { DEFAULT, LEFT, RIGHT, UP, DOWN };
@@ -9,16 +10,16 @@ public class SceneObject : MonoBehaviour {
     public float scale = 1;
     public bool isUp = false;
     public bool colliding = false;
+
     bool isActive = false, opened = false;
+    float sizeX, sizeY;
+    float posX, posY, posXdefault, posYdefault;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     Player player;
 
-    float sizeX, sizeY;
-	float posX, posY, posXdefault, posYdefault;
-
-    void Start ()
+    void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,7 +51,7 @@ public class SceneObject : MonoBehaviour {
     
     void ChangeSprite()
     {
-        print("SceneObject");
+        //print("SceneObject");
         if (spriteRenderer.sprite == sprite1)
         {
             spriteRenderer.sprite = sprite2;
@@ -63,11 +64,36 @@ public class SceneObject : MonoBehaviour {
             opened = true;
         }
 
+        ChangeSpritePosition();
+		
+    }
+
+    public void ChangeSpriteActive(bool active)
+    {
+        //print("SceneObject");
+        if (spriteRenderer.sprite == sprite1 && active)
+        {
+            spriteRenderer.sprite = sprite2;
+            isActive = true;
+            ChangeSpritePosition();
+        }
+        else if(spriteRenderer.sprite == sprite2 && !active)
+        {
+            spriteRenderer.sprite = sprite1;
+            isActive = false;
+            opened = true;
+            ChangeSpritePosition();
+        }
+
+    }
+
+    void ChangeSpritePosition()
+    {
         if (positionSprite == PositionSprite.LEFT && spriteRenderer.sprite == sprite2)
         {
             transform.position = new Vector3(transform.position.x + posX, posYdefault, transform.position.z);
         }
-        else if(positionSprite == PositionSprite.RIGHT && spriteRenderer.sprite == sprite2)
+        else if (positionSprite == PositionSprite.RIGHT && spriteRenderer.sprite == sprite2)
         {
             transform.position = new Vector3(transform.position.x - posX, posYdefault, transform.position.z);
         }
@@ -85,9 +111,8 @@ public class SceneObject : MonoBehaviour {
         }
 
         boxCollider.size = new Vector2(
-            sizeX*spriteRenderer.bounds.size.x, 
-            sizeY*spriteRenderer.bounds.size.y);
-		
+            sizeX * spriteRenderer.bounds.size.x,
+            sizeY * spriteRenderer.bounds.size.y);
     }
 
     public bool IsActive()

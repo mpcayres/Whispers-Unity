@@ -3,31 +3,29 @@
 public class ExtrasManager
 {
 
-    public static SideQuest sideQuest;
-
     public static void InitSideQuest(int numSideQuest)
     {
-        sideQuest = null;
+        MissionManager.instance.sideQuest = null;
         switch (numSideQuest)
         {
             case 1:
-                sideQuest = new SideQuest1();
+                MissionManager.instance.sideQuest = new SideQuest1();
                 break;
             case 2:
-                sideQuest = new SideQuest2();
+                MissionManager.instance.sideQuest = new SideQuest2();
                 break;
             case 3:
-                sideQuest = new SideQuest3();
+                MissionManager.instance.sideQuest = new SideQuest3();
                 break;
             case 4:
-                sideQuest = new SideQuest4();
+                MissionManager.instance.sideQuest = new SideQuest4();
                 break;
             case 5:
-                sideQuest = new SideQuest5();
+                MissionManager.instance.sideQuest = new SideQuest5();
                 break;
         }
 
-        if (sideQuest != null)
+        if (MissionManager.instance.sideQuest != null)
         {
             MissionManager.LoadScene("SideQuest");
         }   

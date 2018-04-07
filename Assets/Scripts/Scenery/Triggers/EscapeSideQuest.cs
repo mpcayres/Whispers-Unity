@@ -21,6 +21,6 @@ public class EscapeSideQuest : MonoBehaviour {
     private void ChangeScene()
     {
         MissionManager.instance.paused = true;
-        ExtrasManager.sideQuest.EndSideQuest();
+        MissionManager.instance.sideQuest.EndSideQuest();
     }
 }

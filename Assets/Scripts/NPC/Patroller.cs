@@ -31,9 +31,9 @@ public class Patroller : MonoBehaviour {
 
     protected void GotoNextPoint()
     {
-        float step = speed * Time.deltaTime;
+        if (targets.Length == 0 || transform == null) return;
 
-        if (targets.Length == 0) return;
+        float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, targets[destPoint].position, step);
 

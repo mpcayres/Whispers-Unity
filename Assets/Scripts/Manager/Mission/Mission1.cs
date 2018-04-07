@@ -26,8 +26,8 @@ public class Mission1 : Mission {
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = true;
 
-        PlayerPrefs.DeleteKey("Corredor_0X");
-        PlayerPrefs.DeleteKey("Corredor_0Y");
+        PlayerPrefs.DeleteKey("MO_Corredor_0X");
+        PlayerPrefs.DeleteKey("MO_Corredor_0Y");
 
         SetInitialSettings();
     }
@@ -119,7 +119,7 @@ public class Mission1 : Mission {
         // Objeto movel que atrapalha
         GameObject chair = MissionManager.instance.AddObject("Objects/MovingObject", "Sprites/Objects/Scene/vaso",
             new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
-        chair.GetComponent<MovingObject>().prefName = "Corredor_0";
+        chair.GetComponent<MovingObject>().prefName = "MO_Corredor_0";
 
         if (secao == enumMission.GATO_APARECEU)
         {

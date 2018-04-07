@@ -12,6 +12,7 @@ public class MissionManager : MonoBehaviour {
 
     // MISSÕES
     public Mission mission;
+    public SideQuest sideQuest;
     public int currentMission;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
@@ -126,6 +127,11 @@ public class MissionManager : MonoBehaviour {
                 mission.UpdateMission();
             }
 
+            if (sideQuest != null)
+            {
+                mission.UpdateMission();
+            }
+
             if (CrossPlatformInputManager.GetButtonDown("EndText"))
             {
                 rpgTalk.EndTalk();
@@ -234,9 +240,9 @@ public class MissionManager : MonoBehaviour {
             GetComponent<Player>().ChangePosition();
         }
         else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest")) {
-            if (currentSceneName.Equals("SideQuest") && ExtrasManager.sideQuest != null)
+            if (currentSceneName.Equals("SideQuest") && sideQuest != null)
             {
-                ExtrasManager.sideQuest.InitSideQuest();
+                sideQuest.InitSideQuest();
             }
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
         }
@@ -270,6 +276,7 @@ public class MissionManager : MonoBehaviour {
             Destroy(hud);
             if (Cat.instance != null) Cat.instance.DestroyCat();
             if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+            //DeleteAllPlayerPrefs();
         }
 
         InvertWorld(invertWorld);
@@ -306,6 +313,9 @@ public class MissionManager : MonoBehaviour {
     private static void SaveObjectsVariables()
     {
         SaveMovingObjectsPosition();
+        SaveRotateObjectsPosition();
+        SaveSceneObjectsState();
+        SaveLampState();
     }
 
     // SALVAR POSIÇÃO DE OBJETOS MÓVEIS
@@ -322,10 +332,57 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    // SALVAR POSIÇÃO DE OBJETOS ROTACIONÁVEIS
+    private static void SaveRotateObjectsPosition()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("RotateObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<RotateObject>().prefName.Equals(""))
+            {
+                PlayerPrefs.SetFloat(i.GetComponent<RotateObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
+                PlayerPrefs.SetFloat(i.GetComponent<RotateObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
+            }
+        }
+    }
+
+    // SALVAR ESTADO DOS OBJETOS DE CENA
+    private static void SaveSceneObjectsState()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("SceneObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<SceneObject>().prefName.Equals(""))
+            {
+                int active = 0;
+                if (i.GetComponent<SceneObject>().IsActive()) active = 1;
+                PlayerPrefs.SetInt(i.GetComponent<SceneObject>().prefName, active);
+            }
+        }
+    }
+
+    // SALVAR ESTADO DAS LÂMPADAS
+    private static void SaveLampState()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Lamp");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<Lamp>().prefName.Equals(""))
+            {
+                int enabled = 0;
+                if (i.GetComponent<Light>().enabled) enabled = 1;
+                PlayerPrefs.SetInt(i.GetComponent<Lamp>().prefName, enabled);
+            }
+        }
+    }
+
     // ESPECIFICA AS VARIÁVEIS DE OBJETOS
     private void SetObjectsVariables()
     {
         SetMovingObjectsPosition();
+        SetRotateObjectsPosition();
+        SetSceneObjectsState();
+        SetLampState();
     }
 
     // POSICIONA OS OBJETOS MÓVEIS
@@ -336,7 +393,7 @@ public class MissionManager : MonoBehaviour {
         {
             if (!i.GetComponent<MovingObject>().prefName.Equals(""))
             {
-                print("POSNEW: " + i.GetComponent<MovingObject>().prefName);
+                //print("MOVING: " + i.GetComponent<MovingObject>().prefName);
                 i.GetComponent<MovingObject>().ChangePosition(
                     PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "X"),
                     PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "Y"));
@@ -344,9 +401,58 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
-    // DELETAR TODAS AS POSIÇÕES DE OBJETOS MÓVEIS
+    // POSICIONA OS OBJETOS ROTACIONÁVEIS
+    private void SetRotateObjectsPosition()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("RotateObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<RotateObject>().prefName.Equals(""))
+            {
+                //print("ROTATE: " + i.GetComponent<Rotate>().prefName);
+                i.GetComponent<RotateObject>().ChangePosition(
+                    PlayerPrefs.GetFloat(i.GetComponent<RotateObject>().prefName + "X"),
+                    PlayerPrefs.GetFloat(i.GetComponent<RotateObject>().prefName + "Y"));
+            }
+        }
+    }
+
+    // DETERMINA O ESTADO DOS OBJETOS DE CENA
+    private void SetSceneObjectsState()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("SceneObject");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<SceneObject>().prefName.Equals(""))
+            {
+                //print("SCENEOBJ: " + i.GetComponent<SceneObject>().prefName);
+                bool active = false;
+                if (PlayerPrefs.GetInt(i.GetComponent<SceneObject>().prefName) == 1) active = true;
+                i.GetComponent<SceneObject>().ChangeSpriteActive(active);
+            }
+        }
+    }
+
+    // DETERMINA O ESTADO DAS LÂMAPDAS
+    private void SetLampState()
+    {
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Lamp");
+        foreach (GameObject i in list)
+        {
+            if (!i.GetComponent<Lamp>().prefName.Equals(""))
+            {
+                //print("LAMP: " + i.GetComponent<Lamp>().prefName);
+                bool enabled = false;
+                if (PlayerPrefs.GetInt(i.GetComponent<Lamp>().prefName) == 1) enabled = true;
+                i.GetComponent<Light>().enabled = enabled;
+            }
+        }
+    }
+
+    // DELETAR TODOS OS ESTADOS DOS OBJETOS
     public void DeleteAllPlayerPrefs()
     {
+        print("CSG: " + PlayerPrefs.GetInt("CurrentSaveGame"));
         string language = "";
         int currentSave = 0, maxSave = 0;
         if (PlayerPrefs.HasKey("Language"))
@@ -365,6 +471,7 @@ public class MissionManager : MonoBehaviour {
         PlayerPrefs.SetString("Language", language);
         PlayerPrefs.SetInt("CurrentSaveGame", currentSave);
         PlayerPrefs.SetInt("MaxSaveGame", maxSave);
+        print("CSG2: " + PlayerPrefs.GetInt("CurrentSaveGame"));
     }
 
     /************ FUNÇÕES DE SAVE ************/
@@ -547,6 +654,7 @@ public class MissionManager : MonoBehaviour {
 
         if (mission != null)
         {
+            //DeleteAllPlayerPrefs();
             levelText.text = "Chapter  " + m;
             levelImage.SetActive(true);
             showMissionStart = true;

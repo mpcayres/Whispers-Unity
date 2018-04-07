@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotateObject : MonoBehaviour {
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rigidBody;
+    public string prefName = ""; // Padrão: identificador do objeto (RO) + _ + nome da cena + _ + identificador
     public float rotateSpeed = 10f;
     float lastPosX, lastPosY, difPosX, difPosY, somaDif = 0;
 
-    void Start()
+    SpriteRenderer spriteRenderer;
+    Rigidbody2D rigidBody;
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -28,5 +28,10 @@ public class RotateObject : MonoBehaviour {
         }
         lastPosX = rigidBody.position.x;
         lastPosY = rigidBody.position.y;
+    }
+
+    public void ChangePosition(float x, float y)
+    {
+        rigidBody.position = new Vector2(x, y);
     }
 }

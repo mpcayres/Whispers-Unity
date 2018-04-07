@@ -3595,6 +3595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b7f6d944631b943a8ae5cdfd4fe4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: SO_Cozinha_1
   sprite1: {fileID: 21300000, guid: 2c20f0cbd3b648d4ea338a1b5bfafa35, type: 3}
   sprite2: {fileID: 21300000, guid: 53f1350704d67ac43b87835d57a4e1f3, type: 3}
   positionSprite: 2
@@ -17644,7 +17645,7 @@ Prefab:
     - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
         type: 2}
       propertyPath: prefName
-      value: Cozinha_2
+      value: MO_Cozinha_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
@@ -49483,7 +49484,7 @@ Prefab:
     - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
         type: 2}
       propertyPath: prefName
-      value: Cozinha_1
+      value: MO_Cozinha_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
@@ -63243,7 +63244,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434.5
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -67163,6 +67164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b7f6d944631b943a8ae5cdfd4fe4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: 
   sprite1: {fileID: 21300000, guid: 5d209220be3a13e4a944dc0fe4aefb2f, type: 3}
   sprite2: {fileID: 21300000, guid: ec453abe21933064ea22a0c70c93c9b0, type: 3}
   positionSprite: 1
@@ -88495,6 +88497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b7f6d944631b943a8ae5cdfd4fe4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: SO_Cozinha_2
   sprite1: {fileID: 21300000, guid: 2c20f0cbd3b648d4ea338a1b5bfafa35, type: 3}
   sprite2: {fileID: 21300000, guid: 53f1350704d67ac43b87835d57a4e1f3, type: 3}
   positionSprite: 2
@@ -106023,7 +106026,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434.748
+      value: 435.248
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}

@@ -14388,9 +14388,9 @@ GameObject:
   m_Component:
   - component: {fileID: 167167072}
   - component: {fileID: 167167071}
-  - component: {fileID: 167167070}
   - component: {fileID: 167167074}
   - component: {fileID: 167167073}
+  - component: {fileID: 167167070}
   m_Layer: 0
   m_Name: escrivaninha
   m_TagString: SceneObject
@@ -14409,6 +14409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b7f6d944631b943a8ae5cdfd4fe4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: SO_Sala_3
   sprite1: {fileID: 21300000, guid: 7392d51dd06b8c04abce9f4bfc9a1473, type: 3}
   sprite2: {fileID: 21300000, guid: 575754ffe4d66f944bf0da98d64cd06b, type: 3}
   positionSprite: 0
@@ -21512,6 +21513,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 0.5023718
+      objectReference: {fileID: 0}
+    - target: {fileID: 114701629792591804, guid: 70584b7c5f719c8488f775e83cbc2c09,
+        type: 2}
+      propertyPath: prefName
+      value: SO_Sala_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70584b7c5f719c8488f775e83cbc2c09, type: 2}
@@ -46343,7 +46349,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 436.26797
+      value: 436.76797
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -50097,6 +50103,11 @@ Prefab:
         type: 2}
       propertyPath: rotateSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664822956047212, guid: 4671ab9d1be982144bad25b694ca36a1,
+        type: 2}
+      propertyPath: prefName
+      value: RO_Sala_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4671ab9d1be982144bad25b694ca36a1, type: 2}
@@ -81729,6 +81740,11 @@ Prefab:
     - target: {fileID: 1321488221174270, guid: 70584b7c5f719c8488f775e83cbc2c09, type: 2}
       propertyPath: m_Name
       value: Armario
+      objectReference: {fileID: 0}
+    - target: {fileID: 114701629792591804, guid: 70584b7c5f719c8488f775e83cbc2c09,
+        type: 2}
+      propertyPath: prefName
+      value: SO_Sala_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70584b7c5f719c8488f775e83cbc2c09, type: 2}
@@ -127723,10 +127739,62 @@ Prefab:
     - target: {fileID: 114219092038980336, guid: 491f121bc0fed7a49913a5318d5ed2b7,
         type: 2}
       propertyPath: prefName
-      value: Sala_1
+      value: MO_Sala_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491f121bc0fed7a49913a5318d5ed2b7, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1692158170
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197165635096226, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
+      propertyPath: m_RootOrder
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047733911371152, guid: 37b5e500d87d63047aa3dabe31ddf173,
+        type: 2}
+      propertyPath: prefName
+      value: L_Sala_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108695919222784682, guid: 37b5e500d87d63047aa3dabe31ddf173,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 37b5e500d87d63047aa3dabe31ddf173, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1708292008
 GameObject:
@@ -141510,7 +141578,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434.5
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

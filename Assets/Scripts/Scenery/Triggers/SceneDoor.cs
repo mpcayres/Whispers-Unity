@@ -8,7 +8,7 @@ public class SceneDoor : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        //print("TRIGGER");
+        print("TRIGGER");
         if (other.gameObject.tag.Equals("Player"))
         {
             if (!isOpened)
@@ -25,7 +25,7 @@ public class SceneDoor : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        //print("STAYTRIGGER");
+        print("STAYTRIGGER");
         if (other.gameObject.tag.Equals("Player") && isOpened && !MissionManager.instance.paused)
         {
             ChangeScene();

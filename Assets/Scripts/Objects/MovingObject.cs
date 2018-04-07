@@ -4,7 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class MovingObject : MonoBehaviour {
     public bool canMoveUp = false;
     public bool colliding = false;
-    public string prefName = ""; // Padrão: nome da cena + _ + identificador
+    public string prefName = ""; // Padrão: identificador do objeto (MO) + _ + nome da cena + _ + identificador
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;

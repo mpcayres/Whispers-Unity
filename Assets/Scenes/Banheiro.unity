@@ -122,7 +122,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434.5
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -14597,7 +14597,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434.097
+      value: 434.59695
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -32073,6 +32073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b7f6d944631b943a8ae5cdfd4fe4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: SO_Banheiro_1
   sprite1: {fileID: 21300000, guid: 2c20f0cbd3b648d4ea338a1b5bfafa35, type: 3}
   sprite2: {fileID: 21300000, guid: 53f1350704d67ac43b87835d57a4e1f3, type: 3}
   positionSprite: 2

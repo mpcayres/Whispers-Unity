@@ -2,11 +2,13 @@
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Lamp : MonoBehaviour {
-    SpriteRenderer spriteRenderer;
+    public string prefName = ""; // Padrão: identificador do objeto (L) + _ + nome da cena + _ + identificador
     public bool colliding = false;
     private bool change = false;
 
-    void Start()
+    SpriteRenderer spriteRenderer;
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }

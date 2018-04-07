@@ -155,7 +155,6 @@ public class Player : MonoBehaviour {
 
     public void ChangeDirection(int newDirection)
     {
-        print("CHANGE" + newDirection);
         direction = newDirection;
         GetComponent<Animator>().SetInteger("direction", direction);
         GetComponent<Animator>().SetTrigger("changeDirection");
