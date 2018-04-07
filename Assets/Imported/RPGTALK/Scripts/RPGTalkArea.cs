@@ -115,8 +115,9 @@ public class RPGTalkArea : MonoBehaviour {
 		}
 
 		alreadyHappened = true;
-		if (callbackScriptBeforeTalk != null) {
-			callbackScriptBeforeTalk.Invoke (callbackFunctionBeforeTalk, 0);
+		if (callbackScriptBeforeTalk != null && !callbackFunctionBeforeTalk.Equals("")) {
+            print("INVRPG3: " + callbackFunctionBeforeTalk);
+            callbackScriptBeforeTalk.Invoke (callbackFunctionBeforeTalk, 0);
 		}
 		TextAsset newTxt = rpgtalkTarget.txtToParse;
 		if (txtToParse != null) {

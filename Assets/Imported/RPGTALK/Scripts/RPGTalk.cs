@@ -1006,7 +1006,7 @@ public class RPGTalk : MonoBehaviour {
 						rpgAudioSorce.clip = passAudio;
 						rpgAudioSorce.Play ();
 					}
-					if(callbackScript != null){
+					if(callbackScript != null && !callbackFunction.Equals("")){
 						callbackScript.Invoke(callbackFunction,0f);
 						//Stop any blinking arrows that shouldn't appear
 						CancelInvoke ("blink");
@@ -1444,8 +1444,8 @@ public class RPGTalk : MonoBehaviour {
 				}
 			}
 
-			if(callbackScript != null){
-				callbackScript.Invoke(callbackFunction,0f);
+			if(callbackScript != null && !callbackFunction.Equals("")){
+                callbackScript.Invoke(callbackFunction,0f);
 			}
 		}
 

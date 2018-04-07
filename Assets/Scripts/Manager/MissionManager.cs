@@ -724,7 +724,7 @@ public class MissionManager : MonoBehaviour {
     // AUXILIAR PARA INVOCAÇÃO NAS MISSÕES
     public void InvokeMission()
     {
-        print("INVOKEMISSION");
+        //print("INVOKEMISSION");
         mission.InvokeMission();
     }
 
