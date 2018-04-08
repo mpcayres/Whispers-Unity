@@ -36,33 +36,34 @@ public class ExtrasManager
         int current = MissionManager.instance.currentMission;
         int sideQuests = MissionManager.instance.sideQuests;
 
-        if (sideQuests == 0 && current >= 4 && current != 9 && current != 10 && current != 11 
-            && MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+        if (sideQuests == 0 && current >= 5 && current != 9 && current != 10 && current != 11 
+            && MissionManager.instance.currentSceneName.Equals("Jardim"))
         {
             // set side quest 1
             GameObject quest1 = MissionManager.instance.AddObject(
                 "Scenery/SideQuestObject", "", new Vector3(0f, 0f, 0f), new Vector3(1, 1, 1));
             quest1.GetComponent<SideQuestObject>().numSideQuest = 1;
         }
-        else if (sideQuests == 1 && current >= 5 && current != 9 && current != 10 && current != 11
+        else if (sideQuests == 1 && current >= 6 && current != 9 && current != 10 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set side quest 2
         }
-        else if (sideQuests == 2 && current >= 6 && current != 9 && current != 10 && current != 11
+        else if (sideQuests == 2 && current >= 7 && current != 9 && current != 10 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set side quest 3
         }
-        else if (sideQuests == 3 && current >= 7 && current != 9 && current != 10 && current != 11
+        else if (sideQuests == 3 && current >= 8 && current != 9 && current != 10 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set side quest 4
         }
-        if (sideQuests == 4 && current >= 8 && current != 9 && current != 10 && current != 11
+        else if (sideQuests == 4 && Book.pageQuantity == 5 && current >= 12
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set side quest 5
+            // flashback mostrando algo que desbloqueia a última página e chama o PagesManager ao final
         }
     }
 
@@ -71,34 +72,35 @@ public class ExtrasManager
         int current = MissionManager.instance.currentMission;
         int pages = Book.pageQuantity;
 
-        if (pages == 0 && current >= 5 && current != 11
+        if (pages >= 0 && current >= 5 && current != 9 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set page 1
         }
-        else if (pages == 1 && current >= 6 && current != 11
+        if (pages >= 1 && current >= 6 && current != 9 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set page 2
         }
-        else if (pages == 2 && current >= 7 && current != 11
+        if (pages >= 2 && current >= 7 && current != 9 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set page 3
         }
-        else if (pages == 3 && current >= 8 && current != 11
+        if (pages >= 3 && current >= 8 && current != 9 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set page 4
         }
-        if (pages == 4 && current >= 9 && current != 11
+        if (pages >= 4 && current >= 10 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
             // set page 5
         }
-        if (pages == 5 && current >= 10 && current != 11
+        if (pages == 5 && MissionManager.instance.sideQuests == 5 && current >= 12 && current != 9 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
         {
+            // página aonde ocorrer o flashback da sideQuest 5
             // set page 6
         }
     }
