@@ -276,7 +276,7 @@ public class MissionManager : MonoBehaviour {
             Destroy(hud);
             if (Cat.instance != null) Cat.instance.DestroyCat();
             if (Corvo.instance != null) Corvo.instance.DestroyRaven();
-            //DeleteAllPlayerPrefs();
+            DeleteAllPlayerPrefs();
         }
 
         InvertWorld(invertWorld);
@@ -292,7 +292,7 @@ public class MissionManager : MonoBehaviour {
     // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
-        print("ADD OBJECT: " + name);
+        //print("ADD OBJECT: " + name);
         GameObject instance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;
@@ -452,7 +452,6 @@ public class MissionManager : MonoBehaviour {
     // DELETAR TODOS OS ESTADOS DOS OBJETOS
     public void DeleteAllPlayerPrefs()
     {
-        print("CSG: " + PlayerPrefs.GetInt("CurrentSaveGame"));
         string language = "";
         int currentSave = 0, maxSave = 0;
         if (PlayerPrefs.HasKey("Language"))
@@ -471,7 +470,6 @@ public class MissionManager : MonoBehaviour {
         PlayerPrefs.SetString("Language", language);
         PlayerPrefs.SetInt("CurrentSaveGame", currentSave);
         PlayerPrefs.SetInt("MaxSaveGame", maxSave);
-        print("CSG2: " + PlayerPrefs.GetInt("CurrentSaveGame"));
     }
 
     /************ FUNÇÕES DE SAVE ************/
@@ -654,7 +652,7 @@ public class MissionManager : MonoBehaviour {
 
         if (mission != null)
         {
-            //DeleteAllPlayerPrefs();
+            //DeleteAllPlayerPrefs(); - talvez resetar ao mudar de missão, já que é outra noite (mas dá erro)
             levelText.text = "Chapter  " + m;
             levelImage.SetActive(true);
             showMissionStart = true;

@@ -64,7 +64,7 @@ public class MovingObject : MonoBehaviour {
 
     public void InitMove()
     {
-        print("INITMOVE");
+        //print("INITMOVE");
         script.playerState = Player.Actions.MOVING_OBJECT;
         script.animator.SetTrigger("movingObject");
     }
@@ -73,7 +73,7 @@ public class MovingObject : MonoBehaviour {
     {
         if (!MissionManager.instance.scenerySounds2.source.isPlaying)
             MissionManager.instance.scenerySounds2.PlaySlide(1);
-        print("MOVE");
+        //print("MOVE");
         var relativePoint = transform.InverseTransformPoint(player.transform.position);
         //para ver se esta na esquerda ou direta, em cima ou baixo
         //para nao dar problema com a colisão do MovingObject em bordas, faze-las grandes (maiores do que ele)
@@ -104,14 +104,14 @@ public class MovingObject : MonoBehaviour {
     public void EndMove()
     {
         MissionManager.instance.scenerySounds2.StopSound();
-        print("ENDMOVE");
+        //print("ENDMOVE");
         script.playerState = Player.Actions.DEFAULT;
         script.animator.SetTrigger("changeDirection");
     }
 
     public void MoveUp()
     {
-        print("MOVEUP");
+        //print("MOVEUP");
         if (script.playerState != Player.Actions.ON_OBJECT) {
             originalDirection = script.direction;
             if (originalDirection != 3)
