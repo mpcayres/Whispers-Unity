@@ -39,7 +39,7 @@ public class Follower : Patroller {
                 }
                 else
                 {
-                    if (player.transform.position.y < transform.position.y)
+                    if (player.transform.position.y > transform.position.y)
                     {
                         direction = 2;
                     }
