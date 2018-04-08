@@ -32,6 +32,15 @@ public class SceneDoor : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        print("STAYTRIGGER");
+        if (other.gameObject.tag.Equals("Player") && isOpened && !MissionManager.instance.paused && MissionManager.instance.currentSceneName.Equals("Porao"))
+        {
+            ChangeScene();
+        }
+    }
+
     private void ChangeScene()
     {
         MissionManager.instance.paused = true;
