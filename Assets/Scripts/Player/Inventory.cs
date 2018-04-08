@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Image = UnityEngine.UI.Image;
+using Text = UnityEngine.UI.Text;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -26,10 +27,11 @@ public class Inventory : MonoBehaviour {
     private static List<DataItems> listItems;
     private static int currentItem = -1;
     private int previousItem = -1;
+    private int slotPedra = -1;
 
     GameObject menu, slotsPanel, imagesPanel;
     Sprite box, selectedBox;
-    static GameObject menuItem;
+    static GameObject menuItem, pedraValue;
     MissionManager missionManager;
 
     private void Awake()
@@ -37,6 +39,7 @@ public class Inventory : MonoBehaviour {
         menu = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu").gameObject;
         menu.SetActive(false);
         menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
+        pedraValue = menuItem.transform.Find("CurrentTextPedra").gameObject;
         slotsPanel = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu/SlotsPanel").gameObject;
         imagesPanel = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu/ImagesPanel").gameObject;
         box = Resources.Load<Sprite>("Sprites/UI/box");
@@ -108,6 +111,7 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    // MOSTRAR INVENTÁRIO
     void ShowInventoryMenu()
     {
         if (menu.activeSelf)
@@ -122,6 +126,7 @@ public class Inventory : MonoBehaviour {
                 previousItem = currentItem;
                 SetCurrentItem(currentItem);
             }
+            DeletePedraCounterMenu();
         }
         else
         {
@@ -134,6 +139,7 @@ public class Inventory : MonoBehaviour {
                 GameObject slot = imagesPanel.transform.Find("Slot (" + count + ")").gameObject;
                 slot.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + i.file);
                 slot.GetComponent<Image>().preserveAspect = true;
+                SetPedraCounterMenu(i.type, slot, count);
                 slot.SetActive(true);
                 count++;
             }
@@ -151,22 +157,26 @@ public class Inventory : MonoBehaviour {
         
     }
 
+    // RETORNA ITEM ATUAL
     public static int GetCurrentItem()
     {
         return currentItem;
     }
 
+    // RETORNA TIPO DO ITEM ATUAL
     public static InventoryItems GetCurrentItemType()
     {
         if (currentItem == -1) return InventoryItems.DEFAULT;
         return listItems[currentItem].type;
     }
 
+    // RETORNA INVENTÁRIO
     public static List<DataItems> GetInventory()
     {
         return listItems;
     }
 
+    // RETORNA TIPOS DOS ITENS DO INVENTÁRIO
     public static List<InventoryItems> GetInventoryItems()
     {
         List<InventoryItems> list = new List<InventoryItems>();
@@ -181,6 +191,24 @@ public class Inventory : MonoBehaviour {
         return list;
     }
 
+    // VERIFICA SE ITEM ESTÁ NO INVENTÁRIO
+    public static bool HasItemType(InventoryItems item)
+    {
+        if (listItems != null && listItems.Count > 0)
+        {
+            foreach (DataItems i in listItems)
+            {
+                if (item != InventoryItems.PEDRA && item == i.type)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // DETERMINA ITEM ATUAL
     public static void SetCurrentItem(int pos)
     {
         currentItem = pos;
@@ -190,9 +218,11 @@ public class Inventory : MonoBehaviour {
             if (!menuItem.activeSelf && !(MissionManager.instance.mission is Mission9)) menuItem.SetActive(true);
             menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
             menuItem.GetComponent<Image>().preserveAspect = true;
+            SetPedraCurrentValue();
         }
     }
 
+    // DETERMINA INVENTÁRIO
     public static void SetInventory(List<InventoryItems> invItems)
     {
         listItems = new List<DataItems>();
@@ -208,21 +238,25 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    // ADICIONA NOVO ITEM
     public static void NewItem(InventoryItems selectItem)
     {
 
         // Não permite ter mais de um mesmo objeto no inventário
         if (listItems == null) listItems = new List<DataItems>();
-        if (listItems.Count > 0) {
-            foreach (DataItems i in listItems)
+        if (selectItem == InventoryItems.PEDRA)
+        {
+            pedraCount++;
+            SetPedraCurrentValue();
+        }
+        else
+        {
+            if (listItems.Count > 0)
             {
-                if (selectItem == i.type)
+                foreach (DataItems i in listItems)
                 {
-                    if (selectItem == InventoryItems.PEDRA)
+                    if (selectItem == i.type)
                     {
-                        pedraCount++;
-                    }
-                    else {
                         return;
                     }
                 }
@@ -282,6 +316,7 @@ public class Inventory : MonoBehaviour {
         SetCurrentItem(listItems.Count - 1);
     }
 
+    // DELETA ITEM
     public static void DeleteItem(InventoryItems selectItem)
     {
         int count = 0;
@@ -292,6 +327,7 @@ public class Inventory : MonoBehaviour {
                 if (selectItem == InventoryItems.PEDRA)
                 {
                     pedraCount--;
+                    SetPedraCurrentValue();
                     if (pedraCount > 0)
                     {
                         break;
@@ -359,20 +395,49 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    public static bool HasItemType(InventoryItems item)
+    // DETERMINA VALOR ATUAL DA PEDRA
+    public static void SetPedraCurrentValue()
     {
-       if (listItems != null && listItems.Count > 0)
-       {
-            foreach (DataItems i in listItems)
+        if (GetCurrentItemType() == InventoryItems.PEDRA)
+        {
+            if (!pedraValue.activeSelf)
             {
-                if (item != InventoryItems.PEDRA && item == i.type)
-                {
-                    return true;
-                }
+                pedraValue.SetActive(true);
             }
-       }
-       
-        return false;
+            pedraValue.GetComponent<Text>().text = "" + pedraCount;
+        }
+        else
+        {
+            if (pedraValue.activeSelf)
+            {
+                pedraValue.SetActive(false);
+            }
+        }
+    }
+
+    // ATUALIZA CONTADOR DA PEDRA NO MENU
+    private void SetPedraCounterMenu(InventoryItems item, GameObject slot, int pos)
+    {
+        if (item == InventoryItems.PEDRA)
+        {
+            GameObject text = MissionManager.instance.AddObjectWithParent("UI/TextPedra", slot.transform);
+            text.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+            text.name = "TextPedra";
+            text.GetComponent<Text>().text = "" + pedraCount;
+            slotPedra = pos;
+        }
+    }
+
+    // APAGA CONTADOR DA PEDRA NO MENU
+    private void DeletePedraCounterMenu()
+    {
+        if (slotPedra != -1)
+        {
+            GameObject slot = imagesPanel.transform.Find("Slot (" + slotPedra + ")").gameObject;
+            GameObject text = slot.transform.Find("TextPedra").gameObject;
+            Destroy(text);
+            slotPedra = -1;
+        }
     }
 
 }
