@@ -2,9 +2,12 @@
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Flashlight : MonoBehaviour {
+    public Inventory.InventoryItems item;
+
     Player player;
     float rotationSpeed = 1f;
 	static bool enable;
+
     void Start ()
     {
         player = GetComponentInParent<Player>();
@@ -14,7 +17,7 @@ public class Flashlight : MonoBehaviour {
 	void Update ()
     {
         //0 = east, 1 = west, 2 = north, 3 = south
-        if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FLASHLIGHT &&
+        if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == item &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
@@ -28,7 +31,7 @@ public class Flashlight : MonoBehaviour {
 		
         if (enable)
         {
-            if (Inventory.GetCurrentItemType() != Inventory.InventoryItems.FLASHLIGHT)
+            if (Inventory.GetCurrentItemType() != item)
             {
                 GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
                 GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;

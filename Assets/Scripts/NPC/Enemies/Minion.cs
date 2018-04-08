@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 
 public class Minion : Follower {
-   
+
+    public int healthLight = 200; //decrementa 1 por colisão
+    public int healthMelee = 300;
+    public int decrementFaca = 30, decrementBastao = 25, decrementPedra = 20;
+    public float addPath = 0.5f;
+
+    float timeLeftAttack = 0;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -12,6 +19,24 @@ public class Minion : Follower {
     void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
+        if (timeLeftAttack > 0)
+        {
+            timeLeftAttack -= Time.deltaTime;
+        }
+
+        if (healthLight <= 0)
+        {
+            MissionManager.instance.pathCat += addPath;
+            Destroy(gameObject);
+            // animação + som
+        }
+        else if (healthMelee <= 0)
+        {
+            MissionManager.instance.pathBird += addPath;
+            Destroy(gameObject);
+            // animação + som
+        }
 
         if (followingPlayer)
         {
@@ -67,12 +92,31 @@ public class Minion : Follower {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Collision: " + other.collider.tag);
-        if (other.collider.tag.Equals("Player"))
+        //print("Minion: " + collision.tag);
+        if (collision.tag.Equals("Player"))
         {
             MissionManager.instance.GameOver();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //print("Minion: " + collision.tag);
+        if (collision.tag.Equals("Flashlight") && Flashlight.GetState())
+        {
+            healthLight--;
+        }
+        else if (collision.tag.Equals("Faca") && collision.GetComponent<AttackObject>().attacking && timeLeftAttack <= 0)
+        {
+            timeLeftAttack = AttackObject.timeAttack;
+            healthMelee -= decrementFaca;
+        }
+        else if (collision.tag.Equals("Bastao") && collision.GetComponent<AttackObject>().attacking && timeLeftAttack <= 0)
+        {
+            timeLeftAttack = AttackObject.timeAttack;
+            healthMelee -= decrementBastao;
         }
     }
 }

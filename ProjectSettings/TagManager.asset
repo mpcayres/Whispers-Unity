@@ -42,6 +42,9 @@ TagManager:
   - CorvBabies
   - RotateObject
   - DoorToBasement
+  - Faca
+  - Bastao
+  - Pedra
   layers:
   - Default
   - TransparentFX
