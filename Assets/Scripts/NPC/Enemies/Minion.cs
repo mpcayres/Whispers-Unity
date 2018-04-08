@@ -105,8 +105,8 @@ public class Minion : Follower {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //print("Minion: " + collision.tag);
-        if (collision.tag.Equals("Flashlight") && Flashlight.GetState())
+        print("Minion: " + collision.tag);
+        if ((collision.tag.Equals("Flashlight") && Flashlight.GetState()) || collision.tag.Equals("Lamp"))
         {
             healthLight--;
         }

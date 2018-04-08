@@ -21,6 +21,7 @@ public class Lamp : MonoBehaviour {
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+            GetComponent<CircleCollider2D>().enabled = GetComponent<Light>().enabled;
             change = true;
         }
     }
