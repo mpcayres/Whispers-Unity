@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     
     public AudioClip steps, stepsGrass;
     public AudioSource source { get { return GetComponent<AudioSource>(); } }
+    float stepsControl = 0.5f;
 
     void Start ()
     {
@@ -91,18 +92,20 @@ public class Player : MonoBehaviour {
                 if (MissionManager.instance.currentSceneName.Equals("Jardim"))
                 {
                     source.clip = stepsGrass;
+                    stepsControl = 0.1f;
                 }
                 else
                 {
                     source.clip = steps;
+                    stepsControl = 0.2f;
                 }
                 if ( isWalking && !source.isPlaying)
                 {
-                    source.PlayDelayed(0.5f);
+                    source.PlayDelayed(stepsControl*2);
                 }
                 else if (isRunning && !source.isPlaying)
                 {
-                    source.PlayDelayed(0.2f);
+                    source.PlayDelayed(stepsControl);
                 }
                 else if (!(isWalking || isRunning))
                 {
