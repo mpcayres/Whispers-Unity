@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SideQuest.unity
     guid: 51d3bedfe56ed514eb3f6a3e96483465
+  - enabled: 1
+    path: Assets/Scenes/Porao.unity
+    guid: 93827afd41d5b0c4ba60697c8a91d121

@@ -59,6 +59,9 @@ public class SceneDoor : MonoBehaviour
             case "DoorToBathroom":
                 MissionManager.LoadScene(9);
                 break;
+            case "DoorToBasement":
+                MissionManager.LoadScene(11);
+                break;
             default:
                 MissionManager.instance.paused = false;
                 break;
