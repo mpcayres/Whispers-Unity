@@ -202,10 +202,7 @@ public class Player : MonoBehaviour {
                 {
                     rb.position = new Vector2((float)2.95, (float)-0.6);
                 }
-                else if (previousSceneName.Equals("Banheiro"))
-                {
-                    rb.position = new Vector2((float)-11.64, (float)-0.3);
-                }
+                //else if (previousSceneName.Equals("QuartoKid"))
                 else
                 {
                     rb.position = new Vector2((float)11.9, (float)-0.3);
@@ -218,14 +215,20 @@ public class Player : MonoBehaviour {
             }
             else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
             {
-                if (previousSceneName.Equals("Sala"))
+                if (previousSceneName.Equals("Porao"))
+                {
+                    rb.position = new Vector2((float)6.0, (float)2.5);
+                    ChangeDirection(3);
+                }
+                else
                 {
                     rb.position = new Vector2((float)3.25, (float)2.3);
                 }
-                else if (previousSceneName.Equals("Porao"))
-                {
-                    rb.position = new Vector2((float)7, (float)2.5);
-                }
+            }
+            else if (MissionManager.instance.currentSceneName.Equals("Porao"))
+            {
+                rb.position = new Vector2((float)3.2, (float)0.5);
+                ChangeDirection(3);
             }
             else if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
             {
@@ -240,11 +243,6 @@ public class Player : MonoBehaviour {
             else if (MissionManager.instance.currentSceneName.Equals("Banheiro"))
             {
                 rb.position = new Vector2((float)2.171, (float)0.284);
-                ChangeDirection(3);
-            }
-            else if (MissionManager.instance.currentSceneName.Equals("Porao"))
-            {
-                rb.position = new Vector2((float)2.64, (float)0.34);
                 ChangeDirection(3);
             }
             else if (MissionManager.instance.currentSceneName.Equals("Sala"))

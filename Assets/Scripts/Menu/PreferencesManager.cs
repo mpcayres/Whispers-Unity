@@ -15,7 +15,7 @@ public class PreferencesManager : MonoBehaviour {
          *  5. Parar
          *  6. Comentar a linha abaixo
          *  7. Livre está!*/
-       // PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         if (PlayerPrefs.HasKey("Language"))
         {
