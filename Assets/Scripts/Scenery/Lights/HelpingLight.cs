@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class HelpingLight : MonoBehaviour
 {
     public float speed;
-    public bool stoped = false;
     public Vector3[] targets;
 
+    public bool emitter = false;
+    public bool stoped = false;
     public bool active = false;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
+    public bool playerInside = true;
 
     private int destPoint = 0;
 
-    public bool PlayerInside;
-  
-    // Update is called once per frame
     void Update()
     {
         if (active) {
@@ -56,13 +54,13 @@ public class HelpingLight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
         if (gameObject.activeSelf && collision.gameObject.tag.Equals("Player"))
         {
-            PlayerInside = true;
+            playerInside = true;
+            if (emitter)
+            {
+                // emitir corvbabies
+            }
         }
     }
 
@@ -70,7 +68,8 @@ public class HelpingLight : MonoBehaviour
     {
         if (gameObject.activeSelf && collision.gameObject.tag.Equals("Player"))
         {
-            PlayerInside = false;
+            playerInside = false;
         }
+        HelpingLightManager.KillInDarkness();
     }
 }

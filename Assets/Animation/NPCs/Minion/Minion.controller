@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Corvo
+  m_Name: Minion
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: changeDirection
@@ -201,7 +201,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoSouth
+  m_Name: minionSouth
   m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions: []
@@ -214,7 +214,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b4652de6e05107a488e242abeadad291, type: 2}
+  m_Motion: {fileID: 7400000, guid: d91d828b27db4ef41ba2809bc9646288, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -226,7 +226,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoWest
+  m_Name: minionWest
   m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions: []
@@ -239,7 +239,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 253d00545d7886947ad9e3b1ffab8181, type: 2}
+  m_Motion: {fileID: 7400000, guid: 45ddb0e0c927db54a9542f4b72416d1d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -251,7 +251,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoEast
+  m_Name: minionEast
   m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions: []
@@ -264,7 +264,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 655030cfb53937e41ba6ad75676e3119, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4433cd2f30f857241a2d3de19b6d32b2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -276,7 +276,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoIdleBack
+  m_Name: minionIdleBack
   m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions: []
@@ -289,7 +289,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bd7dbe2f5e5b4cc48b3de80f6f403bf3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9121b0f30ba4aa54884f576b6747a745, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -301,7 +301,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoIdleFront
+  m_Name: minionIdleFront
   m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions: []
@@ -314,7 +314,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3831570fb4a1e3146b1ceebec8ff7afe, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5c0381e1cb586d84c90c22efb0a2f9c8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -326,7 +326,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: corvoNorth
+  m_Name: minionNorth
   m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions: []
@@ -339,7 +339,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2a74e472291bd144fac33f87df454eb6, type: 2}
+  m_Motion: {fileID: 7400000, guid: ad9415d96291c74449e5dc760f5df05d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
