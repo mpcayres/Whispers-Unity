@@ -14,7 +14,7 @@ public class PreferencesManager : MonoBehaviour {
          *  4. Começar um novo jogo
          *  5. Parar
          *  6. Comentar a linha abaixo
-         *  7. Livre está!*/
+         *  7. Jogar pelo Continue (para salvar) ou Carregar (para não salvar)*/
         //PlayerPrefs.DeleteAll();
 
         if (PlayerPrefs.HasKey("Language"))

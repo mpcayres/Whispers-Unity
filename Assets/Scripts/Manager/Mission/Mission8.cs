@@ -37,11 +37,6 @@ public class Mission8 : Mission {
 
         SetInitialSettings();
 
-        // Adiciona todas as páginas
-        Book.pageQuantity = 5;
-        bool[] pages = { true, true, true, true, true };
-        Book.pages = pages;
-
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
 
@@ -94,8 +89,8 @@ public class Mission8 : Mission {
         }
         else if (secao == enumMission.INICIO)
         {
-            if (book.SeenAll())
-            {
+            //if (book.SeenAll())
+            //{
                 if (endCat)
                 {
                     EspecificaEnum((int)enumMission.CORVO_APARECE_CAT);
@@ -104,7 +99,7 @@ public class Mission8 : Mission {
                 {
                     EspecificaEnum((int)enumMission.CORVO_APARECE_BIRD);
                 }
-            }
+            //}
         }
         else if (secao == enumMission.CORVO_APARECE_CAT)
         {

@@ -22,7 +22,7 @@ public class MissionManager : MonoBehaviour {
     public string previousSceneName = "", currentSceneName = "";
 
     // EXTRAS
-    public int numberPages = 0, sideQuests = 0;
+    public int sideQuests = 0;
 
     // ESCOLHAS
     public float pathBird = 0, pathCat = 0;
@@ -89,7 +89,7 @@ public class MissionManager : MonoBehaviour {
                 Inventory.SetInventory(null);
                 GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
 
-                numberPages = 0;
+                Book.pageQuantity = 0;
                 sideQuests = 0;
 
                 pathBird = 0;
@@ -137,7 +137,7 @@ public class MissionManager : MonoBehaviour {
                 rpgTalk.EndTalk();
             }
 
-            if (!blocked && !paused && CrossPlatformInputManager.GetButtonDown("keyInvert") && !invertWorldBlocked)
+            if (!blocked && (!paused || Book.show) && CrossPlatformInputManager.GetButtonDown("keyInvert") && !invertWorldBlocked)
             {
                 scenerySounds.PlayDemon(6);
                 InvertWorld(!invertWorld);
@@ -513,7 +513,7 @@ public class MissionManager : MonoBehaviour {
         save.pedraCount = Inventory.pedraCount;
 
 
-        save.numberPages = numberPages;
+        save.numberPages = Book.pageQuantity;
         save.sideQuests = sideQuests;
 
         save.pathBird = pathBird;
@@ -542,7 +542,7 @@ public class MissionManager : MonoBehaviour {
         if (currentSave != null)
         {
             currentSave.sideQuests = sideQuests;
-            currentSave.numberPages = numberPages;
+            currentSave.numberPages = Book.pageQuantity;
             currentSave.time = DateTime.UtcNow.ToString();
             SaveGame(currentSave, currentMission, 0);
         }
@@ -608,7 +608,7 @@ public class MissionManager : MonoBehaviour {
             }
             Inventory.pedraCount = currentSave.pedraCount;
 
-            numberPages = currentSave.numberPages;
+            Book.pageQuantity = currentSave.numberPages;
             sideQuests = currentSave.sideQuests;
 
             pathBird = currentSave.pathBird;

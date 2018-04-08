@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Page : MonoBehaviour {
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
             Book.AddPage();
-            Destroy(this.gameObject);
+            MissionManager.instance.UpdateSave();
+            Destroy(gameObject);
         }
     }
+
 }

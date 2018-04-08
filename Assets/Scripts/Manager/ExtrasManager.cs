@@ -69,7 +69,7 @@ public class ExtrasManager
     public static void PagesManager()
     {
         int current = MissionManager.instance.currentMission;
-        int pages = MissionManager.instance.numberPages;
+        int pages = Book.pageQuantity;
 
         if (pages == 0 && current >= 5 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))
