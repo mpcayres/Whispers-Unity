@@ -89,18 +89,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6405815b6534e4bb0f0bcde7dfbe01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 0.1
   animator: {fileID: 0}
   isPatroller: 0
   destroyEndPath: 0
   stopEndPath: 0
   targets: []
-  followWhenClose: 0
+  followWhenClose: 1
   followingPlayer: 0
   healthLight: 200
-  healthMelee: 20
-  decrementFaca: 2
-  decrementBastao: 1
+  healthMelee: 300
+  decrementFaca: 30
+  decrementBastao: 25
+  decrementPedra: 20
   addPath: 0.5
 --- !u!212 &212746056938383920
 SpriteRenderer:
@@ -133,8 +134,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -561557641
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: 021820c33d3196c439d810c2a8573285, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class FarAttackObject : MonoBehaviour {
     public Inventory.InventoryItems item;
     public float maxDistance = 10f;
-    public bool attacking = false;
+    public bool attacking = false, hitSuccess = false;
 
-    float distance = 0;
+    float distance = 0, startX = 0, startY = 0;
     float speed = 2f, translateSpeed = 5f;
-    float arcHeight = 1f; // altura
+    float arcHeight = 0.8f; // altura
+    float timeLeftPedra = 0, maxTimePedra = 0.2f;
     int directionAttack = 0;
     bool initAttack = false;
-    Vector3 posAttack = new Vector3(0,0,0);
+    Vector3 posAttack = new Vector3(0,0,0), oldParentPosition;
 
     Player player;
     SpriteRenderer spriteRenderer;
@@ -25,6 +27,23 @@ public class FarAttackObject : MonoBehaviour {
 
     void Update()
     {
+        if (timeLeftPedra > 0)
+        {
+            timeLeftPedra -= Time.deltaTime;
+        }
+
+        if (hitSuccess)
+        {
+            EndThrow();
+            // adiciona outra no local de transform.position
+            // som acerto
+        }
+        else if (attacking && timeLeftPedra <= 0)
+        {
+            EndThrow();
+            // som chão
+        }
+
         if (Inventory.GetCurrentItemType() == item && !initAttack && !attacking &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
@@ -39,22 +58,20 @@ public class FarAttackObject : MonoBehaviour {
             }
             else if (CrossPlatformInputManager.GetButtonUp("keyUseObject"))
             {
+                posAttack = new Vector3(transform.position.x, transform.position.y, 0);
+
                 switch (player.direction)
                 {
                     case 0:
-                        posAttack = new Vector3(distance, 0, 0);
                         directionAttack = 0;
                         break;
                     case 1:
-                        posAttack = new Vector3(-distance, 0, 0);
                         directionAttack = 1;
                         break;
                     case 2:
-                        posAttack = new Vector3(0, distance, 0);
                         directionAttack = 2;
                         break;
                     case 3:
-                        posAttack = new Vector3(0, -distance, 0);
                         directionAttack = 3;
                         break;
                     default:
@@ -62,8 +79,17 @@ public class FarAttackObject : MonoBehaviour {
                 }
 
                 transform.localPosition = new Vector3(0, 0, 0);
-                spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+                if (directionAttack == 0 || directionAttack == 1)
+                {
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.75f);
+                }
+                else
+                {
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+                }
                 initAttack = true;
+                startX = transform.position.x;
+                startY = transform.position.y;
             }
         }
 
@@ -71,33 +97,35 @@ public class FarAttackObject : MonoBehaviour {
         {
             if (directionAttack == 0 || directionAttack == 1)
             {
-                print("ATTACK01");
-                float x0 = 0;
-                float x1 = posAttack.x;
-                float dist = x1 - x0;
-                float nextX = Mathf.MoveTowards(transform.localPosition.x, x1, translateSpeed * Time.deltaTime);
-                float baseY = Mathf.Lerp(0, posAttack.y, (nextX - x0) / dist);
-                float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
-                Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.localPosition.z);
-                transform.rotation = LookAt2D(nextPos - transform.localPosition);
-                transform.localPosition = nextPos;
+                float dist = posAttack.x - startX;
+                float nextX = Mathf.MoveTowards(transform.position.x, posAttack.x, translateSpeed * Time.deltaTime);
+                float baseY = Mathf.Lerp(startY, posAttack.y, (nextX - startX) / dist);
+                float arc = arcHeight * (nextX - startX) * (nextX - posAttack.x) / (-0.25f * dist * dist);
+                Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
+                transform.rotation = LookAt2D(nextPos - transform.position);
+                transform.position = nextPos;
+
+                if (Vector3.Distance(transform.position, posAttack) <= 1f) EndAnimation();
             }
             else
             {
-                print("ATTACK23");
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, posAttack, translateSpeed * Time.deltaTime);
-                if (transform.localPosition.y < posAttack.y/2)
+                transform.position = Vector3.MoveTowards(transform.position, posAttack, translateSpeed * Time.deltaTime);
+                if (Mathf.Abs(transform.position.y) < Mathf.Abs(posAttack.y / 2))
                 {
-                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f + transform.localPosition.y / posAttack.y);
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f + (Mathf.Abs(transform.position.y) / Mathf.Abs(posAttack.y)));
                 }
                 else
                 {
-                    spriteRenderer.color = new Color(1f, 1f, 1f, 1f - transform.localPosition.y / posAttack.y / 2);
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 1f - (Mathf.Abs(transform.position.y) / Mathf.Abs(posAttack.y) / 2));
                 }
+
+                if (transform.position == posAttack) EndAnimation();
             }
 
-            if (transform.localPosition == posAttack) EndAnimation();
-            
+        }
+        else if (attacking)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, posAttack, translateSpeed * Time.deltaTime);
         }
         else
         {
@@ -113,7 +141,7 @@ public class FarAttackObject : MonoBehaviour {
                     transform.localPosition = new Vector3(0, distance, 0);
                     break;
                 case 3:
-                    transform.position = new Vector3(0, -distance, 0);
+                    transform.localPosition = new Vector3(0, -distance, 0);
                     break;
                 default:
                     break;
@@ -129,10 +157,19 @@ public class FarAttackObject : MonoBehaviour {
     private void EndAnimation()
     {
         initAttack = false;
+        hitSuccess = false;
         attacking = true;
+        timeLeftPedra = maxTimePedra;
+    }
+
+    private void EndThrow()
+    {
+        spriteRenderer.enabled = false;
+        transform.position = new Vector3(0, 0, 0);
         distance = 0;
+        hitSuccess = false;
+        attacking = false;
+        timeLeftPedra = 0;
         // deleta uma pedra
-        // animação + som
-        //spriteRenderer.enabled = false;
     }
 }

@@ -54,8 +54,8 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.FACA);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
-        NewItem(InventoryItems.ISQUEIRO);*/
-        NewItem(InventoryItems.FLASHLIGHT);
+        NewItem(InventoryItems.ISQUEIRO);
+        NewItem(InventoryItems.FLASHLIGHT);*/
 
         gameObject.AddComponent<AudioSource>();
         source.clip = sound;
@@ -64,7 +64,8 @@ public class Inventory : MonoBehaviour {
 	
 	void Update ()
     {
-        if (CrossPlatformInputManager.GetButtonDown("keyInventory") && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !Book.show)
+        if (CrossPlatformInputManager.GetButtonDown("keyInventory") && !MissionManager.instance.showMissionStart &&
+            !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !Book.show)
         {
             if(!source.isPlaying)
                 source.PlayOneShot(sound);
@@ -73,21 +74,27 @@ public class Inventory : MonoBehaviour {
 
         if (menu.activeSelf && currentItem != -1)
         {
-            if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0 && currentItem < listItems.Count - 1)
+            if(Input.GetButtonDown("Horizontal"))
             {
-                currentItem++;
+                if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0 && currentItem < listItems.Count - 1)
+                {
+                    currentItem++;
+                }
+                else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0 && currentItem > 0)
+                {
+                    currentItem--;
+                }
             }
-            else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0 && currentItem > 0)
+            if (Input.GetButtonDown("Vertical"))
             {
-                currentItem--;
-            }
-            else if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0 && currentItem < listItems.Count - 4)
-            {
-                currentItem += 4;
-            }
-            else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0 && currentItem > 3)
-            {
-                currentItem -= 4;
+                if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0 && currentItem < listItems.Count - 4)
+                {
+                    currentItem += 4;
+                }
+                else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0 && currentItem > 3)
+                {
+                    currentItem -= 4;
+                }
             }
 
             if (previousItem != currentItem)

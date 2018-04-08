@@ -37,8 +37,10 @@ public class Book : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if ((CrossPlatformInputManager.GetButtonDown("keyJournal") || (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
-            && !Inventory.open && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !bookBlocked)
+        if ((CrossPlatformInputManager.GetButtonDown("keyJournal") || 
+            (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
+            && !Inventory.open && !MissionManager.instance.showMissionStart && !MissionManager.instance.blocked &&
+            !MissionManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
         }

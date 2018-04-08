@@ -118,5 +118,10 @@ public class Minion : Follower {
             timeLeftAttack = AttackObject.timeAttack;
             healthMelee -= decrementBastao;
         }
+        else if (collision.tag.Equals("Pedra") && collision.GetComponent<FarAttackObject>().attacking)
+        {
+            collision.GetComponent<FarAttackObject>().hitSuccess = true;
+            healthMelee -= decrementPedra;
+        }
     }
 }
