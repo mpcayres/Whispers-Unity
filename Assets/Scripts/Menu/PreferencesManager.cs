@@ -135,8 +135,7 @@ public class PreferencesManager : MonoBehaviour {
     GameObject AddButton(string name, string text, int mission, string numSave, GameObject parent)
     {
         //print("UI: " + name + " >" + mission + "< [" + text + "]");
-        GameObject instance =
-            Instantiate(Resources.Load("Prefab/UI/" + name) as GameObject);
+        GameObject instance = Instantiate(Resources.Load("Prefab/UI/" + name) as GameObject);
 
         instance.transform.SetParent(parent.transform);
         instance.GetComponent<RectTransform>().transform.localScale = new Vector3(1,1,1);

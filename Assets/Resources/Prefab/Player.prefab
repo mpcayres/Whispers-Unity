@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 114833596618350534}
   - component: {fileID: 114401343632510796}
   - component: {fileID: 114600373000498978}
+  - component: {fileID: 114966263676562284}
   - component: {fileID: 61343407655216614}
   - component: {fileID: 50105999824673716}
-  - component: {fileID: 114966263676562284}
   - component: {fileID: 82755673366926274}
   m_Layer: 8
   m_Name: Player
@@ -1067,7 +1067,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: 6
-  maxDistance: 10
   attacking: 0
   hitSuccess: 0
 --- !u!114 &114365670633547336
@@ -1202,13 +1201,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMission: 0
-  previousSceneName: Sala
-  currentSceneName: Jardim
+  previousSceneName: 
+  currentSceneName: 
   numberPages: 0
   sideQuests: 0
-  pathBird: 26
-  pathCat: 11
-  mission1AssustaGato: 1
+  pathBird: 0
+  pathCat: 0
+  mission1AssustaGato: 0
   mission2ContestaMae: 0
   mission4QuebraSozinho: 0
   mission8BurnCorredor: 0

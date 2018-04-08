@@ -13,19 +13,19 @@ public class MissionManager : MonoBehaviour {
     // MISSÕES
     public Mission mission;
     public SideQuest sideQuest;
-    public int currentMission;
+    public int currentMission = 0;
     public static bool initMission = false;
     public static float initX = 0, initY = 0;
     public static int initDir = 0;
 
     // CENAS
-    public string previousSceneName, currentSceneName;
+    public string previousSceneName = "", currentSceneName = "";
 
     // EXTRAS
-    public int numberPages, sideQuests;
+    public int numberPages = 0, sideQuests = 0;
 
     // ESCOLHAS
-    public float pathBird, pathCat;
+    public float pathBird = 0, pathCat = 0;
 
     // ESCOLHAS ESPECÍFICAS
     public bool mission1AssustaGato = false;
@@ -301,11 +301,27 @@ public class MissionManager : MonoBehaviour {
         return instance;
     }
 
+    // ADICIONAR OBJETO NA CENA, COM DADOS REDUZIDOS
+    public GameObject AddObject(string name)
+    {
+        print("ADD OBJECT: " + name);
+        GameObject instance = Instantiate(Resources.Load("Prefab/" + name)) as GameObject;
+        return instance;
+    }
+
     // ADICIONAR OBJETO NA CENA COM PAI ASSOCIADO
     public GameObject AddObjectWithParent(string name, string sprite, Vector3 position, Vector3 scale, Transform parent)
     {
         GameObject instance = AddObject(name, sprite, position, scale);
         instance.transform.parent = parent;
+        return instance;
+    }
+
+    // ADICIONAR OBJETO NA CENA COM PAI ASSOCIADO, COM DADOS REDUZIDOS
+    public GameObject AddObjectWithParent(string name, Transform parent)
+    {
+        GameObject instance = AddObject(name);
+        instance.transform.SetParent(parent);
         return instance;
     }
 
