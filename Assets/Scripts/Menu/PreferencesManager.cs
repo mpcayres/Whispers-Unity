@@ -7,6 +7,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class PreferencesManager : MonoBehaviour {
 
 	void Start () {
+        /* REINICIAR SAVE:
+         *  1. Deletar todos os saves em C:\Users\Admin\AppData\LocalLow\DefaultCompany\AlGhaib
+         *  2. Descomentar a linha abaixo, para deleter o Player Prefs
+         *  3. Rodar o jogo uma vez, começando da cena do MainMenu
+         *  4. Começar um novo jogo
+         *  5. Parar
+         *  6. Comentar a linha abaixo
+         *  7. Livre está!*/
+        //PlayerPrefs.DeleteAll();
+
         if (PlayerPrefs.HasKey("Language"))
         {
             SetTextLanguage();

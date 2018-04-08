@@ -12,6 +12,7 @@ public class Save
     public List<Inventory.InventoryItems> inventory = new List<Inventory.InventoryItems>(); // completo
     public int currentItem = -1; // item atual
     public int lifeTampa = 80; // vida restante para objeto protetor
+    public int pedraCount = 0;
 
     // COLECIONÁVEIS
     public int numberPages = 0; // número de páginas encontradas

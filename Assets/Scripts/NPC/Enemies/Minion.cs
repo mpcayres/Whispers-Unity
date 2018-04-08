@@ -14,6 +14,8 @@ public class Minion : Follower {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        distFollow = 0.1f;
+        moveTowards = true;
     }
 
     void Update()

@@ -330,7 +330,7 @@ public class Mission8 : Mission {
             scenePickUpObject2.blockAfterPick = true;
             scenePickUpObject2.item = Inventory.InventoryItems.PEDRA;
 
-            GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedraGround", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3(0.6f, 0.6f, 1f));
+            GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3(0.6f, 0.6f, 1f));
             pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
         }
 

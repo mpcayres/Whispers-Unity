@@ -4,6 +4,8 @@ public class Follower : Patroller {
     public bool followWhenClose = false;
     public bool followingPlayer = false;
 
+    protected float distFollow = 0.6f;
+    protected bool moveTowards = false;
     protected GameObject player;
     
     void Start () {
@@ -20,7 +22,7 @@ public class Follower : Patroller {
         {
             float dist = Vector3.Distance(player.transform.position, transform.position);
 
-            if (dist > 0.6f)
+            if (dist > distFollow)
             {
 
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) >
@@ -46,8 +48,16 @@ public class Follower : Patroller {
                         direction = 3;
                     }
                 }
+
+                if (moveTowards)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
+                }
                 
-                transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
             }
             else
             {

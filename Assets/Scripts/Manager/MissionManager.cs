@@ -391,12 +391,13 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            string prefName = i.GetComponent<MovingObject>().prefName;
+            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
             {
-                //print("MOVING: " + i.GetComponent<MovingObject>().prefName);
+                //print("MOVING: " + prefName);
                 i.GetComponent<MovingObject>().ChangePosition(
-                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "X"),
-                    PlayerPrefs.GetFloat(i.GetComponent<MovingObject>().prefName + "Y"));
+                    PlayerPrefs.GetFloat(prefName + "X"),
+                    PlayerPrefs.GetFloat(prefName + "Y"));
             }
         }
     }
@@ -407,12 +408,13 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("RotateObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<RotateObject>().prefName.Equals(""))
+            string prefName = i.GetComponent<RotateObject>().prefName;
+            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
             {
-                //print("ROTATE: " + i.GetComponent<Rotate>().prefName);
+                //print("ROTATE: " + prefName);
                 i.GetComponent<RotateObject>().ChangePosition(
-                    PlayerPrefs.GetFloat(i.GetComponent<RotateObject>().prefName + "X"),
-                    PlayerPrefs.GetFloat(i.GetComponent<RotateObject>().prefName + "Y"));
+                    PlayerPrefs.GetFloat(prefName + "X"),
+                    PlayerPrefs.GetFloat(prefName + "Y"));
             }
         }
     }
@@ -423,11 +425,12 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("SceneObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<SceneObject>().prefName.Equals(""))
+            string prefName = i.GetComponent<SceneObject>().prefName;
+            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName))
             {
-                //print("SCENEOBJ: " + i.GetComponent<SceneObject>().prefName);
+                //print("SCENEOBJ: " + prefName);
                 bool active = false;
-                if (PlayerPrefs.GetInt(i.GetComponent<SceneObject>().prefName) == 1) active = true;
+                if (PlayerPrefs.GetInt(prefName) == 1) active = true;
                 i.GetComponent<SceneObject>().ChangeSpriteActive(active);
             }
         }
@@ -491,7 +494,9 @@ public class MissionManager : MonoBehaviour {
         {
             save.lifeTampa = 0;
         }
-        
+        save.pedraCount = Inventory.pedraCount;
+
+
         save.numberPages = numberPages;
         save.sideQuests = sideQuests;
 
@@ -585,6 +590,7 @@ public class MissionManager : MonoBehaviour {
             {
                 GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = currentSave.lifeTampa;
             }
+            Inventory.pedraCount = currentSave.pedraCount;
 
             numberPages = currentSave.numberPages;
             sideQuests = currentSave.sideQuests;

@@ -18,19 +18,19 @@ public class Inventory : MonoBehaviour {
             this.file = file;
         }
     }
+    public static bool open = false;
+    public static int pedraCount = 0;
+    public AudioClip sound;
+
+    private AudioSource source { get { return GetComponent<AudioSource>(); } }
     private static List<DataItems> listItems;
     private static int currentItem = -1;
     private int previousItem = -1;
-    public static bool open = false;
 
     GameObject menu, slotsPanel, imagesPanel;
     Sprite box, selectedBox;
     static GameObject menuItem;
     MissionManager missionManager;
-
-    public AudioClip sound;
-
-    private AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     private void Awake()
     {
@@ -218,7 +218,13 @@ public class Inventory : MonoBehaviour {
             {
                 if (selectItem == i.type)
                 {
-                    return;
+                    if (selectItem == InventoryItems.PEDRA)
+                    {
+                        pedraCount++;
+                    }
+                    else {
+                        return;
+                    }
                 }
             }
         }
@@ -283,6 +289,14 @@ public class Inventory : MonoBehaviour {
         {
             if (i.type == selectItem)
             {
+                if (selectItem == InventoryItems.PEDRA)
+                {
+                    pedraCount--;
+                    if (pedraCount > 0)
+                    {
+                        break;
+                    }
+                }
                 if (selectItem == listItems[currentItem].type)
                 {
                     listItems.RemoveAt(count);

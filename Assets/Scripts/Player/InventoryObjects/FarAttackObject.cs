@@ -39,7 +39,7 @@ public class FarAttackObject : MonoBehaviour {
         {
             if (!triggered)
             {
-                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedraGround", transform.position, new Vector3(0.6f, 0.6f, 1f));
+                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", transform.position, new Vector3(0.6f, 0.6f, 1f));
                 pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
                 pedra.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
             }
@@ -173,7 +173,7 @@ public class FarAttackObject : MonoBehaviour {
         hitSuccess = false;
         attacking = false;
         timeLeftPedra = 0;
-        // deleta uma pedra
+        Inventory.DeleteItem(item);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
