@@ -13,13 +13,13 @@ public class Patroller : MonoBehaviour {
     protected int direction = 4, oldDirection = 4;
     protected int destPoint = 0;
 
-    void Start()
+    protected void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    protected void Update()
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 

@@ -9,19 +9,15 @@ public class Minion : Follower {
 
     float timeLeftAttack = 0;
 
-    void Start()
+    protected new void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        base.Start();
         distFollow = 0.1f;
         moveTowards = true;
     }
 
-    void Update()
+    protected new void Update()
     {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-
         if (timeLeftAttack > 0)
         {
             timeLeftAttack -= Time.deltaTime;
@@ -39,59 +35,8 @@ public class Minion : Follower {
             Destroy(gameObject);
             // animação + som
         }
-
-        if (followingPlayer)
-        {
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-
-            if (dist > 0.6f)
-            {
-
-                if (Mathf.Abs(player.transform.position.x - transform.position.x) >
-                    Mathf.Abs(player.transform.position.y - transform.position.y))
-                {
-                    if (player.transform.position.x > transform.position.x)
-                    {
-                        direction = 0;
-                    }
-                    else
-                    {
-                        direction = 1;
-                    }
-                }
-                else
-                {
-                    if (player.transform.position.y < transform.position.y)
-                    {
-                        direction = 2;
-                    }
-                    else
-                    {
-                        direction = 3;
-                    }
-                }
-
-                transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
-            }
-            else
-            {
-                if (player.transform.position.y < transform.position.y)
-                {
-                    direction = 4;
-                }
-                else
-                {
-                    direction = 5;
-                }
-            }
-
-            ChangeDirectionAnimation();
-
-        }
-        else if (isPatroller)
-        {
-            GotoNextPoint();
-        }
+        
+        base.Update();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -105,7 +50,7 @@ public class Minion : Follower {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print("Minion: " + collision.tag);
+        //print("Minion: " + collision.tag);
         if ((collision.tag.Equals("Flashlight") && Flashlight.GetState()) || collision.tag.Equals("Lamp"))
         {
             healthLight--;

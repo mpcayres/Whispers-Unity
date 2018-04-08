@@ -5,13 +5,13 @@ public class CorvBabies : Follower {
 
     protected GameObject birdEmitter;
 
-    void Start()
+    protected new void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
     }
     
-    void Update()
+    protected new void Update()
     {
 
         if (followingPlayer)

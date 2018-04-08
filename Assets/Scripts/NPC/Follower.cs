@@ -4,19 +4,19 @@ public class Follower : Patroller {
     public bool followWhenClose = false;
     public bool followingPlayer = false;
 
+    protected int fixOrder = 0;
     protected float distFollow = 0.6f;
     protected bool moveTowards = false;
     protected GameObject player;
     
-    void Start () {
-        animator = GetComponent<Animator>();
+    protected new void Start () {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
-	void Update () {
+	protected new void Update () {
 
-        spriteRenderer.sortingOrder = -12 + Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        spriteRenderer.sortingOrder = fixOrder + Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         if (followingPlayer)
         {
