@@ -13,6 +13,8 @@ public class Tutorial : MonoBehaviour
     int repeatTime = 2;
     bool exit = false, end = false, invoked = false;
 
+    public bool inventoryObject = false;
+
     void Awake()
     {
         source.playOnAwake = false;
@@ -31,7 +33,15 @@ public class Tutorial : MonoBehaviour
         if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
         {
             exit = false;
-            InvokeShow();
+            if (!inventoryObject)
+                InvokeShow();
+            else
+            {
+                if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                {
+                    InvokeShow();
+                }
+            }
         }
     }
 
@@ -39,7 +49,13 @@ public class Tutorial : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
         {
-            InvokeShow();
+            if (!inventoryObject)
+                InvokeShow();
+            else {
+                if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT)) {
+                    InvokeShow();
+                }
+            }
         }
     }
 
