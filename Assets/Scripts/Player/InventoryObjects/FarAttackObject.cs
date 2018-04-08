@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class FarAttackObject : MonoBehaviour {
     public Inventory.InventoryItems item;
-    public float maxDistance = 10f;
     public bool attacking = false, hitSuccess = false;
 
-    float distance = 0, startX = 0, startY = 0;
-    float speed = 2f, translateSpeed = 5f;
+    float distance = 0, maxDistance = 6f, startX = 0, startY = 0;
+    float speed = 3f, translateSpeed = 5f;
     float arcHeight = 0.8f; // altura
     float timeLeftPedra = 0, maxTimePedra = 0.2f;
     int directionAttack = 0;
-    bool initAttack = false;
+    bool initAttack = false, triggered = false;
     Vector3 posAttack = new Vector3(0,0,0), oldParentPosition;
 
     Player player;
@@ -35,11 +33,16 @@ public class FarAttackObject : MonoBehaviour {
         if (hitSuccess)
         {
             EndThrow();
-            // adiciona outra no local de transform.position
             // som acerto
         }
         else if (attacking && timeLeftPedra <= 0)
         {
+            if (!triggered)
+            {
+                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedraGround", transform.position, new Vector3(0.6f, 0.6f, 1f));
+                pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
+                pedra.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
+            }
             EndThrow();
             // som chão
         }
@@ -52,7 +55,7 @@ public class FarAttackObject : MonoBehaviour {
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f);
             }
-            if (CrossPlatformInputManager.GetButton("keyUseObject") && distance < maxDistance)
+            else if (CrossPlatformInputManager.GetButton("keyUseObject") && distance < maxDistance)
             {
                 distance += speed * Time.deltaTime;
             }
@@ -171,5 +174,23 @@ public class FarAttackObject : MonoBehaviour {
         attacking = false;
         timeLeftPedra = 0;
         // deleta uma pedra
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //print("Pedra: " + collision.tag);
+        if (collision.tag.Equals("Background"))
+        {
+            triggered = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //print("Pedra: " + collision.tag);
+        if (collision.tag.Equals("Background"))
+        {
+            triggered = false;
+        }
     }
 }

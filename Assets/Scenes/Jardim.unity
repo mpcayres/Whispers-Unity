@@ -3673,8 +3673,6 @@ GameObject:
   - component: {fileID: 65419715}
   - component: {fileID: 65419714}
   - component: {fileID: 65419713}
-  - component: {fileID: 65419712}
-  - component: {fileID: 65419711}
   m_Layer: 0
   m_Name: Jardim
   m_TagString: DoorToLivingroom
@@ -3682,58 +3680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &65419711
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 61595079576583920, guid: b7f7aceeb5aa49347bfaf429541d0a4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65419710}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 2.4842713, y: 3.838719}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 13.98, y: 8.92}
-    newSize: {x: 12.3, y: 8.92}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.484429, y: 1.7225618}
-  m_EdgeRadius: 0
---- !u!61 &65419712
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 61538718672476002, guid: b7f7aceeb5aa49347bfaf429541d0a4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65419710}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 3.1595097, y: 3.7509027}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 13.98, y: 8.92}
-    newSize: {x: 12.3, y: 8.92}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16493797, y: 1.9444325}
-  m_EdgeRadius: 0
 --- !u!61 &65419713
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3747,7 +3693,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.3088852, y: 3.7492383}
+  m_Offset: {x: 1.5779966, y: 3.8165162}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3758,7 +3704,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.777663, y: 1.947761}
+  m_Size: {x: 3.3158858, y: 1.8132052}
   m_EdgeRadius: 0
 --- !u!61 &65419714
 BoxCollider2D:
@@ -3773,7 +3719,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.4046042, y: 4.1324167}
+  m_Offset: {x: 3.4046042, y: 4.180826}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3784,7 +3730,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.306831, y: 1.1814036}
+  m_Size: {x: 7.306831, y: 1.084585}
   m_EdgeRadius: 0
 --- !u!61 &65419715
 BoxCollider2D:
@@ -3799,7 +3745,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10918331, y: -4.713178}
+  m_Offset: {x: 0.10918331, y: -9.583979}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3810,7 +3756,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.458324, y: 0.6656809}
+  m_Size: {x: 14.458324, y: 10.40728}
   m_EdgeRadius: 0
 --- !u!61 &65419716
 BoxCollider2D:
@@ -3825,7 +3771,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.070112705, y: 4.605168}
+  m_Offset: {x: 0.070112705, y: 11.961987}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3836,7 +3782,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.380183, y: 0.31404972}
+  m_Size: {x: 14.380183, y: 15.027687}
   m_EdgeRadius: 0
 --- !u!61 &65419717
 BoxCollider2D:
@@ -3851,7 +3797,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.4580784, y: -0.14191294}
+  m_Offset: {x: 11.844201, y: -0.14191294}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3862,7 +3808,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.015831, y: 9.808211}
+  m_Size: {x: 9.788073, y: 9.808211}
   m_EdgeRadius: 0
 --- !u!61 &65419718
 BoxCollider2D:
@@ -3877,7 +3823,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.7849493, y: -0.14191294}
+  m_Offset: {x: -10.493516, y: -0.14191294}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3888,7 +3834,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7135296, y: 9.808211}
+  m_Size: {x: 7.130663, y: 9.808211}
   m_EdgeRadius: 0
 --- !u!212 &65419719
 SpriteRenderer:
@@ -26407,12 +26353,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 282.02798
+      value: 433.52798
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 116.83299
+      value: 184.83298
       objectReference: {fileID: 0}
     - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -58547,12 +58493,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 283.5
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 91.5
+      value: 159.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}

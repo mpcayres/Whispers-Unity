@@ -292,7 +292,7 @@ public class MissionManager : MonoBehaviour {
     // ADICIONAR OBJETO NA CENA
     public GameObject AddObject(string name, string sprite, Vector3 position, Vector3 scale)
     {
-        //print("ADD OBJECT: " + name);
+        print("ADD OBJECT: " + name + " [" + sprite + "]");
         GameObject instance =
             Instantiate(Resources.Load("Prefab/" + name),
             position, Quaternion.identity) as GameObject;

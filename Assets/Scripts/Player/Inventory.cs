@@ -351,7 +351,7 @@ public class Inventory : MonoBehaviour {
        {
             foreach (DataItems i in listItems)
             {
-                if (item == i.type)
+                if (item != InventoryItems.PEDRA && item == i.type)
                 {
                     return true;
                 }

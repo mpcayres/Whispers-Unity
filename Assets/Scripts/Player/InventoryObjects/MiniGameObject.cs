@@ -128,7 +128,7 @@ public class MiniGameObject : MonoBehaviour {
         }
         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
         {
-            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
+            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedraGround");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
             anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
             anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);

@@ -37,7 +37,7 @@ public class MovingObject : MonoBehaviour {
         }
         if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
         {
-            if (CrossPlatformInputManager.GetButtonDown("keySpecial") && canMoveUp)
+            if (CrossPlatformInputManager.GetButton("keySpecial") && canMoveUp)
             {
                 if (CrossPlatformInputManager.GetButtonDown("keyMove"))
                 {
