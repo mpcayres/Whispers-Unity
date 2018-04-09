@@ -346,7 +346,10 @@ public class Mission1 : Mission {
         else if (secao == enumMission.SMILE)
         {
             MissionManager.instance.scenerySounds.PlayScare(3);
-            //MissionManager.instance.AddObject("Effects/CreepySmile", "", new Vector3(0f, 0, 0), new Vector3(1, 1, 1));
+            
+            GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
+            darkness.transform.Find("Darkness1").gameObject.SetActive(true);
+            darkness.transform.Find("Darkness2").gameObject.SetActive(true);
             MissionManager.instance.Invoke("InvokeMission", 2f);
         }
         else if (secao == enumMission.MAE_QUARTO)
