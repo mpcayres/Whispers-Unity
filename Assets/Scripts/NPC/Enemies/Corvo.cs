@@ -16,9 +16,6 @@ public class Corvo : Follower {
             player = GameObject.FindGameObjectWithTag("Player");
             spriteRenderer = GetComponent<SpriteRenderer>();
             birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
-
-            MissionManager.instance.AddObject(
-                "NPCs/ActionCorvo", "", new Vector3(transform.position.x, transform.position.y, 0), new Vector3(1*transform.localScale.x/5, 1 * transform.localScale.y / 5, 1));
         }
         else if (instance != this)
         {
@@ -54,6 +51,17 @@ public class Corvo : Follower {
     public void DestroyRaven()
     {
         Destroy(gameObject);
-        if (ActionCorvo.instance != null) ActionCorvo.instance.DestroyAction(); 
+    }
+
+    protected new void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (hasActionPatroller)
+        {
+            print("CorvoFollower: " + collision.tag);
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                MissionManager.instance.GameOver();
+            }
+        }
     }
 }

@@ -27,4 +27,29 @@ public class Cat : Follower {
     {
         Destroy(gameObject);
     }
+
+    protected new void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnTriggerCalled(collision);
+    }
+
+    protected new void OnTriggerStay2D(Collider2D collision)
+    {
+        OnTriggerCalled(collision);
+    }
+
+    protected new void OnTriggerCalled(Collider2D collision)
+    {
+        if (hasActionPatroller)
+        {
+            print("ActionFollower: " + collision.tag);
+            if (collision.gameObject.tag.Equals("PlayerAction"))
+            {
+                if (followWhenClose && !followingPlayer)
+                {
+                    FollowPlayer();
+                }
+            }
+        }
+    }
 }

@@ -13,11 +13,6 @@ public class PlayerAction : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
-
     //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -58,16 +53,6 @@ public class PlayerAction : MonoBehaviour {
         {
             collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
             collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
-        }
-        else if (collision.gameObject.tag.Equals("Cat") && 
-            Cat.instance != null && Cat.instance.followWhenClose && !Cat.instance.IsFollowing())
-        {
-            collision.gameObject.GetComponent<Cat>().FollowPlayer();
-        }
-        else if (collision.gameObject.tag.Equals("Enemy") &&
-            collision.gameObject.GetComponent<Minion>().followWhenClose && !collision.gameObject.GetComponent<Minion>().IsFollowing())
-        {
-            collision.gameObject.GetComponent<Minion>().FollowPlayer();
         }
 
     }

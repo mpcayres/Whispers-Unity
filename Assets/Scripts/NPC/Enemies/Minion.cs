@@ -39,15 +39,6 @@ public class Minion : Follower {
         base.Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //print("Minion: " + collision.tag);
-        if (collision.tag.Equals("Player"))
-        {
-            MissionManager.instance.GameOver();
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         //print("Minion: " + collision.tag);
@@ -69,6 +60,14 @@ public class Minion : Follower {
         {
             collision.GetComponent<FarAttackObject>().hitSuccess = true;
             healthMelee -= decrementPedra;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Player"))
+        {
+             MissionManager.instance.GameOver();
         }
     }
 }

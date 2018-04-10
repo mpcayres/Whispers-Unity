@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 212278498917447546}
   - component: {fileID: 95362615765529424}
   - component: {fileID: 61855625590709372}
+  - component: {fileID: 58838766062999714}
   - component: {fileID: 50318696087106856}
   - component: {fileID: 114031394400129998}
   m_Layer: 0
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384326300624860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.8433905, y: 0.41305304, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 4358468174596128}
@@ -96,6 +97,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58838766062999714
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1384326300624860}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!61 &61855625590709372
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -105,7 +121,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -155,6 +171,8 @@ MonoBehaviour:
   destroyEndPath: 0
   stopEndPath: 0
   targets: []
+  hasActionPatroller: 1
+  offsetActionPatroller: 0
   followWhenClose: 0
   followingPlayer: 0
   timeBirdsFollow: 1

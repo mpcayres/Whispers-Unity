@@ -767,7 +767,7 @@ public class MissionManager : MonoBehaviour {
     // ESCONDER IMAGEM INICIAL
     void HideLevelImage()
     {
-        levelImage.SetActive(false);
+        if (levelImage != null) levelImage.SetActive(false);
         showMissionStart = false;
     }
 

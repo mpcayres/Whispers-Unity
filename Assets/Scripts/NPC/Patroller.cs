@@ -8,6 +8,9 @@ public class Patroller : MonoBehaviour {
     public bool stopEndPath = false;
     public Transform[] targets;
 
+    public bool hasActionPatroller = false;
+    public float offsetActionPatroller = 0f;
+
     protected SpriteRenderer spriteRenderer;
 
     protected int direction = 4, oldDirection = 4;
@@ -17,6 +20,14 @@ public class Patroller : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        if (hasActionPatroller)
+        {
+            CircleCollider2D[] col = GetComponents<CircleCollider2D>();
+            foreach (CircleCollider2D i in col)
+            {
+                i.enabled = true;
+            }
+        }
     }
 
     protected void Update()
@@ -27,6 +38,7 @@ public class Patroller : MonoBehaviour {
         {
             GotoNextPoint();
         }
+        SetActionPatrollerDirection();
     }
 
     protected void GotoNextPoint()
@@ -89,6 +101,31 @@ public class Patroller : MonoBehaviour {
         ChangeDirectionAnimation();
     }
 
+    protected void SetActionPatrollerDirection()
+    {
+        if (hasActionPatroller && offsetActionPatroller != 0)
+        {
+            switch (direction)
+            {
+                case 0:
+                    GetComponent<CircleCollider2D>().offset = new Vector2(offsetActionPatroller, 0f);
+                    break;
+                case 1:
+                    GetComponent<CircleCollider2D>().offset = new Vector2(-offsetActionPatroller, 0f);
+                    break;
+                case 2:
+                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, offsetActionPatroller);
+                    break;
+                case 3:
+                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, -offsetActionPatroller);
+                    break;
+                default:
+                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, 0f);
+                    break;
+            }
+        }
+    }
+
     public int GetDirection()
     {
         return direction;
@@ -117,4 +154,18 @@ public class Patroller : MonoBehaviour {
         direction = d;
         ChangeDirectionAnimation();
     }
+
+    //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (hasActionPatroller)
+        {
+            print("ActionPatroller: " + collision.tag);
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                MissionManager.instance.GameOver();
+            }
+        }
+    }
+
 }

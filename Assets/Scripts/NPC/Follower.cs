@@ -78,7 +78,7 @@ public class Follower : Patroller {
         {
             GotoNextPoint();
         }
-
+        SetActionPatrollerDirection();
     }
 
     public void ChangePosition(float x, float y)
@@ -113,4 +113,34 @@ public class Follower : Patroller {
         followingPlayer = false;
         base.Stop();
     }
+
+    protected new void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnTriggerCalled(collision);
+    }
+
+    protected void OnTriggerStay2D(Collider2D collision)
+    {
+        OnTriggerCalled(collision);
+    }
+
+    protected void OnTriggerCalled(Collider2D collision)
+    {
+        if (hasActionPatroller)
+        {
+            print("ActionFollower: " + collision.tag);
+            if (collision.gameObject.tag.Equals("PlayerAction"))
+            {
+                if (followWhenClose && !followingPlayer)
+                {
+                    FollowPlayer();
+                }
+                else if (!followWhenClose)
+                {
+                    MissionManager.instance.GameOver();
+                }
+            }
+        }
+    }
+
 }

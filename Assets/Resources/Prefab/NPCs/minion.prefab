@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212746056938383920}
   - component: {fileID: 95575300100357012}
   - component: {fileID: 58686119503791290}
+  - component: {fileID: 58865912138526328}
   - component: {fileID: 50901960376990306}
   - component: {fileID: 114825404378987544}
   m_Layer: 11
@@ -70,10 +71,25 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036829327561846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!58 &58865912138526328
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036829327561846}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,6 +129,8 @@ MonoBehaviour:
   destroyEndPath: 0
   stopEndPath: 0
   targets: []
+  hasActionPatroller: 1
+  offsetActionPatroller: 0.5
   followWhenClose: 1
   followingPlayer: 0
   healthLight: 200

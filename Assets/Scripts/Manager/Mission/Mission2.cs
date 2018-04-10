@@ -150,7 +150,7 @@ public class Mission2 : Mission {
             target9.position = new Vector3(-3f, -0.3f, -0.5f);
             Transform[] momTargets = { target1, target2, target3, target4, target5, target6, target7, target8, target9 };
             mom.GetComponent<Patroller>().targets = momTargets;
-            MissionManager.instance.AddObject("NPCs/ActionPatroller", "", new Vector3(0, 0, 0), new Vector3(0.7f, 0.7f, 1));
+            mom.GetComponent<Patroller>().hasActionPatroller = true;
         }
     }
 
