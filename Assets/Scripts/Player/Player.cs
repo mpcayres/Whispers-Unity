@@ -258,9 +258,10 @@ public class Player : MonoBehaviour {
                     ChangeDirection(3);
                 }
             }
-            else if (MissionManager.instance.currentSceneName.Equals("GameOver"))
+            else if (MissionManager.instance.currentSceneName.Equals("SideQuest"))
             {
-                //rb.position = new Vector2((float)-3.8, (float)-0.45);
+                rb.position = new Vector2(MissionManager.instance.sideQuest.sideX, MissionManager.instance.sideQuest.sideY);
+                ChangeDirection(MissionManager.instance.sideQuest.sideDir);
             }
             MissionManager.instance.paused = false;
         }
