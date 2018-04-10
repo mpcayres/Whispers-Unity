@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spirit : MonoBehaviour {
+    public SpiritManager spiritManager;
     public float health = 3;
     public bool isEvil = false, canKill = false;
     public bool isAlive = true;
@@ -22,15 +21,15 @@ public class Spirit : MonoBehaviour {
         {
             if (isEvil)
             {
-                SpiritManager.DestroyEvilSpirit();
+                spiritManager.DestroyEvilSpirit();
             }
             else if (canKill)
             {
-                SpiritManager.DestroyKillerSpirit();
+                spiritManager.DestroyKillerSpirit();
             }
             else
             {
-                SpiritManager.DestroyGoodSpirit();
+                spiritManager.DestroyGoodSpirit();
             }
             isAlive = false;
             gameObject.SetActive(false);

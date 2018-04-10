@@ -476,7 +476,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 485544117
+  randomSeed: 621432130
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2933,7 +2933,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 1
+    enabled: 0
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -3787,6 +3787,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &444984548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444984543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e8a672f80ad8147bdbf0f357b38e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpened: 1
 --- !u!1 &533170174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,7 +3846,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4051374148099192, guid: d9eb4c5646dce864492e8ad3f9b33429, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4051374148099192, guid: d9eb4c5646dce864492e8ad3f9b33429, type: 2}
       propertyPath: m_LocalRotation.x

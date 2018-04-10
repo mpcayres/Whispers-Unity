@@ -129,7 +129,7 @@ public class MissionManager : MonoBehaviour {
 
             if (sideQuest != null)
             {
-                mission.UpdateMission();
+                sideQuest.UpdateSideQuest();
             }
 
             if (CrossPlatformInputManager.GetButtonDown("EndText"))
@@ -236,19 +236,27 @@ public class MissionManager : MonoBehaviour {
         //print("OLDSCENE" + previousSceneName);
         //print("NEWSCENE" + currentSceneName);
 
-        if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest")) {
+        if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest"))
+        {
             GetComponent<Player>().ChangePosition();
         }
-        else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest")) {
+        else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest"))
+        {
             if (currentSceneName.Equals("SideQuest") && sideQuest != null)
             {
                 sideQuest.InitSideQuest();
             }
+            else if (previousSceneName.Equals("SideQuest") && !currentSceneName.Equals("GameOver") && sideQuest != null)
+            {
+                sideQuest.EndSideQuest();
+            }
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+            initX = initY = 0;
         }
-        else {
+        else
+        {
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
-            if (currentSceneName.Equals(mission.sceneInit))
+            if (initMission && currentSceneName.Equals(mission.sceneInit))
             {
                 initMission = false;
                 initX = initY = 0;
@@ -699,8 +707,11 @@ public class MissionManager : MonoBehaviour {
         blocked = true;
         hud.SetActive(false);
         InvertWorld(false);
-        if (Cat.instance != null) Cat.instance.DestroyCat();
-        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        if (sideQuest == null)
+        {
+            if (Cat.instance != null) Cat.instance.DestroyCat();
+            if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        }
         LoadScene("GameOver");
     }
 

@@ -31,6 +31,11 @@ public class ExtrasManager
         }   
     }
 
+    public static void EndSideQuest()
+    {
+        MissionManager.instance.sideQuest = null;
+    }
+
     public static void SideQuestsManager()
     {
         int current = MissionManager.instance.currentMission;

@@ -6,15 +6,15 @@ public class SpiritManager : MonoBehaviour {
     private int evilSpiritCount = 0;
     private int killerSpiritCount = 0;
 
-    private static int goodSpiritKilled = 0;
-    private static int evilSpiritKilled = 0;
-    private static int killerSpiritKilled = 0;
+    private int goodSpiritKilled = 0;
+    private int evilSpiritKilled = 0;
+    private int killerSpiritKilled = 0;
 
-    private static int maxEvilKilled = 0;
-    private static int maxKillerKilled = 0;
-    private static int totalGoodSpirit = 0;
+    private int maxEvilKilled = 0;
+    private int maxKillerKilled = 0;
+    private int totalGoodSpirit = 0;
 
-    public static bool success = false;
+    public bool success = false;
 
     private Dictionary<int, GameObject> goodSpiritDictionary = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> evilSpiritDictionary = new Dictionary<int, GameObject>();
@@ -93,26 +93,29 @@ public class SpiritManager : MonoBehaviour {
         {
             case 1:
                 GameObject goodSpirit = MissionManager.instance.AddObjectWithParent("Scenery/GoodSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
-                goodSpiritDictionary.Add(goodSpiritCount, goodSpirit);
                 goodSpirit.GetComponent<Spirit>().number = goodSpiritCount;
+                goodSpirit.GetComponent<Spirit>().spiritManager = this;
+                goodSpiritDictionary.Add(goodSpiritCount, goodSpirit);
                 goodSpiritCount++;
                 break;
             case 2:
                 GameObject evilSpirit = MissionManager.instance.AddObjectWithParent("Scenery/EvilSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
-                evilSpiritDictionary.Add(evilSpiritCount, evilSpirit);
                 evilSpirit.GetComponent<Spirit>().number = evilSpiritCount;
+                evilSpirit.GetComponent<Spirit>().spiritManager = this;
+                evilSpiritDictionary.Add(evilSpiritCount, evilSpirit);
                 evilSpiritCount++;
                 break;
             default:
                 GameObject killerSpirit = MissionManager.instance.AddObjectWithParent("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
-                killerSpiritDictionary.Add(killerSpiritCount, killerSpirit);
                 killerSpirit.GetComponent<Spirit>().number = killerSpiritCount;
+                killerSpirit.GetComponent<Spirit>().spiritManager = this;
+                killerSpiritDictionary.Add(killerSpiritCount, killerSpirit);
                 killerSpiritCount++;
                 break;
         }
     }
 
-    public static void DestroyGoodSpirit()
+    public void DestroyGoodSpirit()
     {
         goodSpiritKilled++;
 
@@ -122,7 +125,7 @@ public class SpiritManager : MonoBehaviour {
         }
     }
 
-    public static void DestroyEvilSpirit()
+    public void DestroyEvilSpirit()
     {
         evilSpiritKilled++;
 
@@ -132,7 +135,7 @@ public class SpiritManager : MonoBehaviour {
         }
     }
 
-    public static void DestroyKillerSpirit()
+    public void DestroyKillerSpirit()
     {
         killerSpiritKilled++;
 

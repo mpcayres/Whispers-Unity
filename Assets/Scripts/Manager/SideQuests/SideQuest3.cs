@@ -11,11 +11,15 @@ public class SideQuest3 : SideQuest
         if (!MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             // Determinar posição do player (sideX e sideY)
+            sideX = 0f; sideY = 8f;
+            sideDir = 3;
+            // Determinar tempo para terminar o nível
+            timeEscape = 10f;
             SetInitialSettings();
         }
 
         // Determinar posição da porta
-        //GameObject.Find("ExitSideQuestDoor").gameObject.transform.position = new Vector3(0f, 0f, 0f);
+        SetDoor(0f, 0f);
 
         // Determinar conjuntos de espíritos
         List<float> radius = new List<float>(), originX = new List<float>(), originY = new List<float>();
@@ -36,7 +40,24 @@ public class SideQuest3 : SideQuest
 
     public override void UpdateSideQuest()
     {
-
+        if (success && counterTimeEscape > 0f && active)
+        {
+            counterTimeEscape -= Time.deltaTime;
+            UpdateTimeToEscape();
+            if (counterTimeEscape <= 0f)
+            {
+                success = false;
+                DeleteTimeToEscape();
+                MissionManager.instance.GameOver();
+            }
+        }
+        // Conferir se todos os SpiritManagers alcançaram sucesso
+        else if (spiritManager.success && !success)
+        {
+            success = true;
+            counterTimeEscape = timeEscape;
+            SetTimeToEscape();
+        }
     }
 
     public override void ShowFlashback()
