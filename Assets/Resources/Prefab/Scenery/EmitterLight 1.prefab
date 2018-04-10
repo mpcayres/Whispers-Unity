@@ -66,7 +66,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.2869212, g: 0.27222103, b: 0.6985294, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.31034467, a: 1}
   m_Intensity: 150
   m_Range: 1
   m_SpotAngle: 30
@@ -107,8 +107,8 @@ MonoBehaviour:
   speed: 0
   targets: []
   emitter: 1
-  stoped: 0
   active: 0
+  stoped: 0
   destroyEndPath: 0
   stopEndPath: 0
-  playerInside: 1
+  playerInside: 0

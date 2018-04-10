@@ -6,11 +6,13 @@ public class HelpingLight : MonoBehaviour
     public Vector3[] targets;
 
     public bool emitter = false;
-    public bool stoped = false;
     public bool active = false;
+
+    public bool stoped = false;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
-    public bool playerInside = true;
+
+    public bool playerInside = false;
 
     private int destPoint = 0;
 

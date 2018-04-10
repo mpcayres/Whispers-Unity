@@ -105,9 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  stoped: 0
   targets: []
+  emitter: 0
   active: 0
+  stoped: 0
   destroyEndPath: 0
   stopEndPath: 0
-  PlayerInside: 0
+  playerInside: 0
