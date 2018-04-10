@@ -42,7 +42,7 @@ public class ExtrasManager
         int sideQuests = MissionManager.instance.sideQuests;
 
         if (sideQuests == 0 && current >= 5 && current != 9 && current != 10 && current != 11 
-            && MissionManager.instance.currentSceneName.Equals("Jardim"))
+            && MissionManager.instance.currentSceneName.Equals("QuartoKid"))
         {
             // set side quest 1
             GameObject quest1 = MissionManager.instance.AddObject(
