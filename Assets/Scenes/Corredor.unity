@@ -3653,7 +3653,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0  1  2
+  m_Text: 9  0  1
 --- !u!222 &37148080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7475,12 +7475,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 286.35797
+      value: 294.85797
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 226.57098
+      value: 190.07097
       objectReference: {fileID: 0}
     - target: {fileID: 224410352991202548, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -25603,7 +25603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &629891013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32736,7 +32736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0  1  2
+  m_Text: 9  0  1
 --- !u!222 &723511419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50468,7 +50468,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1008035060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 288.5, y: 198.5, z: 0}
+  m_LocalPosition: {x: 297, y: 162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1349087204}
@@ -58056,6 +58056,7 @@ GameObject:
   - component: {fileID: 1349087204}
   - component: {fileID: 1349087206}
   - component: {fileID: 1349087205}
+  - component: {fileID: 1349087207}
   m_Layer: 5
   m_Name: CadeadoFechado
   m_TagString: Untagged
@@ -58120,6 +58121,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349087203}
+--- !u!114 &1349087207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1349087203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0260c9ed52d8f4da01253b38895a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row1: {fileID: 1947364951}
+  row2: {fileID: 37148079}
+  row3: {fileID: 723511418}
+  password: 
 --- !u!1001 &1356425306
 Prefab:
   m_ObjectHideFlags: 0
@@ -89829,7 +89845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1823618768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -93445,7 +93461,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0  1  2
+  m_Text: 9  0  1
 --- !u!222 &1947364952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -93822,12 +93838,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 288.5
+      value: 297
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 198.5
+      value: 162
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
