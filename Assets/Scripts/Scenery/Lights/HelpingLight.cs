@@ -14,12 +14,30 @@ public class HelpingLight : MonoBehaviour
 
     public bool playerInside = false;
 
-    private int destPoint = 0;
+    private int destPoint = 0, lastNumBird;
+    private float timeEmitter = 0f, timeTotalEmitter = 10f;
 
     void Update()
     {
         if (active) {
             GotoNextPoint();
+        }
+
+        if (emitter && playerInside)
+        {
+            timeEmitter -= Time.deltaTime;
+            if (timeEmitter <= 0f)
+            {
+                int numBird = Random.Range(1, 9);
+                if (lastNumBird == numBird)
+                {
+                    numBird = ((numBird + 4) % 9);
+                }
+                lastNumBird = numBird;
+                print("BIRDSSS: " + lastNumBird);
+                GameObject.Find("CorvBabies (" + numBird + ")").gameObject.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                timeEmitter = timeTotalEmitter;
+            }
         }
     }
 
@@ -59,10 +77,6 @@ public class HelpingLight : MonoBehaviour
         if (gameObject.activeSelf && collision.gameObject.tag.Equals("Player"))
         {
             playerInside = true;
-            if (emitter)
-            {
-                // emitir corvbabies
-            }
         }
     }
 

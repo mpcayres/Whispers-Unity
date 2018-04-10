@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 108807692897846546}
   - component: {fileID: 114251222294911586}
   m_Layer: 0
-  m_Name: EmitterLight 1
+  m_Name: EmitterLight
   m_TagString: HelpingLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

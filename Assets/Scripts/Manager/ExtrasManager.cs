@@ -47,7 +47,7 @@ public class ExtrasManager
             // set side quest 1
             GameObject quest1 = MissionManager.instance.AddObject(
                 "Scenery/SideQuestObject", "", new Vector3(0f, 0f, 0f), new Vector3(1, 1, 1));
-            quest1.GetComponent<SideQuestObject>().numSideQuest = 1;
+            quest1.GetComponent<SideQuestObject>().numSideQuest = 2;
         }
         else if (sideQuests == 1 && current >= 6 && current != 9 && current != 10 && current != 11
             && MissionManager.instance.currentSceneName.Equals(""))

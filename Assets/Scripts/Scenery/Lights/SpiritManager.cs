@@ -37,7 +37,7 @@ public class SpiritManager : MonoBehaviour {
     // PARÂMETROS: raio, ponto de origem X e Y, número máximo de evil e killed para destruir, marcador se possui killer
     // número máximo de espíritos em sequência, diferença máxima do número de evil e good (killer e evil, killer e good) ao construir mapa
     public void GenerateSpiritMap(float radius, float originX, float originY, int maxEvil, int maxSequencia = 2, int difEvilGood = 1,
-        bool hasKiller = false, int maxKiller = 0, int difKillerEvil = 2, int difKillerGood = 4)
+        bool hasKiller = false, int maxKiller = 0, int difKillerEvil = 3, int difKillerGood = 6)
     {
         maxEvilKilled = maxEvil;
         maxKillerKilled = maxKiller;
@@ -57,7 +57,7 @@ public class SpiritManager : MonoBehaviour {
                         sequencia++;
                         if (sequencia == maxSequencia)
                         {
-                            aux = ((aux + 1) % (maxRange-1)) + 1;
+                            aux = ((aux + 1) % maxRange);
                         }
                     }
                     else

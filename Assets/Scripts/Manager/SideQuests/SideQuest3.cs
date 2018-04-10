@@ -11,7 +11,7 @@ public class SideQuest3 : SideQuest
         if (!MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             // Determinar posição do player (sideX e sideY)
-            sideX = 0f; sideY = 8f;
+            sideX = 0f; sideY = 18f;
             sideDir = 3;
             // Determinar tempo para terminar o nível
             timeEscape = 10f;
@@ -19,7 +19,7 @@ public class SideQuest3 : SideQuest
         }
 
         // Determinar posição da porta
-        SetDoor(0f, 0f);
+        SetDoor(0f, 20f);
 
         // Determinar conjuntos de espíritos
         List<float> radius = new List<float>(), originX = new List<float>(), originY = new List<float>();

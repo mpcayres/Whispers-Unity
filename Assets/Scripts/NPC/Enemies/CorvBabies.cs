@@ -2,13 +2,25 @@
 
 public class CorvBabies : Follower {
     public float timeBirdsFollow = 1f;
+    public float timeBurst = 10f;
+    public int numBursts = -1;
 
     protected GameObject birdEmitter;
+    protected int countBurst = 0;
+    public float countTimeBurst = 0f;
+    protected bool activated = false;
 
     protected new void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
+
+        if (numBursts == 1)
+        {
+            var main = birdEmitter.GetComponent<ParticleSystem>().main;
+            main.loop = false;
+            numBursts = -1;
+        }
     }
     
     protected new void Update()
@@ -29,18 +41,37 @@ public class CorvBabies : Follower {
             GotoNextPoint();
         }
 
-        if (birdEmitter.activeSelf /*&& birdEmitter.GetComponent<ParticleSystem>().time <= timeBirdsFollow*/)
+        if (birdEmitter.activeSelf)
         {
-            //birdEmitter.transform.LookAt(player.transform);
-            //da forma comentada ele só segue o player por um período de tempo
-            //porém assim acontecia de pássaros já existentes do nada mudarem a posição
+            if (!activated)
+            {
+                birdEmitter.transform.LookAt(player.transform);
+                activated = true;
+                countTimeBurst = 0f;
+                countBurst = 0;
+            }
             Vector3 dir = player.transform.position - transform.position;
             Quaternion rot = Quaternion.LookRotation(dir);
             birdEmitter.transform.rotation = Quaternion.Lerp(birdEmitter.transform.rotation, rot, timeBirdsFollow/2 * Time.deltaTime);
+
+            if (numBursts != -1)
+            {
+                countTimeBurst += Time.deltaTime;
+                if (countTimeBurst >= timeBurst)
+                {
+                    countBurst++;
+                    countTimeBurst = 0f;
+                    if (countBurst >= numBursts)
+                    {
+                        var main = birdEmitter.GetComponent<ParticleSystem>().main;
+                        main.loop = false;
+                    }
+                }
+            }
         }
-        else
+        else if (activated)
         {
-            birdEmitter.transform.LookAt(player.transform);
+            activated = false;
         }
 
     }

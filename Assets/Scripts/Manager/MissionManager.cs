@@ -251,7 +251,6 @@ public class MissionManager : MonoBehaviour {
                 sideQuest.EndSideQuest();
             }
             GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
-            initX = initY = 0;
         }
         else
         {
