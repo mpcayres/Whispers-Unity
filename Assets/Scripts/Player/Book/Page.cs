@@ -6,6 +6,7 @@ public class Page : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            // Som de pegar página
             Book.AddPage();
             MissionManager.instance.UpdateSave();
             Destroy(gameObject);

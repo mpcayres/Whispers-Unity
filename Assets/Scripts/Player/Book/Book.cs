@@ -66,7 +66,7 @@ public class Book : MonoBehaviour {
 
         if (book.activeSelf && CrossPlatformInputManager.GetButtonDown("Horizontal"))
         {
-            // barulho de folha mexendo
+            // Som de folha mexendo
             page1.SetActive(false); page2.SetActive(false);
             pagebonus.SetActive(false);
             if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)
