@@ -11,8 +11,7 @@ public class HelpingLightManager : MonoBehaviour
 
     }
 
-    public void GenerateBorderLightMap(int numHelpingLight, int numEmitterLight, float initX, float initY, 
-        List<float> radiusFinalLight, List<float> finalX, List<float> finalY)
+    public void GenerateBorderLightMap(float initX, float initY, List<float> radiusFinalLight, List<float> finalX, List<float> finalY)
     {
         // Luz inicial
         AddLight(1, initX, initY, 1f, false, 0, null);

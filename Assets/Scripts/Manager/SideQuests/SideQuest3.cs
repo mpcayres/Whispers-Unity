@@ -32,7 +32,7 @@ public class SideQuest3 : SideQuest
         // Determinar posição das luzes de borda (posição inicial do player e locais dos espíritos
         GameObject holderLight = MissionManager.instance.AddObject("Scenery/LightHolder", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
         lightManager = holderLight.GetComponent<HelpingLightManager>();
-        lightManager.GenerateBorderLightMap(2, 0, sideX, sideY, radius, originX, originY);
+        lightManager.GenerateBorderLightMap(sideX, sideY, radius, originX, originY);
 
         // Determinar luzes
         //AddLight(1, 0f, 0f, 0f, false, 0, null);

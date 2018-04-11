@@ -408,7 +408,11 @@ public class Inventory : MonoBehaviour {
         }
         else
         {
-            if (pedraValue.activeSelf)
+            if (pedraValue == null)
+            {
+                pedraValue = menuItem.transform.Find("CurrentTextPedra").gameObject;
+            }
+            if (pedraValue != null && pedraValue.activeSelf)
             {
                 pedraValue.SetActive(false);
             }
