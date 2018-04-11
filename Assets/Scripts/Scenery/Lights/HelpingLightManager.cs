@@ -64,7 +64,7 @@ public class HelpingLightManager : MonoBehaviour
     {
         foreach (GameObject light in lights)
         {
-            if (light.GetComponent<HelpingLight>().playerInside)
+            if (light != null && light.GetComponent<HelpingLight>().playerInside)
             {
                 return;
             } 
