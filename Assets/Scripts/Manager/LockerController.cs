@@ -2,7 +2,17 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
-
+/**
+ falta:
+    - som de troca de número
+    - som de acerto de número
+    - considerações para abertura de porão
+    - senha certa
+    - objeto a ser inserido quando abre cofre atras do quadro na parede
+    - voltar o quadro para a parede
+    - sair da abertura do cadeado caso desista (z de novo ou esc?)
+     
+     **/
 public class LockerController : MonoBehaviour
 {
 
@@ -18,32 +28,51 @@ public class LockerController : MonoBehaviour
 
     public string password;
 
+    public string boardName;
+
+    bool basement = false;
+
     public void Start()
     {
-        MissionManager.instance.paused = true;
-        MissionManager.instance.blocked = true;
+        
     }
     public void Update()
     {
-        if (Input.GetButtonDown("Vertical"))
-        { //up(positive) e down(negative)
-            if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0) {
-                DownRow();
-            }
-            else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0)
-            {
-                UpRow();
-            }
+        if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+        {
+            MissionManager.instance.paused = true;
+            MissionManager.instance.blocked = true;
+
         }
-        else if(Input.GetButtonDown("Horizontal"))
-        {//right(positive) e left(negative)
-            if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0)
-            {
-                NumbersRight();
+        if (gameObject.transform.GetChild(0).gameObject.activeSelf) {
+            if (Input.GetButtonDown("Vertical"))
+            { //up(positive) e down(negative)
+                if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0) {
+                    DownRow();
+                }
+                else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0)
+                {
+                    UpRow();
+                }
             }
-            else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)
+            else if (Input.GetButtonDown("Horizontal"))
+            {//right(positive) e left(negative)
+                if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0)
+                {
+                    NumbersRight();
+                }
+                else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)
+                {
+                    NumbersLeft();
+                }
+            }
+            if (row1.text[3] == '0' & row2.text[3]=='1' & row3.text[3]=='2')
             {
-                NumbersLeft();
+                if (!basement)
+                {
+                    //adicionar algo do inventário
+                    Invoke("Show", 0.5f); //tocar som de acerto
+                }
             }
         }
     }
@@ -59,21 +88,21 @@ public class LockerController : MonoBehaviour
         switch (selectedRow)
         {
             case 1:
-                selectorRow = this.transform.Find("SelectorRow3").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
                 selectorRow.SetActive(false);
-                selectorRow = this.transform.Find("SelectorRow1").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
                 selectorRow.SetActive(true);
                 break;
             case 2:
-                selectorRow = this.transform.Find("SelectorRow1").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
                 selectorRow.SetActive(false);
-                selectorRow = this.transform.Find("SelectorRow2").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
                 selectorRow.SetActive(true);
                 break;
             case 3:
-                selectorRow = this.transform.Find("SelectorRow2").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
                 selectorRow.SetActive(false);
-                selectorRow = this.transform.Find("SelectorRow3").gameObject;
+                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
                 selectorRow.SetActive(true);
                 break;
         }
@@ -89,21 +118,21 @@ public class LockerController : MonoBehaviour
             switch (selectedRow)
             {
                 case 1:
-                    selectorRow = this.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 2:
-                    selectorRow = this.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 3:
-                    selectorRow = this.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(true);
                     break;
 
@@ -260,14 +289,33 @@ public class LockerController : MonoBehaviour
 
 
     }
-    
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButtonDown("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
+            GameObject board = GameObject.Find(boardName).gameObject;
+            if (board)
+            {
+                board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
+            }
+            else {
+
+                basement = true;
+            }
+            Invoke("Show", 1.5f);
+
+        }
 
 
-        // rodar numeros
+    }
+    void Show() {
+        GameObject locker = gameObject.transform.GetChild(0).gameObject;
+        locker.SetActive(true);
+    }
 
         //checar se é igual
 
-        //trocar imagem
+    //trocar imagem
 
-        //abrir porta ou cofre
-    }
+    //abrir porta ou cofre
+}
