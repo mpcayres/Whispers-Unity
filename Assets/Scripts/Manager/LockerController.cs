@@ -3,11 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 /**
+ * 
+ * senha cofre corredor: 159
+ * senha cadeado porão: 376
+ * 
  falta:
-    - som de troca de número
-    - som de acerto de número
     - considerações para abertura de porão
-    - senha certa
     - objeto a ser inserido quando abre cofre atras do quadro na parede
     - voltar o quadro para a parede
     - sair da abertura do cadeado caso desista (z de novo ou esc?)
@@ -31,19 +32,20 @@ public class LockerController : MonoBehaviour
     public string boardName;
 
     bool basement = false;
+    bool opened = false;
+    bool tried = false;
+
+    public AudioClip click;
+    public AudioClip success;
+    private AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     public void Start()
     {
-        
+        source.clip = click;
     }
     public void Update()
     {
-        if (gameObject.transform.GetChild(0).gameObject.activeSelf)
-        {
-            MissionManager.instance.paused = true;
-            MissionManager.instance.blocked = true;
-
-        }
+        
         if (gameObject.transform.GetChild(0).gameObject.activeSelf) {
             if (Input.GetButtonDown("Vertical"))
             { //up(positive) e down(negative)
@@ -66,12 +68,21 @@ public class LockerController : MonoBehaviour
                     NumbersLeft();
                 }
             }
-            if (row1.text[3] == '0' & row2.text[3]=='1' & row3.text[3]=='2')
-            {
-                if (!basement)
+            if (gameObject.transform.GetChild(0).gameObject.activeSelf) {
+                if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
                 {
-                    //adicionar algo do inventário
-                    Invoke("Show", 0.5f); //tocar som de acerto
+                    opened = true;
+                    if (!basement /*&& Book.pageQuantity >= 6*/ ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
+                    {
+                        //adicionar algo do inventário
+                        source.clip = success;
+                        source.PlayOneShot(success);
+                        Invoke("Show", 0.5f);
+                    }
+                    else if (Book.pageQuantity >= 4) { // porta do porão
+
+
+                    }
                 }
             }
         }
@@ -106,10 +117,10 @@ public class LockerController : MonoBehaviour
                 selectorRow.SetActive(true);
                 break;
         }
+        source.PlayOneShot(click);
     }
 
-        void UpRow()
-        {
+    void UpRow() {
             GameObject selectorRow;
             if (selectedRow == 1)
                 selectedRow = 3;
@@ -138,6 +149,7 @@ public class LockerController : MonoBehaviour
 
 
             }
+        source.PlayOneShot(click);
 
         }
     void NumbersLeft()
@@ -192,6 +204,7 @@ public class LockerController : MonoBehaviour
     }
 
     void ChangeText() {
+
         int selectedNumber = 0;
         if (selectedRow == 1)
             selectedNumber = selectedNumber1;
@@ -200,7 +213,7 @@ public class LockerController : MonoBehaviour
         else if (selectedRow == 3)
             selectedNumber = selectedNumber3;
 
-
+        source.PlayOneShot(click);
             switch (selectedNumber)
             {
                 case 1:
@@ -292,8 +305,9 @@ public class LockerController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButtonDown("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
-            GameObject board = GameObject.Find(boardName).gameObject;
+        GameObject board = GameObject.Find(boardName).gameObject;
+        if (other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
+            
             if (board)
             {
                 board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
@@ -302,20 +316,46 @@ public class LockerController : MonoBehaviour
 
                 basement = true;
             }
-            Invoke("Show", 1.5f);
 
+            Invoke("Show", 1.5f);
+            tried = true;
+
+        }
+        else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
+        {
+            if (board)
+            {
+                board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
+            }
+            else
+            {
+
+                basement = true;
+            }
+            Invoke("Show", 0.2f);
+            tried = false;
         }
 
 
     }
     void Show() {
         GameObject locker = gameObject.transform.GetChild(0).gameObject;
-        locker.SetActive(true);
+        if (locker.activeSelf)
+        {
+            locker.SetActive(false);
+           // MissionManager.instance.paused = false;
+            MissionManager.instance.blocked = false;
+        }
+        else
+        {
+            locker.SetActive(true);
+           // MissionManager.instance.paused = false;
+            MissionManager.instance.blocked = false;
+
+        }
+
+
+            
     }
-
-        //checar se é igual
-
-    //trocar imagem
-
-    //abrir porta ou cofre
+    
 }
