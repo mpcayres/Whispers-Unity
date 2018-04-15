@@ -350,7 +350,7 @@ public class Mission1 : Mission {
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
             darkness.transform.Find("Darkness1").gameObject.SetActive(true);
             darkness.transform.Find("Darkness2").gameObject.SetActive(true);
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            MissionManager.instance.Invoke("InvokeMission", 3f);
         }
         else if (secao == enumMission.MAE_QUARTO)
         {

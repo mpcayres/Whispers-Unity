@@ -46416,7 +46416,7 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 155.17099
+      value: 122.67099
       objectReference: {fileID: 0}
     - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -81709,13 +81709,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052977647}
-  m_LocalRotation: {x: 0.3032707, y: 0.8428706, z: -0.41661012, w: 0.15502307}
-  m_LocalPosition: {x: -591.69, y: -74.03, z: -4.92}
+  m_LocalRotation: {x: 0.1461333, y: 0.8063884, z: -0.5719352, w: -0.03567932}
+  m_LocalPosition: {x: -587.84, y: -76.3, z: -19.2}
   m_LocalScale: {x: 2.0925617, y: 0.8723601, z: 3.013763}
   m_Children: []
   m_Father: {fileID: 263418140}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 52.781002, y: 179.182, z: 39.172}
+  m_LocalEulerAnglesHint: {x: 65.78001, y: 213.211, z: 42.374}
 --- !u!82 &1052977649
 AudioSource:
   m_ObjectHideFlags: 0
@@ -81735,7 +81735,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.1988611
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -81924,7 +81924,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -99495558
+  randomSeed: 1477467672
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -145686,7 +145686,7 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 127.5
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -145823,13 +145823,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769682975}
-  m_LocalRotation: {x: -0.4405577, y: 0.79938114, z: -0.317585, w: 0.25697982}
-  m_LocalPosition: {x: -606.58, y: -79.61, z: -4.12}
+  m_LocalRotation: {x: -0.56119704, y: 0.8110598, z: -0.12490096, w: -0.107887305}
+  m_LocalPosition: {x: -591.2, y: -79.8, z: 15.000001}
   m_LocalScale: {x: 2.0925565, y: 0.8723557, z: 3.0137534}
   m_Children: []
   m_Father: {fileID: 263418140}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.339, y: 133.96701, z: -64.700005}
+  m_LocalEulerAnglesHint: {x: 18.887001, y: 182.109, z: -69.01}
 --- !u!82 &1769682977
 AudioSource:
   m_ObjectHideFlags: 0
@@ -145849,7 +145849,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 7.7612047
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -146038,7 +146038,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 373150289
+  randomSeed: 1824400662
   InitialModule:
     serializedVersion: 3
     enabled: 1
