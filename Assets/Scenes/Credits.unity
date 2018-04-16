@@ -274,7 +274,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 901499935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 324.5, y: 188, z: 0}
+  m_LocalPosition: {x: 282.5, y: 91.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1351566060}
@@ -415,11 +415,12 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Ingrid Santana Lopes\nMarcos Paulo Cayres Rosa\n\n\nIngrid Santana Lopes\nMarcos
-    Paulo Cayres Rosa\nRenn\xEA Ruan Alves Oliveira\n\n\nCibele ....\nIngrid Santana
-    Lopes\nMilena ...\n-\nRenn\xEA Ruan Alves Oliveira\nVictor ...\n\n\nIngrid Santana
-    Lopes\nMarcos Paulo Cayres Rosa\nRenn\xEA Ruan Alves Oliveira\n\n\nIngrid Santana
-    Lopes\nMarcos Paulo Cayres Rosa\n\n\nART ASSETS\n2D Pixel Trees (By Grumpy Diamond
-    Assets)\nPixel Texture Pack Add-On For Isometric Shooter (By Assetcrew)\nFREE
+    Paulo Cayres Rosa\nRenn\xEA Ruan Alves Oliveira\n\n\nCibele Daniel N. Longuinho\nIngrid
+    Santana Lopes\nMilena de Aguiar Soares\n-\nRenn\xEA Ruan Alves Oliveira\nVitor
+    Oliveira de Sousa Dias\n\n\nIngrid Santana Lopes\nMarcos Paulo Cayres Rosa\nRenn\xEA
+    Ruan Alves Oliveira\n\n\nIngrid Santana Lopes\nMarcos Paulo Cayres Rosa\n\n\nIngrid
+    Santana Lopes\nMarcos Paulo Cayres Rosa\n\n\nART ASSETS\n2D Pixel Trees (By Grumpy
+    Diamond Assets)\nPixel Texture Pack Add-On For Isometric Shooter (By Assetcrew)\nFREE
     PIXEL FOOD (By Henry Software)\nFantasy Environment and Animated Characters (Pixel
     Art) (By ALEXLKA\r)\nGothicVania Town (By ANSIMUZ\r)\n\nSOUND ASSETS\nDark Magic
     (By Mgw Sound Design)\nFree Horror Music Pack (By Akuma Kira)\nHorror And Sci-Fi
@@ -525,6 +526,11 @@ MonoBehaviour:
 
     Screenwriters
 
+
+
+
+
+    Level Designers
 
 
 
