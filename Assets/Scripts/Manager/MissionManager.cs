@@ -365,7 +365,7 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<MovingObject>().prefName.Equals(""))
+            if (i.GetComponent<MovingObject>() != null && !i.GetComponent<MovingObject>().prefName.Equals(""))
             {
                 PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
                 PlayerPrefs.SetFloat(i.GetComponent<MovingObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
@@ -379,7 +379,7 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("RotateObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<RotateObject>().prefName.Equals(""))
+            if (i.GetComponent<RotateObject>() != null && !i.GetComponent<RotateObject>().prefName.Equals(""))
             {
                 PlayerPrefs.SetFloat(i.GetComponent<RotateObject>().prefName + "X", i.GetComponent<Rigidbody2D>().position.x);
                 PlayerPrefs.SetFloat(i.GetComponent<RotateObject>().prefName + "Y", i.GetComponent<Rigidbody2D>().position.y);
@@ -393,7 +393,7 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("SceneObject");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<SceneObject>().prefName.Equals(""))
+            if (i.GetComponent<SceneObject>() != null && !i.GetComponent<SceneObject>().prefName.Equals(""))
             {
                 int active = 0;
                 if (i.GetComponent<SceneObject>().IsActive()) active = 1;
@@ -408,7 +408,7 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("Lamp");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<Lamp>().prefName.Equals(""))
+            if (i.GetComponent<Lamp>() != null && !i.GetComponent<Lamp>().prefName.Equals(""))
             {
                 int enabled = 0;
                 if (i.GetComponent<Light>().enabled) enabled = 1;
@@ -432,13 +432,16 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("MovingObject");
         foreach (GameObject i in list)
         {
-            string prefName = i.GetComponent<MovingObject>().prefName;
-            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
+            if(i.GetComponent<MovingObject>() != null)
             {
-                //print("MOVING: " + prefName);
-                i.GetComponent<MovingObject>().ChangePosition(
-                    PlayerPrefs.GetFloat(prefName + "X"),
-                    PlayerPrefs.GetFloat(prefName + "Y"));
+                string prefName = i.GetComponent<MovingObject>().prefName;
+                if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
+                {
+                    //print("MOVING: " + prefName);
+                    i.GetComponent<MovingObject>().ChangePosition(
+                        PlayerPrefs.GetFloat(prefName + "X"),
+                        PlayerPrefs.GetFloat(prefName + "Y"));
+                }
             }
         }
     }
@@ -449,13 +452,16 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("RotateObject");
         foreach (GameObject i in list)
         {
-            string prefName = i.GetComponent<RotateObject>().prefName;
-            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
+            if (i.GetComponent<RotateObject>() != null)
             {
-                //print("ROTATE: " + prefName);
-                i.GetComponent<RotateObject>().ChangePosition(
-                    PlayerPrefs.GetFloat(prefName + "X"),
-                    PlayerPrefs.GetFloat(prefName + "Y"));
+                string prefName = i.GetComponent<RotateObject>().prefName;
+                if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName + "X") && PlayerPrefs.HasKey(prefName + "Y"))
+                {
+                    //print("ROTATE: " + prefName);
+                    i.GetComponent<RotateObject>().ChangePosition(
+                        PlayerPrefs.GetFloat(prefName + "X"),
+                        PlayerPrefs.GetFloat(prefName + "Y"));
+                }
             }
         }
     }
@@ -466,13 +472,16 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("SceneObject");
         foreach (GameObject i in list)
         {
-            string prefName = i.GetComponent<SceneObject>().prefName;
-            if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName))
+            if (i.GetComponent<SceneObject>())
             {
-                //print("SCENEOBJ: " + prefName);
-                bool active = false;
-                if (PlayerPrefs.GetInt(prefName) == 1) active = true;
-                i.GetComponent<SceneObject>().ChangeSpriteActive(active);
+                string prefName = i.GetComponent<SceneObject>().prefName;
+                if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName))
+                {
+                    //print("SCENEOBJ: " + prefName);
+                    bool active = false;
+                    if (PlayerPrefs.GetInt(prefName) == 1) active = true;
+                    i.GetComponent<SceneObject>().ChangeSpriteActive(active);
+                }
             }
         }
     }
@@ -483,12 +492,16 @@ public class MissionManager : MonoBehaviour {
         GameObject[] list = GameObject.FindGameObjectsWithTag("Lamp");
         foreach (GameObject i in list)
         {
-            if (!i.GetComponent<Lamp>().prefName.Equals(""))
+            if (i.GetComponent<Lamp>() != null)
             {
-                //print("LAMP: " + i.GetComponent<Lamp>().prefName);
-                bool enabled = false;
-                if (PlayerPrefs.GetInt(i.GetComponent<Lamp>().prefName) == 1) enabled = true;
-                i.GetComponent<Light>().enabled = enabled;
+                string prefName = i.GetComponent<Lamp>().prefName;
+                if (!prefName.Equals("") && PlayerPrefs.HasKey(prefName))
+                {
+                    //print("LAMP: " + i.GetComponent<Lamp>().prefName);
+                    bool enabled = false;
+                    if (PlayerPrefs.GetInt(prefName) == 1) enabled = true;
+                    i.GetComponent<Light>().enabled = enabled;
+                }
             }
         }
     }

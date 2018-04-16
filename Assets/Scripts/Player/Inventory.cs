@@ -60,6 +60,7 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);
         NewItem(InventoryItems.FLASHLIGHT);*/
+        NewItem(InventoryItems.FLASHLIGHT);
 
         gameObject.AddComponent<AudioSource>();
         source.clip = sound;

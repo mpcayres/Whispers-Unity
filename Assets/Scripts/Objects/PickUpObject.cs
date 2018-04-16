@@ -18,7 +18,7 @@ public class PickUpObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
+        if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
             if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
                 !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
