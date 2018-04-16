@@ -27,6 +27,36 @@ public class AttackObject : MonoBehaviour {
             timeLeftAttack = timeAttack;
             attacking = true;
             // animação + som
+
+            string anim = "";
+            if (item == Inventory.InventoryItems.BASTAO)
+            {
+                anim = "bastao";
+            }
+            else if (item == Inventory.InventoryItems.FACA)
+            {
+                anim = "faca";
+            }
+
+            switch (player.direction)
+            {
+                case 0:
+                    anim += "East";
+                    break;
+                case 1:
+                    anim += "West";
+                    break;
+                case 2:
+                    anim += "North";
+                    break;
+                case 3:
+                    anim += "South";
+                    break;
+                default:
+                    break;
+            }
+            
+            player.PlayAnimation(anim);
         }
         else if (timeLeftAttack <= 0)
         {

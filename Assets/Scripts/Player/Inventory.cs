@@ -7,7 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Inventory : MonoBehaviour {
 
     [System.Serializable]
-    public enum InventoryItems { DEFAULT, FLASHLIGHT, VELA, FOSFORO, FACA, TAMPA, PEDRA, RACAO, ISQUEIRO, LIVRO };
+    public enum InventoryItems { DEFAULT, FLASHLIGHT, FOSFORO, ISQUEIRO, FACA, BASTAO, TAMPA, PEDRA, VELA, RACAO, LIVRO };
     public class DataItems
     {
         public InventoryItems type;
@@ -55,6 +55,7 @@ public class Inventory : MonoBehaviour {
         /*NewItem(InventoryItems.RACAO);
         NewItem(InventoryItems.TAMPA);
         NewItem(InventoryItems.FACA);
+        NewItem(InventoryItems.BASTAO);
         NewItem(InventoryItems.PEDRA);
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);
@@ -269,20 +270,25 @@ public class Inventory : MonoBehaviour {
             file = "lanterna";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(true);
         }
-        else if (selectItem == InventoryItems.VELA)
-        {
-            file = "vela";
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(true);
-        }
         else if (selectItem == InventoryItems.FOSFORO)
         {
             file = "caixa_fosforo_maior";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(true);
         }
+        else if (selectItem == InventoryItems.ISQUEIRO)
+        {
+            file = "isqueiro";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
+        }
         else if (selectItem == InventoryItems.FACA)
         {
             file = "faca";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(true);
+        }
+        else if (selectItem == InventoryItems.BASTAO)
+        {
+            file = "bastao";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Bastao").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.TAMPA)
         {
@@ -295,15 +301,15 @@ public class Inventory : MonoBehaviour {
             file = "pedra";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(true);
         }
+        else if (selectItem == InventoryItems.VELA)
+        {
+            file = "vela";
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(true);
+        }
         else if (selectItem == InventoryItems.RACAO)
         {
             file = "saco_racao";
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(true);
-        }
-        else if (selectItem == InventoryItems.ISQUEIRO)
-        {
-            file = "isqueiro";
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(true);
         }
         else if (selectItem == InventoryItems.LIVRO)
         {

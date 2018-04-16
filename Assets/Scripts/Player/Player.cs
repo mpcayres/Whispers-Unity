@@ -312,17 +312,23 @@ public class Player : MonoBehaviour {
     {
         auxOnObject = aux;
         animator.Play(anim);
-        //animator.GetCurrentAnimatorStateInfo(0).length
-        StartCoroutine(WaitCoroutine(2, x, y, dir, false));
+        StartCoroutine(WaitCoroutineUpDown(2, x, y, dir, false));
     }
 
     public void MoveDownAnimation(string anim, float x, float y, int dir)
     {
         animator.Play(anim);
-        StartCoroutine(WaitCoroutine(1, x, y, dir, true));
+        StartCoroutine(WaitCoroutineUpDown(1, x, y, dir, true));
     }
 
-    IEnumerator WaitCoroutine(float time, float x, float y, int dir, bool down)
+    public void PlayAnimation(string anim, float time = 1f)
+    {
+        print("2:" + anim + time);
+        animator.Play(anim);
+        StartCoroutine(WaitCoroutineAnim(time));
+    }
+
+    IEnumerator WaitCoroutineUpDown(float time, float x, float y, int dir, bool down)
     {
         Debug.Log("about to yield return WaitForSeconds("+ time + ")");
         yield return new WaitForSeconds(time);
@@ -334,6 +340,16 @@ public class Player : MonoBehaviour {
             auxOnObject.GetComponent<Collider2D>().enabled = true;
             GetComponent<Collider2D>().enabled = true;
         }
+        yield break;
+        //Debug.Log("You'll never see this"); // produces a dead code warning
+    }
+
+    IEnumerator WaitCoroutineAnim(float time)
+    {
+        Debug.Log("about to yield return WaitForSeconds(" + time + ")");
+        yield return new WaitForSeconds(time);
+        Debug.Log("Animation ended");
+        animator.SetTrigger("changeDirection");
         yield break;
         //Debug.Log("You'll never see this"); // produces a dead code warning
     }
