@@ -8,10 +8,7 @@ using UnityStandardAssets.CrossPlatformInput;
  * senha cadeado porão: 376
  * 
  falta:
-    - considerações para abertura de porão
     - objeto a ser inserido quando abre cofre atras do quadro na parede
-    - voltar o quadro para a parede
-    - sair da abertura do cadeado caso desista (z de novo ou esc?)
      
      **/
 public class LockerController : MonoBehaviour
@@ -31,7 +28,7 @@ public class LockerController : MonoBehaviour
 
     public string boardName;
 
-    bool basement = false;
+    bool isBasement = false;
     bool opened = false;
     bool tried = false;
 
@@ -72,15 +69,21 @@ public class LockerController : MonoBehaviour
                 if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
                 {
                     opened = true;
-                    if (!basement /*&& Book.pageQuantity >= 6*/ ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
+                    if (!isBasement /*&& Book.pageQuantity >= 6*/ ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
                     {
                         //adicionar algo do inventário
                         source.clip = success;
                         source.PlayOneShot(success);
                         Invoke("Show", 0.5f);
                     }
-                    else if (Book.pageQuantity >= 4) { // porta do porão
+                    else if (/*Book.pageQuantity >= 4 &&*/  isBasement) { // porta do porão
+                        source.clip = success;
+                        source.PlayOneShot(success);
 
+                        Invoke("Show", 0.5f);
+                        GameObject basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
+                        basement.GetComponent<SceneDoor>().isOpened = true;
+                        basement.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/porão-aberto");
 
                     }
                 }
@@ -303,34 +306,44 @@ public class LockerController : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        GameObject board = GameObject.Find(boardName).gameObject;
-        if (other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
+    void OnTriggerStay2D(Collider2D other){
+        GameObject board, basement;
+
+      /*  if (MissionManager.instance.currentSceneName.Equals("Corridor"))
+        {
+            board = GameObject.Find(boardName).gameObject;
+        }
+        else if(MissionManager.instance.currentSceneName.Equals("Jardim"))
+        {
+            basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
+        }  */
+        
+        if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
             
-            if (board)
+            if (MissionManager.instance.currentSceneName.Equals("Corridor"))
             {
+                board = GameObject.Find(boardName).gameObject;
                 board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
             }
-            else {
-
-                basement = true;
+            else if (MissionManager.instance.currentSceneName.Equals("Jardim")) {
+                isBasement = true;
             }
 
-            Invoke("Show", 1.5f);
+            Invoke("Show", 1f);
             tried = true;
 
         }
         else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
         {
-            if (board)
+            if (MissionManager.instance.currentSceneName.Equals("Corridor"))
             {
+                board = GameObject.Find(boardName).gameObject;
                 board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
             }
-            else
+            else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
             {
-
-                basement = true;
+                
+                isBasement = true;
             }
             Invoke("Show", 0.2f);
             tried = false;
@@ -343,14 +356,14 @@ public class LockerController : MonoBehaviour
         if (locker.activeSelf)
         {
             locker.SetActive(false);
-           // MissionManager.instance.paused = false;
+            MissionManager.instance.paused = false;
             MissionManager.instance.blocked = false;
         }
         else
         {
             locker.SetActive(true);
-           // MissionManager.instance.paused = false;
-            MissionManager.instance.blocked = false;
+            MissionManager.instance.paused = true;
+            MissionManager.instance.blocked = true;
 
         }
 
