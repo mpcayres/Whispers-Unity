@@ -27042,6 +27042,7 @@ MonoBehaviour:
   scale: 1
   isUp: 0
   colliding: 0
+  canHavePickUp: 0
 --- !u!1 &1078286979
 GameObject:
   m_ObjectHideFlags: 0

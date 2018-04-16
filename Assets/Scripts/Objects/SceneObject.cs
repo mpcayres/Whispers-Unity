@@ -10,6 +10,7 @@ public class SceneObject : MonoBehaviour {
     public float scale = 1;
     public bool isUp = false;
     public bool colliding = false;
+    public bool canHavePickUp = true;
 
     bool isActive = false, opened = false;
     float sizeX, sizeY;

@@ -13,6 +13,7 @@ public class ScenePickUpObject : MonoBehaviour
     public bool blockSortOrder = false;
     bool blockChange = false;
     public bool colliding = false;
+    public int numRandomListed = -1;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
@@ -61,6 +62,7 @@ public class ScenePickUpObject : MonoBehaviour
         {
             spriteRenderer.sprite = sprite2;
             Inventory.NewItem(item);
+            if (numRandomListed != -1) MissionManager.instance.ObjectPicked(numRandomListed);
             if (blockAfterPick) blockChange = true;
         }
         else

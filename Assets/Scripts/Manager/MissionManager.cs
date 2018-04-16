@@ -1,4 +1,5 @@
 ﻿using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -40,6 +41,22 @@ public class MissionManager : MonoBehaviour {
     public bool invertWorld = false;
     public bool invertWorldBlocked = true;
     public bool playerProtected = false;
+
+    // LOCALIZAÇÃO ALEATÓRIA DE OBJETOS
+    private struct RandomPlace
+    {
+        public Inventory.InventoryItems objectToPick;
+        public string placeChoosen;
+        public string sceneObjectPickUp;
+
+        public RandomPlace(Inventory.InventoryItems newObjectToPick, string newPlaceChoosen, string newSceneObjectPickUp)
+        {
+            objectToPick = newObjectToPick;
+            placeChoosen = newPlaceChoosen;
+            sceneObjectPickUp = newSceneObjectPickUp;
+        }
+    }
+    private List<RandomPlace> randomPlaces = new List<RandomPlace>();
 
     // HUD - INÍCIO MISSÃO
     public bool showMissionStart = true;
@@ -292,6 +309,7 @@ public class MissionManager : MonoBehaviour {
         ExtrasManager.SideQuestsManager();
         ExtrasManager.PagesManager();
         SetObjectsVariables();
+        SetPickUps();
     }
 
     /************ FUNÇÕES DE OBJETO ************/
@@ -682,6 +700,7 @@ public class MissionManager : MonoBehaviour {
         if (mission != null)
         {
             //DeleteAllPlayerPrefs(); - talvez resetar ao mudar de missão, já que é outra noite (mas dá erro)
+            ClearRandomObjectsPlaces();
             levelText.text = "Chapter  " + m;
             levelImage.SetActive(true);
             showMissionStart = true;
@@ -723,6 +742,82 @@ public class MissionManager : MonoBehaviour {
     }
 
     /************ FUNÇÕES ESPECIAIS ************/
+
+    // ALEATORIZAR LOCAIS PARA OBJETOS
+    // Exemplo de chamaga: MissionManager.instance.RandomObjectsPlaces(Inventory.InventoryItems.FOSFORO, new List<string>{ "QuartoKid" });
+    // Deve vir antes do MissionManager.LoadScene(sceneInit);
+    public void RandomObjectsPlaces(Inventory.InventoryItems pickUp, List<string> places = null)
+    {
+        if (places == null || places.Count == 0)
+        {
+            places = new List<string> { "Sala", "Corredor", "Jardim", "Cozinha", "QuartoMae", "QuartoKid", "Banheiro", "Porao" };
+        }
+        int i = UnityEngine.Random.Range(0, places.Count);
+        randomPlaces.Add(new RandomPlace(pickUp, places[i], ""));
+        print("RANDOM: " + places[i] + "[" + pickUp + "]");
+    }
+
+    private void SetPickUps()
+    {
+        for (int i = 0; i < randomPlaces.Count; i++)
+        {
+            RandomPlace place = randomPlaces[i];
+            if (place.placeChoosen.Equals(currentSceneName))
+            {
+                // SE QUISER RETIRAR UM SCENE OBJECT ESPECIFICO DA ALEATORIZAÇÃO, SÓ MUDAR O PARÂMETRO DELE NA MISSÃO
+                if (place.sceneObjectPickUp.Equals(""))
+                {
+                    List<GameObject> listScene = new List<GameObject>(GameObject.FindGameObjectsWithTag("SceneObject"));
+                    listScene.RemoveAll(obj => obj.GetComponent<SceneObject>() == null || !obj.GetComponent<SceneObject>().canHavePickUp);
+
+                    // GARANTIR QUE OS SCENE OBJECTS DE UMA MESMA CENA TEM NOMES DIFERENTES
+                    if (listScene != null && listScene.Count > 0)
+                    {
+                        int j = UnityEngine.Random.Range(0, listScene.Count);
+                        place.sceneObjectPickUp = listScene[j].name;
+                    }
+                }
+
+                if (!place.sceneObjectPickUp.Equals(""))
+                {
+                    CreateScenePickUp(place.sceneObjectPickUp, place.objectToPick, i);
+                }
+            }
+            
+        }
+
+    }
+
+    // CRIA SCENE OBJETO PICK UP A PARTIR DE UM SCENE OBJECT
+    public void CreateScenePickUp(string nameObject, Inventory.InventoryItems item, int num)
+    {
+        print("PICK UP CREATE: " + nameObject + " [" + item + "]");
+        GameObject obj = GameObject.Find(nameObject).gameObject;
+        obj.tag = "ScenePickUpObject";
+        SceneObject sceneObject = obj.GetComponent<SceneObject>();
+        sceneObject.enabled = false;
+        ScenePickUpObject scenePickUpObject = obj.AddComponent<ScenePickUpObject>();
+        scenePickUpObject.sprite1 = sceneObject.sprite1;
+        scenePickUpObject.sprite2 = sceneObject.sprite2;
+        scenePickUpObject.positionSprite = sceneObject.positionSprite;
+        scenePickUpObject.scale = sceneObject.scale;
+        scenePickUpObject.isUp = sceneObject.isUp;
+        scenePickUpObject.numRandomListed = num;
+        scenePickUpObject.item = item;
+    }
+
+    // APAGAR OBJETO DA LISTA
+    public void ObjectPicked(int i)
+    {
+        print("OBJECTED PICKED: " + i);
+        randomPlaces.RemoveAt(i);
+    }
+
+    // LIMPAR DADOS DE ALEATORIZAÇÃO DE LOCAIS PARA OBJETOS
+    private void ClearRandomObjectsPlaces()
+    {
+        randomPlaces.Clear();
+    }
 
     // INVERTER MUNDO
     public void InvertWorld(bool sel)
