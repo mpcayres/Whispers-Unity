@@ -4,7 +4,10 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
-    public Actions playerState;
+    public Actions playerAction;
+    public enum States { DEFAULT, FLASHLIGHT };
+    public States playerState;
+
     public float movespeed;
     public float runningFactor = 3f;
     public Animator animator;
@@ -43,7 +46,7 @@ public class Player : MonoBehaviour {
             //Ordem do layer determinada pelo eixo y
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-            if (playerState != Actions.ON_OBJECT)
+            if (playerAction != Actions.ON_OBJECT)
             {
                 if (CrossPlatformInputManager.GetButton("keyRun"))
                 {
@@ -82,7 +85,7 @@ public class Player : MonoBehaviour {
                 animator.SetBool("isWalking", isWalking);
                 animator.SetBool("isRunning", isRunning);
 
-                if (playerState == Actions.MOVING_OBJECT)
+                if (playerAction == Actions.MOVING_OBJECT)
                 {
                     wantedDirection = direction;
                     direction = oldDirection;
@@ -156,6 +159,13 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void ChangeState(int newState)
+    {
+        playerState = (States) newState;
+        GetComponent<Animator>().SetInteger("playerState", newState);
+        GetComponent<Animator>().SetTrigger("changeDirection");
+    }
+
     public void ChangeDirection(int newDirection)
     {
         direction = newDirection;
@@ -172,7 +182,7 @@ public class Player : MonoBehaviour {
 
     public void ChangePosition()
     {
-        playerState = Actions.DEFAULT;
+        playerAction = Actions.DEFAULT;
 
         string previousSceneName = "";
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
@@ -201,6 +211,11 @@ public class Player : MonoBehaviour {
                 else if (previousSceneName.Equals("Cozinha"))
                 {
                     rb.position = new Vector2((float)2.95, (float)-0.6);
+                }
+                else if (previousSceneName.Equals("Banheiro"))
+                {
+                    rb.position = new Vector2((float)-11.3, (float)-0.3);
+                    ChangeDirection(3);
                 }
                 //else if (previousSceneName.Equals("QuartoKid"))
                 else
@@ -336,7 +351,7 @@ public class Player : MonoBehaviour {
         ChangePositionDefault(x, y, dir);
         if (down)
         {
-            playerState = Actions.DEFAULT;
+            playerAction = Actions.DEFAULT;
             auxOnObject.GetComponent<Collider2D>().enabled = true;
             GetComponent<Collider2D>().enabled = true;
         }

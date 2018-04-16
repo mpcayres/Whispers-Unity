@@ -39,7 +39,7 @@ public class SceneObject : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if ((!isUp && (player.playerState == Player.Actions.DEFAULT)) || (isUp && (player.playerState == Player.Actions.ON_OBJECT)))
+        if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
             if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&

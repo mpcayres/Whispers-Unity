@@ -12,7 +12,7 @@ public class Flashlight : MonoBehaviour {
     void Start ()
     {
         player = GetComponentInParent<Player>();
-        GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
+        enable = GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
     }
 	
 	void Update ()
@@ -23,9 +23,7 @@ public class Flashlight : MonoBehaviour {
         {
             if (CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {
-                GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-                GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
-                enable = GetComponent<Light>().enabled;
+                EnableFlashlight(!GetComponent<Light>().enabled);
                 if (enable)
                 {
                     transform.rotation = Quaternion.Euler((float)0.0, (float)0.0, (float)0.0);
@@ -59,9 +57,7 @@ public class Flashlight : MonoBehaviour {
         {
             if (Inventory.GetCurrentItemType() != item)
             {
-                GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-                GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
-                enable = GetComponent<Light>().enabled;
+                EnableFlashlight(false);
             }
 
             GetComponent<Light>().spotAngle = 60 - timePressed;
@@ -70,21 +66,25 @@ public class Flashlight : MonoBehaviour {
             switch (player.direction)
             {
                 case 0:
+                    transform.localPosition = new Vector3(0f, -0.6f, 2f);
                     Quaternion targetRotationE = Quaternion.Euler((float)180.0, (float)230.0 - timePressed, (float)0.0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationE, rotationSpeed * Time.deltaTime);
                     GetComponent<Collider2D>().offset = new Vector2(-2f + (timePressed / 25f), 0);
                     break;
                 case 1:
+                    transform.localPosition = new Vector3(0f, -0.6f, 2f);
                     Quaternion targetRotationW = Quaternion.Euler((float)180.0, (float)130.0 + timePressed, (float)0.0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationW, rotationSpeed * Time.deltaTime);
                     GetComponent<Collider2D>().offset = new Vector2(2f - (timePressed / 25f), 0);
                     break;
                 case 2:
+                    transform.localPosition = new Vector3(-0.45f, 0f, 2f);
                     Quaternion targetRotationN = Quaternion.Euler((float)-45.0 + (timePressed / 2f), (float)0.0, (float)0.0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationN, rotationSpeed * Time.deltaTime);
                     GetComponent<Collider2D>().offset = new Vector2(0, 2f - (timePressed / 25f));
                     break;
                 case 3:
+                    transform.localPosition = new Vector3(-0.45f, 0f, 2f);
                     Quaternion targetRotationS = Quaternion.Euler((float)45.0 - (timePressed / 2f), (float)0.0, (float)0.0);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationS, rotationSpeed * Time.deltaTime);
                     GetComponent<Collider2D>().offset = new Vector2(0, -2f + (timePressed / 25f));
@@ -105,5 +105,13 @@ public class Flashlight : MonoBehaviour {
         GetComponent<Light>().enabled = e;
         GetComponent<Collider2D>().enabled = e;
         enable = e;
+        if (enable)
+        {
+            player.ChangeState((int)Player.States.FLASHLIGHT);
+        }
+        else
+        {
+            player.ChangeState((int)Player.States.DEFAULT);
+        }
     }
 }

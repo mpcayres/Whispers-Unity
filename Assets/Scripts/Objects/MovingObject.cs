@@ -27,7 +27,7 @@ public class MovingObject : MonoBehaviour {
 	
 	void Update ()
     {
-        if (script.playerState != Player.Actions.ON_OBJECT)
+        if (script.playerAction != Player.Actions.ON_OBJECT)
         {
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         }
@@ -44,7 +44,7 @@ public class MovingObject : MonoBehaviour {
                     MoveUp();
                 }
             }
-            else if (script.playerState != Player.Actions.ON_OBJECT)
+            else if (script.playerAction != Player.Actions.ON_OBJECT)
             {
                 if (CrossPlatformInputManager.GetButtonDown("keyMove")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
@@ -65,7 +65,7 @@ public class MovingObject : MonoBehaviour {
     public void InitMove()
     {
         //print("INITMOVE");
-        script.playerState = Player.Actions.MOVING_OBJECT;
+        script.playerAction = Player.Actions.MOVING_OBJECT;
         script.animator.SetTrigger("movingObject");
     }
 
@@ -105,18 +105,18 @@ public class MovingObject : MonoBehaviour {
     {
         MissionManager.instance.scenerySounds2.StopSound();
         //print("ENDMOVE");
-        script.playerState = Player.Actions.DEFAULT;
+        script.playerAction = Player.Actions.DEFAULT;
         script.animator.SetTrigger("changeDirection");
     }
 
     public void MoveUp()
     {
         //print("MOVEUP");
-        if (script.playerState != Player.Actions.ON_OBJECT) {
+        if (script.playerAction != Player.Actions.ON_OBJECT) {
             originalDirection = script.direction;
             if (originalDirection != 3)
             {
-                script.playerState = Player.Actions.ON_OBJECT;
+                script.playerAction = Player.Actions.ON_OBJECT;
                 originalX = player.transform.position.x;
                 originalY = player.transform.position.y;
                 GetComponent<Collider2D>().enabled = false;
