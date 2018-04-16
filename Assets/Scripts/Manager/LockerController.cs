@@ -69,14 +69,14 @@ public class LockerController : MonoBehaviour
                 if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
                 {
                     opened = true;
-                    if (!isBasement /*&& Book.pageQuantity >= 6*/ ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
+                    if (!isBasement && Book.pageQuantity >= 6 ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
                     {
                         //adicionar algo do inventário
                         source.clip = success;
                         source.PlayOneShot(success);
                         Invoke("Show", 0.5f);
                     }
-                    else if (/*Book.pageQuantity >= 4 &&*/  isBasement) { // porta do porão
+                    else if (Book.pageQuantity >= 4 &&  isBasement) { // porta do porão
                         source.clip = success;
                         source.PlayOneShot(success);
 
@@ -307,16 +307,7 @@ public class LockerController : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D other){
-        GameObject board, basement;
-
-      /*  if (MissionManager.instance.currentSceneName.Equals("Corridor"))
-        {
-            board = GameObject.Find(boardName).gameObject;
-        }
-        else if(MissionManager.instance.currentSceneName.Equals("Jardim"))
-        {
-            basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
-        }  */
+        GameObject board;
         
         if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
             
