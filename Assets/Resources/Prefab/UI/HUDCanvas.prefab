@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 222831152065345584}
   - component: {fileID: 114984345020135756}
   m_Layer: 5
-  m_Name: CurrentTextPedra
+  m_Name: CurrentTextCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

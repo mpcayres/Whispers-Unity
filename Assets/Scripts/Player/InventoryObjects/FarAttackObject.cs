@@ -5,25 +5,25 @@ public class FarAttackObject : MonoBehaviour {
     public Inventory.InventoryItems item;
     public bool attacking = false, hitSuccess = false;
 
-    float distance = 0, maxDistance = 6f, startX = 0, startY = 0;
-    float speed = 3f, translateSpeed = 5f;
-    float arcHeight = 0.8f; // altura
-    float timeLeftPedra = 0, maxTimePedra = 0.2f;
-    int directionAttack = 0;
-    bool initAttack = false, triggered = false;
-    Vector3 posAttack = new Vector3(0,0,0), oldParentPosition;
+    protected float distance = 0, maxDistance = 6f, startX = 0, startY = 0;
+    protected float speed = 3f, translateSpeed = 5f;
+    protected float arcHeight = 0.8f; // altura
+    protected float timeLeftPedra = 0, maxTimePedra = 0.2f;
+    protected int directionAttack = 0;
+    protected bool initAttack = false, triggered = false;
+    protected Vector3 posAttack = new Vector3(0,0,0), oldParentPosition;
 
-    Player player;
-    SpriteRenderer spriteRenderer;
+    protected Player player;
+    protected SpriteRenderer spriteRenderer;
 
-    void Start()
+    protected void Start()
     {
         player = GetComponentInParent<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         attacking = false;
     }
 
-    void Update()
+    protected void Update()
     {
         if (timeLeftPedra > 0)
         {
@@ -39,8 +39,17 @@ public class FarAttackObject : MonoBehaviour {
         {
             if (!triggered)
             {
-                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", transform.position, new Vector3(0.6f, 0.6f, 1f));
-                pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
+                string nameItem = "";
+                if (item == Inventory.InventoryItems.PEDRA)
+                {
+                    nameItem = "pedra";
+                }
+                else if (item == Inventory.InventoryItems.PAPEL)
+                {
+                    nameItem = "papel";
+                }
+                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/" + nameItem, transform.position, new Vector3(0.6f, 0.6f, 1f));
+                pedra.GetComponent<PickUpObject>().item = item;
                 pedra.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
             }
             EndThrow();
@@ -152,12 +161,12 @@ public class FarAttackObject : MonoBehaviour {
         }
     }
 
-    private Quaternion LookAt2D(Vector2 forward)
+    protected Quaternion LookAt2D(Vector2 forward)
     {
         return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
     }
 
-    private void EndAnimation()
+    protected void EndAnimation()
     {
         initAttack = false;
         hitSuccess = false;
@@ -165,7 +174,7 @@ public class FarAttackObject : MonoBehaviour {
         timeLeftPedra = maxTimePedra;
     }
 
-    private void EndThrow()
+    protected void EndThrow()
     {
         spriteRenderer.enabled = false;
         transform.position = new Vector3(0, 0, 0);
@@ -176,7 +185,7 @@ public class FarAttackObject : MonoBehaviour {
         Inventory.DeleteItem(item);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         //print("Pedra: " + collision.tag);
         if (collision.tag.Equals("Background"))
@@ -185,7 +194,7 @@ public class FarAttackObject : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         //print("Pedra: " + collision.tag);
         if (collision.tag.Equals("Background"))

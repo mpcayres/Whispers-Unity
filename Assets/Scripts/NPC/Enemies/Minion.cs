@@ -39,8 +39,9 @@ public class Minion : Follower {
         base.Update();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private new void OnTriggerStay2D(Collider2D collision)
     {
+        OnTriggerCalled(collision);
         //print("Minion: " + collision.tag);
         if ((collision.tag.Equals("Flashlight") && Flashlight.GetState()) || collision.tag.Equals("Lamp"))
         {
@@ -60,6 +61,14 @@ public class Minion : Follower {
         {
             collision.GetComponent<FarAttackObject>().hitSuccess = true;
             healthMelee -= decrementPedra;
+        }
+        else if (collision.tag.Equals("Papel") && collision.GetComponent<FarAttackMiniGameObject>().attacking)
+        {
+            collision.GetComponent<FarAttackMiniGameObject>().hitSuccess = true;
+            if (collision.GetComponent<FarAttackMiniGameObject>().achievedGoal)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

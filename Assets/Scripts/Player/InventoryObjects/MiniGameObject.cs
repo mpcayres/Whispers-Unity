@@ -10,10 +10,12 @@ public class MiniGameObject : MonoBehaviour {
     public int counterMax = 20;
     public bool refreshTimeMax = true;
     public float posFlareX = 0, posFlareY = 0;
+
     private bool otherItem = true;
     private bool playing = false;
-    float timeLeft;
-    int counter;
+    private float timeLeft;
+    private int counter;
+
     GameObject anim, flare;
 
     void Start()
@@ -22,11 +24,10 @@ public class MiniGameObject : MonoBehaviour {
         InitImage();
     }
 
-    void Update()
+    public void Update()
     {
         if (Inventory.GetCurrentItemType() == item && otherItem)
         {
-
             otherItem = false;
             InitImage();
         }
@@ -59,7 +60,7 @@ public class MiniGameObject : MonoBehaviour {
             else if (CrossPlatformInputManager.GetButtonDown("keyMiniGame"))
             {
                 counter++;
-                if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.ISQUEIRO)
+                if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.PAPEL || item == Inventory.InventoryItems.ISQUEIRO)
                 {
                     anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160/counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
                 }
@@ -105,7 +106,7 @@ public class MiniGameObject : MonoBehaviour {
     private void InitImage()
     {
         //print("INITMINIGAME" + item);
-        if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO)
+        if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO || Inventory.GetCurrentItemType() == Inventory.InventoryItems.PAPEL)
         {
             anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
             anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));

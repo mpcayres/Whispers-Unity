@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222850567798810032}
   - component: {fileID: 114309663349762080}
   m_Layer: 5
-  m_Name: TextPedra
+  m_Name: TextCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

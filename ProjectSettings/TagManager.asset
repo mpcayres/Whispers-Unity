@@ -45,6 +45,7 @@ TagManager:
   - Faca
   - Bastao
   - Pedra
+  - Papel
   layers:
   - Default
   - TransparentFX
