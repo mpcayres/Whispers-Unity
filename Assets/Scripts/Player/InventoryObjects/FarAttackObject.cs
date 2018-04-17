@@ -3,14 +3,14 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class FarAttackObject : MonoBehaviour {
     public Inventory.InventoryItems item;
-    public bool attacking = false, hitSuccess = false;
+    public bool attacking = false, hitSuccess = false, addObject = true;
 
     protected float distance = 0, maxDistance = 6f, startX = 0, startY = 0;
     protected float speed = 3f, translateSpeed = 5f;
     protected float arcHeight = 0.8f; // altura
     protected float timeLeftPedra = 0, maxTimePedra = 0.2f;
     protected int directionAttack = 0;
-    protected bool initAttack = false, triggered = false;
+    protected bool changeDirection = false, initPositioning = false, initAttack = false, triggered = false;
     protected Vector3 posAttack = new Vector3(0,0,0), oldParentPosition;
 
     protected Player player;
@@ -37,36 +37,39 @@ public class FarAttackObject : MonoBehaviour {
         }
         else if (attacking && timeLeftPedra <= 0)
         {
-            if (!triggered)
-            {
-                string nameItem = "";
-                if (item == Inventory.InventoryItems.PEDRA)
-                {
-                    nameItem = "pedra";
-                }
-                else if (item == Inventory.InventoryItems.PAPEL)
-                {
-                    nameItem = "papel";
-                }
-                GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/" + nameItem, transform.position, new Vector3(0.6f, 0.6f, 1f));
-                pedra.GetComponent<PickUpObject>().item = item;
-                pedra.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
-            }
-            EndThrow();
+            EndThrowAdd();
             // som chão
         }
 
+        print("INIT: " + initAttack + attacking);
         if (Inventory.GetCurrentItemType() == item && !initAttack && !attacking &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
             if (CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {
+                initPositioning = true;
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f);
             }
-            else if (CrossPlatformInputManager.GetButton("keyUseObject") && distance < maxDistance)
+            else if (CrossPlatformInputManager.GetButton("keyUseObject"))
             {
-                distance += speed * Time.deltaTime;
+                if (changeDirection)
+                {
+                    distance -= speed * Time.deltaTime;
+                }
+                else
+                {
+                    distance += speed * Time.deltaTime;
+                }
+
+                if (distance >= maxDistance)
+                {
+                    changeDirection = true;
+                }
+                else if (distance <= 0f)
+                {
+                    changeDirection = false;
+                }
             }
             else if (CrossPlatformInputManager.GetButtonUp("keyUseObject"))
             {
@@ -99,6 +102,7 @@ public class FarAttackObject : MonoBehaviour {
                 {
                     spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
                 }
+                initPositioning = false;
                 initAttack = true;
                 startX = transform.position.x;
                 startY = transform.position.y;
@@ -177,12 +181,33 @@ public class FarAttackObject : MonoBehaviour {
     protected void EndThrow()
     {
         spriteRenderer.enabled = false;
-        transform.position = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localRotation = new Quaternion(0, 0, 0, 0);
         distance = 0;
         hitSuccess = false;
         attacking = false;
         timeLeftPedra = 0;
         Inventory.DeleteItem(item);
+    }
+
+    protected void EndThrowAdd()
+    {
+        if (!triggered && addObject)
+        {
+            string nameItem = "";
+            if (item == Inventory.InventoryItems.PEDRA)
+            {
+                nameItem = "pedra";
+            }
+            else if (item == Inventory.InventoryItems.PAPEL)
+            {
+                nameItem = "papel";
+            }
+            GameObject pick = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/" + nameItem, transform.position, new Vector3(0.6f, 0.6f, 1f));
+            pick.GetComponent<PickUpObject>().item = item;
+            pick.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
+        }
+        EndThrow();
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)

@@ -64,8 +64,6 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.FOSFORO);
         NewItem(InventoryItems.ISQUEIRO);
         NewItem(InventoryItems.FLASHLIGHT);*/
-        NewItem(InventoryItems.PAPEL);
-        NewItem(InventoryItems.PEDRA);
 
         gameObject.AddComponent<AudioSource>();
         source.clip = sound;
@@ -312,10 +310,13 @@ public class Inventory : MonoBehaviour {
         {
             pedraCount++;
             SetCurrentValue();
-        } else if (selectItem == InventoryItems.PAPEL)
+            if (pedraCount > 1) return;
+        }
+        else if (selectItem == InventoryItems.PAPEL)
         {
             papelCount++;
             SetCurrentValue();
+            if (papelCount > 1) return;
         }
         else
         {
@@ -391,7 +392,7 @@ public class Inventory : MonoBehaviour {
                     SetCurrentValue();
                     if (pedraCount > 0)
                     {
-                        break;
+                        return;
                     }
                 }
                 else if (selectItem == InventoryItems.PAPEL)
@@ -400,8 +401,14 @@ public class Inventory : MonoBehaviour {
                     SetCurrentValue();
                     if (papelCount > 0)
                     {
-                        break;
+                        return;
                     }
+                }
+
+                if (lastItem != -1)
+                {
+                    EnableItem(GetItemType(lastItem), false);
+                    lastItem = -1;
                 }
 
                 if (selectItem == listItems[currentItem].type)
@@ -410,7 +417,7 @@ public class Inventory : MonoBehaviour {
 
                     if (listItems.Count > 0)
                     {
-                        SetCurrentItem(0);
+                        SetCurrentItem(listItems.Count - 1);
                     }
                     else
                     {

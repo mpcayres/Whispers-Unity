@@ -11,7 +11,11 @@ public class PickUpObject : MonoBehaviour {
     {
         if (Inventory.HasItemType(item))
         {
-            Destroy(gameObject);
+            if (!((item == Inventory.InventoryItems.PEDRA && Inventory.pedraCount > 0) ||
+                (item == Inventory.InventoryItems.PAPEL && Inventory.papelCount > 0)))
+            {
+                Destroy(gameObject);
+            }
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
@@ -32,11 +36,5 @@ public class PickUpObject : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         colliding = true;
-        if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
-           !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
-        {
-            Inventory.NewItem(item);
-            Destroy(this.gameObject);
-        }
     }
 }
