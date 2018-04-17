@@ -58,6 +58,8 @@ public class SideQuest2 : SideQuest
             counterTimeEscape = timeEscape;
             SetTimeToEscape();
         }
+
+        SpinCamera(10f);
     }
 
     public override void ShowFlashback()

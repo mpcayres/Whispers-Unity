@@ -42,15 +42,15 @@ public class SpiritManager : MonoBehaviour {
         maxEvilKilled = maxEvil;
         maxKillerKilled = maxKiller;
 
-        int maxRange = 3, sequencia = 0, aux2 = -1;
-        if (hasKiller) maxRange = 4;
+        int maxRange = 2, sequencia = 0, aux2 = -1;
+        if (hasKiller) maxRange = 3;
 
         for (float y = -radius; y <= radius; y += 1f)
         {
             for (float x = -radius; x <= radius; x += 1f)
             {
                 if (x * x + y * y <= radius * radius) {
-                    int aux = Random.Range(1, maxRange);
+                    int aux = Random.Range(0, maxRange);
 
                     if (aux2 == aux)
                     {
@@ -65,17 +65,17 @@ public class SpiritManager : MonoBehaviour {
                         sequencia = 0;
                     }
 
-                    if (aux == 1 && evilSpiritCount < (goodSpiritCount+difEvilGood))
+                    if (aux == 0 && evilSpiritCount < (goodSpiritCount+difEvilGood))
+                    {
+                        aux = 1;
+                    }
+                    else if (hasKiller && aux == 1 && killerSpiritCount < (evilSpiritCount+difKillerEvil))
                     {
                         aux = 2;
                     }
-                    else if (hasKiller && aux == 2 && killerSpiritCount < (evilSpiritCount+difKillerEvil))
+                    else if (hasKiller && aux == 2 && goodSpiritCount < (killerSpiritCount-difKillerGood))
                     {
-                        aux = 3;
-                    }
-                    else if (hasKiller && aux == 3 && goodSpiritCount < (killerSpiritCount-difKillerGood))
-                    {
-                        aux = 1;
+                        aux = 0;
                     }
 
                     AddSpirit(originX + x, originY + y, aux);
@@ -91,14 +91,14 @@ public class SpiritManager : MonoBehaviour {
     {
         switch (type)
         {
-            case 1:
+            case 0:
                 GameObject goodSpirit = MissionManager.instance.AddObjectWithParent("Scenery/GoodSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
                 goodSpirit.GetComponent<Spirit>().number = goodSpiritCount;
                 goodSpirit.GetComponent<Spirit>().spiritManager = this;
                 goodSpiritDictionary.Add(goodSpiritCount, goodSpirit);
                 goodSpiritCount++;
                 break;
-            case 2:
+            case 1:
                 GameObject evilSpirit = MissionManager.instance.AddObjectWithParent("Scenery/EvilSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
                 evilSpirit.GetComponent<Spirit>().number = evilSpiritCount;
                 evilSpirit.GetComponent<Spirit>().spiritManager = this;

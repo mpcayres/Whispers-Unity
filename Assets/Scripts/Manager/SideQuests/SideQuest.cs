@@ -8,7 +8,7 @@ public abstract class SideQuest
     protected string oldScene = "";
 
     protected float timeEscape = 10f, counterTimeEscape = 0f;
-    protected GameObject timerSideQuest;
+    protected GameObject timerSideQuest, camera;
 
     protected float oldX = 0, oldY = 0;
     protected int oldDir = 0;
@@ -25,6 +25,7 @@ public abstract class SideQuest
     protected void SetInitialSettings()
     {
         oldScene = MissionManager.instance.previousSceneName;
+        camera = GameObject.Find("MainCamera").gameObject;
 
         GameObject player = GameObject.Find("Player").gameObject;
         oldX = player.transform.position.x;
@@ -111,6 +112,14 @@ public abstract class SideQuest
         {
             GameObject.Destroy(timerSideQuest);
             timerSideQuest = null;
+        }
+    }
+
+    protected void SpinCamera(float speed)
+    {
+        if (camera != null)
+        {
+            camera.transform.Rotate(0, 0, speed * Time.deltaTime);
         }
     }
 
