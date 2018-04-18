@@ -5,6 +5,7 @@ public class MovingObject : MonoBehaviour {
     public bool canMoveUp = false;
     public bool colliding = false;
     public string prefName = ""; // Padrão: identificador do objeto (MO) + _ + nome da cena + _ + identificador
+    public float scaleMoveUp = 4f;
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -139,34 +140,34 @@ public class MovingObject : MonoBehaviour {
                 if (originalDirection == 0)
                 {
                     scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
-                    scriptPlayer.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
                 }
                 else if (originalDirection == 1)
                 {
                     scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
-                    scriptPlayer.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
                 }
                 else if (originalDirection == 2)
                 {
                     scriptPlayer.ChangePositionDefault(rb.position.x, rb.position.y, -1);
-                    scriptPlayer.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
                 }
                 /*else if (originalDirection == 3)
                 {
                     scriptPlayer.ChangePositionDefault(this, rb.position.x, rb.position.y, -1);
-                    scriptPlayer.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
                 }*/
             }
         }
         else {
             if (originalDirection == 0)
             {
-                scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 1);
+                scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), 1);
                 scriptPlayer.MoveDownAnimation("playerDownWest", originalX, originalY, -1);
             }
             else if (originalDirection == 1)
             {
-                scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 0);
+                scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), 0);
                 scriptPlayer.MoveDownAnimation("playerDownEast", originalX, originalY, -1);
             }
             else if (originalDirection == 2)
