@@ -457,16 +457,7 @@ public class Mission8 : Mission {
             }
 
             // Isqueiro
-            GameObject armario = GameObject.Find("escrivaninha").gameObject;
-            SceneObject sceneObject = armario.GetComponent<SceneObject>();
-            armario.tag = "ScenePickUpObject";
-            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
-            scenePickUpObject.sprite1 = sceneObject.sprite1;
-            scenePickUpObject.sprite2 = sceneObject.sprite2;
-            scenePickUpObject.positionSprite = sceneObject.positionSprite;
-            scenePickUpObject.scale = sceneObject.scale;
-            scenePickUpObject.isUp = sceneObject.isUp;
-            scenePickUpObject.item = Inventory.InventoryItems.ISQUEIRO;
+            MissionManager.instance.CreateScenePickUp("escrivaninha", Inventory.InventoryItems.ISQUEIRO);
 
             estanteTrigger = poltronaTrigger = sofaTrigger = false;
 

@@ -171,36 +171,17 @@ public class Mission2 : Mission {
         GameObject panela = GameObject.Find("Panela").gameObject;
         panela.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/panela_tampa");
 
-        GameObject armario = GameObject.Find("Armario1").gameObject;
-        SceneObject sceneObject = armario.GetComponent<SceneObject>();
-
         if (secao == enumMission.CONTESTA_MAE2)
         {
             panela.GetComponent<ScenePickUpObject>().enabled = true;
 
             // Faca
-            sceneObject.enabled = false;
-            armario.tag = "ScenePickUpObject";
-            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
-            scenePickUpObject.sprite1 = sceneObject.sprite1;
-            scenePickUpObject.sprite2 = sceneObject.sprite2;
-            scenePickUpObject.positionSprite = sceneObject.positionSprite;
-            scenePickUpObject.scale = sceneObject.scale;
-            scenePickUpObject.isUp = sceneObject.isUp;
-            scenePickUpObject.item = Inventory.InventoryItems.FACA;
+            MissionManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FACA);
         }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
             // Fosforo
-            sceneObject.enabled = false;
-            armario.tag = "ScenePickUpObject";
-            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
-            scenePickUpObject.sprite1 = sceneObject.sprite1;
-            scenePickUpObject.sprite2 = sceneObject.sprite2;
-            scenePickUpObject.positionSprite = sceneObject.positionSprite;
-            scenePickUpObject.scale = sceneObject.scale;
-            scenePickUpObject.isUp = sceneObject.isUp;
-            scenePickUpObject.item = Inventory.InventoryItems.FOSFORO;
+            MissionManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FOSFORO);
         }
     }
 
@@ -328,17 +309,7 @@ public class Mission2 : Mission {
         if (secao == enumMission.RESPEITA_MAE2)
         {
             // Vela
-            GameObject armario = GameObject.Find("Armario").gameObject;
-            armario.tag = "ScenePickUpObject";
-            SceneObject sceneObject = armario.GetComponent<SceneObject>();
-            sceneObject.enabled = false;
-            ScenePickUpObject scenePickUpObject = armario.AddComponent<ScenePickUpObject>();
-            scenePickUpObject.sprite1 = sceneObject.sprite1;
-            scenePickUpObject.sprite2 = sceneObject.sprite2;
-            scenePickUpObject.positionSprite = sceneObject.positionSprite;
-            scenePickUpObject.scale = sceneObject.scale;
-            scenePickUpObject.isUp = sceneObject.isUp;
-            scenePickUpObject.item = Inventory.InventoryItems.VELA;
+            MissionManager.instance.CreateScenePickUp("Armario", Inventory.InventoryItems.VELA);
         }
     }
 

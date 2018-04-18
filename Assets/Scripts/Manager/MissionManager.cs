@@ -802,7 +802,7 @@ public class MissionManager : MonoBehaviour {
     }
 
     // CRIA SCENE OBJETO PICK UP A PARTIR DE UM SCENE OBJECT
-    public void CreateScenePickUp(string nameObject, Inventory.InventoryItems item, int num)
+    public void CreateScenePickUp(string nameObject, Inventory.InventoryItems item, int num = -1)
     {
         print("PICK UP CREATE: " + nameObject + " [" + item + "]");
         GameObject obj = GameObject.Find(nameObject).gameObject;

@@ -259,17 +259,7 @@ public class Mission1 : Mission {
         GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightBooks").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
         // Lanterna - Criado Mudo
-        GameObject criadoMudo = GameObject.Find("CriadoMudoSala").gameObject;
-        criadoMudo.tag = "ScenePickUpObject";
-        SceneObject sceneObject = criadoMudo.GetComponent<SceneObject>();
-        sceneObject.enabled = false;
-        ScenePickUpObject scenePickUpObject = criadoMudo.AddComponent<ScenePickUpObject>();
-        scenePickUpObject.sprite1 = sceneObject.sprite1;
-        scenePickUpObject.sprite2 = sceneObject.sprite2;
-        scenePickUpObject.positionSprite = sceneObject.positionSprite;
-        scenePickUpObject.scale = sceneObject.scale;
-        scenePickUpObject.isUp = sceneObject.isUp;
-        scenePickUpObject.item = Inventory.InventoryItems.FLASHLIGHT;
+        MissionManager.instance.CreateScenePickUp("CriadoMudoSala", Inventory.InventoryItems.FLASHLIGHT);
 
         // Porta Jardim
         GameObject portaJardim = GameObject.Find("DoorToGarden").gameObject;
