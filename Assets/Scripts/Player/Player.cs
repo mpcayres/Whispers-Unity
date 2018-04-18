@@ -159,6 +159,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void StopMovement()
+    {
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
+    }
+
     public void ChangeState(int newState)
     {
         playerState = (States) newState;

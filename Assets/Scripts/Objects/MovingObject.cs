@@ -10,24 +10,25 @@ public class MovingObject : MonoBehaviour {
     Rigidbody2D rb;
 
     GameObject player;
-    Player script;
+    Player scriptPlayer;
 
     float distanceWantedX = 0.4f;
     float distanceWantedY = 0.45f;
     int originalDirection;
     float originalX, originalY;
+    float aproxTimerMult = 1f;
 
     void Awake ()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        script = player.GetComponent<Player>();
+        scriptPlayer = player.GetComponent<Player>();
     }
 	
 	void Update ()
     {
-        if (script.playerAction != Player.Actions.ON_OBJECT)
+        if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT)
         {
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         }
@@ -44,7 +45,7 @@ public class MovingObject : MonoBehaviour {
                     MoveUp();
                 }
             }
-            else if (script.playerAction != Player.Actions.ON_OBJECT)
+            else if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT)
             {
                 if (CrossPlatformInputManager.GetButtonDown("keyMove")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
@@ -65,39 +66,52 @@ public class MovingObject : MonoBehaviour {
     public void InitMove()
     {
         //print("INITMOVE");
-        script.playerAction = Player.Actions.MOVING_OBJECT;
-        script.animator.SetTrigger("movingObject");
+        scriptPlayer.playerAction = Player.Actions.MOVING_OBJECT;
+        scriptPlayer.animator.SetTrigger("movingObject");
+        aproxTimerMult = 0f;
     }
 
     public void Move()
     {
+        if (scriptPlayer.playerAction != Player.Actions.MOVING_OBJECT)
+        {
+            InitMove();
+        }
+
         if (!MissionManager.instance.scenerySounds2.source.isPlaying)
+        {
             MissionManager.instance.scenerySounds2.PlaySlide(1);
+        }
         //print("MOVE");
         var relativePoint = transform.InverseTransformPoint(player.transform.position);
         //para ver se esta na esquerda ou direta, em cima ou baixo
         //para nao dar problema com a colisão do MovingObject em bordas, faze-las grandes (maiores do que ele)
 
-        if ((script.direction == 0 && relativePoint.x < 0.0)
-            || (script.direction == 1 && relativePoint.x > 0.0)
-            || (script.direction == 0 && relativePoint.x < 0.0 && script.wantedDirection == 1)
-            || (script.direction == 1 && relativePoint.x > 0.0 && script.wantedDirection == 0)
+        if ((scriptPlayer.direction == 0 && relativePoint.x < 0.0)
+            || (scriptPlayer.direction == 1 && relativePoint.x > 0.0)
+            || (scriptPlayer.direction == 0 && relativePoint.x < 0.0 && scriptPlayer.wantedDirection == 1)
+            || (scriptPlayer.direction == 1 && relativePoint.x > 0.0 && scriptPlayer.wantedDirection == 0)
             )
         {
             Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
             diff.y = 0; // ignore Y
             diff.z = 0;
-            rb.position = player.transform.position + diff.normalized * distanceWantedX;
+            rb.position = Vector2.Lerp(rb.position, player.transform.position + diff.normalized * distanceWantedX, aproxTimerMult * Time.deltaTime);
         }
-        else if ((script.direction == 2 && relativePoint.y < 0.0)
-            || (script.direction == 3 && relativePoint.y > 0.0)
-            || (script.direction == 2 && relativePoint.y < 0.0 && script.wantedDirection == 3)
-            || (script.direction == 3 && relativePoint.y > 0.0 && script.wantedDirection == 2))
+        else if ((scriptPlayer.direction == 2 && relativePoint.y < 0.0)
+            || (scriptPlayer.direction == 3 && relativePoint.y > 0.0)
+            || (scriptPlayer.direction == 2 && relativePoint.y < 0.0 && scriptPlayer.wantedDirection == 3)
+            || (scriptPlayer.direction == 3 && relativePoint.y > 0.0 && scriptPlayer.wantedDirection == 2))
         {
             Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
             diff.x = 0; // ignore X
             diff.z = 0;
-            rb.position = player.transform.position + diff.normalized * distanceWantedY;
+            rb.position = Vector2.Lerp(rb.position, player.transform.position + diff.normalized * distanceWantedY, aproxTimerMult * Time.deltaTime);
+        }
+
+        if (aproxTimerMult < 100f)
+        {
+            aproxTimerMult += (10 * Time.deltaTime);
         }
     }
 
@@ -105,64 +119,65 @@ public class MovingObject : MonoBehaviour {
     {
         MissionManager.instance.scenerySounds2.StopSound();
         //print("ENDMOVE");
-        script.playerAction = Player.Actions.DEFAULT;
-        script.animator.SetTrigger("changeDirection");
+        scriptPlayer.playerAction = Player.Actions.DEFAULT;
+        scriptPlayer.animator.SetTrigger("changeDirection");
     }
 
     public void MoveUp()
     {
         //print("MOVEUP");
-        if (script.playerAction != Player.Actions.ON_OBJECT) {
-            originalDirection = script.direction;
+        scriptPlayer.StopMovement();
+        if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT) {
+            originalDirection = scriptPlayer.direction;
             if (originalDirection != 3)
             {
-                script.playerAction = Player.Actions.ON_OBJECT;
+                scriptPlayer.playerAction = Player.Actions.ON_OBJECT;
                 originalX = player.transform.position.x;
                 originalY = player.transform.position.y;
                 GetComponent<Collider2D>().enabled = false;
                 player.GetComponent<Collider2D>().enabled = false;
                 if (originalDirection == 0)
                 {
-                    script.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
-                    script.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
                 }
                 else if (originalDirection == 1)
                 {
-                    script.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
-                    script.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
                 }
                 else if (originalDirection == 2)
                 {
-                    script.ChangePositionDefault(rb.position.x, rb.position.y, -1);
-                    script.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.ChangePositionDefault(rb.position.x, rb.position.y, -1);
+                    scriptPlayer.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
                 }
                 /*else if (originalDirection == 3)
                 {
-                    script.ChangePositionDefault(this, rb.position.x, rb.position.y, -1);
-                    script.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
+                    scriptPlayer.ChangePositionDefault(this, rb.position.x, rb.position.y, -1);
+                    scriptPlayer.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), originalDirection);
                 }*/
             }
         }
         else {
             if (originalDirection == 0)
             {
-                script.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 1);
-                script.MoveDownAnimation("playerDownWest", originalX, originalY, -1);
+                scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 1);
+                scriptPlayer.MoveDownAnimation("playerDownWest", originalX, originalY, -1);
             }
             else if (originalDirection == 1)
             {
-                script.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 0);
-                script.MoveDownAnimation("playerDownEast", originalX, originalY, -1);
+                scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / 4), 0);
+                scriptPlayer.MoveDownAnimation("playerDownEast", originalX, originalY, -1);
             }
             else if (originalDirection == 2)
             {
-                script.ChangePositionDefault(rb.position.x, rb.position.y, 3);
-                script.MoveDownAnimation("playerDownSouth", originalX, originalY, -1);
+                scriptPlayer.ChangePositionDefault(rb.position.x, rb.position.y, 3);
+                scriptPlayer.MoveDownAnimation("playerDownSouth", originalX, originalY, -1);
             }
             /*else if (originalDirection == 3)
             {
-            script.ChangePositionDefault(this, rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), 2);
-                script.MoveDownAnimation("playerDownNorth", originalX, originalY, -1);
+            scriptPlayer.ChangePositionDefault(this, rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), 2);
+                scriptPlayer.MoveDownAnimation("playerDownNorth", originalX, originalY, -1);
             }*/
         }
     }
