@@ -32,7 +32,7 @@ public class MissionManager : MonoBehaviour {
     public bool mission1AssustaGato = false;
     public bool mission2ContestaMae = false;
     public bool mission4QuebraSozinho = false;
-    public bool mission8BurnCorredor = false;
+    public bool mission10BurnCorredor = false;
 
     // CONIDÇÕES DO JOGO
     public bool paused = false;
@@ -115,7 +115,7 @@ public class MissionManager : MonoBehaviour {
                 mission1AssustaGato = false;
                 mission2ContestaMae = false;
                 mission4QuebraSozinho = false;
-                mission8BurnCorredor = false;
+                mission10BurnCorredor = false;
 
                 SetMission(currentMission);
                 SaveGame(1, -1);
@@ -211,6 +211,18 @@ public class MissionManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             ChangeMission(9);
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            ChangeMission(10);
+        }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            ChangeMission(11);
+        }
+        else if (Input.GetKeyDown(KeyCode.U))
+        {
+            ChangeMission(12);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
@@ -560,7 +572,7 @@ public class MissionManager : MonoBehaviour {
         save.mission1AssustaGato = mission1AssustaGato;
         save.mission2ContestaMae = mission2ContestaMae;
         save.mission4QuebraSozinho = mission4QuebraSozinho;
-        save.mission8BurnCorredor = mission8BurnCorredor;
+        save.mission10BurnCorredor = mission10BurnCorredor;
 
         save.time = DateTime.UtcNow.ToString();
 
@@ -655,7 +667,7 @@ public class MissionManager : MonoBehaviour {
             mission1AssustaGato = currentSave.mission1AssustaGato;
             mission2ContestaMae = currentSave.mission2ContestaMae;
             mission4QuebraSozinho = currentSave.mission4QuebraSozinho;
-            mission8BurnCorredor = currentSave.mission8BurnCorredor;
+            mission10BurnCorredor = currentSave.mission10BurnCorredor;
 
             SetMission(currentSave.mission);
 
@@ -678,33 +690,44 @@ public class MissionManager : MonoBehaviour {
         print("MISSAO: " + currentMission);
 
 		switch(currentMission){
-		case 1:
-			mission = new Mission1();
-			break;
-		case 2:
-			mission = new Mission2();
-			break;
-		case 3:
-			mission = new Mission3();
-			break;
-		case 4:
-			mission = new Mission4();
-			break;
-		case 5:
-			mission = new Mission5();
-			break;
-		case 6:
-			mission = new Mission6();
-			break;
-		case 7:
-			mission = new Mission7();
-			break;
-		case 8:
-			mission = new Mission8();
-			break;
-        case 9:
-            mission = new Mission9();
-            break;
+		    case 1:
+			    mission = new Mission1();
+			    break;
+		    case 2:
+			    mission = new Mission2();
+			    break;
+		    case 3:
+			    mission = new Mission3();
+			    break;
+		    case 4:
+			    mission = new Mission4();
+			    break;
+		    case 5:
+			    mission = new Mission5();
+			    break;
+		    case 6:
+			    mission = new Mission6();
+			    break;
+		    case 7:
+			    mission = new Mission7();
+			    break;
+		    case 8:
+			    mission = new Mission8();
+			    break;
+            case 9:
+                mission = new Mission9();
+                break;
+            case 10:
+                mission = new Mission10();
+                break;
+            case 11:
+                mission = new Mission11();
+                break;
+            case 12:
+                mission = new Mission12();
+                break;
+            default:
+                break;
         }
         
         levelImage = hud.transform.Find("LevelImage").gameObject;
@@ -713,12 +736,15 @@ public class MissionManager : MonoBehaviour {
         if (mission != null)
         {
             //DeleteAllPlayerPrefs(); - talvez resetar ao mudar de missão, já que é outra noite (mas dá erro)
-            ClearRandomObjectsPlaces();
-            levelText.text = "Chapter  " + m;
-            levelImage.SetActive(true);
-            showMissionStart = true;
+            if (currentMission != 12)
+            {
+                ClearRandomObjectsPlaces();
+                levelText.text = "Chapter  " + m;
+                levelImage.SetActive(true);
+                showMissionStart = true;
+                Invoke("HideLevelImage", startMissionDelay);
+            }
             mission.InitMission();
-            Invoke("HideLevelImage", startMissionDelay);
         }
         else {
             showMissionStart = false;

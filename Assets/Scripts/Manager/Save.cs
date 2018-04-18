@@ -28,5 +28,5 @@ public class Save
     public bool mission1AssustaGato = false; // M1: assustou o gato ou não
     public bool mission2ContestaMae = false; // M2: brigou com a mãe ou não
     public bool mission4QuebraSozinho = false; // M4: quebrou o vazo sozinho ou não - ajuda do gato
-    public bool mission8BurnCorredor = false; // M8: queimou o corredor ou não - quarto da mãe (caminho mal) -> M10
+    public bool mission10BurnCorredor = false; // M8: queimou o corredor ou não - quarto da mãe (caminho mal) -> M10
 }

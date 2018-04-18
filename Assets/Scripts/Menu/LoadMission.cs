@@ -12,7 +12,19 @@ public class LoadMission : MonoBehaviour{
         loadSub.SetActive(!loadSub.activeSelf);
 
         string temp = gameObject.transform.Find("Text").gameObject.GetComponent<UnityEngine.UI.Text>().text;
-        int missionNumber = int.Parse(temp);
+        int missionNumber = 0;
+        if (temp.Equals("End"))
+        {
+            missionNumber = 11;
+        }
+        else if (temp.Equals("?"))
+        {
+            missionNumber = 12;
+        }
+        else
+        {
+            missionNumber = int.Parse(temp);
+        }
         menu.GetComponent<PreferencesManager>().SetSaveMenu(missionNumber);
     }
 
