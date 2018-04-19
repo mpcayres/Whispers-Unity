@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
     public Actions playerAction;
-    public enum States { DEFAULT, FLASHLIGHT };
+    public enum States { DEFAULT, FLASHLIGHT, PROTECTED_TAMPA, PROTECTED_ESCUDO };
     public States playerState;
 
     public float movespeed;

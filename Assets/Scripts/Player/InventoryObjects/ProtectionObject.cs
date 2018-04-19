@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ProtectionObject : MonoBehaviour {
     public Inventory.InventoryItems item;
     public int life = 60;
+
     bool enterProtection = false;
+    Player player;
 
     void Start()
     {
-        
+        player = GetComponentInParent<Player>();
     }
     
 	void Update ()
@@ -19,19 +22,38 @@ public class ProtectionObject : MonoBehaviour {
         }
         else
         {
-            if (Inventory.GetCurrentItemType() == item)
+            if (Inventory.GetCurrentItemType() == item && !MissionManager.instance.paused &&
+                !MissionManager.instance.blocked && !MissionManager.instance.pausedObject &&
+                CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {
-                if (!enterProtection)
-                {
-                    enterProtection = true;
-                    MissionManager.instance.playerProtected = true;
-                }
+                EnterProtection(!enterProtection);
             }
-            else if (enterProtection)
+            else if (Inventory.GetCurrentItemType() != item && enterProtection)
             {
-                enterProtection = false;
-                MissionManager.instance.playerProtected = false;
+                EnterProtection(false);
             }
+        }
+    }
+
+    private void EnterProtection(bool e = true)
+    {
+        enterProtection = e;
+        MissionManager.instance.playerProtected = e;
+        // mudar imagem do player
+        if (enterProtection)
+        {
+            if (item == Inventory.InventoryItems.TAMPA)
+            {
+                player.ChangeState((int)Player.States.PROTECTED_TAMPA);
+            }
+            else
+            {
+                player.ChangeState((int)Player.States.PROTECTED_ESCUDO);
+            }
+        }
+        else
+        {
+            player.ChangeState((int)Player.States.DEFAULT);
         }
     }
 

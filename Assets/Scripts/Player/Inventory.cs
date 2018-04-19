@@ -7,7 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Inventory : MonoBehaviour {
 
     [System.Serializable]
-    public enum InventoryItems { DEFAULT, FLASHLIGHT, FOSFORO, ISQUEIRO, FACA, BASTAO, TAMPA, PEDRA, PAPEL, VELA, RACAO, LIVRO };
+    public enum InventoryItems { DEFAULT, FLASHLIGHT, FOSFORO, ISQUEIRO, FACA, BASTAO, TAMPA, ESCUDO, PEDRA, PAPEL, VELA, RACAO, LIVRO };
     public class DataItems
     {
         public InventoryItems type;
@@ -58,6 +58,7 @@ public class Inventory : MonoBehaviour {
         NewItem(InventoryItems.VELA);
         NewItem(InventoryItems.PAPEL);
         NewItem(InventoryItems.PEDRA);
+        NewItem(InventoryItems.ESCUDO);
         NewItem(InventoryItems.TAMPA);
         NewItem(InventoryItems.BASTAO);
         NewItem(InventoryItems.FACA);
@@ -264,6 +265,9 @@ public class Inventory : MonoBehaviour {
             case InventoryItems.TAMPA:
                 MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(e);
                 break;
+            case InventoryItems.ESCUDO:
+                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(e);
+                break;
             case InventoryItems.PEDRA:
                 MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(e);
                 break;
@@ -352,7 +356,11 @@ public class Inventory : MonoBehaviour {
                 break;
             case InventoryItems.TAMPA:
                 file = "tampa";
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
+                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 100;
+                break;
+            case InventoryItems.ESCUDO:
+                file = "escudo";
+                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>().life = 80;
                 break;
             case InventoryItems.PEDRA:
                 file = "pedra";
@@ -453,6 +461,10 @@ public class Inventory : MonoBehaviour {
         else if (selectItem == InventoryItems.TAMPA)
         {
             MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(false);
+        }
+        else if (selectItem == InventoryItems.ESCUDO)
+        {
+            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.PEDRA)
         {
