@@ -8,23 +8,23 @@ public class Player : MonoBehaviour {
     public enum States { DEFAULT, FLASHLIGHT, PROTECTED_TAMPA, PROTECTED_ESCUDO };
     public States playerState;
 
-    public float movespeed;
+    public float movespeed = 0.01f;
     public float runningFactor = 3f;
+    public float invertControlsTime = 0;
+    public int direction = 0, wantedDirection = 0;
     public Animator animator;
+
+    public AudioClip steps, stepsGrass;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
+    float stepsControl = 0.5f;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     MovingObject auxOnObject;
 
-    public int direction = 0, wantedDirection = 0;
-    private string lastSceneGameOver = "";
+    private string lastSceneGameOver = "", corvoScene = "";
     private float corvoPositionX, corvoPositionY;
-    private string corvoScene;
-    int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
-    
-    public AudioClip steps, stepsGrass;
-    public AudioSource source { get { return GetComponent<AudioSource>(); } }
-    float stepsControl = 0.5f;
+    private int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
 
     void Start ()
     {
@@ -36,7 +36,10 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
-
+        if (invertControlsTime > 0)
+        {
+            invertControlsTime -= Time.deltaTime;
+        }
        
         if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
@@ -55,25 +58,53 @@ public class Player : MonoBehaviour {
                 }
                 if (CrossPlatformInputManager.GetAxis("Horizontal") > 0)
                 {
-                    rb.position = new Vector2(rb.position.x + move, rb.position.y);
+                    if (invertControlsTime > 0)
+                    {
+                        rb.position = new Vector2(rb.position.x - move, rb.position.y);
+                    }
+                    else
+                    {
+                        rb.position = new Vector2(rb.position.x + move, rb.position.y);
+                    }
                     isWalking = true;
                     direction = 0;
                 }
                 else if (CrossPlatformInputManager.GetAxis("Horizontal") < 0)
                 {
-                    rb.position = new Vector2(rb.position.x - move, rb.position.y);
+                    if (invertControlsTime > 0)
+                    {
+                        rb.position = new Vector2(rb.position.x + move, rb.position.y);
+                    }
+                    else
+                    {
+                        rb.position = new Vector2(rb.position.x - move, rb.position.y);
+                    }
                     isWalking = true;
                     direction = 1;
                 }
                 else if (CrossPlatformInputManager.GetAxis("Vertical") > 0)
                 {
-                    rb.position = new Vector2(rb.position.x, rb.position.y + move);
+                    if (invertControlsTime > 0)
+                    {
+                        rb.position = new Vector2(rb.position.x, rb.position.y - move);
+                    }
+                    else
+                    {
+                        rb.position = new Vector2(rb.position.x, rb.position.y + move);
+                    }
                     isWalking = true;
                     direction = 2;
                 }
                 else if (CrossPlatformInputManager.GetAxis("Vertical") < 0)
                 {
-                    rb.position = new Vector2(rb.position.x, rb.position.y - move);
+                    if (invertControlsTime > 0)
+                    {
+                        rb.position = new Vector2(rb.position.x, rb.position.y + move);
+                    }
+                    else
+                    {
+                        rb.position = new Vector2(rb.position.x, rb.position.y - move);
+                    }
                     isWalking = true;
                     direction = 3;
                 }
@@ -102,7 +133,7 @@ public class Player : MonoBehaviour {
                     source.clip = steps;
                     stepsControl = 0.2f;
                 }
-                if ( isWalking && !source.isPlaying)
+                if (isWalking && !source.isPlaying)
                 {
                     source.PlayDelayed(stepsControl*2);
                 }
@@ -194,6 +225,8 @@ public class Player : MonoBehaviour {
         if (MissionManager.instance.previousSceneName.Equals("GameOver"))
         {
             previousSceneName = lastSceneGameOver;
+            invertControlsTime = 0;
+            movespeed = 0.01f;
         }
         else if(!MissionManager.instance.currentSceneName.Equals("GameOver"))
         {

@@ -79,7 +79,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.8
 --- !u!58 &58865912138526328
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -139,6 +139,10 @@ MonoBehaviour:
   decrementBastao: 25
   decrementPedra: 20
   addPath: 0.5
+  timeMaxPower: 4
+  timeMaxChangeVelocity: 6
+  factorDivideSpeed: 1.5
+  timeInvertControls: 6
 --- !u!212 &212746056938383920
 SpriteRenderer:
   m_ObjectHideFlags: 1

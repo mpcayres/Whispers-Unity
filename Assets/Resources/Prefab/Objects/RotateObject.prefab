@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58281159028116872}
   - component: {fileID: 114664822956047212}
   m_Layer: 0
-  m_Name: bola
+  m_Name: RotateObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e701171dd36d42864aab652195406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefName: 
   rotateSpeed: 30
 --- !u!212 &212591587999632270
 SpriteRenderer:

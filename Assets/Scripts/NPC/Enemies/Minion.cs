@@ -5,9 +5,14 @@ public class Minion : Follower {
     public int healthLight = 200; //decrementa 1 por colisão
     public int healthMelee = 300;
     public int decrementFaca = 30, decrementBastao = 25, decrementPedra = 20;
-    public float addPath = 0.5f;
+    public float addPath = 0.5f; // quanto vai ser adicionado ao somatório das escolhas
+    public float timeMaxPower = 3f; // tempo máximo que pode ficar colidindo com o minion para não ativar próximo poder
+    public float timeMaxChangeVelocity = 6f, factorDivideSpeed = 1.8f; // tempo máximo com velocidade menor e fator para dividi-la
+    public float timeInvertControls = 6f; // tempo adicional para ficar com o controle invertido
 
-    float timeLeftAttack = 0;
+    float timeLeftAttack = 0, timePower = 0, timeChangeVelocity = 0;
+    int power = 0; // 1 - diminui velocidade, 2 - inverte controles, 3 - morre
+    bool onCollision = false, changeVelocity = false;
 
     protected new void Start()
     {
@@ -18,6 +23,32 @@ public class Minion : Follower {
 
     protected new void Update()
     {
+        if (onCollision)
+        {
+            if (timePower > 0)
+            {
+                timePower -= Time.deltaTime;
+            }
+            else
+            {
+                timePower = timeMaxPower;
+                ActivatePower();
+            }
+        }
+
+        if (changeVelocity)
+        {
+            if (timeChangeVelocity > 0)
+            {
+                timeChangeVelocity -= Time.deltaTime;
+            }
+            else
+            {
+                player.GetComponent<Player>().movespeed = player.GetComponent<Player>().movespeed * factorDivideSpeed;
+                changeVelocity = false;
+            }
+        }
+
         if (timeLeftAttack > 0)
         {
             timeLeftAttack -= Time.deltaTime;
@@ -72,11 +103,47 @@ public class Minion : Follower {
         }
     }
 
+    private void ActivatePower()
+    {
+        print("ACTIVATE " + power);
+        switch (power)
+        {
+            case 0:
+                timeChangeVelocity = timeMaxChangeVelocity;
+                changeVelocity = true;
+                player.GetComponent<Player>().movespeed = player.GetComponent<Player>().movespeed / factorDivideSpeed;
+                power++;
+                break;
+            case 1:
+                player.GetComponent<Player>().invertControlsTime += timeInvertControls;
+                power++;
+                break;
+            case 2:
+                power = 0;
+                MissionManager.instance.GameOver();
+                break;
+            default:
+                break;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag.Equals("Player"))
         {
-             MissionManager.instance.GameOver();
+            if (timePower <= 0)
+            {
+                timePower = timeMaxPower;
+            }
+            onCollision = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            onCollision = false;
         }
     }
 }

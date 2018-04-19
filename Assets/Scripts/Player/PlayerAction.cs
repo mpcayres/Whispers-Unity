@@ -10,7 +10,7 @@ public class PlayerAction : MonoBehaviour {
 	
 	void Update ()
     {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time);
+        transform.position = target.transform.position;
     }
 
     //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
