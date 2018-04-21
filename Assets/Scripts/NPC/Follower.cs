@@ -143,4 +143,46 @@ public class Follower : Patroller {
         }
     }
 
+
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
+            || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
+        {
+            var thisX = coll.collider.bounds.center.x;
+            var thisY = coll.collider.bounds.center.y;
+            var otherX = coll.otherCollider.bounds.center.x;
+            var otherY = coll.otherCollider.bounds.center.y;
+
+            float thisObjX = this.gameObject.transform.position.x;
+            float thisObjY = this.gameObject.transform.position.y;
+            float thisObjZ = this.gameObject.transform.position.z;
+
+
+            if (thisX < otherX && thisY > otherY){
+                // subir um pouco
+                // um pouco pra direita
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3 ( thisObjX + 1, thisObjY-1, thisObjZ - 1),speed * Time.deltaTime);
+
+
+            }
+            if (thisX < otherX && thisY < otherY)
+            {
+                // descer um pouco
+                // um pouco pra direita
+            }
+            if (thisX > otherX && thisY > otherY)
+            {
+                // subir um pouco
+                // um pouco pra esquerda
+            }
+            if (thisX > otherX && thisY < otherY)
+            {
+                // descer um pouco
+                // um pouco pra esquerda
+            }
+        }
+    }
+
 }

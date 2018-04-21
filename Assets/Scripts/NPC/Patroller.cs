@@ -16,6 +16,9 @@ public class Patroller : MonoBehaviour {
     protected int direction = 4, oldDirection = 4;
     protected int destPoint = 0;
 
+
+    bool quadr1 = false, quadr2 = false, quadr3 = false, quadr4 = false;
+
     protected void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +41,37 @@ public class Patroller : MonoBehaviour {
         {
             GotoNextPoint();
         }
+
+        if (quadr1 || quadr2 || quadr3 || quadr4)
+        {
+
+
+            float thisObjX = this.gameObject.transform.position.x;
+            float thisObjY = this.gameObject.transform.position.y;
+            float thisObjZ = this.gameObject.transform.position.z;
+
+            if (quadr1)
+            {
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                quadr1 = false;
+            }
+            if (quadr2)
+            {
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                quadr2 = false;
+            }
+            if (quadr3)
+            {
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                quadr3 = false;
+            }
+            if (quadr4)
+            {
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                quadr4 = false;
+            }
+        }
+
         SetActionPatrollerDirection();
     }
 
@@ -164,6 +198,43 @@ public class Patroller : MonoBehaviour {
             if (collision.gameObject.tag.Equals("Player"))
             {
                 MissionManager.instance.GameOver();
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
+            || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
+        {
+            var thisX = coll.collider.bounds.center.x;
+            var thisY = coll.collider.bounds.center.y;
+            var otherX = coll.otherCollider.bounds.center.x;
+            var otherY = coll.otherCollider.bounds.center.y;
+
+            if (thisX <= otherX && thisY >= otherY)
+            {
+                // subir um pouco
+                // um pouco pra esquerda
+                quadr1 = true;
+            }
+            else if (thisX <= otherX && thisY <= otherY)
+            {
+                // descer um pouco
+                // um pouco pra esquerda
+                quadr2 = true;
+            }
+            else if (thisX >= otherX && thisY >= otherY)
+            {
+                // subir um pouco
+                // um pouco pra direita
+                quadr3 = true;
+            }
+            else if (thisX >= otherX && thisY <= otherY)
+            {
+                // descer um pouco
+                // um pouco pra esquerda
+                quadr4 = true;
             }
         }
     }

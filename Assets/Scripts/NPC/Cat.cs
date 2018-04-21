@@ -2,7 +2,9 @@
 
 public class Cat : Follower {
     public static Cat instance;
-    
+
+
+
     protected new void Start () {
         if (instance == null)
         {
@@ -21,6 +23,7 @@ public class Cat : Follower {
 	
 	protected new void Update () {
         base.Update();
+        
     }
 
     public void DestroyCat()
@@ -52,4 +55,6 @@ public class Cat : Follower {
             }
         }
     }
+
+   
 }
