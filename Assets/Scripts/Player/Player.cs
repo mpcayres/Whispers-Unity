@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     public float runningFactor = 3f;
     public float invertControlsTime = 0;
     public int direction = 0, wantedDirection = 0;
+    public bool isRunning = false;
     public Animator animator;
 
     public AudioClip steps, stepsGrass;
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour {
        
         if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
         {
-            bool isWalking = false, isRunning = false;
+            bool isWalking = false;
             float move = movespeed;
 
             //Ordem do layer determinada pelo eixo y
@@ -56,6 +57,11 @@ public class Player : MonoBehaviour {
                     move = runningFactor * movespeed;
                     isRunning = true;
                 }
+                else
+                {
+                    isRunning = false;
+                }
+
                 if (CrossPlatformInputManager.GetAxis("Horizontal") > 0)
                 {
                     if (invertControlsTime > 0)

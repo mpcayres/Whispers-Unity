@@ -86,10 +86,10 @@ public class Follower : Patroller {
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-    public void FollowPlayer()
+    public void FollowPlayer(bool e = true)
     {
-        isPatroller = false;
-        followingPlayer = true;
+        isPatroller = !e;
+        followingPlayer = e;
     }
 
     public bool IsFollowing()

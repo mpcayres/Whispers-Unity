@@ -22,10 +22,14 @@ public class ParticleCollision : MonoBehaviour {
         {
             if (MissionManager.instance.playerProtected)
             {
-                print(Inventory.GetCurrentItemType().ToString());
+                //print(Inventory.GetCurrentItemType().ToString());
                 if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
                 {
                     GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                }
+                else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ESCUDO)
+                {
+                    GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
                 }
             }
             else
