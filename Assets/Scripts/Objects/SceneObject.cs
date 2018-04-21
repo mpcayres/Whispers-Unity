@@ -20,6 +20,8 @@ public class SceneObject : MonoBehaviour {
     BoxCollider2D boxCollider;
     Player player;
 
+    public bool isCrowSick = false;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -41,12 +43,20 @@ public class SceneObject : MonoBehaviour {
 
         if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
-            if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
+            if (isCrowSick && CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
+            !MissionManager.instance.paused && !MissionManager.instance.blocked &&
+            !MissionManager.instance.pausedObject)
+            {
+                isCrowSick = GameObject.Find("sickCrow").gameObject.GetComponent<SickCrow>().fly = true;
+
+            }
+            else if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
             !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 ChangeSprite();
             }
+            
         }
     }
     
