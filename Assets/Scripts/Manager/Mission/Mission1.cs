@@ -43,7 +43,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.INICIO)
         {
-            if (window.IsActive() /*|| CursorLockMode.ObjectOpened()*/)
+            if (window.IsActive() /*|| CursorLockMode.ObjectOpened()*/) // trocar para checar em cima do armário
             {
                 EspecificaEnum((int) enumMission.GATO_APARECEU);
             }

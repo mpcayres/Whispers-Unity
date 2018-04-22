@@ -6,18 +6,20 @@ Alex: The door is locked.
 -------------------------------------- MISSAO 1 ----------------------------------------------------
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M1Q0C0]
-Alex: Go away Atze, I want to be alone.
+Alex: Go away Pumpkin, I want to be alone.
 [title=M1Q0C0End]
 [title=M1Q0C1]
-Alex: Can you sleep with me, Atze?
+Alex: Can you sleep with me, Pumpkin?
 [title=M1Q0C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M1KidRoomSceneStart]
-Alex: Hm? Is it morning already? 
-Alex:　I'll check out in the window.
+Alex: Hm? What is this strange noise? 
+Alex:　I'll check out.
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneCat]
-Alex: Atze?
+Alex: A Crow?
+Alex: Pumpkin? What's wrong?
+Pumpkin: Meow.
 [title=M1KidRoomSceneCatEnd]
 [title=M1KidRoomSceneRepeat]
 Mom: One more nightmare? 
@@ -26,11 +28,11 @@ Mom: Everything is going to be ok. Just go back to sleep.
 Mom: I'm going back to my room now.
 [title=M1KidRoomSceneRepeatEnd]
 [title=M1KidRoomSceneChoice]
-Alex: Atze?
+Alex: Pumpkin?
 Alex: Why are you staring at me?
 [question=0] What do you want to do now?
-[choice]"Go away Atze, I want to be alone."
-[choice]“Can you sleep with me, Atze?”
+[choice]"Go away Pumpkin, I want to be alone."
+[choice]“Can you sleep with me, Pumpkin?”
 [title=M1KidRoomSceneChoiceEnd]
 ----------------------------------- CENAS NA COZINHA -----------------------------------
 [title=M1KitchenSceneStart]
@@ -44,7 +46,7 @@ Alex: Why are you staring at me?
 [title=M1GardenSceneRepeatEnd]
 ----------------------------------- CENAS NO QUARTO DA Mom -----------------------------------
 [title=M1MomRoomSceneStart]
-Alex: Atze?
+Alex: Pumpkin?
 [title=M1MomRoomSceneEnd]
 [title=M1MomRoomSceneRepeat]
 [title=M1MomRoomSceneRepeatEnd]
@@ -55,7 +57,7 @@ Alex: Atze?
 [title=M1LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M1CorridorSceneStart]
-Alex: Atze?
+Alex: Pumpkin?
 [title=M1CorridorSceneEnd]
 [title=M1CorridorSceneRepeat]
 [title=M1CorridorSceneRepeatEnd]
@@ -73,24 +75,24 @@ Alex: I think I have everything I need.
 Alex: Better keep this in my room.
 [title=M2AllObjectsContestaEnd]
 [title=M2AtaqueContesta]
-Atze: Mrrrrow!
+Pumpkin: Mrrrrow!
 [title=M2AtaqueContestaEnd]
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M2Q1C0]
 Alex: You don't understand me!! 
 Alex: I don't like being alone, I don't like you!
-Alex: Come on, Atze!
+Alex: Come on, Pumpkin!
 [title=M2Q1C0End]
 [title=M2Q1C0_2]
-Alex: We need a weapon, Atze.
+Alex: We need a weapon, Pumpkin.
 Alex: Let us defend ourselves from what is haunting us!
 [title=M2Q1C0_2End]
 [title=M2Q1C1]
 Alex: That's ok, mommy.
-Alex: At least Atze can be by my side...
+Alex: At least Pumpkin can be by my side...
 [title=M2Q1C1End]
 [title=M2Q1C1_2]
-Alex: Atze, let's get a candle!
+Alex: Pumpkin, let's get a candle!
 Alex: So we can sleep with a little light at night!
 [title=M2Q1C1_2End]
 
@@ -143,7 +145,7 @@ Mom: You wouldn't sleep next to me.
 Mom: And also, you need to deal with your fears on your own.
 [question=1]What do you want to say to your mom?
 [choice]"You don't understand me!I don't like being alone, I don't like you!"
-[choice]"That's ok, mommy.At least Atze can be by my side..."
+[choice]"That's ok, mommy.At least Pumpkin can be by my side..."
 [title=M2CorridorSceneEnd]
 [title=M2CorridorSceneRepeat]
 Alex: I can't let she see me.
@@ -163,13 +165,13 @@ Velho: We don't have much more money left ...
 Velha: No one will want to buy such a haunted house.
 Velho: Stop talking nonsense ...
 Velho: You just think it's haunted because you keep on talking about it.
-Atze: Can you see, Alex?
+Pumpkin: Can you see, Alex?
 Velha: How do you explain all the accidents then?
-Velho: Pff. The important thing is that we still have our little Atze.
+Velho: Pff. The important thing is that we still have our little Pumpkin.
 [title=M3MundoInvertidoEnd]
 [title=M3MundoInvertido2]
-Atze: Alex...
-Atze: RUN!
+Pumpkin: Alex...
+Pumpkin: RUN!
 [title=M3MundoInvertido2End]
 [title=M3MundoInvertido3]
 Alex: I don't want to go back to that place!
@@ -195,7 +197,7 @@ Mother: I think you should rest your head a little.
 [title=M3Q2C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M3KidRoomSceneStart]
-Alex: Atze?
+Alex: Pumpkin?
 [title=M3KidRoomSceneEnd]
 [title=M3KidRoomSceneRepeat]
 [title=M3KidRoomSceneRepeatEnd]
@@ -246,10 +248,10 @@ Alex: Nothing here.
 [title=frenteCriadoStart]
 Alex: Wait!
 Alex: Do you want me to find the book that was here?
-Atze: Meow.
+Pumpkin: Meow.
 Alex: Let's try to find the book then?
 Alex: Would the bookcase be too obvious?
-Alex: Can you help me, Atze?
+Alex: Can you help me, Pumpkin?
 [title=frenteCriadoEnd]
 [title=GrandeBarulhoStart]
 Alex: I have to distract her.
@@ -273,7 +275,7 @@ Mom: Did you break the vase!?
 
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M4Q3C0]
-Alex: Atze, can you break that vase for me?
+Alex: Pumpkin, can you break that vase for me?
 Alex: I'll give you a prize to do this.
 Alex: A very tasty ration.
 [title=M4Q3C0End]
@@ -293,7 +295,7 @@ Mom: Who else could have been? To your room! Now!
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M4KidRoomSceneStart]
 Alex: I need to find out what's happening to me ...
-Alex: Atze? What's it?
+Alex: Pumpkin? What's it?
 Alex: You want me to follow you?
 [title=M4KidRoomSceneEnd]
 [title=M4KidRoomSceneRepeat]
@@ -339,13 +341,13 @@ Alex: "Precisamos de Luz!"... O que isso quer dizer?
 [title=DicaMundoInvertido5End]
 ----------------------------------- ESCOLHAS -----------------------------------
 [title=M5Q5C0]
-Atze: Grrrr.
-Alex: Atze... Don't make me do it...
-Atze: Grrrrrrr.
+Pumpkin: Grrrr.
+Alex: Pumpkin... Don't make me do it...
+Pumpkin: Grrrrrrr.
 Alex: Ok... But don't leave me alone!
 [title=M5Q5C0End]
 [title=M5Q5C1]
-Alex: Come on, Atze!
+Alex: Come on, Pumpkin!
 Alex: We need to find out what is happening.
 [title=M5Q5C1End]
 
@@ -423,10 +425,10 @@ Alex: What?!?! I can't?
 [title=M6KitchenSceneRepeatEnd]
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M6GardenSceneStart]
-Alex: Atze?
+Alex: Pumpkin?
 Alex: What are these leaves?
 Alex: Hm ... These dried leaves are only good for ...
-Atze: Meow!
+Pumpkin: Meow!
 Alex: Burn them?
 Alex: How is it going to help save Mom?
 Alex: Ah! Scare the monster?
@@ -527,9 +529,9 @@ Alex: How many pages are still missing?
 Alex: With that sudden dark ...
 Alex: It's hard to see the book like that.
 Alex: Not to say dangerous...
-Alex: Calm down ... Where's Atze?
+Alex: Calm down ... Where's Pumpkin?
 Alex: Where did he go?
-Alex: Atze?!?
+Alex: Pumpkin?!?
 [title=M7MomRoomSceneEnd]
 [title=M7LightFull]
 Alex: What's that light ?!
@@ -541,19 +543,19 @@ Alex: It must have appeared for some reason ...
 [title=M7MomRoomSceneRepeatEnd]
 ----------------------------------- CENAS NA SALA -----------------------------------
 [title=M7LivingroomSceneStart]
-Alex: Atze !! What are you doing there?
+Alex: Pumpkin !! What are you doing there?
 [title=M7LivingroomSceneEnd]
-[title=M7TalkedAtze]
-Alex: Atze, what are you doing?
-Atze: Meoww...
+[title=M7TalkedPumpkin]
+Alex: Pumpkin, what are you doing?
+Pumpkin: Meoww...
 Alex: Why are you so angry !?
 Alex: What? The book?! Hang on...
 Alex: Do you want me to read it?
 Alex: It's not safe here ...
 Alex: I need to go to my room for this!
-Atze: Meow!
+Pumpkin: Meow!
 Alex: You should be fine! I'll be right back!
-[title=M7TalkedAtzeEnd]
+[title=M7TalkedPumpkinEnd]
 [title=M7LivingroomSceneRepeat]
 [title=M7LivingroomSceneRepeatEnd]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
@@ -561,7 +563,7 @@ Alex: You should be fine! I'll be right back!
 Alex: It multiplied by two!
 Alex: What's that noise?
 Alex: It seems to be coming from the room ...
-Alex: Is it Atze?
+Alex: Is it Pumpkin?
 [title=M7CorridorSceneEnd]
 [title=M7Corridor2]
 Alex: Another one?!
@@ -625,10 +627,10 @@ Alex: Where is my mother? What did the monster do?
 Alex: I'm going to burn some things out of here ...
 [title=M8LivingroomSceneEnd]
 [title=M8LivingroomSceneRepeat]
-Alex: Mother! Atze! Let's get out of here...
+Alex: Mother! Pumpkin! Let's get out of here...
 [title=M8LivingroomSceneRepeatEnd]
 [title=M8LivingroomSceneRepeat2]
-Alex: Atze??? What have they done to my family?
+Alex: Pumpkin??? What have they done to my family?
 [title=M8LivingroomSceneRepeat2End]
 ----------------------------------- CENAS NO CORREDOR -----------------------------------
 [title=M8CorridorSceneStart]
