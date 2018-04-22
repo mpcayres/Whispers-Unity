@@ -138,9 +138,8 @@ public class Mission1 : Mission {
         {
             GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(-0.7f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().Patrol();
-            Transform aux = new GameObject().transform;
-            aux.position = new Vector3(-9.8f, -0.4f, -0.5f);
-            Transform[] catPos = { aux };
+            Vector3 aux = new Vector3(-9.8f, -0.4f, -0.5f);
+            Vector3[] catPos = { aux };
             cat.GetComponent<Cat>().targets = catPos;
 
             MissionManager.instance.pausedObject = true;
@@ -313,9 +312,8 @@ public class Mission1 : Mission {
         else if (secao == enumMission.GATO_CORREDOR)
         {
             Cat.instance.GetComponent<Cat>().Patrol();
-            Transform aux = new GameObject().transform;
-            aux.position = new Vector3(2.6f, -0.7f, -0.5f);
-            Transform[] catPos = { aux };
+            Vector3 aux = new Vector3(2.6f, -0.7f, -0.5f);
+            Vector3[] catPos = { aux };
             Cat.instance.GetComponent<Cat>().targets = catPos;
             Cat.instance.stopEndPath = true;
             Cat.instance.speed = 1.4f;

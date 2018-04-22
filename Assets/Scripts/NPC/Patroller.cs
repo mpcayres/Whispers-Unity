@@ -6,7 +6,7 @@ public class Patroller : MonoBehaviour {
     public bool isPatroller = false;
     public bool destroyEndPath = false;
     public bool stopEndPath = false;
-    public Transform[] targets;
+    public Vector3[] targets;
 
     public bool hasActionPatroller = false;
     public float offsetActionPatroller = 0f;
@@ -81,9 +81,9 @@ public class Patroller : MonoBehaviour {
 
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, targets[destPoint].position, step);
+        transform.position = Vector3.MoveTowards(transform.position, targets[destPoint], step);
 
-        float dist = Vector3.Distance(targets[destPoint].position, transform.position);
+        float dist = Vector3.Distance(targets[destPoint], transform.position);
         if (dist < 0.4f)
         {
             if (destPoint + 1 == targets.Length && destroyEndPath)
@@ -109,10 +109,10 @@ public class Patroller : MonoBehaviour {
 
     protected void ChangeDirection()
     {
-        if (Mathf.Abs(targets[destPoint].position.y - transform.position.y) <
-            Mathf.Abs(targets[destPoint].position.x - transform.position.x))
+        if (Mathf.Abs(targets[destPoint].y - transform.position.y) <
+            Mathf.Abs(targets[destPoint].x - transform.position.x))
         {
-            if (targets[destPoint].position.x > transform.position.x)
+            if (targets[destPoint].x > transform.position.x)
             {
                 direction = 0;
             }
@@ -123,7 +123,7 @@ public class Patroller : MonoBehaviour {
         }
         else
         {
-            if (targets[destPoint].position.y > transform.position.y)
+            if (targets[destPoint].y > transform.position.y)
             {
                 direction = 2;
             }

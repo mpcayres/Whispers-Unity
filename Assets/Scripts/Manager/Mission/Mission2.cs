@@ -132,23 +132,16 @@ public class Mission2 : Mission {
             // Mae patrulha
             GameObject mom = MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Patroller>().isPatroller = true;
-            Transform target1 = new GameObject().transform, target2 = new GameObject().transform, target3 = new GameObject().transform;
-            Transform target4 = new GameObject().transform, target5 = new GameObject().transform, target6 = new GameObject().transform;
-            Transform target7 = new GameObject().transform, target8 = new GameObject().transform, target9 = new GameObject().transform;
-            target1.position = new Vector3(6f, -0.3f, -0.5f);
-            target2.position = new Vector3(6f, 0.5f, -0.5f);
-            target3.position = new Vector3(6f, -0.3f, -0.5f);
-            if (Random.value > 0)
-                target4.position = new Vector3(8f, -0.3f, -0.5f);
-            else
-                target5.position = new Vector3(7f, -0.3f, -0.5f);
-            target6.position = new Vector3(-3f, -0.3f, -0.5f);
-            if (Random.value > 0)
-                target7.position = new Vector3(3f, -0.3f, -0.5f);
-            else
-                target8.position = new Vector3(5f, -0.3f, -0.5f);
-            target9.position = new Vector3(-3f, -0.3f, -0.5f);
-            Transform[] momTargets = { target1, target2, target3, target4, target5, target6, target7, target8, target9 };
+            Vector3 target1 = new Vector3(6f, -0.3f, -0.5f);
+            Vector3 target2 = new Vector3(6f, 0.5f, -0.5f);
+            Vector3 target3 = new Vector3(6f, -0.3f, -0.5f);
+            Vector3 target4 = new Vector3(7f, -0.3f, -0.5f);
+            if (Random.value > 0) target4 = new Vector3(8f, -0.3f, -0.5f);
+            Vector3 target5 = new Vector3(-3f, -0.3f, -0.5f);
+            Vector3 target6 = new Vector3(5f, -0.3f, -0.5f);
+            if (Random.value > 0) target6 = new Vector3(3f, -0.3f, -0.5f);
+            Vector3 target7 = new Vector3(-3f, -0.3f, -0.5f);
+            Vector3[] momTargets = { target1, target2, target3, target4, target5, target6, target7 };
             mom.GetComponent<Patroller>().targets = momTargets;
             mom.GetComponent<Patroller>().hasActionPatroller = true;
         }
@@ -376,15 +369,14 @@ public class Mission2 : Mission {
             Cat.instance.followWhenClose = false;
             Cat.instance.stopEndPath = true;
             Cat.instance.Patrol();
-            Transform target1 = new GameObject().transform, target2 = new GameObject().transform;
-            Vector3 posCorvo = corvoBabies.transform.position;
-            target1.position = posCorvo;
-            target2.position = new Vector3(-2f, 0.6f, -0.5f);
-            Transform[] targets = { target1, target2 };
+
+            Vector3 target1 = corvoBabies.transform.position;
+            Vector3 target2 = new Vector3(-2f, 0.6f, -0.5f);
+            Vector3[] targets = { target1, target2 };
             Cat.instance.targets = targets;
 
             corvoBabies.GetComponent<CorvBabies>().Patrol();
-            Transform[] targetsCorvo = { target2 };
+            Vector3[] targetsCorvo = { target2 };
             corvoBabies.GetComponent<CorvBabies>().targets = targetsCorvo;
             corvoBabies.GetComponent<CorvBabies>().speed = 0.6f;
 
