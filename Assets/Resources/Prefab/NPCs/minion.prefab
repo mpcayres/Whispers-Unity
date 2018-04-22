@@ -107,14 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6405815b6534e4bb0f0bcde7dfbe01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0.2
   animator: {fileID: 0}
   isPatroller: 1
   destroyEndPath: 0
   stopEndPath: 0
   targets: []
   hasActionPatroller: 1
-  offsetActionPatroller: 0.5
+  offsetActionPatroller: 0.2
   followWhenClose: 1
   followingPlayer: 0
   healthLight: 200
