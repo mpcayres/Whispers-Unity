@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class MinionEmmitter : MonoBehaviour {
 
-    public int numMinions = 5;
+    public int numMinions = 5, currentMinions = 0;
+    public bool hydraEffect = true;
     public float limitX0 = -3f, limitXF = 3f, limitY0 = -2f, limitYF = 2f;
     
     private void Start()
@@ -13,7 +14,21 @@ public class MinionEmmitter : MonoBehaviour {
 
     private void Update()
     {
-
+        if (currentMinions < numMinions)
+        {
+            if (hydraEffect)
+            {
+                numMinions++;
+                AddMinion();
+                AddMinion();
+                currentMinions += 2;
+            }
+            else
+            {
+                AddMinion();
+                currentMinions++;
+            }
+        }
     }
     
     private void GenerateMinionMap()
@@ -22,6 +37,7 @@ public class MinionEmmitter : MonoBehaviour {
         {
             AddMinion();
         }
+        currentMinions = numMinions;
     }
 
     private void AddMinion()

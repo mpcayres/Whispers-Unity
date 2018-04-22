@@ -13,12 +13,14 @@ public class Minion : Follower {
     float timeLeftAttack = 0, timePower = 0, timeChangeVelocity = 0;
     int power = 0; // 1 - diminui velocidade, 2 - inverte controles, 3 - morre
     bool onCollision = false, changeVelocity = false;
+    MinionEmmitter emmitter;
 
     protected new void Start()
     {
         base.Start();
         distFollow = 0.1f;
         moveTowards = true;
+        emmitter = GetComponentInParent<MinionEmmitter>();
     }
 
     protected new void Update()
@@ -98,12 +100,14 @@ public class Minion : Follower {
         if (healthLight <= 0)
         {
             MissionManager.instance.pathCat += addPath;
+            if (emmitter) emmitter.currentMinions--;
             Destroy(gameObject);
             // animação + som
         }
         else if (healthMelee <= 0)
         {
             MissionManager.instance.pathBird += addPath;
+            if (emmitter) emmitter.currentMinions--;
             Destroy(gameObject);
             // animação + som
         }
@@ -172,6 +176,7 @@ public class Minion : Follower {
             collision.GetComponent<FarAttackMiniGameObject>().hitSuccess = true;
             if (collision.GetComponent<FarAttackMiniGameObject>().achievedGoal)
             {
+                if (emmitter) emmitter.currentMinions--;
                 Destroy(gameObject);
             }
         }
