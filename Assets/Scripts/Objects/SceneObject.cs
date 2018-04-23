@@ -45,10 +45,8 @@ public class SceneObject : MonoBehaviour {
         {
             if (isCrowSick && CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject)
-            {
-                GameObject.Find("sickCrow").gameObject.GetComponent<SickCrow>().fly = true;
-
+            !MissionManager.instance.pausedObject) {
+                GameObject.Find("CrowHolder").gameObject.GetComponent<SickCrow>().fly = true;
             }
             else if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
             !MissionManager.instance.paused && !MissionManager.instance.blocked &&

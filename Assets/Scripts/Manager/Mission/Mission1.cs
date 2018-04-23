@@ -43,7 +43,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.INICIO)
         {
-            if (window.IsActive() /*|| CursorLockMode.ObjectOpened()*/) // trocar para checar em cima do armário
+            if (GameObject.Find("CrowHolder").gameObject.transform.GetComponent<SickCrow>().fly)
             {
                 EspecificaEnum((int) enumMission.GATO_APARECEU);
             }

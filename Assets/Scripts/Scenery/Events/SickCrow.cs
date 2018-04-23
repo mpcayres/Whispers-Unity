@@ -17,7 +17,9 @@ public class SickCrow : MonoBehaviour
          }
          else
          {
+            armario = GameObject.Find("Armario").gameObject;
             armario.GetComponent<SceneObject>().isCrowSick = true;
-         }
+            armario.GetComponent<SceneObject>().isUp = true;
+        }
     }
 }

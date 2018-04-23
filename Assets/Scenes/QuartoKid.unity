@@ -164,12 +164,12 @@ Prefab:
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 409.99997
+      value: 316.49997
       objectReference: {fileID: 0}
     - target: {fileID: 224014160812952528, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 189.99998
+      value: 199.49997
       objectReference: {fileID: 0}
     - target: {fileID: 224028338658414524, guid: 063980b53742ff1448b88d2562035754,
         type: 2}
@@ -9589,12 +9589,12 @@ Prefab:
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 410
+      value: 316.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 172.5
       objectReference: {fileID: 0}
     - target: {fileID: 224719400052412804, guid: 8d1b083e1fa293148a13d0924d536cb5,
         type: 2}
@@ -27373,7 +27373,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1067403426}
   m_LocalRotation: {x: 0, y: -0, z: -0.0000000037252899, w: 1}
-  m_LocalPosition: {x: -18.55, y: 7.05, z: -1.711}
+  m_LocalPosition: {x: -17.15, y: 5.34, z: -1.711}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1602411938}
@@ -48241,10 +48241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1c4e3d41dd584aac6c3d7fb6a0191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyName1: 
-  keyName2: 
+  keyName1: keyMove
+  keyName2: keyMove
   mission: 1
-  click: {fileID: 0}
+  click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
   inventoryObject: 0
 --- !u!61 &1250353194
 BoxCollider2D:
@@ -83417,10 +83417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac1c4e3d41dd584aac6c3d7fb6a0191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyName1: 
-  keyName2: 
+  keyName1: keyMove
+  keyName2: keySpecial
   mission: 1
-  click: {fileID: 0}
+  click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
   inventoryObject: 0
 --- !u!61 &1906961857
 BoxCollider2D:
