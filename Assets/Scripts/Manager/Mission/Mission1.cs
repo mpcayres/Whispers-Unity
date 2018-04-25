@@ -7,6 +7,7 @@ public class Mission1 : Mission {
         GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, SMILE, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
     enumMission secao;
 
+    bool left = false;
     SceneObject window;
     //ZoomObject clock;
     float portaDefaultX, portaDefaultY;
@@ -22,7 +23,6 @@ public class Mission1 : Mission {
         MissionManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = true;
-
         MissionManager.instance.invertWorld = false;
         MissionManager.instance.invertWorldBlocked = true;
 
@@ -50,10 +50,25 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
+            var cat = GameObject.Find("catFollower(Clone)").gameObject;
             if (MissionManager.instance.currentSceneName.Equals("Corredor") && !MissionManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.GATO_CORREDOR);
-            }
+            } else if (MissionManager.instance.currentSceneName.Equals("QuartoKid") && !MissionManager.instance.rpgTalk.isPlaying) {
+                if (!left)
+                {
+                    
+                    Vector3 aux = new Vector3(1.8f, 1f, -0.5f);
+                    Vector3[] catPos = { aux };
+                    cat.GetComponent<Cat>().targets = catPos;
+                    Cat.instance.stopEndPath = true;
+                    left = true;
+                }
+               // else if(cat.GetComponent<Cat>().targets == null) {
+               //     GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
+               // }
+            } 
+
         }
         else if (secao == enumMission.GATO_SALA)
         {
@@ -298,16 +313,25 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse);
-
             // Porta abrindo
-            MissionManager.instance.scenerySounds.PlayCat(2);
-
             MissionManager.instance.scenerySounds2.PlayDoorOpen(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
             porta.GetComponent<SceneDoor>().isOpened = true;
             porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
+            
+            MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneCat", "M1KidRoomSceneCatEnd", MissionManager.instance.rpgTalk.txtToParse);
+            
+            // Gato entrando
+            MissionManager.instance.scenerySounds.PlayCat(2);
+            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(1.8f, 1f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().Patrol();
+            Vector3 aux = new Vector3(1f, 0f, -0.5f);
+            Vector3[] catPos = { aux };
+            cat.GetComponent<Cat>().targets = catPos;
+            Cat.instance.stopEndPath = true;
+
+           
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {
