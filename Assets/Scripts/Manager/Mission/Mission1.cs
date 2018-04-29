@@ -61,7 +61,7 @@ public class Mission1 : Mission {
                     Vector3 aux = new Vector3(1.8f, 1f, -0.5f);
                     Vector3[] catPos = { aux };
                     cat.GetComponent<Cat>().targets = catPos;
-                    Cat.instance.stopEndPath = true;
+                    Cat.instance.destroyEndPath = true;
                     left = true;
                 }
                // else if(cat.GetComponent<Cat>().targets == null) {
