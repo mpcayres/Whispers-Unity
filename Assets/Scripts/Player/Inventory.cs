@@ -220,7 +220,7 @@ public class Inventory : MonoBehaviour {
         return false;
     }
 
-    // DETERMINA ITEM ATUAL
+    // DEFINE ITEM ATUAL
     public static void SetCurrentItem(int pos)
     {
         if (lastItem != -1)

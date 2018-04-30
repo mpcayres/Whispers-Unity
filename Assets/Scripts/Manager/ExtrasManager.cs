@@ -2,6 +2,8 @@
 
 public class ExtrasManager
 {
+    //ATINGIU CONDIÇÕES DE ATIVAR RESPECTIVA SIDE QUEST
+    public static bool canActivateSide1 = false;
 
     public static void InitSideQuest(int numSideQuest)
     {
@@ -42,7 +44,7 @@ public class ExtrasManager
         int sideQuests = MissionManager.instance.sideQuests;
 
         if (sideQuests == 0 && current >= 5 && current != 9 && current != 10 && current != 11 
-            && MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+            && MissionManager.instance.currentSceneName.Equals("QuartoKid") && canActivateSide1)
         {
             // set side quest 1
             GameObject quest1 = MissionManager.instance.AddObject(

@@ -353,6 +353,7 @@ Alex: We need to find out what is happening.
 
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M5KidRoomSceneStart]
+Alex: I wonder if there is something interesting in that book.
 [title=M5KidRoomSceneEnd]
 [title=M5KidRoomSceneRepeat]
 [title=M5KidRoomSceneRepeatEnd]
