@@ -28,6 +28,9 @@ public class MissionManager : MonoBehaviour {
     // ESCOLHAS
     public float pathBird = 0, pathCat = 0;
 
+    //CENA ESPECÍFICA
+    public bool mission1MaeQuarto = false;
+
     // ESCOLHAS ESPECÍFICAS
     public bool mission1AssustaGato = false;
     public bool mission2ContestaMae = false;

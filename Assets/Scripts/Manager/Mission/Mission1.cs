@@ -148,6 +148,11 @@ public class Mission1 : Mission {
             // Porta QuartoKid
             GameObject portaKid = GameObject.Find("DoorToKidRoom").gameObject;
             portaKid.GetComponent<SceneDoor>().isOpened = false;
+            float portaKidDefaultY = portaKid.transform.position.y;
+            float portaKidposX = portaKid.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+            portaKid.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+            portaKid.transform.position = new Vector3(portaKid.transform.position.x - posX, portaKidDefaultY, portaKid.transform.position.z);
+
         }
         else if (secao == enumMission.GATO_COZINHA)
         {
@@ -362,10 +367,12 @@ public class Mission1 : Mission {
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
             darkness.transform.Find("Darkness1").gameObject.SetActive(true);
             darkness.transform.Find("Darkness2").gameObject.SetActive(true);
+            darkness.transform.Find("Darkness3").gameObject.SetActive(true);
             MissionManager.instance.Invoke("InvokeMission", 3f);
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
+            MissionManager.instance.mission1MaeQuarto = true;
             MissionManager.LoadScene(sceneInit);
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
