@@ -544,7 +544,7 @@ namespace Wasabimole.InspectorNavigator.Editor
                 e.Use();
                 return false;
             }
-            return (e.type == EventType.mouseUp && rectLabels.Contains(e.mousePosition) && e.mousePosition.x < rectRightCut.x);
+            return (e.type == EventType.MouseUp && rectLabels.Contains(e.mousePosition) && e.mousePosition.x < rectRightCut.x);
         }
 
         public void ClearDuplicates()
@@ -1029,7 +1029,7 @@ namespace Wasabimole.InspectorNavigator.Editor
             gc.text = "\x21";
             GUILayout.Label(gc, LabelStyle, GUILayout.Width(16));
             LabelStyle.fontStyle = FontStyle.Normal;
-            if (e.type == EventType.mouseDown && GUILayoutUtility.GetLastRect().Contains(e.mousePosition))
+            if (e.type == EventType.MouseDown && GUILayoutUtility.GetLastRect().Contains(e.mousePosition))
                 UpdateNotifications.AttendNotification();
         }
 
