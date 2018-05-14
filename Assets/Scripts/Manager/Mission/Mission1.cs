@@ -131,6 +131,15 @@ public class Mission1 : Mission {
         portaMae.GetComponent<SceneDoor>().isOpened = false;
         portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
+        // Porta Banheiro
+        GameObject portaBanheiro = GameObject.Find("DoorToBathroom").gameObject;
+        float portaBanheiroDefaultY = portaBanheiro.transform.position.y;
+        posX = portaBanheiro.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+        portaBanheiro.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+        portaBanheiro.GetComponent<SceneDoor>().isOpened = false;
+        portaBanheiro.transform.position = new Vector3(portaBanheiro.transform.position.x - posX, portaBanheiroDefaultY, portaBanheiro.transform.position.z);
+
+
         // Objeto movel que atrapalha
         GameObject chair = MissionManager.instance.AddObject("Objects/MovingObject", "Sprites/Objects/Scene/vaso",
             new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
