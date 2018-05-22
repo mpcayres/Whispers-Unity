@@ -32,16 +32,29 @@ public class Tutorial : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
         {
-            exit = false;
-            if (!inventoryObject)
-                InvokeShow();
-            else
+            if((MissionManager.instance.currentMission == 1 &&
+                MissionManager.instance.mission1Inicio &&
+                MissionManager.instance.currentSceneName.Equals("QuartoKid")) 
+                || 
+                (MissionManager.instance.currentMission != 1)
+                ||
+                (MissionManager.instance.currentMission == 1 &&
+                !MissionManager.instance.mission1Inicio &&
+                !MissionManager.instance.currentSceneName.Equals("QuartoKid")))
             {
-                if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
-                {
+                exit = false;
+                if (!inventoryObject)
                     InvokeShow();
+                else
+                {
+                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                    {
+                        InvokeShow();
+                    }
                 }
+
             }
+            
         }
     }
 
@@ -49,11 +62,24 @@ public class Tutorial : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
         {
-            if (!inventoryObject)
-                InvokeShow();
-            else {
-                if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT)) {
+            if ((MissionManager.instance.currentMission == 1 &&
+                MissionManager.instance.mission1Inicio &&
+                MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+                ||
+                (MissionManager.instance.currentMission != 1)
+                ||
+                (MissionManager.instance.currentMission == 1 &&
+                !MissionManager.instance.mission1Inicio &&
+                !MissionManager.instance.currentSceneName.Equals("QuartoKid")))
+            {
+                if (!inventoryObject)
                     InvokeShow();
+                else
+                {
+                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                    {
+                        InvokeShow();
+                    }
                 }
             }
         }

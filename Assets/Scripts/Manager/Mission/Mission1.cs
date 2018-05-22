@@ -324,9 +324,11 @@ public class Mission1 : Mission {
         if(secao == enumMission.INICIO)
         {
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
+            MissionManager.instance.mission1Inicio = true;
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
+            MissionManager.instance.mission1Inicio = false;
             // Porta abrindo
             MissionManager.instance.scenerySounds2.PlayDoorOpen(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
@@ -349,6 +351,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {
+            MissionManager.instance.mission1Inicio = false;
             Cat.instance.GetComponent<Cat>().Patrol();
             Vector3 aux = new Vector3(2.6f, -0.7f, -0.5f);
             Vector3[] catPos = { aux };
@@ -360,6 +363,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.scenerySounds.PlayBird(1);
             MissionManager.instance.blocked = true;
             //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
@@ -371,6 +375,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.SMILE)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.scenerySounds.PlayScare(3);
             
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
@@ -381,11 +386,13 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.mission1MaeQuarto = true;
             MissionManager.LoadScene(sceneInit);
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
+            MissionManager.instance.mission1Inicio = false;
             GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
             MissionManager.instance.Invoke("InvokeMission", 4f);
         }

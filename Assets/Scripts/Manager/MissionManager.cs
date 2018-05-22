@@ -30,6 +30,7 @@ public class MissionManager : MonoBehaviour {
 
     //CENA ESPECÍFICA
     public bool mission1MaeQuarto = false;
+    public bool mission1Inicio = false;
 
     // ESCOLHAS ESPECÍFICAS
     public bool mission1AssustaGato = false;
