@@ -300,7 +300,7 @@ namespace Wasabimole.Core
             PreloadIconStyle();
             iconGUIStyle.normal.background = Blink ? RedLabel : GrayLabel;
             GUILayout.Label(iconGUIContent, iconGUIStyle, GUILayout.Width(25));
-            if (e.type == EventType.mouseDown && GUILayoutUtility.GetLastRect().Contains(e.mousePosition))
+            if (e.type == EventType.MouseDown && GUILayoutUtility.GetLastRect().Contains(e.mousePosition))
                 AttendNotification();
         }
     }
@@ -406,7 +406,7 @@ namespace Wasabimole.Core
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
 
-            if (Event.current.type == EventType.repaint)
+            if (Event.current.type == EventType.Repaint)
             {
                 Rect rect = GUILayoutUtility.GetLastRect();
                 float size = rect.height + 28;
