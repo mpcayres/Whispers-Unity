@@ -131,6 +131,15 @@ public class Mission1 : Mission {
         portaMae.GetComponent<SceneDoor>().isOpened = false;
         portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
+        // Porta Banheiro
+        GameObject portaBanheiro = GameObject.Find("DoorToBathroom").gameObject;
+        float portaBanheiroDefaultY = portaBanheiro.transform.position.y;
+        posX = portaBanheiro.GetComponent<SpriteRenderer>().bounds.size.x / 5;
+        portaBanheiro.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
+        portaBanheiro.GetComponent<SceneDoor>().isOpened = false;
+        portaBanheiro.transform.position = new Vector3(portaBanheiro.transform.position.x - posX, portaBanheiroDefaultY, portaBanheiro.transform.position.z);
+
+
         // Objeto movel que atrapalha
         GameObject chair = MissionManager.instance.AddObject("Objects/MovingObject", "Sprites/Objects/Scene/vaso",
             new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
@@ -315,9 +324,11 @@ public class Mission1 : Mission {
         if(secao == enumMission.INICIO)
         {
             MissionManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
+            MissionManager.instance.mission1Inicio = true;
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
+            MissionManager.instance.mission1Inicio = false;
             // Porta abrindo
             MissionManager.instance.scenerySounds2.PlayDoorOpen(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
@@ -340,6 +351,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {
+            MissionManager.instance.mission1Inicio = false;
             Cat.instance.GetComponent<Cat>().Patrol();
             Vector3 aux = new Vector3(2.6f, -0.7f, -0.5f);
             Vector3[] catPos = { aux };
@@ -351,6 +363,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.scenerySounds.PlayBird(1);
             MissionManager.instance.blocked = true;
             //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
@@ -362,6 +375,7 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.SMILE)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.scenerySounds.PlayScare(3);
             
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
@@ -372,11 +386,13 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
+            MissionManager.instance.mission1Inicio = false;
             MissionManager.instance.mission1MaeQuarto = true;
             MissionManager.LoadScene(sceneInit);
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
+            MissionManager.instance.mission1Inicio = false;
             GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
             MissionManager.instance.Invoke("InvokeMission", 4f);
         }
