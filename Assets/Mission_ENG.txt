@@ -157,17 +157,17 @@ Alex: I can't let she see me.
 ----------------------------------- ESPECIAL -----------------------------------
 [title=M3Painting]
 Alex: What do you want to show me with that?
-Alex: It's just the pictures of my great-grandparents.
+Alex: It's just the pictures of my Great-grandparents.
 Alex: Maybe I should concentrate !!
 [title=M3PaintingEnd]
 [title=M3MundoInvertido]
-great-grandfather: We don't have much more money left ...
-great-grandmother: No one will want to buy such a haunted house.
-great-grandfather: Stop talking nonsense ...
-great-grandfather: You just think it's haunted because you keep on talking about it.
+Great-grandfather: We don't have much more money left ...
+Great-grandmother: No one will want to buy such a haunted house.
+Great-grandfather: Stop talking nonsense ...
+Great-grandfather: You just think it's haunted because you keep on talking about it.
 Pumpkin: Can you see, Alex?
-great-grandmother: How do you explain all the accidents then?
-great-grandfather: Pff. The important thing is that we still have our little Pumpkin.
+Great-grandmother: How do you explain all the accidents then?
+Great-grandfather: Pff. The important thing is that we still have our little Pumpkin.
 [title=M3MundoInvertidoEnd]
 [title=M3MundoInvertido2]
 Pumpkin: Alex...
@@ -187,13 +187,14 @@ Mom: What's going on here?
 Alex: Nothing happened!! It doesn't matter!
 Mom: So what are you doing standing there ?!
 Mom: Walk and get out of here so I can clean the house!
+Mom: Go play outside or something like that!
 [title=M3Q2C0End]
 [title=M3Q2C1]
 Alex: I don't know, I've seen strange things yesterday and today.! 
 Alex: An old couple talking about things I didn't understood well enough.
 Mother: Got it ...
 Mother: You just must have eaten something strange!
-Mother: I think you should rest your head a little.
+Mother: Why don't you take some air?
 [title=M3Q2C1End]
 ----------------------------------- CENAS NO QUARTO DA CRIANÇA -----------------------------------
 [title=M3KidRoomSceneStart]
@@ -209,7 +210,9 @@ Alex: Pumpkin?
 ----------------------------------- CENAS NO JARDIM -----------------------------------
 [title=M3GardenSceneStart]
 Alex: It looks like a safe place here ...
-Alex: I think I should try again.
+Alex: I think I should that thing again.
+Alex: And maybe...
+Alex: Go inside? I wonder if she is still there.
 [title=M3GardenSceneEnd]
 [title=M3GardenSceneRepeat]
 [title=M3GardenSceneRepeatEnd]
@@ -237,7 +240,7 @@ Alex: I think I should try again.
 Alex: Maybe if I tried to go to that place again ...
 [title=M4DicaCorredorEnd]
 [title=M4DicaQuartoMae]
-Alex: I can't' get close ...
+Alex: I can't get close ...
 [title=M4DicaQuartoMaeEnd]
 [title=OQ]
 Alex: Mom's vase is broken.
