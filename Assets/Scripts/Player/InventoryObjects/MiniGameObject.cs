@@ -3,138 +3,142 @@ using Image = UnityEngine.UI.Image;
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
 
-public class MiniGameObject : MonoBehaviour {
-    public Inventory.InventoryItems item;
-    public bool activated = false;
-    public bool achievedGoal = false;
-    public float timeMax = 5;
-    public int counterMax = 20;
-    public bool refreshTimeMax = true;
-    public float posFlareX = 0, posFlareY = 0;
-
-    private bool otherItem = true;
-    private bool playing = false;
-    private float timeLeft;
-    private int counter;
-
-    GameObject anim, flare;
-
-    void Start()
+namespace CrowShadowPlayer
+{
+    public class MiniGameObject : MonoBehaviour
     {
-        anim = GameObject.Find("HUDCanvas").gameObject.transform.Find("AnimMiniGame").gameObject;
-        InitImage();
-    }
+        public Inventory.InventoryItems item;
+        public bool activated = false;
+        public bool achievedGoal = false;
+        public float timeMax = 5;
+        public int counterMax = 20;
+        public bool refreshTimeMax = true;
+        public float posFlareX = 0, posFlareY = 0;
 
-    public void Update()
-    {
-        if (Inventory.GetCurrentItemType() == item && otherItem)
+        private bool otherItem = true;
+        private bool playing = false;
+        private float timeLeft;
+        private int counter;
+
+        GameObject anim, flare;
+
+        void Start()
         {
-            otherItem = false;
+            anim = GameObject.Find("HUDCanvas").gameObject.transform.Find("AnimMiniGame").gameObject;
             InitImage();
         }
-        else if(Inventory.GetCurrentItemType() != item && !otherItem)
-        {
-            otherItem = true;
-            StopMiniGame();
-        }
 
-        if (activated && !achievedGoal && !otherItem && !GameManager.instance.paused && !GameManager.instance.blocked)
+        public void Update()
         {
-            if (timeLeft > 0)
+            if (Inventory.GetCurrentItemType() == item && otherItem)
             {
-                timeLeft -= Time.deltaTime;
+                otherItem = false;
+                InitImage();
             }
-
-            if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            else if (Inventory.GetCurrentItemType() != item && !otherItem)
             {
-                //print("STARTMINIGAME" + item);
-                GameManager.instance.pausedObject = true;
-                timeLeft = timeMax;
-                anim.SetActive(true);
-                flare = GameManager.instance.AddObject("Effects/Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
-                playing = true;
-            }
-            else if ((CrossPlatformInputManager.GetButtonDown("keyUseObject") || timeLeft <= 0) && playing)
-            {
+                otherItem = true;
                 StopMiniGame();
             }
-            else if (CrossPlatformInputManager.GetButtonDown("keyMiniGame"))
+
+            if (activated && !achievedGoal && !otherItem && !GameManager.instance.paused && !GameManager.instance.blocked)
             {
-                counter++;
-                if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.PAPEL || item == Inventory.InventoryItems.ISQUEIRO)
+                if (timeLeft > 0)
                 {
-                    anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160/counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                    timeLeft -= Time.deltaTime;
                 }
-                else if (item == Inventory.InventoryItems.FACA)
+
+                if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
-                    float rotZ = -135;
-                    if ((counter % 2) == 0) rotZ = 135;
-                    anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
-                    anim.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(180, 0, rotZ));
+                    //print("STARTMINIGAME" + item);
+                    GameManager.instance.pausedObject = true;
+                    timeLeft = timeMax;
+                    anim.SetActive(true);
+                    flare = GameManager.instance.AddObject("Effects/Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
+                    playing = true;
                 }
-                else if (item == Inventory.InventoryItems.PEDRA)
+                else if ((CrossPlatformInputManager.GetButtonDown("keyUseObject") || timeLeft <= 0) && playing)
                 {
-                    float somaY = -20;
-                    if ((counter % 2) == 0) somaY = 20;
-                    anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y + somaY);
+                    StopMiniGame();
+                }
+                else if (CrossPlatformInputManager.GetButtonDown("keyMiniGame"))
+                {
+                    counter++;
+                    if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.PAPEL || item == Inventory.InventoryItems.ISQUEIRO)
+                    {
+                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                    }
+                    else if (item == Inventory.InventoryItems.FACA)
+                    {
+                        float rotZ = -135;
+                        if ((counter % 2) == 0) rotZ = 135;
+                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                        anim.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(180, 0, rotZ));
+                    }
+                    else if (item == Inventory.InventoryItems.PEDRA)
+                    {
+                        float somaY = -20;
+                        if ((counter % 2) == 0) somaY = 20;
+                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y + somaY);
+                    }
+                }
+
+                if (counter >= counterMax)
+                {
+                    achievedGoal = true;
+                    StopMiniGame();
                 }
             }
 
-            if(counter >= counterMax)
+        }
+
+        public void StopMiniGame()
+        {
+            //print("STOPMINIMAGE" + item);
+            GameManager.instance.pausedObject = false;
+            timeLeft = 0;
+            if (refreshTimeMax)
             {
-                achievedGoal = true;
-                StopMiniGame();
+                counter = 0;
+                InitImage();
             }
+            if (anim != null) anim.SetActive(false);
+            if (flare != null) Destroy(flare);
+            playing = false;
         }
 
-    }
+        private void InitImage()
+        {
+            //print("INITMINIGAME" + item);
+            if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO || Inventory.GetCurrentItemType() == Inventory.InventoryItems.PAPEL)
+            {
+                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
+                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
+                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+            else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
+            {
+                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
+                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
+                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 100);
+                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+            else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
+            {
+                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
+                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(180, 0, 180));
+                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
+                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+            else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
+            {
+                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
+                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
+                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
+                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
+            }
 
-    public void StopMiniGame()
-    {
-        //print("STOPMINIMAGE" + item);
-        GameManager.instance.pausedObject = false;
-        timeLeft = 0;
-        if (refreshTimeMax)
-        {
-            counter = 0;
-            InitImage();
         }
-        if(anim != null) anim.SetActive(false);
-        if(flare != null) Destroy(flare);
-        playing = false;
-    }
-
-    private void InitImage()
-    {
-        //print("INITMINIGAME" + item);
-        if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO || Inventory.GetCurrentItemType() == Inventory.InventoryItems.PAPEL)
-        {
-            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
-            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
-        {
-            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
-            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 100);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
-        {
-            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(180, 0, 180));
-            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * ( 160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
-        {
-            anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
-            anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
-            anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
-            anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        
     }
 }

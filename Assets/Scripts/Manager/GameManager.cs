@@ -7,6 +7,9 @@ using System;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowNPCs;
+using CrowShadowObjects;
+using CrowShadowPlayer;
+using CrowShadowScenery;
 
 namespace CrowShadowManager
 {

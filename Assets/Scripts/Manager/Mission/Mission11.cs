@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
 using CrowShadowNPCs;
+using CrowShadowPlayer;
+using CrowShadowScenery;
 
 public class Mission11 : Mission {
     enum enumMission { NIGHT, INICIO, SALA, CORREDOR, QUARTO_MAE, COZINHA, QUARTO_KID, QUARTO_KID_CORVO, QUARTO_KID_CORVO_ATACA, FINAL };

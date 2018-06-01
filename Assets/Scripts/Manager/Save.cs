@@ -9,7 +9,7 @@ public class Save
     public int mission = 0; // atual
 
     // INVENTÁRIO
-    public List<Inventory.InventoryItems> inventory = new List<Inventory.InventoryItems>(); // completo
+    public List<CrowShadowPlayer.Inventory.InventoryItems> inventory = new List<CrowShadowPlayer.Inventory.InventoryItems>(); // completo
     public int currentItem = -1; // item atual
     public int lifeTampa = 80; // vida restante para objeto protetor
     public int pedraCount = 0;

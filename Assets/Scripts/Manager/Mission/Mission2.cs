@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
 using CrowShadowNPCs;
+using CrowShadowObjects;
+using CrowShadowPlayer;
+using CrowShadowScenery;
 
 public class Mission2 : Mission {
     enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE, CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2,

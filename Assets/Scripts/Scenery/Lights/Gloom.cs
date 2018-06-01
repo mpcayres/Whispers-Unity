@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
-public class Gloom : MonoBehaviour
+namespace CrowShadowScenery
 {
-    private int maxRoar = 5;
-
-    private void Start()
+    public class Gloom : MonoBehaviour
     {
-        gameObject.GetComponent<AudioSource>().Stop();
-    }
+        private int maxRoar = 5;
 
-    void Update()
-    {
-        if (Flashlight.GetState() && !gameObject.GetComponent<AudioSource>().isPlaying)
+        private void Start()
         {
-            gameObject.GetComponent<AudioSource>().Play();
-            maxRoar--;
-            if(maxRoar < 0)
+            gameObject.GetComponent<AudioSource>().Stop();
+        }
+
+        void Update()
+        {
+            if (Flashlight.GetState() && !gameObject.GetComponent<AudioSource>().isPlaying)
             {
-                GameManager.instance.GameOver();
+                gameObject.GetComponent<AudioSource>().Play();
+                maxRoar--;
+                if (maxRoar < 0)
+                {
+                    GameManager.instance.GameOver();
+                }
             }
         }
     }

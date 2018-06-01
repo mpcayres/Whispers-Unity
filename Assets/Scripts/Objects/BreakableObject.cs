@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
+using CrowShadowPlayer;
 
-public class BreakableObject : MonoBehaviour {
-    public bool broke = false;
-
-    SpriteRenderer spriteRenderer;
-
-    void Start()
+namespace CrowShadowObjects
+{
+    public class BreakableObject : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        public bool broke = false;
 
-    void Update()
-    {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-    }
+        SpriteRenderer spriteRenderer;
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("Pedra") && collision.GetComponent<FarAttackObject>().attacking)
+        void Start()
         {
-            collision.GetComponent<FarAttackObject>().hitSuccess = true;
-            broke = true;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        void Update()
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.tag.Equals("Pedra") && collision.GetComponent<FarAttackObject>().attacking)
+            {
+                collision.GetComponent<FarAttackObject>().hitSuccess = true;
+                broke = true;
+            }
         }
     }
 }

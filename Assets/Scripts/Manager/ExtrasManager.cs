@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using CrowShadowPlayer;
+using CrowShadowScenery;
 
 namespace CrowShadowManager
 {

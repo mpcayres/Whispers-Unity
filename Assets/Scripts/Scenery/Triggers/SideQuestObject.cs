@@ -2,32 +2,36 @@
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
 
-public class SideQuestObject : MonoBehaviour
+namespace CrowShadowScenery
 {
-    public int numSideQuest = 0;
-    private bool triggered = false;
-
-    private void Update()
+    public class SideQuestObject : MonoBehaviour
     {
-        if (triggered && CrossPlatformInputManager.GetButtonDown("keyInteract"))
+        public int numSideQuest = 0;
+        private bool triggered = false;
+
+        private void Update()
         {
-            ExtrasManager.InitSideQuest(numSideQuest);
+            if (triggered && CrossPlatformInputManager.GetButtonDown("keyInteract"))
+            {
+                ExtrasManager.InitSideQuest(numSideQuest);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                triggered = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                triggered = false;
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            triggered = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            triggered = false;
-        }
-    }
 }

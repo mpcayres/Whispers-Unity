@@ -2,64 +2,68 @@
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
 
-public class ProtectionObject : MonoBehaviour {
-    public Inventory.InventoryItems item;
-    public int life = 60;
-
-    bool enterProtection = false;
-    Player player;
-
-    void Start()
+namespace CrowShadowPlayer
+{
+    public class ProtectionObject : MonoBehaviour
     {
-        player = GetComponentInParent<Player>();
-    }
-    
-	void Update ()
-    {
-        if (life <= 0)
+        public Inventory.InventoryItems item;
+        public int life = 60;
+
+        bool enterProtection = false;
+        Player player;
+
+        void Start()
         {
-            GameManager.instance.playerProtected = false;
-            Inventory.DeleteItem(item);
+            player = GetComponentInParent<Player>();
         }
-        else
-        {
-            if (Inventory.GetCurrentItemType() == item && !GameManager.instance.paused &&
-                !GameManager.instance.blocked && !GameManager.instance.pausedObject &&
-                CrossPlatformInputManager.GetButtonDown("keyUseObject"))
-            {
-                EnterProtection(!enterProtection);
-            }
-            else if (Inventory.GetCurrentItemType() != item && enterProtection)
-            {
-                EnterProtection(false);
-            }
-        }
-    }
 
-    private void EnterProtection(bool e = true)
-    {
-        enterProtection = e;
-        GameManager.instance.playerProtected = e;
-        // mudar imagem do player
-        if (enterProtection)
+        void Update()
         {
-            if (item == Inventory.InventoryItems.TAMPA)
+            if (life <= 0)
             {
-                player.ChangeState((int)Player.States.PROTECTED_TAMPA);
+                GameManager.instance.playerProtected = false;
+                Inventory.DeleteItem(item);
             }
             else
             {
-                player.ChangeState((int)Player.States.PROTECTED_ESCUDO);
+                if (Inventory.GetCurrentItemType() == item && !GameManager.instance.paused &&
+                    !GameManager.instance.blocked && !GameManager.instance.pausedObject &&
+                    CrossPlatformInputManager.GetButtonDown("keyUseObject"))
+                {
+                    EnterProtection(!enterProtection);
+                }
+                else if (Inventory.GetCurrentItemType() != item && enterProtection)
+                {
+                    EnterProtection(false);
+                }
             }
         }
-        else
-        {
-            player.ChangeState((int)Player.States.DEFAULT);
-        }
-    }
 
-    public void DecreaseLife()
-    {
-        life--;
+        private void EnterProtection(bool e = true)
+        {
+            enterProtection = e;
+            GameManager.instance.playerProtected = e;
+            // mudar imagem do player
+            if (enterProtection)
+            {
+                if (item == Inventory.InventoryItems.TAMPA)
+                {
+                    player.ChangeState((int)Player.States.PROTECTED_TAMPA);
+                }
+                else
+                {
+                    player.ChangeState((int)Player.States.PROTECTED_ESCUDO);
+                }
+            }
+            else
+            {
+                player.ChangeState((int)Player.States.DEFAULT);
+            }
+        }
+
+        public void DecreaseLife()
+        {
+            life--;
+        }
     }
 }

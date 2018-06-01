@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
 
-public class SideQuestMap : MonoBehaviour {
-
-    private void OnTriggerExit2D(Collider2D collision)
+namespace CrowShadowScenery
+{
+    public class SideQuestMap : MonoBehaviour
     {
-        if (collision.gameObject.tag.Equals("Player"))
+
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            GameManager.instance.GameOver();
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                GameManager.instance.GameOver();
+            }
         }
     }
 }

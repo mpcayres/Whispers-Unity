@@ -1,128 +1,136 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
-public class Tutorial : MonoBehaviour
+namespace CrowShadowScenery
 {
-    public string keyName1, keyName2;
-    public int mission = 1;
-    public AudioClip click;
-    public AudioSource source { get { return GetComponent<AudioSource>(); } }
-
-    int repeatTime = 2;
-    bool exit = false, end = false, invoked = false;
-
-    public bool inventoryObject = false;
-
-    void Awake()
+    public class Tutorial : MonoBehaviour
     {
-        source.playOnAwake = false;
-    }
+        public string keyName1, keyName2;
+        public int mission = 1;
+        public AudioClip click;
+        public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-    void Update()
-    {
-        if (!end && !exit)
+        int repeatTime = 2;
+        bool exit = false, end = false, invoked = false;
+
+        public bool inventoryObject = false;
+
+        void Awake()
         {
-            KeyPressed();
+            source.playOnAwake = false;
         }
-    }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
+        void Update()
         {
-            if((GameManager.instance.currentMission == 1 &&
-                GameManager.instance.mission1Inicio &&
-                GameManager.instance.currentSceneName.Equals("QuartoKid")) 
-                || 
-                (GameManager.instance.currentMission != 1)
-                ||
-                (GameManager.instance.currentMission == 1 &&
-                !GameManager.instance.mission1Inicio &&
-                !GameManager.instance.currentSceneName.Equals("QuartoKid")))
+            if (!end && !exit)
             {
-                exit = false;
-                if (!inventoryObject)
-                    InvokeShow();
-                else
+                KeyPressed();
+            }
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
+            {
+                if ((GameManager.instance.currentMission == 1 &&
+                    GameManager.instance.mission1Inicio &&
+                    GameManager.instance.currentSceneName.Equals("QuartoKid"))
+                    ||
+                    (GameManager.instance.currentMission != 1)
+                    ||
+                    (GameManager.instance.currentMission == 1 &&
+                    !GameManager.instance.mission1Inicio &&
+                    !GameManager.instance.currentSceneName.Equals("QuartoKid")))
                 {
-                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
-                    {
+                    exit = false;
+                    if (!inventoryObject)
                         InvokeShow();
+                    else
+                    {
+                        if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                        {
+                            InvokeShow();
+                        }
                     }
+
                 }
 
             }
-            
         }
-    }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
+        void OnTriggerStay2D(Collider2D other)
         {
-            if ((GameManager.instance.currentMission == 1 &&
-                GameManager.instance.mission1Inicio &&
-                GameManager.instance.currentSceneName.Equals("QuartoKid"))
-                ||
-                (GameManager.instance.currentMission != 1)
-                ||
-                (GameManager.instance.currentMission == 1 &&
-                !GameManager.instance.mission1Inicio &&
-                !GameManager.instance.currentSceneName.Equals("QuartoKid")))
+            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
             {
-                if (!inventoryObject)
-                    InvokeShow();
-                else
+                if ((GameManager.instance.currentMission == 1 &&
+                    GameManager.instance.mission1Inicio &&
+                    GameManager.instance.currentSceneName.Equals("QuartoKid"))
+                    ||
+                    (GameManager.instance.currentMission != 1)
+                    ||
+                    (GameManager.instance.currentMission == 1 &&
+                    !GameManager.instance.mission1Inicio &&
+                    !GameManager.instance.currentSceneName.Equals("QuartoKid")))
                 {
-                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
-                    {
+                    if (!inventoryObject)
                         InvokeShow();
+                    else
+                    {
+                        if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                        {
+                            InvokeShow();
+                        }
                     }
                 }
             }
         }
-    }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission)
+        void OnTriggerExit2D(Collider2D other)
         {
-            exit = true;
-            invoked = false;
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
-
-    void KeyPressed()
-    {
-        if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2))
-        {
-            end = true;
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
-
-    void InvokeShow()
-    {
-        if (!source.isPlaying && !invoked)
-        {
-            Invoke("Show", repeatTime);
-            invoked = true;
-        }
-    }
-
-    void Show() {
-        if (!end && !exit) {
-            if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy) {
+            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission)
+            {
+                exit = true;
+                invoked = false;
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
-            else {
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            }
-            source.PlayOneShot(click);
-            invoked = false;
         }
-    }
 
+        void KeyPressed()
+        {
+            if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2))
+            {
+                end = true;
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            }
+        }
+
+        void InvokeShow()
+        {
+            if (!source.isPlaying && !invoked)
+            {
+                Invoke("Show", repeatTime);
+                invoked = true;
+            }
+        }
+
+        void Show()
+        {
+            if (!end && !exit)
+            {
+                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                {
+                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                }
+                else
+                {
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                source.PlayOneShot(click);
+                invoked = false;
+            }
+        }
+
+    }
 }

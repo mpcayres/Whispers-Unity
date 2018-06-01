@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using CrowShadowManager;
+using CrowShadowScenery;
 
 public class SideQuest2 : SideQuest
 {

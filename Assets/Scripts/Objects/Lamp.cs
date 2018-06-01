@@ -2,33 +2,37 @@
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
 
-public class Lamp : MonoBehaviour {
-    public string prefName = ""; // Padrão: identificador do objeto (L) + _ + nome da cena + _ + identificador
-    public bool colliding = false;
-    private bool change = false;
-
-    SpriteRenderer spriteRenderer;
-
-    void Awake()
+namespace CrowShadowObjects
+{
+    public class Lamp : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        public string prefName = ""; // Padrão: identificador do objeto (L) + _ + nome da cena + _ + identificador
+        public bool colliding = false;
+        private bool change = false;
 
-    void Update()
-    {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        SpriteRenderer spriteRenderer;
 
-        if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-            !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
+        void Awake()
         {
-            GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-            GetComponent<CircleCollider2D>().enabled = GetComponent<Light>().enabled;
-            change = true;
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
-    }
 
-    public bool Changed()
-    {
-        return change;
+        void Update()
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
+            if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
+                !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
+            {
+                GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+                GetComponent<CircleCollider2D>().enabled = GetComponent<Light>().enabled;
+                change = true;
+            }
+        }
+
+        public bool Changed()
+        {
+            return change;
+        }
     }
 }

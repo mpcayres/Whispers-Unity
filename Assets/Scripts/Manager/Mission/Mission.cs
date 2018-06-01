@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
 using CrowShadowNPCs;
+using CrowShadowPlayer;
 
 public abstract class Mission {
 

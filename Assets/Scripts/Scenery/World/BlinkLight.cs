@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlinkLight : MonoBehaviour {
+namespace CrowShadowScenery
+{
+    public class BlinkLight : MonoBehaviour
+    {
 
+        Light testLight;
+        public float minWaitTime;
+        public float maxWaitTime;
 
-	Light testLight;
-	public float minWaitTime;
-	public float maxWaitTime;
+        void Start()
+        {
+            testLight = GetComponent<Light>();
+            StartCoroutine(Flashing());
+        }
 
-	void Start () {
-		testLight = GetComponent<Light>();
-		StartCoroutine(Flashing());
-	}
-
-	IEnumerator Flashing ()
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(Random.Range(minWaitTime,maxWaitTime));
-			testLight.enabled = !testLight.enabled;
-		}
-	}
+        IEnumerator Flashing()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+                testLight.enabled = !testLight.enabled;
+            }
+        }
+    }
 }

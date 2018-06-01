@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
 using CrowShadowNPCs;
+using CrowShadowObjects;
+using CrowShadowPlayer;
+using CrowShadowScenery;
 
 public class Mission10 : Mission {
     enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT_INIT, CORVO_ATACA_CAT, MAE_CAT, FINAL_CAT,

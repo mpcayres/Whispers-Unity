@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
 public class CrowBabiesCollision : MonoBehaviour {
     //ParticleSystem ps;

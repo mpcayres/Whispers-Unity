@@ -2,129 +2,137 @@
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
-/**
- * 
- * senha cofre corredor: 159
- * senha cadeado porão: 376
- * 
- falta:
-    - objeto a ser inserido quando abre cofre atras do quadro na parede
-     
-     **/
-public class LockerController : MonoBehaviour
+namespace CrowShadowScenery
 {
-
-    public Text row1;
-    public Text row2;
-    public Text row3;
-
-    int selectedRow = 1;
-
-    int selectedNumber1 = 1;
-    int selectedNumber2 = 1;
-    int selectedNumber3 = 1;
-
-    public string password;
-
-    public string boardName;
-
-    bool isBasement = false;
-    bool opened = false;
-    bool tried = false;
-
-    public AudioClip click;
-    public AudioClip success;
-    private AudioSource source { get { return GetComponent<AudioSource>(); } }
-
-    public void Start()
+    /**
+     * 
+     * senha cofre corredor: 159
+     * senha cadeado porão: 376
+     * 
+     falta:
+        - objeto a ser inserido quando abre cofre atras do quadro na parede
+         
+         **/
+    public class LockerController : MonoBehaviour
     {
-        source.clip = click;
-    }
-    public void Update()
-    {
-        
-        if (gameObject.transform.GetChild(0).gameObject.activeSelf) {
-            if (Input.GetButtonDown("Vertical"))
-            { //up(positive) e down(negative)
-                if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0) {
-                    DownRow();
-                }
-                else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0)
-                {
-                    UpRow();
-                }
-            }
-            else if (Input.GetButtonDown("Horizontal"))
-            {//right(positive) e left(negative)
-                if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0)
-                {
-                    NumbersRight();
-                }
-                else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)
-                {
-                    NumbersLeft();
-                }
-            }
-            if (gameObject.transform.GetChild(0).gameObject.activeSelf) {
-                if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
-                {
-                    opened = true;
-                    if (!isBasement && Book.pageQuantity >= 6 ) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
-                    {
-                        //adicionar algo do inventário
-                        source.clip = success;
-                        source.PlayOneShot(success);
-                        Invoke("Show", 0.5f);
-                    }
-                    else if (Book.pageQuantity >= 4 &&  isBasement) { // porta do porão
-                        source.clip = success;
-                        source.PlayOneShot(success);
 
-                        Invoke("Show", 0.5f);
-                        GameObject basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
-                        basement.GetComponent<SceneDoor>().isOpened = true;
-                        basement.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/porão-aberto");
+        public Text row1;
+        public Text row2;
+        public Text row3;
 
-                    }
-                }
-            }
-        }
-    }
+        int selectedRow = 1;
 
+        int selectedNumber1 = 1;
+        int selectedNumber2 = 1;
+        int selectedNumber3 = 1;
 
-    void DownRow()
-    {
-        GameObject selectorRow;
-        if (selectedRow == 3)
-            selectedRow = 1;
-        else
-            selectedRow++;
-        switch (selectedRow)
+        public string password;
+
+        public string boardName;
+
+        bool isBasement = false;
+        bool opened = false;
+        bool tried = false;
+
+        public AudioClip click;
+        public AudioClip success;
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
+
+        public void Start()
         {
-            case 1:
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
-                selectorRow.SetActive(false);
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
-                selectorRow.SetActive(true);
-                break;
-            case 2:
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
-                selectorRow.SetActive(false);
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
-                selectorRow.SetActive(true);
-                break;
-            case 3:
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
-                selectorRow.SetActive(false);
-                selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
-                selectorRow.SetActive(true);
-                break;
+            source.clip = click;
         }
-        source.PlayOneShot(click);
-    }
+        public void Update()
+        {
 
-    void UpRow() {
+            if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+            {
+                if (Input.GetButtonDown("Vertical"))
+                { //up(positive) e down(negative)
+                    if (CrossPlatformInputManager.GetAxisRaw("Vertical") < 0)
+                    {
+                        DownRow();
+                    }
+                    else if (CrossPlatformInputManager.GetAxisRaw("Vertical") > 0)
+                    {
+                        UpRow();
+                    }
+                }
+                else if (Input.GetButtonDown("Horizontal"))
+                {//right(positive) e left(negative)
+                    if (CrossPlatformInputManager.GetAxisRaw("Horizontal") < 0)
+                    {
+                        NumbersRight();
+                    }
+                    else if (CrossPlatformInputManager.GetAxisRaw("Horizontal") > 0)
+                    {
+                        NumbersLeft();
+                    }
+                }
+                if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+                {
+                    if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
+                    {
+                        opened = true;
+                        if (!isBasement && Book.pageQuantity >= 6) //cofre atrás do quadro - descomentar na versão final. comentário apenas para testes
+                        {
+                            //adicionar algo do inventário
+                            source.clip = success;
+                            source.PlayOneShot(success);
+                            Invoke("Show", 0.5f);
+                        }
+                        else if (Book.pageQuantity >= 4 && isBasement)
+                        { // porta do porão
+                            source.clip = success;
+                            source.PlayOneShot(success);
+
+                            Invoke("Show", 0.5f);
+                            GameObject basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
+                            basement.GetComponent<SceneDoor>().isOpened = true;
+                            basement.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/porão-aberto");
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+        void DownRow()
+        {
+            GameObject selectorRow;
+            if (selectedRow == 3)
+                selectedRow = 1;
+            else
+                selectedRow++;
+            switch (selectedRow)
+            {
+                case 1:
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow.SetActive(false);
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow.SetActive(true);
+                    break;
+                case 2:
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow.SetActive(false);
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow.SetActive(true);
+                    break;
+                case 3:
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow.SetActive(false);
+                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow.SetActive(true);
+                    break;
+            }
+            source.PlayOneShot(click);
+        }
+
+        void UpRow()
+        {
             GameObject selectorRow;
             if (selectedRow == 1)
                 selectedRow = 3;
@@ -153,71 +161,73 @@ public class LockerController : MonoBehaviour
 
 
             }
-        source.PlayOneShot(click);
+            source.PlayOneShot(click);
 
         }
-    void NumbersLeft()
-    {
-        if (selectedRow == 1)
+        void NumbersLeft()
         {
-            if (selectedNumber1 == 10)
-                selectedNumber1 = 1;
-            else
-                selectedNumber1++;
+            if (selectedRow == 1)
+            {
+                if (selectedNumber1 == 10)
+                    selectedNumber1 = 1;
+                else
+                    selectedNumber1++;
+            }
+            else if (selectedRow == 2)
+            {
+                if (selectedNumber2 == 10)
+                    selectedNumber2 = 1;
+                else
+                    selectedNumber2++;
+            }
+            else if (selectedRow == 3)
+            {
+                if (selectedNumber3 == 10)
+                    selectedNumber3 = 1;
+                else
+                    selectedNumber3++;
+            }
+            ChangeText();
         }
-        else if (selectedRow == 2)
-        {
-            if (selectedNumber2 == 10)
-                selectedNumber2 = 1;
-            else
-                selectedNumber2++;
-        }
-        else if (selectedRow == 3)
-        {
-            if (selectedNumber3 == 10)
-                selectedNumber3 = 1;
-            else
-                selectedNumber3++;
-        }
-        ChangeText();
-    }
 
-    void NumbersRight() {
-        if (selectedRow == 1)
+        void NumbersRight()
         {
-            if (selectedNumber1 == 1)
-                selectedNumber1 = 10;
-            else
-                selectedNumber1--;
+            if (selectedRow == 1)
+            {
+                if (selectedNumber1 == 1)
+                    selectedNumber1 = 10;
+                else
+                    selectedNumber1--;
+            }
+            else if (selectedRow == 2)
+            {
+                if (selectedNumber2 == 1)
+                    selectedNumber2 = 10;
+                else
+                    selectedNumber2--;
+            }
+            else if (selectedRow == 3)
+            {
+                if (selectedNumber3 == 1)
+                    selectedNumber3 = 10;
+                else
+                    selectedNumber3--;
+            }
+            ChangeText();
         }
-        else if (selectedRow == 2)
+
+        void ChangeText()
         {
-            if (selectedNumber2 == 1)
-                selectedNumber2 = 10;
-            else
-                selectedNumber2--;
-        }
-        else if (selectedRow == 3)
-        {
-            if (selectedNumber3 == 1)
-                selectedNumber3 = 10;
-            else
-                selectedNumber3--;
-        }
-        ChangeText();
-    }
 
-    void ChangeText() {
+            int selectedNumber = 0;
+            if (selectedRow == 1)
+                selectedNumber = selectedNumber1;
+            else if (selectedRow == 2)
+                selectedNumber = selectedNumber2;
+            else if (selectedRow == 3)
+                selectedNumber = selectedNumber3;
 
-        int selectedNumber = 0;
-        if (selectedRow == 1)
-            selectedNumber = selectedNumber1;
-        else if (selectedRow == 2)
-            selectedNumber = selectedNumber2;
-        else if (selectedRow == 3)
-            selectedNumber = selectedNumber3;
-
-        source.PlayOneShot(click);
+            source.PlayOneShot(click);
             switch (selectedNumber)
             {
                 case 1:
@@ -305,63 +315,65 @@ public class LockerController : MonoBehaviour
 
 
 
-    }
+        }
 
-    void OnTriggerStay2D(Collider2D other){
-        GameObject board;
+        void OnTriggerStay2D(Collider2D other)
+        {
+            GameObject board;
+
+            if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf)
+            {
+
+                if (GameManager.instance.currentSceneName.Equals("Corridor"))
+                {
+                    board = GameObject.Find(boardName).gameObject;
+                    board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
+                }
+                else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                {
+                    isBasement = true;
+                }
+
+                Invoke("Show", 1f);
+                tried = true;
+
+            }
+            else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
+            {
+                if (GameManager.instance.currentSceneName.Equals("Corridor"))
+                {
+                    board = GameObject.Find(boardName).gameObject;
+                    board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
+                }
+                else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                {
+
+                    isBasement = true;
+                }
+                Invoke("Show", 0.2f);
+                tried = false;
+            }
+
+
+        }
+        void Show()
+        {
+            GameObject locker = gameObject.transform.GetChild(0).gameObject;
+            if (locker.activeSelf)
+            {
+                locker.SetActive(false);
+                GameManager.instance.paused = false;
+                GameManager.instance.blocked = false;
+            }
+            else
+            {
+                locker.SetActive(true);
+                GameManager.instance.paused = true;
+                GameManager.instance.blocked = true;
+
+            }
+            
+        }
         
-        if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
-            
-            if (GameManager.instance.currentSceneName.Equals("Corridor"))
-            {
-                board = GameObject.Find(boardName).gameObject;
-                board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
-            }
-            else if (GameManager.instance.currentSceneName.Equals("Jardim")) {
-                isBasement = true;
-            }
-
-            Invoke("Show", 1f);
-            tried = true;
-
-        }
-        else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
-        {
-            if (GameManager.instance.currentSceneName.Equals("Corridor"))
-            {
-                board = GameObject.Find(boardName).gameObject;
-                board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
-            }
-            else if (GameManager.instance.currentSceneName.Equals("Jardim"))
-            {
-                
-                isBasement = true;
-            }
-            Invoke("Show", 0.2f);
-            tried = false;
-        }
-
-
     }
-    void Show() {
-        GameObject locker = gameObject.transform.GetChild(0).gameObject;
-        if (locker.activeSelf)
-        {
-            locker.SetActive(false);
-            GameManager.instance.paused = false;
-            GameManager.instance.blocked = false;
-        }
-        else
-        {
-            locker.SetActive(true);
-            GameManager.instance.paused = true;
-            GameManager.instance.blocked = true;
-
-        }
-
-
-            
-    }
-
-
 }

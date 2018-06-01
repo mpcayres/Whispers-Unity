@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using CrowShadowManager;
 using CrowShadowNPCs;
+using CrowShadowPlayer;
 
 public abstract class SideQuest
 {
