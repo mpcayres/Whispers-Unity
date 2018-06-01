@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class SceneObject : MonoBehaviour {
     public string prefName = ""; // Padrão: identificador do objeto (SO) + _ + nome da cena + _ + identificador

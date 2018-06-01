@@ -3,6 +3,7 @@ using Image = UnityEngine.UI.Image;
 using Text = UnityEngine.UI.Text;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class Inventory : MonoBehaviour {
 

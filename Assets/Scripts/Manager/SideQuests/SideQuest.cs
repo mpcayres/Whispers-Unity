@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public abstract class SideQuest
 {
@@ -41,9 +43,9 @@ public abstract class SideQuest
             Cat.instance.gameObject.SetActive(false);
             hasCat = true;
         }
-        if (Corvo.instance != null)
+        if (Crow.instance != null)
         {
-            Corvo.instance.gameObject.SetActive(false);
+            Crow.instance.gameObject.SetActive(false);
             hasRaven = true;
         }
 
@@ -135,7 +137,7 @@ public abstract class SideQuest
         }
         if (hasRaven)
         {
-            Corvo.instance.gameObject.SetActive(true);
+            Crow.instance.gameObject.SetActive(true);
         }
 
         GameManager.instance.invertWorldBlocked = invertBlocked;

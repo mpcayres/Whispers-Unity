@@ -1,10 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using CrowShadowManager;
 
-public class Credits : MonoBehaviour {
-    // Use this for initialization
-    public void ChangeScene (int number = 0) {
-        GameManager.LoadScene(0); // animation finished: load main menu
+namespace CrowShadowMenu
+{
+    public class Credits : MonoBehaviour
+    {
+        public void ChangeScene(int number = 0)
+        {
+            GameManager.LoadScene(0); // animation finished: load main menu
+        }
     }
 }

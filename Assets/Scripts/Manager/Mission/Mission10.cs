@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
+﻿using UnityEngine;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public class Mission10 : Mission {
     enum enumMission { NIGHT, INICIO, CORVO_APARECE_CAT, CORVO_ATACA_CAT_INIT, CORVO_ATACA_CAT, MAE_CAT, FINAL_CAT,
@@ -567,9 +565,9 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
         {
-            if (Corvo.instance != null) {
-                Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-                Corvo.instance.FollowPlayer();
+            if (Crow.instance != null) {
+                Crow.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                Crow.instance.FollowPlayer();
             }
         }
         else if (secao == enumMission.MAE_CAT)
@@ -580,8 +578,8 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.FINAL_CAT)
         {
-            Corvo.instance.Stop();
-            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            Crow.instance.Stop();
+            Crow.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
 
             GameManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat", "M8LivingroomSceneRepeatEnd", false);
         }
@@ -592,8 +590,8 @@ public class Mission10 : Mission {
         else if (secao == enumMission.FINAL_BIRD)
         {
             fireEvent.SetActive(true);
-            Corvo.instance.Stop();
-            Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            Crow.instance.Stop();
+            Crow.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
             GameManager.instance.blocked = true;
             GameManager.instance.Invoke("InvokeMission", 5f);
         }
@@ -685,20 +683,20 @@ public class Mission10 : Mission {
             gameOverSet = false;
             if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT || secao == enumMission.FINAL_CAT)
             {
-                GameObject corvo = CreateCorvoCat();
-                corvo.GetComponent<Corvo>().ChangePosition(
+                GameObject crow = CreateCorvoCat();
+                crow.GetComponent<Crow>().ChangePosition(
                     player.GetComponent<Player>().GetCorvoPositionX(), player.GetComponent<Player>().GetCorvoPositionY());
-                corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-                corvo.GetComponent<Corvo>().FollowPlayer();
+                crow.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                crow.GetComponent<Crow>().FollowPlayer();
                 if (secao == enumMission.FINAL_CAT) EspecificaEnum((int)enumMission.FINAL_CAT);
             }
             else if (secao == enumMission.CORVO_ATACA_BIRD || secao == enumMission.BOTIJAO_BIRD)
             {
-                GameObject corvo = CreateCorvoBird();
-                corvo.GetComponent<Corvo>().ChangePosition(
+                GameObject crow = CreateCorvoBird();
+                crow.GetComponent<Crow>().ChangePosition(
                     player.GetComponent<Player>().GetCorvoPositionX(), player.GetComponent<Player>().GetCorvoPositionY());
-                corvo.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-                corvo.GetComponent<Corvo>().FollowPlayer();
+                crow.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                crow.GetComponent<Crow>().FollowPlayer();
             }
         }
         else if  (secao == enumMission.CORVO_ATACA_CAT_INIT)
@@ -716,14 +714,14 @@ public class Mission10 : Mission {
     }
 
     //PathBird e PathCat variam entre 0 e 30
-    //Quando mais no caminho do gato, mais fraco o corvo
+    //Quando mais no caminho do gato, mais fraco o crow
     public GameObject CreateCorvoCat()
     {
-        GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
-        corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.1f - (GameManager.instance.pathCat/1000); // velocidade do corvo
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.7f - (GameManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
-        var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
+        GameObject crow = GameManager.instance.AddObject("NPCs/Crow", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
+        crow.GetComponent<Crow>().LookAtPlayer();
+        crow.GetComponent<Crow>().speed = 0.1f - (GameManager.instance.pathCat/1000); // velocidade do crow
+        crow.GetComponent<Crow>().timeBirdsFollow = 0.7f - (GameManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
+        var em = crow.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 10)); // min, max pássaros por burst e tempo para outro ciclo
         main.startSpeed = 1f; // velocidade dos pássaros
@@ -731,17 +729,17 @@ public class Mission10 : Mission {
         main.startLifetime = 18f; // tempo de vida dos pássaros, tem que ser menor que o ciclo
         main.maxParticles = 20;
 
-        return corvo;
+        return crow;
     }
 
-    //Quando mais no caminho do corvo, mais forte ele será
+    //Quando mais no caminho do crow, mais forte ele será
     public GameObject CreateCorvoBird()
     {
-        GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
-        corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.08f + (GameManager.instance.pathBird/1000);
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f + (GameManager.instance.pathBird/100);
-        var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
+        GameObject crow = GameManager.instance.AddObject("NPCs/Crow", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
+        crow.GetComponent<Crow>().LookAtPlayer();
+        crow.GetComponent<Crow>().speed = 0.08f + (GameManager.instance.pathBird/1000);
+        crow.GetComponent<Crow>().timeBirdsFollow = 0.5f + (GameManager.instance.pathBird/100);
+        var em = crow.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 8));
         main.startSpeed = 1f;
@@ -749,7 +747,7 @@ public class Mission10 : Mission {
         main.startLifetime = 14f;
         main.maxParticles = 20;
 
-        return corvo;
+        return crow;
     }
 
  }

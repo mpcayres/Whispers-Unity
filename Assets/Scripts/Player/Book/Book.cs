@@ -1,6 +1,7 @@
 ﻿using Image = UnityEngine.UI.Image;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class Book : MonoBehaviour {
 

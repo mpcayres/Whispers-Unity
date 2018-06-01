@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
+﻿using UnityEngine;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public class Mission11 : Mission {
     enum enumMission { NIGHT, INICIO, SALA, CORREDOR, QUARTO_MAE, COZINHA, QUARTO_KID, QUARTO_KID_CORVO, QUARTO_KID_CORVO_ATACA, FINAL };
@@ -22,7 +19,7 @@ public class Mission11 : Mission {
         GameManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         if (Cat.instance != null) Cat.instance.DestroyCat();
-        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        if (Crow.instance != null) Crow.instance.DestroyRaven();
         if (GameManager.instance.pathCat >= GameManager.instance.pathBird) endCat = true;
 
         Book.bookBlocked = true;
@@ -402,13 +399,13 @@ public class Mission11 : Mission {
             GameManager.instance.InvertWorld(true);
             if (endCat)
             {
-                GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(4.5f, 4.5f, 1));
-                corvo.GetComponent<SpriteRenderer>().color = Color.gray;
+                GameObject crow = GameManager.instance.AddObject("NPCs/Crow", "", new Vector3(0f, 0f, -0.5f), new Vector3(4.5f, 4.5f, 1));
+                crow.GetComponent<SpriteRenderer>().color = Color.gray;
             }
             else
             {
-                GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
-                corvo.GetComponent<SpriteRenderer>().color = Color.gray;
+                GameObject crow = GameManager.instance.AddObject("NPCs/Crow", "", new Vector3(0f, 0f, -0.5f), new Vector3(5f, 5f, 1));
+                crow.GetComponent<SpriteRenderer>().color = Color.gray;
             }
 
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(false);
@@ -418,8 +415,8 @@ public class Mission11 : Mission {
         else if (secao == enumMission.QUARTO_KID_CORVO_ATACA)
         {
             GameManager.instance.scenerySounds.StopSound();
-            GameObject emitter = Corvo.instance.transform.Find("BirdEmitterCollider").gameObject;
-            Corvo.instance.timeBirdsFollow = 0f;
+            GameObject emitter = Crow.instance.transform.Find("BirdEmitterCollider").gameObject;
+            Crow.instance.timeBirdsFollow = 0f;
             emitter.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
             var emAux = emitter.GetComponent<ParticleSystem>();
             var main = emAux.main;

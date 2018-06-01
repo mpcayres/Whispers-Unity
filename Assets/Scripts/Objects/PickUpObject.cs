@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class PickUpObject : MonoBehaviour {
     public bool colliding = false;

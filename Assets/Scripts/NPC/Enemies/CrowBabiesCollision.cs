@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using CrowShadowManager;
 
-public class ParticleCollision : MonoBehaviour {
+public class CrowBabiesCollision : MonoBehaviour {
     //ParticleSystem ps;
 
     // these lists are used to contain the particles which match

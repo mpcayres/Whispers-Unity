@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class Tutorial : MonoBehaviour
 {

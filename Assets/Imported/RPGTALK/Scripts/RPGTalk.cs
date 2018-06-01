@@ -1427,7 +1427,7 @@ public class RPGTalk : MonoBehaviour {
 			}
 
             //my addition - enable player movement
-            GameManager.instance.blocked = false;
+            CrowShadowManager.GameManager.instance.blocked = false;
 
 
 			isPlaying = false;
@@ -1485,7 +1485,7 @@ public class RPGTalk : MonoBehaviour {
         if (block)
         {
             //my addition - stop player movement
-            GameManager.instance.blocked = true;
+            CrowShadowManager.GameManager.instance.blocked = true;
         }
     }
 

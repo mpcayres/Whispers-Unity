@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class Flashlight : MonoBehaviour {
     public Inventory.InventoryItems item;

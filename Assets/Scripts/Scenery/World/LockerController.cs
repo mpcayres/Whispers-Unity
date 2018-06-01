@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
+
 /**
  * 
  * senha cofre corredor: 159

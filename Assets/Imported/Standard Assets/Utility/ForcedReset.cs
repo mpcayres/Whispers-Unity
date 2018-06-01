@@ -12,7 +12,7 @@ public class ForcedReset : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
         {
             //... reload the scene
-            GameManager.LoadScene(SceneManager.GetSceneAt(0).name);
+            CrowShadowManager.GameManager.LoadScene(SceneManager.GetSceneAt(0).name);
         }
     }
 }

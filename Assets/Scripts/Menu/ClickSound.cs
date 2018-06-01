@@ -1,31 +1,27 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-
-public class ClickSound : MonoBehaviour
-
+namespace CrowShadowMenu
 {
-    public AudioClip sound;
-    private Button button { get { return GetComponent<Button>(); } }
-    private AudioSource source { get { return GetComponent<AudioSource>(); } }
-
-    
-    // Use this for initialization
-    void Start()
-
+    [RequireComponent(typeof(Button))]
+    public class ClickSound : MonoBehaviour
     {
-        gameObject.AddComponent<AudioSource>();
-        source.clip = sound;
-        source.playOnAwake = false;
-       button.onClick.AddListener(() => PlaySoud());
-    }
-    
-    void PlaySoud()
+        public AudioClip sound;
+        private Button button { get { return GetComponent<Button>(); } }
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-    {
-        source.PlayOneShot(sound);
-    }
+        void Start()
+        {
+            gameObject.AddComponent<AudioSource>();
+            source.clip = sound;
+            source.playOnAwake = false;
+            button.onClick.AddListener(() => PlaySoud());
+        }
 
+        void PlaySoud()
+        {
+            source.PlayOneShot(sound);
+        }
+
+    }
 }

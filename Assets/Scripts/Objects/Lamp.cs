@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class Lamp : MonoBehaviour {
     public string prefName = ""; // Padrão: identificador do objeto (L) + _ + nome da cena + _ + identificador

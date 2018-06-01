@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public class Mission2 : Mission {
     enum enumMission { NIGHT, INICIO_GATO, INICIO_SOZINHO, ENCONTRA_MAE, CONTESTA_MAE, CONTESTA_MAE2, RESPEITA_MAE, RESPEITA_MAE2,
@@ -6,7 +8,7 @@ public class Mission2 : Mission {
         FINAL_RESPEITA, FINAL_RESPEITA_VELA, FINAL_RESPEITA_FOSFORO, FINAL };
     enumMission secao;
 
-    GameObject corvoBabies;
+    GameObject crowBabies;
     GameObject vela, velaFixa, fosforo;//, faca, tampa;
 
     public override void InitMission()
@@ -265,14 +267,14 @@ public class Mission2 : Mission {
             }
             else if (secao == enumMission.FINAL_CONTESTA)
             {
-                // Corvo atacando
+                // Crow atacando
                 //faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
                 //tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
                 GameManager.instance.Print("CORVO");
-                corvoBabies = GameManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
-                corvoBabies.GetComponent<CorvBabies>().speed = 0.1f;
-                corvoBabies.GetComponent<CorvBabies>().timeBirdsFollow = 0.5f;
-                var main = corvoBabies.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
+                crowBabies = GameManager.instance.AddObject("NPCs/CrowBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
+                crowBabies.GetComponent<CrowBabies>().speed = 0.1f;
+                crowBabies.GetComponent<CrowBabies>().timeBirdsFollow = 0.5f;
+                var main = crowBabies.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
                 main.startSpeed = 1.5f;
 
                 GameManager.instance.Invoke("InvokeMission", 5f);
@@ -357,28 +359,28 @@ public class Mission2 : Mission {
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
             GameManager.instance.scenerySounds.PlayBird(1);
-            //corvoBabies.GetComponent<CorvBabies>().FollowPlayer();
-            corvoBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+            //crowBabies.GetComponent<CrowBabies>().FollowPlayer();
+            crowBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
             GameManager.instance.Invoke("InvokeMission", 40f);
         }
         else if (secao == enumMission.FINAL_CONTESTA_GATO)
         {
-            corvoBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
-            corvoBabies.GetComponent<CorvBabies>().Stop();
+            crowBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
+            crowBabies.GetComponent<CrowBabies>().Stop();
 
             Cat.instance.followWhenClose = false;
             Cat.instance.stopEndPath = true;
             Cat.instance.Patrol();
 
-            Vector3 target1 = corvoBabies.transform.position;
+            Vector3 target1 = crowBabies.transform.position;
             Vector3 target2 = new Vector3(-2f, 0.6f, -0.5f);
             Vector3[] targets = { target1, target2 };
             Cat.instance.targets = targets;
 
-            corvoBabies.GetComponent<CorvBabies>().Patrol();
+            crowBabies.GetComponent<CrowBabies>().Patrol();
             Vector3[] targetsCorvo = { target2 };
-            corvoBabies.GetComponent<CorvBabies>().targets = targetsCorvo;
-            corvoBabies.GetComponent<CorvBabies>().speed = 0.6f;
+            crowBabies.GetComponent<CrowBabies>().targets = targetsCorvo;
+            crowBabies.GetComponent<CrowBabies>().speed = 0.6f;
 
             GameManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", GameManager.instance.rpgTalk.txtToParse);
 
@@ -387,7 +389,7 @@ public class Mission2 : Mission {
         else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
             GameManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
-            corvoBabies.GetComponent<CorvBabies>().DestroyCorvBabies();
+            crowBabies.GetComponent<CrowBabies>().DestroyCorvBabies();
             Cat.instance.Stop();
             GameManager.instance.Invoke("InvokeMission", 6f);
         }

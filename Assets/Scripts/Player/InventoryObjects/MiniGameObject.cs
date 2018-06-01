@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Image = UnityEngine.UI.Image;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 public class MiniGameObject : MonoBehaviour {
     public Inventory.InventoryItems item;

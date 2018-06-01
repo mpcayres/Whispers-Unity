@@ -80,7 +80,7 @@ namespace UnityStandardAssets.Utility
         private IEnumerator ReloadLevel(Entry entry)
         {
             yield return new WaitForSeconds(entry.delay);
-            GameManager.LoadScene(SceneManager.GetSceneAt(0).name);
+            CrowShadowManager.GameManager.LoadScene(SceneManager.GetSceneAt(0).name);
         }
     }
 }

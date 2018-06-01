@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Image = UnityEngine.UI.Image;
-using Text = UnityEngine.UI.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
+
 public class Pause: MonoBehaviour
 {
     public AudioClip sound;
@@ -24,7 +23,8 @@ public class Pause: MonoBehaviour
     }
     void Update()
     {
-        if (CrossPlatformInputManager.GetButtonDown("keyPause") && !GameManager.instance.blocked && !GameManager.instance.showMissionStart && !GameManager.instance.pausedObject && !Book.show)
+        if (CrossPlatformInputManager.GetButtonDown("keyPause") && !GameManager.instance.blocked && 
+            !GameManager.instance.showMissionStart && !GameManager.instance.pausedObject && !Book.show)
         {
             if (!source.isPlaying)
                 source.PlayOneShot(sound);

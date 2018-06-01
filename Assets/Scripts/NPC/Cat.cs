@@ -1,60 +1,64 @@
 ﻿using UnityEngine;
 
-public class Cat : Follower {
-    public static Cat instance;
+namespace CrowShadowNPCs
+{
+    public class Cat : Follower
+    {
+        public static Cat instance;
 
-
-
-    protected new void Start () {
-        if (instance == null)
+        protected new void Start()
         {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-            animator = GetComponent<Animator>();
-            player = GameObject.FindGameObjectWithTag("Player");
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            fixOrder = -12;
+            if (instance == null)
+            {
+                DontDestroyOnLoad(gameObject);
+                instance = this;
+                animator = GetComponent<Animator>();
+                player = GameObject.FindGameObjectWithTag("Player");
+                spriteRenderer = GetComponent<SpriteRenderer>();
+                fixOrder = -12;
+            }
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
-        else if (instance != this)
+
+        protected new void Update()
+        {
+            base.Update();
+
+        }
+
+        public void DestroyCat()
         {
             Destroy(gameObject);
         }
-    }
-	
-	protected new void Update () {
-        base.Update();
-        
-    }
 
-    public void DestroyCat()
-    {
-        Destroy(gameObject);
-    }
-
-    protected new void OnTriggerEnter2D(Collider2D collision)
-    {
-        OnTriggerCalled(collision);
-    }
-
-    protected new void OnTriggerStay2D(Collider2D collision)
-    {
-        OnTriggerCalled(collision);
-    }
-
-    protected new void OnTriggerCalled(Collider2D collision)
-    {
-        if (hasActionPatroller)
+        protected new void OnTriggerEnter2D(Collider2D collision)
         {
-            print("ActionFollower: " + collision.tag);
-            if (collision.gameObject.tag.Equals("PlayerAction"))
+            OnTriggerCalled(collision);
+        }
+
+        protected new void OnTriggerStay2D(Collider2D collision)
+        {
+            OnTriggerCalled(collision);
+        }
+
+        protected new void OnTriggerCalled(Collider2D collision)
+        {
+            if (hasActionPatroller)
             {
-                if (followWhenClose && !followingPlayer)
+                print("ActionFollower: " + collision.tag);
+                if (collision.gameObject.tag.Equals("PlayerAction"))
                 {
-                    FollowPlayer();
+                    if (followWhenClose && !followingPlayer)
+                    {
+                        FollowPlayer();
+                    }
                 }
             }
         }
-    }
 
-   
+
+    }
 }

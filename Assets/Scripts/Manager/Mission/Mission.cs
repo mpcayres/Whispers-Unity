@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public abstract class Mission {
 
@@ -64,7 +66,7 @@ public abstract class Mission {
     public void SetInitialSettings()
     {
         if (Cat.instance != null) Cat.instance.DestroyCat();
-        if (Corvo.instance != null) Corvo.instance.DestroyRaven();
+        if (Crow.instance != null) Crow.instance.DestroyRaven();
 
         GameManager.instance.paused = false;
 

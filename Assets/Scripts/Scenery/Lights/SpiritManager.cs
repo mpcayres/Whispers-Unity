@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using CrowShadowManager;
 
 public class SpiritManager : MonoBehaviour {
     private int goodSpiritCount = 0;

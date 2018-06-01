@@ -35,7 +35,7 @@ public class HelpingLight : MonoBehaviour
                 }
                 lastNumBird = numBird;
                 print("BIRDSSS: " + lastNumBird);
-                GameObject.Find("CorvBabies (" + numBird + ")").gameObject.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
+                GameObject.Find("CrowBabies (" + numBird + ")").gameObject.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
                 timeEmitter = timeTotalEmitter;
             }
         }

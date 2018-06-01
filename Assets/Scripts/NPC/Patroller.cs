@@ -1,242 +1,247 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
 
-public class Patroller : MonoBehaviour {
-    public float speed;
-    public Animator animator;
-    public bool isPatroller = false;
-    public bool destroyEndPath = false;
-    public bool stopEndPath = false;
-    public Vector3[] targets;
-
-    public bool hasActionPatroller = false;
-    public float offsetActionPatroller = 0f;
-
-    protected SpriteRenderer spriteRenderer;
-
-    protected int direction = 4, oldDirection = 4;
-    protected int destPoint = 0;
-
-
-    bool quadr1 = false, quadr2 = false, quadr3 = false, quadr4 = false;
-
-    protected void Start()
+namespace CrowShadowNPCs
+{
+    public class Patroller : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        if (hasActionPatroller)
+        public float speed;
+        public Animator animator;
+        public bool isPatroller = false;
+        public bool destroyEndPath = false;
+        public bool stopEndPath = false;
+        public Vector3[] targets;
+
+        public bool hasActionPatroller = false;
+        public float offsetActionPatroller = 0f;
+
+        protected SpriteRenderer spriteRenderer;
+
+        protected int direction = 4, oldDirection = 4;
+        protected int destPoint = 0;
+
+
+        bool quadr1 = false, quadr2 = false, quadr3 = false, quadr4 = false;
+
+        protected void Start()
         {
-            CircleCollider2D[] col = GetComponents<CircleCollider2D>();
-            foreach (CircleCollider2D i in col)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
+            if (hasActionPatroller)
             {
-                i.enabled = true;
-            }
-        }
-    }
-
-    protected void Update()
-    {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-
-        if (isPatroller)
-        {
-            GotoNextPoint();
-        }
-
-        if (quadr1 || quadr2 || quadr3 || quadr4)
-        {
-
-
-            float thisObjX = this.gameObject.transform.position.x;
-            float thisObjY = this.gameObject.transform.position.y;
-            float thisObjZ = this.gameObject.transform.position.z;
-
-            if (quadr1)
-            {
-                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
-                quadr1 = false;
-            }
-            if (quadr2)
-            {
-                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
-                quadr2 = false;
-            }
-            if (quadr3)
-            {
-                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
-                quadr3 = false;
-            }
-            if (quadr4)
-            {
-                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
-                quadr4 = false;
+                CircleCollider2D[] col = GetComponents<CircleCollider2D>();
+                foreach (CircleCollider2D i in col)
+                {
+                    i.enabled = true;
+                }
             }
         }
 
-        SetActionPatrollerDirection();
-    }
-
-    protected void GotoNextPoint()
-    {
-        if (targets.Length == 0 || transform == null) return;
-
-        float step = speed * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, targets[destPoint], step);
-
-        float dist = Vector3.Distance(targets[destPoint], transform.position);
-        if (dist < 0.4f)
+        protected void Update()
         {
-            if (destPoint + 1 == targets.Length && destroyEndPath)
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
+            if (isPatroller)
             {
-                Destroy(gameObject);
+                GotoNextPoint();
             }
-            else if (destPoint + 1 == targets.Length && stopEndPath)
+
+            if (quadr1 || quadr2 || quadr3 || quadr4)
             {
-                Stop();
+
+
+                float thisObjX = this.gameObject.transform.position.x;
+                float thisObjY = this.gameObject.transform.position.y;
+                float thisObjZ = this.gameObject.transform.position.z;
+
+                if (quadr1)
+                {
+                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                    quadr1 = false;
+                }
+                if (quadr2)
+                {
+                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                    quadr2 = false;
+                }
+                if (quadr3)
+                {
+                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                    quadr3 = false;
+                }
+                if (quadr4)
+                {
+                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                    quadr4 = false;
+                }
+            }
+
+            SetActionPatrollerDirection();
+        }
+
+        protected void GotoNextPoint()
+        {
+            if (targets.Length == 0 || transform == null) return;
+
+            float step = speed * Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, targets[destPoint], step);
+
+            float dist = Vector3.Distance(targets[destPoint], transform.position);
+            if (dist < 0.4f)
+            {
+                if (destPoint + 1 == targets.Length && destroyEndPath)
+                {
+                    Destroy(gameObject);
+                }
+                else if (destPoint + 1 == targets.Length && stopEndPath)
+                {
+                    Stop();
+                }
+                else
+                {
+                    destPoint = (destPoint + 1) % targets.Length;
+                    ChangeDirection();
+                }
             }
             else
             {
-                destPoint = (destPoint + 1) % targets.Length;
                 ChangeDirection();
             }
-        }
-        else
-        {
-            ChangeDirection();
+
         }
 
-    }
-
-    protected void ChangeDirection()
-    {
-        if (Mathf.Abs(targets[destPoint].y - transform.position.y) <
-            Mathf.Abs(targets[destPoint].x - transform.position.x))
+        protected void ChangeDirection()
         {
-            if (targets[destPoint].x > transform.position.x)
+            if (Mathf.Abs(targets[destPoint].y - transform.position.y) <
+                Mathf.Abs(targets[destPoint].x - transform.position.x))
             {
-                direction = 0;
+                if (targets[destPoint].x > transform.position.x)
+                {
+                    direction = 0;
+                }
+                else
+                {
+                    direction = 1;
+                }
             }
             else
             {
-                direction = 1;
+                if (targets[destPoint].y > transform.position.y)
+                {
+                    direction = 2;
+                }
+                else
+                {
+                    direction = 3;
+                }
             }
+            ChangeDirectionAnimation();
         }
-        else
+
+        protected void SetActionPatrollerDirection()
         {
-            if (targets[destPoint].y > transform.position.y)
+            if (hasActionPatroller && offsetActionPatroller != 0)
             {
-                direction = 2;
-            }
-            else
-            {
-                direction = 3;
+                switch (direction)
+                {
+                    case 0:
+                        GetComponent<CircleCollider2D>().offset = new Vector2(offsetActionPatroller, 0f);
+                        break;
+                    case 1:
+                        GetComponent<CircleCollider2D>().offset = new Vector2(-offsetActionPatroller, 0f);
+                        break;
+                    case 2:
+                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, offsetActionPatroller);
+                        break;
+                    case 3:
+                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, -offsetActionPatroller);
+                        break;
+                    default:
+                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, 0f);
+                        break;
+                }
             }
         }
-        ChangeDirectionAnimation();
-    }
 
-    protected void SetActionPatrollerDirection()
-    {
-        if (hasActionPatroller && offsetActionPatroller != 0)
+        public int GetDirection()
         {
-            switch (direction)
-            {
-                case 0:
-                    GetComponent<CircleCollider2D>().offset = new Vector2(offsetActionPatroller, 0f);
-                    break;
-                case 1:
-                    GetComponent<CircleCollider2D>().offset = new Vector2(-offsetActionPatroller, 0f);
-                    break;
-                case 2:
-                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, offsetActionPatroller);
-                    break;
-                case 3:
-                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, -offsetActionPatroller);
-                    break;
-                default:
-                    GetComponent<CircleCollider2D>().offset = new Vector2(0f, 0f);
-                    break;
-            }
+            return direction;
         }
-    }
 
-    public int GetDirection()
-    {
-        return direction;
-    }
-
-    public void Stop()
-    {
-        isPatroller = false;
-        direction = 4;
-        ChangeDirectionAnimation();
-    }
-
-    protected void ChangeDirectionAnimation()
-    {
-        if (oldDirection != direction)
+        public void Stop()
         {
-            if(animator == null) animator = GetComponent<Animator>();
-            animator.SetInteger("direction", direction);
-            animator.SetTrigger("changeDirection");
-            oldDirection = direction;
+            isPatroller = false;
+            direction = 4;
+            ChangeDirectionAnimation();
         }
-    }
 
-    public void ChangeDirectionAnimation(int d)
-    {
-        direction = d;
-        ChangeDirectionAnimation();
-    }
-
-    //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (hasActionPatroller)
+        protected void ChangeDirectionAnimation()
         {
-            print("ActionPatroller: " + collision.tag);
-            if (collision.gameObject.tag.Equals("Player"))
+            if (oldDirection != direction)
             {
-                GameManager.instance.GameOver();
+                if (animator == null) animator = GetComponent<Animator>();
+                animator.SetInteger("direction", direction);
+                animator.SetTrigger("changeDirection");
+                oldDirection = direction;
             }
         }
-    }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
-            || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
+        public void ChangeDirectionAnimation(int d)
         {
-            var thisX = coll.collider.bounds.center.x;
-            var thisY = coll.collider.bounds.center.y;
-            var otherX = coll.otherCollider.bounds.center.x;
-            var otherY = coll.otherCollider.bounds.center.y;
+            direction = d;
+            ChangeDirectionAnimation();
+        }
 
-            if (thisX <= otherX && thisY >= otherY)
+        //Interacoes estao por trigger em vista de nao serem possiveis de identificacao em objeto kinematic
+        protected void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (hasActionPatroller)
             {
-                // subir um pouco
-                // um pouco pra esquerda
-                quadr1 = true;
-            }
-            else if (thisX <= otherX && thisY <= otherY)
-            {
-                // descer um pouco
-                // um pouco pra esquerda
-                quadr2 = true;
-            }
-            else if (thisX >= otherX && thisY >= otherY)
-            {
-                // subir um pouco
-                // um pouco pra direita
-                quadr3 = true;
-            }
-            else if (thisX >= otherX && thisY <= otherY)
-            {
-                // descer um pouco
-                // um pouco pra esquerda
-                quadr4 = true;
+                print("ActionPatroller: " + collision.tag);
+                if (collision.gameObject.tag.Equals("Player"))
+                {
+                    GameManager.instance.GameOver();
+                }
             }
         }
-    }
 
+        void OnCollisionEnter2D(Collision2D coll)
+        {
+            if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
+                || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
+            {
+                var thisX = coll.collider.bounds.center.x;
+                var thisY = coll.collider.bounds.center.y;
+                var otherX = coll.otherCollider.bounds.center.x;
+                var otherY = coll.otherCollider.bounds.center.y;
+
+                if (thisX <= otherX && thisY >= otherY)
+                {
+                    // subir um pouco
+                    // um pouco pra esquerda
+                    quadr1 = true;
+                }
+                else if (thisX <= otherX && thisY <= otherY)
+                {
+                    // descer um pouco
+                    // um pouco pra esquerda
+                    quadr2 = true;
+                }
+                else if (thisX >= otherX && thisY >= otherY)
+                {
+                    // subir um pouco
+                    // um pouco pra direita
+                    quadr3 = true;
+                }
+                else if (thisX >= otherX && thisY <= otherY)
+                {
+                    // descer um pouco
+                    // um pouco pra esquerda
+                    quadr4 = true;
+                }
+            }
+        }
+
+    }
 }

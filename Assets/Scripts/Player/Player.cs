@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
+using CrowShadowNPCs;
 
 public class Player : MonoBehaviour {
     public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
@@ -339,9 +341,9 @@ public class Player : MonoBehaviour {
             corvoPositionX = rb.position.x;
             corvoPositionY = rb.position.y;
             corvoScene = GameManager.instance.currentSceneName;
-            if (Corvo.instance != null)
+            if (Crow.instance != null)
             {
-                Corvo.instance.gameObject.SetActive(false);
+                Crow.instance.gameObject.SetActive(false);
                 Invoke("ChangeCorvoPosition", 2f);
             }
         }
@@ -350,11 +352,11 @@ public class Player : MonoBehaviour {
 
     public void ChangeCorvoPosition()
     {
-        if (GameManager.instance.currentSceneName.Equals(corvoScene) && Corvo.instance != null)
+        if (GameManager.instance.currentSceneName.Equals(corvoScene) && Crow.instance != null)
         {
-            Corvo.instance.ChangePosition(corvoPositionX, corvoPositionY);
-            Corvo.instance.gameObject.SetActive(true);
-            Corvo.instance.LookAtPlayer();
+            Crow.instance.ChangePosition(corvoPositionX, corvoPositionY);
+            Crow.instance.gameObject.SetActive(true);
+            Crow.instance.LookAtPlayer();
         }
     }
 

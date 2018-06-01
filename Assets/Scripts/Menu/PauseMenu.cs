@@ -1,32 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using Image = UnityEngine.UI.Image;
-using Text = UnityEngine.UI.Text;
-using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
-public class PauseMenu : MonoBehaviour
+namespace CrowShadowMenu
 {
-    GameManager gameManager;
-    public PauseMenuOptions option;
-    public enum PauseMenuOptions {BackToGame, BackToMainMenu };
-    private void Awake()
+    public class PauseMenu : MonoBehaviour
     {
-        gameManager = GameObject.Find("Player").GetComponent<GameManager>();
-    }
-    public void OnClick()
-    {
-        if (option == PauseMenuOptions.BackToGame)
+        GameManager gameManager;
+        public PauseMenuOptions option;
+        public enum PauseMenuOptions { BackToGame, BackToMainMenu };
+        private void Awake()
         {
-
-            gameManager.paused = false;
-            this.transform.parent.gameObject.SetActive(false);
+            gameManager = GameObject.Find("Player").GetComponent<GameManager>();
         }
-        else {
-            GameManager.LoadScene(0);
+        public void OnClick()
+        {
+            if (option == PauseMenuOptions.BackToGame)
+            {
+
+                gameManager.paused = false;
+                transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                GameManager.LoadScene(0);
+            }
+
         }
 
     }
-    
 }

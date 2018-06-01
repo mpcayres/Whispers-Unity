@@ -2,30 +2,28 @@
 using UnityEngine.EventSystems;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class SelectOnInput : MonoBehaviour {
-
-    public EventSystem eventSystem;
-    public GameObject selectedObject;
-
-    private bool buttonSelected;
-
-    // Use this for initialization
-    void Start () {
-    
-    }
-    
-    // Update is called once per frame
-    void Update () 
+namespace CrowShadowMenu
+{
+    public class SelectOnInput : MonoBehaviour
     {
-        if (CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && buttonSelected == false) 
+
+        public EventSystem eventSystem;
+        public GameObject selectedObject;
+
+        private bool buttonSelected;
+        
+        void Update()
         {
-            eventSystem.SetSelectedGameObject(selectedObject);
-            buttonSelected = true;
+            if (CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
+            {
+                eventSystem.SetSelectedGameObject(selectedObject);
+                buttonSelected = true;
+            }
         }
-    }
 
-    private void OnDisable()
-    {
-        buttonSelected = false;
+        private void OnDisable()
+        {
+            buttonSelected = false;
+        }
     }
 }

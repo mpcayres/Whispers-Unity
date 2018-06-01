@@ -17,7 +17,7 @@ Alex: Hm? O que é esse barulho estranho?
 Alex: Vou checar.
 [title=M1KidRoomSceneEnd]
 [title=M1KidRoomSceneCat]
-Alex: Um corvo?
+Alex: Um crow?
 Alex: Pumpkin? O que foi?
 Pumpkin: Miau.
 [title=M1KidRoomSceneCatEnd]
