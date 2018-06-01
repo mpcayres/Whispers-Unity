@@ -161,13 +161,13 @@ Alex: It's just the pictures of my great-grandparents.
 Alex: Maybe I should concentrate !!
 [title=M3PaintingEnd]
 [title=M3MundoInvertido]
-Velho: We don't have much more money left ...
-Velha: No one will want to buy such a haunted house.
-Velho: Stop talking nonsense ...
-Velho: You just think it's haunted because you keep on talking about it.
+great-grandfather: We don't have much more money left ...
+great-grandmother: No one will want to buy such a haunted house.
+great-grandfather: Stop talking nonsense ...
+great-grandfather: You just think it's haunted because you keep on talking about it.
 Pumpkin: Can you see, Alex?
-Velha: How do you explain all the accidents then?
-Velho: Pff. The important thing is that we still have our little Pumpkin.
+great-grandmother: How do you explain all the accidents then?
+great-grandfather: Pff. The important thing is that we still have our little Pumpkin.
 [title=M3MundoInvertidoEnd]
 [title=M3MundoInvertido2]
 Pumpkin: Alex...
