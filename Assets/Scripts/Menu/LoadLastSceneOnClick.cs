@@ -18,7 +18,7 @@ public class LoadLastSceneOnClick : MonoBehaviour
     {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        MissionManager.instance.ContinueGame();
+        GameManager.instance.ContinueGame();
     }
 
 } 

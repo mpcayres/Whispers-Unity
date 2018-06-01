@@ -12,16 +12,16 @@ public class Mission2 : Mission {
     public override void InitMission()
     {
         sceneInit = "QuartoKid";
-        MissionManager.initMission = true;
-        MissionManager.initX = (float)1.5;
-        MissionManager.initY = (float)-1.0;
-        MissionManager.initDir = 1;
-        MissionManager.LoadScene(sceneInit);
+        GameManager.initMission = true;
+        GameManager.initX = (float)1.5;
+        GameManager.initY = (float)-1.0;
+        GameManager.initDir = 1;
+        GameManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = true;
 
-        MissionManager.instance.invertWorld = false;
-        MissionManager.instance.invertWorldBlocked = true;
+        GameManager.instance.invertWorld = false;
+        GameManager.instance.invertWorldBlocked = true;
 
         SetInitialSettings();
     }
@@ -30,9 +30,9 @@ public class Mission2 : Mission {
     {
         if (secao == enumMission.NIGHT)
         {
-            if (!MissionManager.instance.showMissionStart)
+            if (!GameManager.instance.showMissionStart)
             {
-                if (MissionManager.instance.mission1AssustaGato)
+                if (GameManager.instance.mission1AssustaGato)
                 {
                     EspecificaEnum((int)enumMission.INICIO_SOZINHO);
                 }
@@ -40,7 +40,7 @@ public class Mission2 : Mission {
                 {
                     EspecificaEnum((int)enumMission.INICIO_GATO);
                 }
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneStart", "M2KidRoomSceneEnd", GameManager.instance.rpgTalk.txtToParse);
             }
         }
         else if (secao == enumMission.RESPEITA_MAE2)
@@ -74,25 +74,25 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
-            GameObject cat = MissionManager.instance.AddObject(
+            GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("QuartoKid") &&
+        if (GameManager.instance.previousSceneName.Equals("QuartoKid") &&
             (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2))
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2CorridorSceneRepeat", "M2CorridorSceneRepeatEnd");
+            GameManager.instance.rpgTalk.NewTalk("M2CorridorSceneRepeat", "M2CorridorSceneRepeatEnd");
         }
 
-        MissionManager.instance.scenerySounds.StopSound();
+        GameManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.INICIO_SOZINHO)
         {
             // Gato
-            MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
         }
 
         if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
@@ -113,8 +113,8 @@ public class Mission2 : Mission {
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae
-            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-            GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1.5f, 0f, 1), new Vector3(1, 1, 1));
+            GameManager.instance.AddObject("NPCs/mom", "", new Vector3(-1.5f, 0f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject trigger = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1.5f, 0f, 1), new Vector3(1, 1, 1));
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
@@ -130,7 +130,7 @@ public class Mission2 : Mission {
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
             // Mae patrulha
-            GameObject mom = MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameObject mom = GameManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
             mom.GetComponent<Patroller>().isPatroller = true;
             Vector3 target1 = new Vector3(6f, -0.3f, -0.5f);
             Vector3 target2 = new Vector3(6f, 0.5f, -0.5f);
@@ -149,16 +149,16 @@ public class Mission2 : Mission {
 
 	public override void SetCozinha()
 	{
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
-            GameObject cat = MissionManager.instance.AddObject(
+            GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
-        MissionManager.instance.scenerySounds.PlayDrop();
-        //MissionManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
+        GameManager.instance.scenerySounds.PlayDrop();
+        //GameManager.instance.rpgTalk.NewTalk ("M2KitchenSceneStart", "M2KitchenSceneEnd");
 
         // Panela
         GameObject panela = GameObject.Find("Panela").gameObject;
@@ -169,39 +169,39 @@ public class Mission2 : Mission {
             panela.GetComponent<ScenePickUpObject>().enabled = true;
 
             // Faca
-            MissionManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FACA);
+            GameManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FACA);
         }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
             // Fosforo
-            MissionManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FOSFORO);
+            GameManager.instance.CreateScenePickUp("Armario1", Inventory.InventoryItems.FOSFORO);
         }
     }
 
 	public override void SetJardim()
 	{
-		//MissionManager.instance.rpgTalk.NewTalk ("M2GardenSceneStart", "M2GardenSceneEnd");
+		//GameManager.instance.rpgTalk.NewTalk ("M2GardenSceneStart", "M2GardenSceneEnd");
 	}
 
     public override void SetQuartoKid()
     {
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
-            GameObject cat = MissionManager.instance.AddObject(
+            GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver") && 
+        if (GameManager.instance.previousSceneName.Equals("GameOver") && 
             (secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
         {
             secao = enumMission.FINAL_CONTESTA; // está fora do EspecificaEnum pq não é para chamar a fala de lá e aí ficava mais fácil
         }
 
-        if ((secao == enumMission.NIGHT && !MissionManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
+        if ((secao == enumMission.NIGHT && !GameManager.instance.mission1AssustaGato) || secao == enumMission.INICIO_GATO)
         {
-            GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -0.8f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -0.8f, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
         else if (secao == enumMission.RESPEITA_MAE)
@@ -223,22 +223,22 @@ public class Mission2 : Mission {
 
             if (!Inventory.HasItemType(Inventory.InventoryItems.VELA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneVela", "M2KidRoomSceneVelaEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneVela", "M2KidRoomSceneVelaEnd", GameManager.instance.rpgTalk.txtToParse);
             }
             else if (!Inventory.HasItemType(Inventory.InventoryItems.FOSFORO))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFosforo", "M2KidRoomSceneFosforoEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFosforo", "M2KidRoomSceneFosforoEnd", GameManager.instance.rpgTalk.txtToParse);
             }
         }
         else if (secao == enumMission.CONTESTA_MAE2)
         {
             if (!Inventory.HasItemType(Inventory.InventoryItems.FACA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFaca", "M2KidRoomSceneFacaEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneFaca", "M2KidRoomSceneFacaEnd", GameManager.instance.rpgTalk.txtToParse);
             }
             else if (!Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneTampa", "M2KidRoomSceneTampaEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneTampa", "M2KidRoomSceneTampaEnd", GameManager.instance.rpgTalk.txtToParse);
             }
         }
         else if (secao == enumMission.FINAL_RESPEITA || secao == enumMission.FINAL_CONTESTA)
@@ -254,28 +254,28 @@ public class Mission2 : Mission {
             {
                 // Mini-game vela
                 vela = GameObject.Find("Player").gameObject.transform.Find("Vela").gameObject;
-                GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
+                GameObject trigger = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
                 trigger.name = "VelaTrigger";
                 trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
                 trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
 
                 fosforo = GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject;
 
-                MissionManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", MissionManager.instance.rpgTalk.txtToParse);
+                GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", GameManager.instance.rpgTalk.txtToParse);
             }
             else if (secao == enumMission.FINAL_CONTESTA)
             {
                 // Corvo atacando
                 //faca = GameObject.Find("Player").gameObject.transform.Find("Faca").gameObject;
                 //tampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject;
-                MissionManager.instance.Print("CORVO");
-                corvoBabies = MissionManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
+                GameManager.instance.Print("CORVO");
+                corvoBabies = GameManager.instance.AddObject("NPCs/CorvBabies", "", new Vector3(-1.97f, 1.42f, -0.5f), new Vector3(3f, 3f, 1));
                 corvoBabies.GetComponent<CorvBabies>().speed = 0.1f;
                 corvoBabies.GetComponent<CorvBabies>().timeBirdsFollow = 0.5f;
                 var main = corvoBabies.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>().main;
                 main.startSpeed = 1.5f;
 
-                MissionManager.instance.Invoke("InvokeMission", 5f);
+                GameManager.instance.Invoke("InvokeMission", 5f);
             }
         }
 
@@ -283,15 +283,15 @@ public class Mission2 : Mission {
 
     public override void SetQuartoMae()
 	{
-		//MissionManager.instance.rpgTalk.NewTalk ("M2MomRoomSceneStart", "M2MomRoomSceneEnd");
+		//GameManager.instance.rpgTalk.NewTalk ("M2MomRoomSceneStart", "M2MomRoomSceneEnd");
 	}
 
     public override void SetSala()
     {
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
-            GameObject cat = MissionManager.instance.AddObject(
+            GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
         }
@@ -302,42 +302,42 @@ public class Mission2 : Mission {
         if (secao == enumMission.RESPEITA_MAE2)
         {
             // Vela
-            MissionManager.instance.CreateScenePickUp("Armario", Inventory.InventoryItems.VELA);
+            GameManager.instance.CreateScenePickUp("Armario", Inventory.InventoryItems.VELA);
         }
     }
 
     public override void EspecificaEnum(int pos)
     {
         secao = (enumMission)pos;
-        MissionManager.instance.Print("SECAO: " + secao);
+        GameManager.instance.Print("SECAO: " + secao);
 
         if (secao == enumMission.ENCONTRA_MAE)
         {
-            MissionManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk ("M2CorridorSceneStart", "M2CorridorSceneEnd", GameManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.RESPEITA_MAE)
         {
-            MissionManager.instance.mission2ContestaMae = false;
+            GameManager.instance.mission2ContestaMae = false;
         }
         else if (secao == enumMission.CONTESTA_MAE)
         {
-            MissionManager.instance.mission2ContestaMae = true;
+            GameManager.instance.mission2ContestaMae = true;
         }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk("M2Q1C1_2", "M2Q1C1_2End", GameManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.CONTESTA_MAE2)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk("M2Q1C0_2", "M2Q1C0_2End", GameManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.FINAL_RESPEITA)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk("M2AllObjectsRespeita", "M2AllObjectsRespeitaEnd", GameManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            velaFixa = MissionManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            velaFixa = GameManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
 
@@ -348,18 +348,18 @@ public class Mission2 : Mission {
         {
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
-            MissionManager.instance.Invoke("InvokeMission", 4f);
+            GameManager.instance.Invoke("InvokeMission", 4f);
         }
         else if (secao == enumMission.FINAL_CONTESTA)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk("M2AllObjectsContesta", "M2AllObjectsContestaEnd", GameManager.instance.rpgTalk.txtToParse);
         }
         else if (secao == enumMission.FINAL_CONTESTA_CORVO)
         {
-            MissionManager.instance.scenerySounds.PlayBird(1);
+            GameManager.instance.scenerySounds.PlayBird(1);
             //corvoBabies.GetComponent<CorvBabies>().FollowPlayer();
             corvoBabies.transform.Find("BirdEmitterCollider").gameObject.SetActive(true);
-            MissionManager.instance.Invoke("InvokeMission", 40f);
+            GameManager.instance.Invoke("InvokeMission", 40f);
         }
         else if (secao == enumMission.FINAL_CONTESTA_GATO)
         {
@@ -380,20 +380,20 @@ public class Mission2 : Mission {
             corvoBabies.GetComponent<CorvBabies>().targets = targetsCorvo;
             corvoBabies.GetComponent<CorvBabies>().speed = 0.6f;
 
-            MissionManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", MissionManager.instance.rpgTalk.txtToParse);
+            GameManager.instance.rpgTalk.NewTalk("M2AtaqueContesta", "M2AtaqueContestaEnd", GameManager.instance.rpgTalk.txtToParse);
 
-            MissionManager.instance.Invoke("InvokeMission", 2.5f);
+            GameManager.instance.Invoke("InvokeMission", 2.5f);
         }
         else if (secao == enumMission.FINAL_CONTESTA_ATAQUE)
         {
-            MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
+            GameManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
             corvoBabies.GetComponent<CorvBabies>().DestroyCorvBabies();
             Cat.instance.Stop();
-            MissionManager.instance.Invoke("InvokeMission", 6f);
+            GameManager.instance.Invoke("InvokeMission", 6f);
         }
         else if (secao == enumMission.FINAL)
         {
-            MissionManager.instance.ChangeMission(3);
+            GameManager.instance.ChangeMission(3);
         }
     }
 

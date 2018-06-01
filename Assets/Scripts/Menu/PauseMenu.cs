@@ -8,23 +8,23 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseMenu : MonoBehaviour
 {
-    MissionManager missionManager;
+    GameManager gameManager;
     public PauseMenuOptions option;
     public enum PauseMenuOptions {BackToGame, BackToMainMenu };
     private void Awake()
     {
-        missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        gameManager = GameObject.Find("Player").GetComponent<GameManager>();
     }
     public void OnClick()
     {
         if (option == PauseMenuOptions.BackToGame)
         {
 
-            missionManager.paused = false;
+            gameManager.paused = false;
             this.transform.parent.gameObject.SetActive(false);
         }
         else {
-            MissionManager.LoadScene(0);
+            GameManager.LoadScene(0);
         }
 
     }

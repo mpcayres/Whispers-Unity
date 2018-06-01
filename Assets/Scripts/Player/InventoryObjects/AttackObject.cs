@@ -22,7 +22,7 @@ public class AttackObject : MonoBehaviour {
             timeLeftAttack -= Time.deltaTime;
         }
         else if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == item &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+            !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
         {
             timeLeftAttack = timeAttack;
             attacking = true;

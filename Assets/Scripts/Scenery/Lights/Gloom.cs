@@ -18,7 +18,7 @@ public class Gloom : MonoBehaviour
             maxRoar--;
             if(maxRoar < 0)
             {
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
             }
         }
     }

@@ -8,7 +8,7 @@ public class SideQuest3 : SideQuest
 
     public override void InitSideQuest()
     {
-        if (!MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (!GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             // Determinar posição do player (sideX e sideY)
             sideX = 0f; sideY = 18f;
@@ -25,12 +25,12 @@ public class SideQuest3 : SideQuest
         List<float> radius = new List<float>(), originX = new List<float>(), originY = new List<float>();
         radius.Add(5f); originX.Add(0f); originY.Add(-10f);
 
-        GameObject holderSpirit = MissionManager.instance.AddObject("Scenery/SpiritHolder", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        GameObject holderSpirit = GameManager.instance.AddObject("Scenery/SpiritHolder", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
         spiritManager = holderSpirit.GetComponent<SpiritManager>();
         spiritManager.GenerateSpiritMap(radius[0], originX[0], originY[0], 6, 2, 1, true, 4);
 
         // Determinar posição das luzes de borda (posição inicial do player e locais dos espíritos
-        GameObject holderLight = MissionManager.instance.AddObject("Scenery/LightHolder", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        GameObject holderLight = GameManager.instance.AddObject("Scenery/LightHolder", "", new Vector3(0, 0, 0), new Vector3(1, 1, 1));
         lightManager = holderLight.GetComponent<HelpingLightManager>();
         lightManager.GenerateBorderLightMap(sideX, sideY, radius, originX, originY);
 
@@ -48,7 +48,7 @@ public class SideQuest3 : SideQuest
             {
                 success = false;
                 DeleteTimeToEscape();
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
             }
         }
         // Conferir se todos os SpiritManagers alcançaram sucesso

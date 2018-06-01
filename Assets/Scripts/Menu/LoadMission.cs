@@ -32,7 +32,7 @@ public class LoadMission : MonoBehaviour{
     {
         PlayerPrefs.SetInt("Mission", m);
         PlayerPrefs.SetInt("CurrentSaveNumber", save);
-        MissionManager.LoadScene(6);
+        GameManager.LoadScene(6);
     }
 
 }

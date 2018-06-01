@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour {
     GameObject menu, slotsPanel, imagesPanel;
     Sprite box, selectedBox;
     static GameObject menuItem, counterValue;
-    MissionManager missionManager;
+    GameManager gameManager;
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour {
         imagesPanel = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu/ImagesPanel").gameObject;
         box = Resources.Load<Sprite>("Sprites/UI/box");
         selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
-        missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        gameManager = GameObject.Find("Player").GetComponent<GameManager>();
         if (listItems == null) listItems = new List<DataItems>();
     }
 
@@ -73,8 +73,8 @@ public class Inventory : MonoBehaviour {
 	
 	void Update ()
     {
-        if (CrossPlatformInputManager.GetButtonDown("keyInventory") && !MissionManager.instance.showMissionStart &&
-            !MissionManager.instance.blocked && !MissionManager.instance.pausedObject && !Book.show)
+        if (CrossPlatformInputManager.GetButtonDown("keyInventory") && !GameManager.instance.showMissionStart &&
+            !GameManager.instance.blocked && !GameManager.instance.pausedObject && !Book.show)
         {
             if(!source.isPlaying)
                 source.PlayOneShot(sound);
@@ -124,7 +124,7 @@ public class Inventory : MonoBehaviour {
         {
             open = false;
             menu.SetActive(false);
-            missionManager.paused = false;
+            gameManager.paused = false;
             if (currentItem != -1)
             {
                 GameObject currentSlot = slotsPanel.transform.Find("Slot (" + currentItem + ")").gameObject;
@@ -138,7 +138,7 @@ public class Inventory : MonoBehaviour {
         {
             open = true;
             menu.SetActive(true);
-            missionManager.paused = true;
+            gameManager.paused = true;
             int count = 0;
             foreach (DataItems i in listItems)
             {
@@ -233,7 +233,7 @@ public class Inventory : MonoBehaviour {
         if (pos != -1)
         {
             if(menuItem == null) menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
-            if (!menuItem.activeSelf && !(MissionManager.instance.mission is Mission9)) menuItem.SetActive(true);
+            if (!menuItem.activeSelf && !(GameManager.instance.mission is Mission9)) menuItem.SetActive(true);
             menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
             menuItem.GetComponent<Image>().preserveAspect = true;
             SetCurrentValue();
@@ -248,40 +248,40 @@ public class Inventory : MonoBehaviour {
         switch (item)
         {
             case InventoryItems.FLASHLIGHT:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(e);
                 break;
             case InventoryItems.FOSFORO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(e);
                 break;
             case InventoryItems.ISQUEIRO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(e);
                 break;
             case InventoryItems.FACA:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(e);
                 break;
             case InventoryItems.BASTAO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Bastao").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Bastao").gameObject.SetActive(e);
                 break;
             case InventoryItems.TAMPA:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(e);
                 break;
             case InventoryItems.ESCUDO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(e);
                 break;
             case InventoryItems.PEDRA:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(e);
                 break;
             case InventoryItems.PAPEL:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(e);
                 break;
             case InventoryItems.VELA:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(e);
                 break;
             case InventoryItems.RACAO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(e);
                 break;
             case InventoryItems.LIVRO:
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(e);
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(e);
                 break;
             default:
                 break;
@@ -356,11 +356,11 @@ public class Inventory : MonoBehaviour {
                 break;
             case InventoryItems.TAMPA:
                 file = "tampa";
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 100;
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 100;
                 break;
             case InventoryItems.ESCUDO:
                 file = "escudo";
-                MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>().life = 80;
+                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>().life = 80;
                 break;
             case InventoryItems.PEDRA:
                 file = "pedra";
@@ -444,47 +444,47 @@ public class Inventory : MonoBehaviour {
 
         if (selectItem == InventoryItems.FLASHLIGHT)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.FOSFORO)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.FACA)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.TAMPA)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.ESCUDO)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.PEDRA)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.PAPEL)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.VELA)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.RACAO)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(false);
         }
         else if (selectItem == InventoryItems.ISQUEIRO)
         {
-            MissionManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(false);
+            GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(false);
         }
 
     }
@@ -526,7 +526,7 @@ public class Inventory : MonoBehaviour {
     {
         if (item == InventoryItems.PEDRA)
         {
-            GameObject text = MissionManager.instance.AddObjectWithParent("UI/TextCounter", slot.transform);
+            GameObject text = GameManager.instance.AddObjectWithParent("UI/TextCounter", slot.transform);
             text.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
             text.name = "TextPedra";
             text.GetComponent<Text>().text = "" + pedraCount;
@@ -534,7 +534,7 @@ public class Inventory : MonoBehaviour {
         }
         else if (item == InventoryItems.PAPEL)
         {
-            GameObject text = MissionManager.instance.AddObjectWithParent("UI/TextCounter", slot.transform);
+            GameObject text = GameManager.instance.AddObjectWithParent("UI/TextCounter", slot.transform);
             text.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
             text.name = "TextPapel";
             text.GetComponent<Text>().text = "" + papelCount;

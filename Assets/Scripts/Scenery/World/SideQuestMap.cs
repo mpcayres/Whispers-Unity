@@ -6,7 +6,7 @@ public class SideQuestMap : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            MissionManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 }

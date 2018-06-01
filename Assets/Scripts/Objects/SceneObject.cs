@@ -44,13 +44,13 @@ public class SceneObject : MonoBehaviour {
         if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
             if (isCrowSick && CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject) {
+            !GameManager.instance.paused && !GameManager.instance.blocked &&
+            !GameManager.instance.pausedObject) {
                 GameObject.Find("CrowHolder").gameObject.GetComponent<SickCrow>().fly = true;
             }
             else if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            !GameManager.instance.paused && !GameManager.instance.blocked &&
+            !GameManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 ChangeSprite();
             }

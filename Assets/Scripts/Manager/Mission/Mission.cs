@@ -11,27 +11,27 @@ public abstract class Mission {
 
     public void LoadMissionScene()
     {
-        if (MissionManager.instance.currentSceneName.Equals("Corredor"))
+        if (GameManager.instance.currentSceneName.Equals("Corredor"))
         {
             SetCorredor();
         }
-        else if (MissionManager.instance.currentSceneName.Equals("Cozinha"))
+        else if (GameManager.instance.currentSceneName.Equals("Cozinha"))
         {
             SetCozinha();
         }
-        else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+        else if (GameManager.instance.currentSceneName.Equals("Jardim"))
         {
             SetJardim();
         }
-        else if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+        else if (GameManager.instance.currentSceneName.Equals("QuartoKid"))
         {
             SetQuartoKid();
         }
-        else if (MissionManager.instance.currentSceneName.Equals("QuartoMae"))
+        else if (GameManager.instance.currentSceneName.Equals("QuartoMae"))
         {
             SetQuartoMae();
         }
-        else if (MissionManager.instance.currentSceneName.Equals("Sala"))
+        else if (GameManager.instance.currentSceneName.Equals("Sala"))
         {
             SetSala();
         }
@@ -66,7 +66,7 @@ public abstract class Mission {
         if (Cat.instance != null) Cat.instance.DestroyCat();
         if (Corvo.instance != null) Corvo.instance.DestroyRaven();
 
-        MissionManager.instance.paused = false;
+        GameManager.instance.paused = false;
 
         GameObject player = GameObject.Find("Player").gameObject;
         GameObject fosforo = player.transform.Find("Fosforo").gameObject;
@@ -84,9 +84,9 @@ public abstract class Mission {
         //faca.GetComponent<MiniGameObject>().activated = false;
         //pedra.GetComponent<MiniGameObject>().activated = false;
 
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
     }
 

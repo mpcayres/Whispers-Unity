@@ -17,13 +17,13 @@ public class ProtectionObject : MonoBehaviour {
     {
         if (life <= 0)
         {
-            MissionManager.instance.playerProtected = false;
+            GameManager.instance.playerProtected = false;
             Inventory.DeleteItem(item);
         }
         else
         {
-            if (Inventory.GetCurrentItemType() == item && !MissionManager.instance.paused &&
-                !MissionManager.instance.blocked && !MissionManager.instance.pausedObject &&
+            if (Inventory.GetCurrentItemType() == item && !GameManager.instance.paused &&
+                !GameManager.instance.blocked && !GameManager.instance.pausedObject &&
                 CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {
                 EnterProtection(!enterProtection);
@@ -38,7 +38,7 @@ public class ProtectionObject : MonoBehaviour {
     private void EnterProtection(bool e = true)
     {
         enterProtection = e;
-        MissionManager.instance.playerProtected = e;
+        GameManager.instance.playerProtected = e;
         // mudar imagem do player
         if (enterProtection)
         {

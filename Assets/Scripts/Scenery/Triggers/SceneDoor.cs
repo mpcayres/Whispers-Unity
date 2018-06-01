@@ -11,8 +11,8 @@ public class SceneDoor : MonoBehaviour
         {
             if (!isOpened)
             {
-                MissionManager.instance.rpgTalk.NewTalk("Trancada", "TrancadaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
-                MissionManager.instance.scenerySounds2.PlayDoorClosed();
+                GameManager.instance.rpgTalk.NewTalk("Trancada", "TrancadaEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
+                GameManager.instance.scenerySounds2.PlayDoorClosed();
             }
             else
             {
@@ -24,7 +24,7 @@ public class SceneDoor : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other)
     {
         //print("STAYTRIGGER");
-        if (other.gameObject.tag.Equals("Player") && isOpened && !MissionManager.instance.paused)
+        if (other.gameObject.tag.Equals("Player") && isOpened && !GameManager.instance.paused)
         {
             ChangeScene();
         }
@@ -32,36 +32,36 @@ public class SceneDoor : MonoBehaviour
 
     private void ChangeScene()
     {
-        MissionManager.instance.paused = true;
+        GameManager.instance.paused = true;
 
         switch (gameObject.tag)
         {
             case "DoorToLivingroom":
-                MissionManager.LoadScene(1);
+                GameManager.LoadScene(1);
                 break;
             case "DoorToAlley":
-                MissionManager.LoadScene(2);
+                GameManager.LoadScene(2);
                 break;
             case "DoorToGarden":
-                MissionManager.LoadScene(3);
+                GameManager.LoadScene(3);
                 break;
             case "DoorToKitchen":
-                MissionManager.LoadScene(4);
+                GameManager.LoadScene(4);
                 break;
             case "DoorToMomRoom":
-                MissionManager.LoadScene(5);
+                GameManager.LoadScene(5);
                 break;
             case "DoorToKidRoom":
-                MissionManager.LoadScene(6);
+                GameManager.LoadScene(6);
                 break;
             case "DoorToBathroom":
-                MissionManager.LoadScene(9);
+                GameManager.LoadScene(9);
                 break;
             case "DoorToBasement":
-                MissionManager.LoadScene(11);
+                GameManager.LoadScene(11);
                 break;
             default:
-                MissionManager.instance.paused = false;
+                GameManager.instance.paused = false;
                 break;
         }
     }

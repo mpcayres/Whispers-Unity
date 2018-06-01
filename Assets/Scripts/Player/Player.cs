@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
             invertControlsTime -= Time.deltaTime;
         }
        
-        if (!MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        if (!GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
         {
             bool isWalking = false;
             float move = movespeed;
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour {
                 }
 
                 //barulho dos passos
-                if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+                if (GameManager.instance.currentSceneName.Equals("Jardim"))
                 {
                     source.clip = stepsGrass;
                     stepsControl = 0.1f;
@@ -228,21 +228,21 @@ public class Player : MonoBehaviour {
         playerAction = Actions.DEFAULT;
 
         string previousSceneName = "";
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             previousSceneName = lastSceneGameOver;
             invertControlsTime = 0;
             movespeed = 0.01f;
         }
-        else if(!MissionManager.instance.currentSceneName.Equals("GameOver"))
+        else if(!GameManager.instance.currentSceneName.Equals("GameOver"))
         {
-            lastSceneGameOver = MissionManager.instance.previousSceneName;
-            previousSceneName = MissionManager.instance.previousSceneName;
+            lastSceneGameOver = GameManager.instance.previousSceneName;
+            previousSceneName = GameManager.instance.previousSceneName;
         }
 
-        if (!MissionManager.instance.currentSceneName.Equals(MissionManager.instance.previousSceneName))
+        if (!GameManager.instance.currentSceneName.Equals(GameManager.instance.previousSceneName))
         {
-            if (MissionManager.instance.currentSceneName.Equals("Corredor"))
+            if (GameManager.instance.currentSceneName.Equals("Corredor"))
             {
                 if (previousSceneName.Equals("Sala"))
                 {
@@ -269,11 +269,11 @@ public class Player : MonoBehaviour {
                     ChangeDirection(3);
                 }
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Cozinha"))
+            else if (GameManager.instance.currentSceneName.Equals("Cozinha"))
             {
                 rb.position = new Vector2((float)1.5, (float)0.7);
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+            else if (GameManager.instance.currentSceneName.Equals("Jardim"))
             {
                 if (previousSceneName.Equals("Porao"))
                 {
@@ -285,27 +285,27 @@ public class Player : MonoBehaviour {
                     rb.position = new Vector2((float)3.25, (float)2.3);
                 }
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Porao"))
+            else if (GameManager.instance.currentSceneName.Equals("Porao"))
             {
                 rb.position = new Vector2((float)3.2, (float)0.5);
                 ChangeDirection(3);
             }
-            else if (MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+            else if (GameManager.instance.currentSceneName.Equals("QuartoKid"))
             {
                 rb.position = new Vector2((float)1.75, (float)0.65);
                 ChangeDirection(3);
             }
-            else if (MissionManager.instance.currentSceneName.Equals("QuartoMae"))
+            else if (GameManager.instance.currentSceneName.Equals("QuartoMae"))
             {
                 rb.position = new Vector2((float)-3.8, (float)-0.45);
                 ChangeDirection(3);
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Banheiro"))
+            else if (GameManager.instance.currentSceneName.Equals("Banheiro"))
             {
                 rb.position = new Vector2((float)2.171, (float)0.284);
                 ChangeDirection(3);
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Sala"))
+            else if (GameManager.instance.currentSceneName.Equals("Sala"))
             {
                 if (previousSceneName.Equals("Jardim"))
                 {
@@ -318,12 +318,12 @@ public class Player : MonoBehaviour {
                     ChangeDirection(3);
                 }
             }
-            else if (MissionManager.instance.currentSceneName.Equals("SideQuest"))
+            else if (GameManager.instance.currentSceneName.Equals("SideQuest"))
             {
-                rb.position = new Vector2(MissionManager.instance.sideQuest.sideX, MissionManager.instance.sideQuest.sideY);
-                ChangeDirection(MissionManager.instance.sideQuest.sideDir);
+                rb.position = new Vector2(GameManager.instance.sideQuest.sideX, GameManager.instance.sideQuest.sideY);
+                ChangeDirection(GameManager.instance.sideQuest.sideDir);
             }
-            MissionManager.instance.paused = false;
+            GameManager.instance.paused = false;
         }
 
         if (Cat.instance != null)
@@ -331,14 +331,14 @@ public class Player : MonoBehaviour {
             Cat.instance.ChangePosition(rb.position.x - 0.6f, rb.position.y - 0.3f);
         }
 
-        if ((MissionManager.instance.mission is Mission8) &&
-            !MissionManager.instance.previousSceneName.Equals("GameOver") &&
-            !MissionManager.instance.currentSceneName.Equals("GameOver"))
+        if ((GameManager.instance.mission is Mission8) &&
+            !GameManager.instance.previousSceneName.Equals("GameOver") &&
+            !GameManager.instance.currentSceneName.Equals("GameOver"))
         {
             if (rb == null) rb = GetComponent<Rigidbody2D>();
             corvoPositionX = rb.position.x;
             corvoPositionY = rb.position.y;
-            corvoScene = MissionManager.instance.currentSceneName;
+            corvoScene = GameManager.instance.currentSceneName;
             if (Corvo.instance != null)
             {
                 Corvo.instance.gameObject.SetActive(false);
@@ -350,7 +350,7 @@ public class Player : MonoBehaviour {
 
     public void ChangeCorvoPosition()
     {
-        if (MissionManager.instance.currentSceneName.Equals(corvoScene) && Corvo.instance != null)
+        if (GameManager.instance.currentSceneName.Equals(corvoScene) && Corvo.instance != null)
         {
             Corvo.instance.ChangePosition(corvoPositionX, corvoPositionY);
             Corvo.instance.gameObject.SetActive(true);

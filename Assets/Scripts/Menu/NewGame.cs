@@ -18,7 +18,7 @@ public class NewGame : MonoBehaviour {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
         PlayerPrefs.SetInt("Mission", -1);
-        MissionManager.LoadScene(6);
+        GameManager.LoadScene(6);
 
     }
 

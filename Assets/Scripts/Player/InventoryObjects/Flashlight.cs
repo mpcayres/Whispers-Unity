@@ -18,8 +18,8 @@ public class Flashlight : MonoBehaviour {
 	void Update ()
     {
         //0 = east, 1 = west, 2 = north, 3 = south
-        if (Inventory.GetCurrentItemType() == item && !MissionManager.instance.paused &&
-            !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+        if (Inventory.GetCurrentItemType() == item && !GameManager.instance.paused &&
+            !GameManager.instance.blocked && !GameManager.instance.pausedObject)
         {
             if (CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {

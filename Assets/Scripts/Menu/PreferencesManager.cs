@@ -23,13 +23,13 @@ public class PreferencesManager : MonoBehaviour {
         }
 
         // Adaptar para mais de um save
-        if (!MissionManager.FilePatternExists(Application.persistentDataPath, "gamesave0_*.save"))
+        if (!GameManager.FilePatternExists(Application.persistentDataPath, "gamesave0_*.save"))
         {
             FindDeepChild(transform, "ContinueButton").gameObject.SetActive(false);
         }
         else
         {
-            string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave0_*.save");
+            string[] files = GameManager.GetFilesByPattern(Application.persistentDataPath, "gamesave0_*.save");
             GameObject saveContent = FindDeepChild(transform, "ContinueSavesContent").gameObject;
             RectTransform rect = saveContent.gameObject.GetComponent<RectTransform>();
             rect.sizeDelta = new Vector2(rect.sizeDelta.x, 30 * files.Length);
@@ -47,7 +47,7 @@ public class PreferencesManager : MonoBehaviour {
             }
         }
 
-        if (!MissionManager.FilePatternExists(Application.persistentDataPath, "gamesave*.save"))
+        if (!GameManager.FilePatternExists(Application.persistentDataPath, "gamesave*.save"))
         {
             FindDeepChild(transform, "LoadGameButton").gameObject.SetActive(false);
         }
@@ -94,7 +94,7 @@ public class PreferencesManager : MonoBehaviour {
 
     public void SetSaveMenu(int m)
     {
-        string[] files = MissionManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + m + "_*.save");
+        string[] files = GameManager.GetFilesByPattern(Application.persistentDataPath, "gamesave" + m + "_*.save");
 
         GameObject saveContent = FindDeepChild(transform, "LoadGameSavesContent").gameObject;
         foreach (Transform child in saveContent.transform)

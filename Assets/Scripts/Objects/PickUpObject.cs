@@ -25,7 +25,7 @@ public class PickUpObject : MonoBehaviour {
         if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
             if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
-                !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+                !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
             {
                 Inventory.NewItem(item);
                 Destroy(gameObject);

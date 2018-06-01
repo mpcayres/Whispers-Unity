@@ -197,7 +197,7 @@ public class Patroller : MonoBehaviour {
             print("ActionPatroller: " + collision.tag);
             if (collision.gameObject.tag.Equals("Player"))
             {
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
             }
         }
     }

@@ -18,10 +18,10 @@ public class ZoomObject : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") && !MissionManager.instance.blocked && !MissionManager.instance.paused)
+        if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") && !GameManager.instance.blocked && !GameManager.instance.paused)
         {
             if (!showImage) {
-                if (!MissionManager.instance.pausedObject) {
+                if (!GameManager.instance.pausedObject) {
                     showImage = true;
                     GameObject camera = GameObject.Find("MainCamera");
                     Vector3 pos = new Vector3(
@@ -33,7 +33,7 @@ public class ZoomObject : MonoBehaviour {
                     objectInstance.GetComponent<BoxCollider2D>().enabled = false;
                     objectInstance.layer = LayerMask.NameToLayer("UI");
                     objectInstance.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
-                    MissionManager.instance.pausedObject = showImage;
+                    GameManager.instance.pausedObject = showImage;
                 }
             }
             else
@@ -41,7 +41,7 @@ public class ZoomObject : MonoBehaviour {
                 opened = true;
                 showImage = false;
                 Destroy(objectInstance);
-                MissionManager.instance.pausedObject = showImage;
+                GameManager.instance.pausedObject = showImage;
             }
         }
     }

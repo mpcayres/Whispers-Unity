@@ -7,9 +7,9 @@ using System;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class MissionManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-    public static MissionManager instance;
+    public static GameManager instance;
 
     // MISSÕES
     public Mission mission;
@@ -787,8 +787,8 @@ public class MissionManager : MonoBehaviour {
     /************ FUNÇÕES ESPECIAIS ************/
 
     // ALEATORIZAR LOCAIS PARA OBJETOS
-    // Exemplo de chamaga: MissionManager.instance.RandomObjectsPlaces(Inventory.InventoryItems.FOSFORO, new List<string>{ "QuartoKid" });
-    // Deve vir antes do MissionManager.LoadScene(sceneInit);
+    // Exemplo de chamaga: GameManager.instance.RandomObjectsPlaces(Inventory.InventoryItems.FOSFORO, new List<string>{ "QuartoKid" });
+    // Deve vir antes do GameManager.LoadScene(sceneInit);
     public void RandomObjectsPlaces(Inventory.InventoryItems pickUp, List<string> places = null)
     {
         if (places == null || places.Count == 0)

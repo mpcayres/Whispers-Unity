@@ -37,7 +37,7 @@ public class MiniGameObject : MonoBehaviour {
             StopMiniGame();
         }
 
-        if (activated && !achievedGoal && !otherItem && !MissionManager.instance.paused && !MissionManager.instance.blocked)
+        if (activated && !achievedGoal && !otherItem && !GameManager.instance.paused && !GameManager.instance.blocked)
         {
             if (timeLeft > 0)
             {
@@ -47,10 +47,10 @@ public class MiniGameObject : MonoBehaviour {
             if (CrossPlatformInputManager.GetButtonDown("keyUseObject") && !playing) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 //print("STARTMINIGAME" + item);
-                MissionManager.instance.pausedObject = true;
+                GameManager.instance.pausedObject = true;
                 timeLeft = timeMax;
                 anim.SetActive(true);
-                flare = MissionManager.instance.AddObject("Effects/Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
+                flare = GameManager.instance.AddObject("Effects/Flare", "", new Vector3(posFlareX, posFlareY, -0.5f), new Vector3(1, 1, 1));
                 playing = true;
             }
             else if ((CrossPlatformInputManager.GetButtonDown("keyUseObject") || timeLeft <= 0) && playing)
@@ -91,7 +91,7 @@ public class MiniGameObject : MonoBehaviour {
     public void StopMiniGame()
     {
         //print("STOPMINIMAGE" + item);
-        MissionManager.instance.pausedObject = false;
+        GameManager.instance.pausedObject = false;
         timeLeft = 0;
         if (refreshTimeMax)
         {

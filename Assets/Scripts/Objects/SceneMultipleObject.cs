@@ -44,8 +44,8 @@ public class SceneMultipleObject : MonoBehaviour {
         }
 
         if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            !GameManager.instance.paused && !GameManager.instance.blocked &&
+            !GameManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
         {
             ChangeSprite();
         } else if(!sprite1Selected && sprite2.Length > 1 && timeLeft <= 0){

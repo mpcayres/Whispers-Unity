@@ -40,7 +40,7 @@ public class Spirit : MonoBehaviour {
     {
         if (canKill && collision.gameObject.tag.Equals("Player"))
         {
-            MissionManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 

@@ -92,21 +92,21 @@ public class SpiritManager : MonoBehaviour {
         switch (type)
         {
             case 0:
-                GameObject goodSpirit = MissionManager.instance.AddObjectWithParent("Scenery/GoodSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                GameObject goodSpirit = GameManager.instance.AddObjectWithParent("Scenery/GoodSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
                 goodSpirit.GetComponent<Spirit>().number = goodSpiritCount;
                 goodSpirit.GetComponent<Spirit>().spiritManager = this;
                 goodSpiritDictionary.Add(goodSpiritCount, goodSpirit);
                 goodSpiritCount++;
                 break;
             case 1:
-                GameObject evilSpirit = MissionManager.instance.AddObjectWithParent("Scenery/EvilSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                GameObject evilSpirit = GameManager.instance.AddObjectWithParent("Scenery/EvilSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
                 evilSpirit.GetComponent<Spirit>().number = evilSpiritCount;
                 evilSpirit.GetComponent<Spirit>().spiritManager = this;
                 evilSpiritDictionary.Add(evilSpiritCount, evilSpirit);
                 evilSpiritCount++;
                 break;
             default:
-                GameObject killerSpirit = MissionManager.instance.AddObjectWithParent("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
+                GameObject killerSpirit = GameManager.instance.AddObjectWithParent("Scenery/KillerSpirit", "", new Vector3(x, y, 0), new Vector3(1f, 1f, 1), transform);
                 killerSpirit.GetComponent<Spirit>().number = killerSpiritCount;
                 killerSpirit.GetComponent<Spirit>().spiritManager = this;
                 killerSpiritDictionary.Add(killerSpiritCount, killerSpirit);
@@ -131,7 +131,7 @@ public class SpiritManager : MonoBehaviour {
 
         if (evilSpiritKilled >= maxEvilKilled)
         {
-            MissionManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 
@@ -141,7 +141,7 @@ public class SpiritManager : MonoBehaviour {
 
         if (killerSpiritKilled >= maxKillerKilled)
         {
-            MissionManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 

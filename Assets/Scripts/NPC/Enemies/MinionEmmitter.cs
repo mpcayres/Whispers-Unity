@@ -42,7 +42,7 @@ public class MinionEmmitter : MonoBehaviour {
 
     private void AddMinion()
     {
-        GameObject minion = MissionManager.instance.AddObjectWithParent(
+        GameObject minion = GameManager.instance.AddObjectWithParent(
             "NPCs/minion", "", new Vector3(transform.position.x, transform.position.y, 0), new Vector3(1f, 1f, 1f), transform);
         minion.GetComponent<Minion>().speed = Random.Range(0.15f, 0.3f);
         minion.GetComponent<Minion>().timeMaxPower = Random.Range(2f, 5f);

@@ -47,8 +47,8 @@ public class ScenePickUpObject : MonoBehaviour
         if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
         {
             if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-                !MissionManager.instance.paused && !MissionManager.instance.blocked &&
-                !MissionManager.instance.pausedObject && !blockChange) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                !GameManager.instance.paused && !GameManager.instance.blocked &&
+                !GameManager.instance.pausedObject && !blockChange) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 ChangeSprite();
             }
@@ -62,7 +62,7 @@ public class ScenePickUpObject : MonoBehaviour
         {
             spriteRenderer.sprite = sprite2;
             Inventory.NewItem(item);
-            if (numRandomListed != -1) MissionManager.instance.ObjectPicked(numRandomListed);
+            if (numRandomListed != -1) GameManager.instance.ObjectPicked(numRandomListed);
             if (blockAfterPick) blockChange = true;
         }
         else

@@ -35,7 +35,7 @@ public class HelpingLightManager : MonoBehaviour
                     // Ajusta para a luz não ocultar espíritos
                     posEZ = -((radius - 2f) / 2f);
                 }
-                GameObject emitterLight = MissionManager.instance.AddObjectWithParent("Scenery/EmitterLight", "", new Vector3(x, y, posEZ), new Vector3(1f, 1f, 1), transform);
+                GameObject emitterLight = GameManager.instance.AddObjectWithParent("Scenery/EmitterLight", "", new Vector3(x, y, posEZ), new Vector3(1f, 1f, 1), transform);
                 emitterLight.GetComponent<Light>().range = radius + 1f;
                 emitterLight.GetComponent<CircleCollider2D>().radius = radius;
                 emitterLight.GetComponent<HelpingLight>().active = active;
@@ -49,7 +49,7 @@ public class HelpingLightManager : MonoBehaviour
                 {
                     posHZ = -0.5f - ((radius - 2f) / 2f);
                 }
-                GameObject helpingLight = MissionManager.instance.AddObjectWithParent("Scenery/HelpingLight", "", new Vector3(x, y, posHZ), new Vector3(1f, 1f, 1), transform);
+                GameObject helpingLight = GameManager.instance.AddObjectWithParent("Scenery/HelpingLight", "", new Vector3(x, y, posHZ), new Vector3(1f, 1f, 1), transform);
                 helpingLight.GetComponent<Light>().range = radius + 1f;
                 helpingLight.GetComponent<CircleCollider2D>().radius = radius;
                 helpingLight.GetComponent<HelpingLight>().active = active;
@@ -69,6 +69,6 @@ public class HelpingLightManager : MonoBehaviour
                 return;
             } 
         }
-        MissionManager.instance.GameOver();
+        GameManager.instance.GameOver();
     }
 }

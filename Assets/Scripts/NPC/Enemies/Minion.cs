@@ -58,7 +58,7 @@ public class Minion : Follower {
             else
             {
                 // animaçãozinha de poderzinho atacando (pode ser uma luz)
-                if (MissionManager.instance.playerProtected)
+                if (GameManager.instance.playerProtected)
                 {
                     print("PROT");
                     if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
@@ -99,14 +99,14 @@ public class Minion : Follower {
 
         if (healthLight <= 0)
         {
-            MissionManager.instance.pathCat += addPath;
+            GameManager.instance.pathCat += addPath;
             if (emmitter) emmitter.currentMinions--;
             Destroy(gameObject);
             // animação + som
         }
         else if (healthMelee <= 0)
         {
-            MissionManager.instance.pathBird += addPath;
+            GameManager.instance.pathBird += addPath;
             if (emmitter) emmitter.currentMinions--;
             Destroy(gameObject);
             // animação + som
@@ -132,7 +132,7 @@ public class Minion : Follower {
                 break;
             case 2:
                 power = 0;
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
                 break;
             default:
                 break;

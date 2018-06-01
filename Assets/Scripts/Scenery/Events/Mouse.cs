@@ -17,7 +17,7 @@ public class Mouse : MonoBehaviour
         if (other.gameObject.tag.Equals("Player") && !playedAlready)
         {
             if (!always) {
-                if (MissionManager.instance.currentMission % 2 == 0)
+                if (GameManager.instance.currentMission % 2 == 0)
                 {
                     source.clip = squeak;
                     source.PlayDelayed(0.5f);

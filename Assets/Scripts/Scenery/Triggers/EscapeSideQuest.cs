@@ -12,7 +12,7 @@ public class EscapeSideQuest : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && !MissionManager.instance.paused)
+        if (other.gameObject.tag.Equals("Player") && !GameManager.instance.paused)
         {
             ChangeScene();
         }
@@ -20,7 +20,7 @@ public class EscapeSideQuest : MonoBehaviour {
 
     private void ChangeScene()
     {
-        MissionManager.instance.paused = true;
-        MissionManager.instance.sideQuest.EndSideQuest();
+        GameManager.instance.paused = true;
+        GameManager.instance.sideQuest.EndSideQuest();
     }
 }

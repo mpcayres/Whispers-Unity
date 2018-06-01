@@ -8,7 +8,7 @@ public class AreaTrigger : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             print("ENTERTRIGGER: " + gameObject.name);
-            MissionManager.instance.mission.AreaTriggered("Enter" + gameObject.name);
+            GameManager.instance.mission.AreaTriggered("Enter" + gameObject.name);
         }
     }
 
@@ -17,7 +17,7 @@ public class AreaTrigger : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             print("TRIGGER: " + gameObject.name);
-            MissionManager.instance.mission.AreaTriggered(gameObject.name);
+            GameManager.instance.mission.AreaTriggered(gameObject.name);
         }
     }
 
@@ -26,7 +26,7 @@ public class AreaTrigger : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             print("EXITTRIGGER: " + gameObject.name);
-            MissionManager.instance.mission.AreaTriggered("Exit" + gameObject.name);
+            GameManager.instance.mission.AreaTriggered("Exit" + gameObject.name);
         }
     }
 

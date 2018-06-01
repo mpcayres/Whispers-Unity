@@ -18,7 +18,7 @@ public class Lamp : MonoBehaviour {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+            !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
         {
             GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
             GetComponent<CircleCollider2D>().enabled = GetComponent<Light>().enabled;

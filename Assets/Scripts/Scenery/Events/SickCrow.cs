@@ -11,7 +11,7 @@ public class SickCrow : MonoBehaviour
 
     void Start()
     {
-         if(MissionManager.instance.currentMission >1 || MissionManager.instance.mission1MaeQuarto)
+         if(GameManager.instance.currentMission >1 || GameManager.instance.mission1MaeQuarto)
          {
              this.gameObject.SetActive(false);
          }

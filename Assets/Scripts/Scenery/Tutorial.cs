@@ -30,17 +30,17 @@ public class Tutorial : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
+        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
         {
-            if((MissionManager.instance.currentMission == 1 &&
-                MissionManager.instance.mission1Inicio &&
-                MissionManager.instance.currentSceneName.Equals("QuartoKid")) 
+            if((GameManager.instance.currentMission == 1 &&
+                GameManager.instance.mission1Inicio &&
+                GameManager.instance.currentSceneName.Equals("QuartoKid")) 
                 || 
-                (MissionManager.instance.currentMission != 1)
+                (GameManager.instance.currentMission != 1)
                 ||
-                (MissionManager.instance.currentMission == 1 &&
-                !MissionManager.instance.mission1Inicio &&
-                !MissionManager.instance.currentSceneName.Equals("QuartoKid")))
+                (GameManager.instance.currentMission == 1 &&
+                !GameManager.instance.mission1Inicio &&
+                !GameManager.instance.currentSceneName.Equals("QuartoKid")))
             {
                 exit = false;
                 if (!inventoryObject)
@@ -60,17 +60,17 @@ public class Tutorial : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission && !end)
+        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
         {
-            if ((MissionManager.instance.currentMission == 1 &&
-                MissionManager.instance.mission1Inicio &&
-                MissionManager.instance.currentSceneName.Equals("QuartoKid"))
+            if ((GameManager.instance.currentMission == 1 &&
+                GameManager.instance.mission1Inicio &&
+                GameManager.instance.currentSceneName.Equals("QuartoKid"))
                 ||
-                (MissionManager.instance.currentMission != 1)
+                (GameManager.instance.currentMission != 1)
                 ||
-                (MissionManager.instance.currentMission == 1 &&
-                !MissionManager.instance.mission1Inicio &&
-                !MissionManager.instance.currentSceneName.Equals("QuartoKid")))
+                (GameManager.instance.currentMission == 1 &&
+                !GameManager.instance.mission1Inicio &&
+                !GameManager.instance.currentSceneName.Equals("QuartoKid")))
             {
                 if (!inventoryObject)
                     InvokeShow();
@@ -87,7 +87,7 @@ public class Tutorial : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag.Equals("Player") && MissionManager.instance.currentMission == mission)
+        if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission)
         {
             exit = true;
             invoked = false;

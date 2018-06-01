@@ -24,21 +24,21 @@ public class Mission10 : Mission {
     public override void InitMission()
     {
         sceneInit = "QuartoKid";
-        MissionManager.initMission = true;
-        MissionManager.initX = (float) 1.5;
-        MissionManager.initY = (float) 0.2;
-        MissionManager.initDir = 3;
-        MissionManager.LoadScene(sceneInit);
+        GameManager.initMission = true;
+        GameManager.initX = (float) 1.5;
+        GameManager.initY = (float) 0.2;
+        GameManager.initDir = 3;
+        GameManager.LoadScene(sceneInit);
         secao = enumMission.NIGHT;
         Book.bookBlocked = false;
 
-        MissionManager.instance.invertWorld = false;
-        MissionManager.instance.invertWorldBlocked = false;
+        GameManager.instance.invertWorld = false;
+        GameManager.instance.invertWorldBlocked = false;
 
         SetInitialSettings();
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
-        if (MissionManager.instance.pathCat >= MissionManager.instance.pathBird) endCat = true;
+        if (GameManager.instance.pathCat >= GameManager.instance.pathBird) endCat = true;
 
         book = GameObject.Find("Player").gameObject.GetComponent<Book>();
         player = GameObject.Find("Player").gameObject;
@@ -50,7 +50,7 @@ public class Mission10 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-        if (MissionManager.instance.currentSceneName.Equals("GameOver") && !stopMiniGame)
+        if (GameManager.instance.currentSceneName.Equals("GameOver") && !stopMiniGame)
         {
             if (fosforo != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO)
                 fosforo.GetComponent<MiniGameObject>().StopMiniGame();
@@ -62,18 +62,18 @@ public class Mission10 : Mission {
                 pedra.GetComponent<MiniGameObject>().StopMiniGame();
             stopMiniGame = true;
         }
-        else if (MissionManager.instance.previousSceneName.Equals("GameOver") && stopMiniGame)
+        else if (GameManager.instance.previousSceneName.Equals("GameOver") && stopMiniGame)
         {
             stopMiniGame = false;
         }
 
-        if (MissionManager.instance.invertWorld && !invertLocal)
+        if (GameManager.instance.invertWorld && !invertLocal)
         {
             invertLocal = true;
             GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
-        else if (!MissionManager.instance.invertWorld && invertLocal)
+        else if (!GameManager.instance.invertWorld && invertLocal)
         {
             invertLocal = false;
             GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
@@ -82,7 +82,7 @@ public class Mission10 : Mission {
 
         if (secao == enumMission.NIGHT)
         {
-            if (!MissionManager.instance.showMissionStart)
+            if (!GameManager.instance.showMissionStart)
             {
                 EspecificaEnum((int)enumMission.INICIO);
             }
@@ -103,14 +103,14 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.CORVO_APARECE_CAT)
         {
-            if (!MissionManager.instance.rpgTalk.isPlaying)
+            if (!GameManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.CORVO_ATACA_CAT_INIT);
             }
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
-            if (!MissionManager.instance.rpgTalk.isPlaying)
+            if (!GameManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.CORVO_ATACA_BIRD_INIT);
             }
@@ -168,19 +168,19 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
-            if (MissionManager.instance.currentSceneName.Equals("Corredor") && luminaria != null)
+            if (GameManager.instance.currentSceneName.Equals("Corredor") && luminaria != null)
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
-                    MissionManager.instance.mission10BurnCorredor = true;
+                    GameManager.instance.mission10BurnCorredor = true;
                     EspecificaEnum((int)enumMission.FINAL_BIRD);
                 }
             }
-            else if (MissionManager.instance.currentSceneName.Equals("QuartoMae") && luminaria != null)
+            else if (GameManager.instance.currentSceneName.Equals("QuartoMae") && luminaria != null)
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
-                    MissionManager.instance.mission10BurnCorredor = false;
+                    GameManager.instance.mission10BurnCorredor = false;
                     EspecificaEnum((int)enumMission.FINAL_BIRD);
                 }
             }
@@ -189,14 +189,14 @@ public class Mission10 : Mission {
         if (GameObject.Find("BirdEmitterCollider"))
         {
             birdsActive = GameObject.Find("BirdEmitterCollider").gameObject.activeInHierarchy;
-            if (birdsActive && !MissionManager.instance.scenerySounds.source.isPlaying)
+            if (birdsActive && !GameManager.instance.scenerySounds.source.isPlaying)
             {
-                MissionManager.instance.scenerySounds.StopSound();
+                GameManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
                 if (value > 0)
-                    MissionManager.instance.scenerySounds.PlayBird(1);
+                    GameManager.instance.scenerySounds.PlayBird(1);
                 else
-                    MissionManager.instance.scenerySounds.PlayBird(4);
+                    GameManager.instance.scenerySounds.PlayBird(4);
 
             }
         }
@@ -205,27 +205,27 @@ public class Mission10 : Mission {
 
     public override void SetCorredor()
     {
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
-        MissionManager.instance.scenerySounds.StopSound();
+        GameManager.instance.scenerySounds.StopSound();
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
         GameObject.Find("VasoNaoEmpurravel").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/vasoPlanta_quebrado");
@@ -242,27 +242,27 @@ public class Mission10 : Mission {
 
     public override void SetCozinha()
     {
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
-        MissionManager.instance.scenerySounds.PlayDrop();
+        GameManager.instance.scenerySounds.PlayDrop();
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
         // Panela para caso ainda não tenha
@@ -276,7 +276,7 @@ public class Mission10 : Mission {
         if (secao == enumMission.CORVO_ATACA_BIRD)
         {
             // Botijao
-            GameObject trigger = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
+            GameObject trigger = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.1f, 1f, 0), new Vector3(1, 1, 1));
             trigger.name = "GasTrigger";
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
@@ -285,25 +285,25 @@ public class Mission10 : Mission {
 
     public override void SetJardim()
     {
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
         // Pedra, caso não tenha
@@ -325,13 +325,13 @@ public class Mission10 : Mission {
             scenePickUpObject2.blockAfterPick = true;
             scenePickUpObject2.item = Inventory.InventoryItems.PEDRA;
 
-            GameObject pedra = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3(0.6f, 0.6f, 1f));
+            GameObject pedra = GameManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/pedra", new Vector3((float)-3.59, (float)-0.45, 0), new Vector3(0.6f, 0.6f, 1f));
             pedra.GetComponent<PickUpObject>().item = Inventory.InventoryItems.PEDRA;
         }
 
         if (!Inventory.HasItemType(Inventory.InventoryItems.FACA) && !Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8PedraJardim", "M8PedraJardimEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+            GameManager.instance.rpgTalk.NewTalk("M8PedraJardim", "M8PedraJardimEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
         }
 
         if (secao == enumMission.FINAL_CAT)
@@ -342,36 +342,36 @@ public class Mission10 : Mission {
 
     public override void SetQuartoKid()
     {
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
-        if (MissionManager.instance.mission2ContestaMae)
+        if (GameManager.instance.mission2ContestaMae)
         {
             // Arranhao
-            MissionManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
+            GameManager.instance.AddObject("Scenery/Garra", "", new Vector3(-1.48f, 1.81f, 0), new Vector3(0.1f, 0.1f, 1));
         }
         else
         {
             // Vela
-            GameObject velaFixa = MissionManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
+            GameObject velaFixa = GameManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
             velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
             velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
             GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
@@ -392,29 +392,29 @@ public class Mission10 : Mission {
 
     public override void SetQuartoMae()
     {
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
         // Mae sumida
-        GameObject triggerM = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-2.21f, -3.39f, 0), new Vector3(1, 1, 1));
+        GameObject triggerM = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-2.21f, -3.39f, 0), new Vector3(1, 1, 1));
         triggerM.name = "MaeTrigger";
         triggerM.GetComponent<Collider2D>().offset = new Vector2(0, 0);
         triggerM.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
@@ -435,21 +435,21 @@ public class Mission10 : Mission {
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
-        if (MissionManager.instance.invertWorld)
+        if (GameManager.instance.invertWorld)
         {
             invertLocal = true;
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (MissionManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.instance.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
-            MissionManager.instance.Invoke("InvokeMission", 2f);
+            GameManager.instance.Invoke("InvokeMission", 2f);
         }
 
         if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd", false);
+            GameManager.instance.rpgTalk.NewTalk("M8LivingroomSceneStart", "M8LivingroomSceneEnd", false);
 
             if (secao == enumMission.MAE_CAT)
             {
@@ -457,24 +457,24 @@ public class Mission10 : Mission {
             }
 
             // Isqueiro
-            MissionManager.instance.CreateScenePickUp("escrivaninha", Inventory.InventoryItems.ISQUEIRO);
+            GameManager.instance.CreateScenePickUp("escrivaninha", Inventory.InventoryItems.ISQUEIRO);
 
             estanteTrigger = poltronaTrigger = sofaTrigger = false;
 
             // Estante
-            GameObject triggerE = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-5.71f, 1.64f, 0), new Vector3(1, 1, 1));
+            GameObject triggerE = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-5.71f, 1.64f, 0), new Vector3(1, 1, 1));
             triggerE.name = "EstanteTrigger";
             triggerE.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerE.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1.6f);
 
             // Poltrona
-            GameObject triggerP = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1f, 1.6f, 0), new Vector3(1, 1, 1));
+            GameObject triggerP = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-1f, 1.6f, 0), new Vector3(1, 1, 1));
             triggerP.name = "PoltronaTrigger";
             triggerP.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerP.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1.2f);
 
             // Sofa
-            GameObject triggerS = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(5.53f, 0.4f, 0), new Vector3(1, 1, 1));
+            GameObject triggerS = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(5.53f, 0.4f, 0), new Vector3(1, 1, 1));
             triggerS.name = "SofaTrigger";
             triggerS.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerS.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1f);
@@ -512,7 +512,7 @@ public class Mission10 : Mission {
             if (Cat.instance == null)
             {
                 // Gato
-                GameObject cat = MissionManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
+                GameObject cat = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(2.5f, -1.3f, 0), new Vector3(0.15f, 0.15f, 1));
                 cat.GetComponent<Cat>().speed = 2.4f;
                 cat.GetComponent<Cat>().FollowPlayer();
             }
@@ -520,7 +520,7 @@ public class Mission10 : Mission {
         else if (secao == enumMission.CORVO_ATACA_BIRD || secao == enumMission.BOTIJAO_BIRD)
         {
             // Fala sobre gato sumido
-            GameObject triggerG = MissionManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.96f, -2f, 0), new Vector3(1, 1, 1));
+            GameObject triggerG = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(-4.96f, -2f, 0), new Vector3(1, 1, 1));
             triggerG.name = "GatoTrigger";
             triggerG.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             triggerG.GetComponent<BoxCollider2D>().size = new Vector2(6f, 1f);
@@ -531,15 +531,15 @@ public class Mission10 : Mission {
     public override void EspecificaEnum(int pos)
     {
         secao = (enumMission)pos;
-        MissionManager.instance.Print("SECAO: " + secao);
+        GameManager.instance.Print("SECAO: " + secao);
 
         if(secao == enumMission.INICIO)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+            GameManager.instance.rpgTalk.NewTalk("M8KidRoomSceneStart", "M8KidRoomSceneEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
         }
         else if (secao == enumMission.CORVO_APARECE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+            GameManager.instance.rpgTalk.NewTalk("Dica8PC", "Dica8PCEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
 
             CreateCorvoCat();
 
@@ -548,7 +548,7 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.CORVO_APARECE_BIRD)
         {
-            MissionManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+            GameManager.instance.rpgTalk.NewTalk("Dica8PB", "Dica8PBEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
 
             CreateCorvoBird();
 
@@ -559,11 +559,11 @@ public class Mission10 : Mission {
         {
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
             porta.GetComponent<SceneDoor>().isOpened = true;
-            MissionManager.instance.scenerySounds2.PlayDoorOpen(1);
+            GameManager.instance.scenerySounds2.PlayDoorOpen(1);
             porta.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-opened");
             porta.transform.position = new Vector3(portaDefaultX, portaDefaultY, porta.transform.position.z);
 
-            MissionManager.instance.Invoke("InvokeMission", 3f);
+            GameManager.instance.Invoke("InvokeMission", 3f);
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.CORVO_ATACA_BIRD)
         {
@@ -574,33 +574,33 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.MAE_CAT)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+            GameManager.instance.rpgTalk.NewTalk("M8MomCat", "M8MomCatEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
 
-            MissionManager.instance.AddObject("NPCs/mom", "", new Vector3(-3.1f, 1.3f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+            GameManager.instance.AddObject("NPCs/mom", "", new Vector3(-3.1f, 1.3f, -0.5f), new Vector3(0.3f, 0.3f, 1));
         }
         else if (secao == enumMission.FINAL_CAT)
         {
             Corvo.instance.Stop();
             Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
 
-            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat", "M8LivingroomSceneRepeatEnd", false);
+            GameManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat", "M8LivingroomSceneRepeatEnd", false);
         }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8KitchenSceneRepeat", "M8KitchenSceneRepeatEnd", false);
+            GameManager.instance.rpgTalk.NewTalk("M8KitchenSceneRepeat", "M8KitchenSceneRepeatEnd", false);
         }
         else if (secao == enumMission.FINAL_BIRD)
         {
             fireEvent.SetActive(true);
             Corvo.instance.Stop();
             Corvo.instance.transform.Find("BirdEmitterCollider").gameObject.SetActive(false);
-            MissionManager.instance.blocked = true;
-            MissionManager.instance.Invoke("InvokeMission", 5f);
+            GameManager.instance.blocked = true;
+            GameManager.instance.Invoke("InvokeMission", 5f);
         }
         else if (secao == enumMission.FINAL)
         {
             if (Cat.instance != null) Cat.instance.DestroyCat();
-            MissionManager.instance.ChangeMission(9);
+            GameManager.instance.ChangeMission(9);
         }
     }
 
@@ -608,12 +608,12 @@ public class Mission10 : Mission {
     {
         if (tag.Equals("EnterMomTrigger") && !falaMae)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8MomRoomSceneStart", "M8MomRoomSceneEnd", false);
+            GameManager.instance.rpgTalk.NewTalk("M8MomRoomSceneStart", "M8MomRoomSceneEnd", false);
             falaMae = true;
         }
         else if (tag.Equals("EnterGatoTrigger") && !falaGato)
         {
-            MissionManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat2", "M8LivingroomSceneRepeat2End", false);
+            GameManager.instance.rpgTalk.NewTalk("M8LivingroomSceneRepeat2", "M8LivingroomSceneRepeat2End", false);
             falaGato = true;
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
@@ -661,7 +661,7 @@ public class Mission10 : Mission {
             {
                 if (!Inventory.HasItemType(Inventory.InventoryItems.FACA) && !Inventory.HasItemType(Inventory.InventoryItems.PEDRA))
                 {
-                    MissionManager.instance.rpgTalk.NewTalk("M8PedraCozinha", "M8PedraCozinhaEnd", MissionManager.instance.rpgTalk.txtToParse, MissionManager.instance, "", false);
+                    GameManager.instance.rpgTalk.NewTalk("M8PedraCozinha", "M8PedraCozinhaEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
                 }
                 faca.GetComponent<MiniGameObject>().posFlareX = -4.1f;
                 faca.GetComponent<MiniGameObject>().posFlareY = 1f;
@@ -719,10 +719,10 @@ public class Mission10 : Mission {
     //Quando mais no caminho do gato, mais fraco o corvo
     public GameObject CreateCorvoCat()
     {
-        GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
+        GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.5f, 4.5f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.1f - (MissionManager.instance.pathCat/1000); // velocidade do corvo
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.7f - (MissionManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
+        corvo.GetComponent<Corvo>().speed = 0.1f - (GameManager.instance.pathCat/1000); // velocidade do corvo
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.7f - (GameManager.instance.pathCat/100); // tempo que os pássaros analisam onde o player está, quando menor, o delay será maior
         var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 10)); // min, max pássaros por burst e tempo para outro ciclo
@@ -737,10 +737,10 @@ public class Mission10 : Mission {
     //Quando mais no caminho do corvo, mais forte ele será
     public GameObject CreateCorvoBird()
     {
-        GameObject corvo = MissionManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
+        GameObject corvo = GameManager.instance.AddObject("NPCs/Corvo", "", new Vector3(-1.7f, 0.6f, -0.5f), new Vector3(4.8f, 4.8f, 1));
         corvo.GetComponent<Corvo>().LookAtPlayer();
-        corvo.GetComponent<Corvo>().speed = 0.08f + (MissionManager.instance.pathBird/1000);
-        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f + (MissionManager.instance.pathBird/100);
+        corvo.GetComponent<Corvo>().speed = 0.08f + (GameManager.instance.pathBird/1000);
+        corvo.GetComponent<Corvo>().timeBirdsFollow = 0.5f + (GameManager.instance.pathBird/100);
         var em = corvo.transform.Find("BirdEmitterCollider").gameObject.GetComponent<ParticleSystem>();
         var main = em.main;
         em.emission.SetBurst(0, new ParticleSystem.Burst(0, 8, 12, 0, 8));

@@ -37,7 +37,7 @@ public class MovingObject : MonoBehaviour {
         {
             spriteRenderer.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder - 1;
         }
-        if (colliding && !MissionManager.instance.paused && !MissionManager.instance.pausedObject && !MissionManager.instance.blocked)
+        if (colliding && !GameManager.instance.paused && !GameManager.instance.pausedObject && !GameManager.instance.blocked)
         {
             if (CrossPlatformInputManager.GetButton("keySpecial") && canMoveUp)
             {
@@ -79,9 +79,9 @@ public class MovingObject : MonoBehaviour {
             InitMove();
         }
 
-        if (!MissionManager.instance.scenerySounds2.source.isPlaying)
+        if (!GameManager.instance.scenerySounds2.source.isPlaying)
         {
-            MissionManager.instance.scenerySounds2.PlaySlide(1);
+            GameManager.instance.scenerySounds2.PlaySlide(1);
         }
         //print("MOVE");
         var relativePoint = transform.InverseTransformPoint(player.transform.position);
@@ -118,7 +118,7 @@ public class MovingObject : MonoBehaviour {
 
     public void EndMove()
     {
-        MissionManager.instance.scenerySounds2.StopSound();
+        GameManager.instance.scenerySounds2.StopSound();
         //print("ENDMOVE");
         scriptPlayer.playerAction = Player.Actions.DEFAULT;
         scriptPlayer.animator.SetTrigger("changeDirection");

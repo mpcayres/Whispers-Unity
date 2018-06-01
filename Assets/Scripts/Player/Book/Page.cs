@@ -8,7 +8,7 @@ public class Page : MonoBehaviour {
         {
             // Som de pegar página
             Book.AddPage();
-            MissionManager.instance.UpdateSave();
+            GameManager.instance.UpdateSave();
             Destroy(gameObject);
         }
     }

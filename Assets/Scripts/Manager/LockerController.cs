@@ -311,12 +311,12 @@ public class LockerController : MonoBehaviour
         
         if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf) {
             
-            if (MissionManager.instance.currentSceneName.Equals("Corridor"))
+            if (GameManager.instance.currentSceneName.Equals("Corridor"))
             {
                 board = GameObject.Find(boardName).gameObject;
                 board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Jardim")) {
+            else if (GameManager.instance.currentSceneName.Equals("Jardim")) {
                 isBasement = true;
             }
 
@@ -326,12 +326,12 @@ public class LockerController : MonoBehaviour
         }
         else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
         {
-            if (MissionManager.instance.currentSceneName.Equals("Corridor"))
+            if (GameManager.instance.currentSceneName.Equals("Corridor"))
             {
                 board = GameObject.Find(boardName).gameObject;
                 board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
             }
-            else if (MissionManager.instance.currentSceneName.Equals("Jardim"))
+            else if (GameManager.instance.currentSceneName.Equals("Jardim"))
             {
                 
                 isBasement = true;
@@ -347,14 +347,14 @@ public class LockerController : MonoBehaviour
         if (locker.activeSelf)
         {
             locker.SetActive(false);
-            MissionManager.instance.paused = false;
-            MissionManager.instance.blocked = false;
+            GameManager.instance.paused = false;
+            GameManager.instance.blocked = false;
         }
         else
         {
             locker.SetActive(true);
-            MissionManager.instance.paused = true;
-            MissionManager.instance.blocked = true;
+            GameManager.instance.paused = true;
+            GameManager.instance.blocked = true;
 
         }
 

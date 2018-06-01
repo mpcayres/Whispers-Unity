@@ -8,13 +8,13 @@ public class Pause: MonoBehaviour
     public AudioClip sound;
     private AudioSource source { get { return GetComponent<AudioSource>(); } }
     public GameObject pauseMenu;
-    MissionManager missionManager;
+    GameManager gameManager;
 
     private void Awake()
     {
         pauseMenu = GameObject.Find("HUDCanvas").transform.Find("PauseMenu").gameObject;
         pauseMenu.SetActive(false);
-        missionManager = GameObject.Find("Player").GetComponent<MissionManager>();
+        gameManager = GameObject.Find("Player").GetComponent<GameManager>();
     }
     void Start()
     {
@@ -24,21 +24,21 @@ public class Pause: MonoBehaviour
     }
     void Update()
     {
-        if (CrossPlatformInputManager.GetButtonDown("keyPause") && !MissionManager.instance.blocked && !MissionManager.instance.showMissionStart && !MissionManager.instance.pausedObject && !Book.show)
+        if (CrossPlatformInputManager.GetButtonDown("keyPause") && !GameManager.instance.blocked && !GameManager.instance.showMissionStart && !GameManager.instance.pausedObject && !Book.show)
         {
             if (!source.isPlaying)
                 source.PlayOneShot(sound);
 
             if (pauseMenu.activeSelf)
             {
-                missionManager.paused = false;
-                //missionManager.blocked = false;
+                gameManager.paused = false;
+                //gameManager.blocked = false;
                 pauseMenu.SetActive(false);
             }
             else
             {
-                missionManager.paused = true;
-                //missionManager.blocked = true;
+                gameManager.paused = true;
+                //gameManager.blocked = true;
                 pauseMenu.SetActive(true);
             }
         }

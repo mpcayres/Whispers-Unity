@@ -43,7 +43,7 @@ public class FarAttackObject : MonoBehaviour {
 
         print("INIT: " + initAttack + attacking);
         if (Inventory.GetCurrentItemType() == item && !initAttack && !attacking &&
-            !MissionManager.instance.paused && !MissionManager.instance.blocked && !MissionManager.instance.pausedObject)
+            !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
         {
             if (CrossPlatformInputManager.GetButtonDown("keyUseObject"))
             {
@@ -203,7 +203,7 @@ public class FarAttackObject : MonoBehaviour {
             {
                 nameItem = "papel";
             }
-            GameObject pick = MissionManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/" + nameItem, transform.position, new Vector3(0.6f, 0.6f, 1f));
+            GameObject pick = GameManager.instance.AddObject("Objects/PickUp", "Sprites/Objects/Inventory/" + nameItem, transform.position, new Vector3(0.6f, 0.6f, 1f));
             pick.GetComponent<PickUpObject>().item = item;
             pick.GetComponent<SpriteRenderer>().sortingLayerName = "BackLayer";
         }

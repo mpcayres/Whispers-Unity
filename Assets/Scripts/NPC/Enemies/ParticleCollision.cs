@@ -20,7 +20,7 @@ public class ParticleCollision : MonoBehaviour {
         print("PARTCOL: " + TargetedParticle.tag);
         if (TargetedParticle.tag == "Player")
         {
-            if (MissionManager.instance.playerProtected)
+            if (GameManager.instance.playerProtected)
             {
                 //print(Inventory.GetCurrentItemType().ToString());
                 if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
@@ -34,9 +34,9 @@ public class ParticleCollision : MonoBehaviour {
             }
             else
             {
-                MissionManager.instance.scenerySounds.StopSound();
-                MissionManager.instance.scenerySounds2.StopSound();
-                MissionManager.instance.GameOver();
+                GameManager.instance.scenerySounds.StopSound();
+                GameManager.instance.scenerySounds2.StopSound();
+                GameManager.instance.GameOver();
             }
         }
     }

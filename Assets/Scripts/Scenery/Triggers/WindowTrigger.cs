@@ -31,7 +31,7 @@ public class WindowTrigger : MonoBehaviour {
 
 	void Update()
 	{
-		if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+		if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding && !GameManager.instance.paused && !GameManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
 		{
 			ChangeSprite();
 		}
@@ -43,7 +43,7 @@ public class WindowTrigger : MonoBehaviour {
             }
             else
             {
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
             }
         }
 	}
@@ -69,11 +69,11 @@ public class WindowTrigger : MonoBehaviour {
         if (spriteRenderer.sprite == aberto && scare && !Flashlight.GetState())
         {
             spriteRenderer.sprite = monstro;
-            MissionManager.instance.scenerySounds.PlayScare(1);
-            MissionManager.instance.scenerySounds.PlayBird(1);
-            MissionManager.instance.scenerySounds.PlayBird(4);
+            GameManager.instance.scenerySounds.PlayScare(1);
+            GameManager.instance.scenerySounds.PlayBird(1);
+            GameManager.instance.scenerySounds.PlayBird(4);
             transform.Find("BirdEmitter").gameObject.SetActive(true);
-            MissionManager.instance.blocked = true;
+            GameManager.instance.blocked = true;
             gameOver = true;
         }
 

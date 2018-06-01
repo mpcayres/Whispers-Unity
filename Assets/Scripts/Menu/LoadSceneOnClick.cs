@@ -17,7 +17,7 @@ public class LoadSceneOnClick : MonoBehaviour {
     {
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        MissionManager.LoadScene(sceneIndex);
+        GameManager.LoadScene(sceneIndex);
 
     }
 }

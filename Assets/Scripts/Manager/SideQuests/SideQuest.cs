@@ -24,7 +24,7 @@ public abstract class SideQuest
 
     protected void SetInitialSettings()
     {
-        oldScene = MissionManager.instance.previousSceneName;
+        oldScene = GameManager.instance.previousSceneName;
         camera = GameObject.Find("MainCamera").gameObject;
 
         GameObject player = GameObject.Find("Player").gameObject;
@@ -32,9 +32,9 @@ public abstract class SideQuest
         oldY = player.transform.position.y;
         oldDir = player.GetComponent<Player>().direction;
 
-        MissionManager.initX = sideX;
-        MissionManager.initY = sideY;
-        MissionManager.initDir = sideDir;
+        GameManager.initX = sideX;
+        GameManager.initY = sideY;
+        GameManager.initDir = sideDir;
 
         if (Cat.instance != null)
         {
@@ -47,15 +47,15 @@ public abstract class SideQuest
             hasRaven = true;
         }
 
-        invertBlocked = MissionManager.instance.invertWorldBlocked;
-        MissionManager.instance.invertWorldBlocked = false;
-        wasInverted = MissionManager.instance.invertWorld;
-        MissionManager.instance.InvertWorld(false);
-        MissionManager.instance.paused = false;
+        invertBlocked = GameManager.instance.invertWorldBlocked;
+        GameManager.instance.invertWorldBlocked = false;
+        wasInverted = GameManager.instance.invertWorld;
+        GameManager.instance.InvertWorld(false);
+        GameManager.instance.paused = false;
 
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
     }
 
@@ -94,7 +94,7 @@ public abstract class SideQuest
 
     protected void SetTimeToEscape()
     {
-        timerSideQuest = MissionManager.instance.AddObjectWithParent("UI/TimerSideQuest", GameObject.Find("HUDCanvas").transform);
+        timerSideQuest = GameManager.instance.AddObjectWithParent("UI/TimerSideQuest", GameObject.Find("HUDCanvas").transform);
         timerSideQuest.GetComponent<RectTransform>().transform.localScale = new Vector3(1, 1, 1);
         timerSideQuest.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -40, 0);
     }
@@ -125,9 +125,9 @@ public abstract class SideQuest
 
     public void EndSideQuest()
     {
-        MissionManager.initX = oldX;
-        MissionManager.initY = oldY;
-        MissionManager.initDir = oldDir;
+        GameManager.initX = oldX;
+        GameManager.initY = oldY;
+        GameManager.initDir = oldDir;
 
         if (hasCat)
         {
@@ -138,19 +138,19 @@ public abstract class SideQuest
             Corvo.instance.gameObject.SetActive(true);
         }
 
-        MissionManager.instance.invertWorldBlocked = invertBlocked;
-        MissionManager.instance.InvertWorld(true);
-        MissionManager.instance.paused = true;
+        GameManager.instance.invertWorldBlocked = invertBlocked;
+        GameManager.instance.InvertWorld(true);
+        GameManager.instance.paused = true;
 
-        if (MissionManager.instance.rpgTalk.isPlaying)
+        if (GameManager.instance.rpgTalk.isPlaying)
         {
-            MissionManager.instance.rpgTalk.EndTalk();
+            GameManager.instance.rpgTalk.EndTalk();
         }
 
         if (success)
         {
-            MissionManager.instance.sideQuests++;
-            MissionManager.instance.UpdateSave();
+            GameManager.instance.sideQuests++;
+            GameManager.instance.UpdateSave();
             ShowFlashback();
         }
         else
@@ -165,8 +165,8 @@ public abstract class SideQuest
 
     protected void EndFlashback()
     {
-        MissionManager.instance.InvertWorld(wasInverted);
-        MissionManager.instance.paused = false;
+        GameManager.instance.InvertWorld(wasInverted);
+        GameManager.instance.paused = false;
     }
 
 }

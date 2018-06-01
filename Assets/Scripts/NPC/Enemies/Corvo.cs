@@ -60,7 +60,7 @@ public class Corvo : Follower {
             print("CorvoFollower: " + collision.tag);
             if (collision.gameObject.tag.Equals("Player"))
             {
-                MissionManager.instance.GameOver();
+                GameManager.instance.GameOver();
             }
         }
     }

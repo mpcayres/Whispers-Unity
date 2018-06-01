@@ -137,7 +137,7 @@ public class Follower : Patroller {
                 }
                 else if (!followWhenClose)
                 {
-                    MissionManager.instance.GameOver();
+                    GameManager.instance.GameOver();
                 }
             }
         }

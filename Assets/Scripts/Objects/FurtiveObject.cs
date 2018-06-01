@@ -18,7 +18,7 @@ public class FurtiveObject : MonoBehaviour {
     {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-        if (colliding && !MissionManager.instance.paused && !MissionManager.instance.blocked)
+        if (colliding && !GameManager.instance.paused && !GameManager.instance.blocked)
         {
             if (timeLeft > 0)
             {
@@ -30,7 +30,7 @@ public class FurtiveObject : MonoBehaviour {
                 player.GetComponent<Renderer>().enabled = false;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                 player.layer = LayerMask.NameToLayer("PlayerHidden");
-                MissionManager.instance.pausedObject = true;
+                GameManager.instance.pausedObject = true;
                 timeLeft = timeMax;
             }
             else if (!player.GetComponent<Renderer>().enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
@@ -38,7 +38,7 @@ public class FurtiveObject : MonoBehaviour {
                 player.GetComponent<Renderer>().enabled = true;
                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 player.layer = LayerMask.NameToLayer("Player");
-                MissionManager.instance.pausedObject = false;
+                GameManager.instance.pausedObject = false;
                 timeLeft = 0;
             }
         }

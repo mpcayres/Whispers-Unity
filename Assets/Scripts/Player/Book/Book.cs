@@ -20,7 +20,7 @@ public class Book : MonoBehaviour {
         page1 = GameObject.Find("HUDCanvas").transform.Find("Book/Page 1").gameObject;
         page2 = GameObject.Find("HUDCanvas").transform.Find("Book/Page 2").gameObject;
         pagebonus = GameObject.Find("HUDCanvas").transform.Find("Book/Page Bonus").gameObject;
-        invertWorldAux = MissionManager.instance.invertWorld;
+        invertWorldAux = GameManager.instance.invertWorld;
         pageShowing = 0;
 
         if (PlayerPrefs.HasKey("Language") && PlayerPrefs.GetString("Language").Equals("PR_BR"))
@@ -52,15 +52,15 @@ public class Book : MonoBehaviour {
     {
         if ((CrossPlatformInputManager.GetButtonDown("keyJournal") || 
             (CrossPlatformInputManager.GetButtonDown("keyUseObject") && Inventory.GetCurrentItemType() == Inventory.InventoryItems.LIVRO))
-            && !Inventory.open && !MissionManager.instance.showMissionStart && !MissionManager.instance.blocked &&
-            !MissionManager.instance.pausedObject && !bookBlocked)
+            && !Inventory.open && !GameManager.instance.showMissionStart && !GameManager.instance.blocked &&
+            !GameManager.instance.pausedObject && !bookBlocked)
         {
             ShowBook();
         }
 
-        if (invertWorldAux != MissionManager.instance.invertWorld)
+        if (invertWorldAux != GameManager.instance.invertWorld)
         {
-            invertWorldAux = MissionManager.instance.invertWorld;
+            invertWorldAux = GameManager.instance.invertWorld;
             ShowBookPages();
         }
 
@@ -91,17 +91,17 @@ public class Book : MonoBehaviour {
     {
         if(book.activeSelf)
         {
-            MissionManager.instance.scenerySounds2.PlayPaper(3);
+            GameManager.instance.scenerySounds2.PlayPaper(3);
             if (lastPageSeen) seenAll = true;
             book.SetActive(false);
-            MissionManager.instance.paused = false;
+            GameManager.instance.paused = false;
             show = false;
         }
         else
         {
-            MissionManager.instance.scenerySounds2.PlayPaper(2);
+            GameManager.instance.scenerySounds2.PlayPaper(2);
             book.SetActive(true);
-            MissionManager.instance.paused = true;
+            GameManager.instance.paused = true;
             show = true;
             ShowBookPages();
         }
@@ -109,7 +109,7 @@ public class Book : MonoBehaviour {
 
     private void ShowBookPages()
     {
-        if (book.activeSelf && pageQuantity > 0 && MissionManager.instance.invertWorld)
+        if (book.activeSelf && pageQuantity > 0 && GameManager.instance.invertWorld)
         {
             if (pageShowing == 0)
             {
