@@ -40,14 +40,14 @@ GameObject:
   - component: {fileID: 4406268900588164}
   - component: {fileID: 95882510258092630}
   - component: {fileID: 212312604558996582}
+  - component: {fileID: 114600373000498978}
   - component: {fileID: 114833596618350534}
   - component: {fileID: 114401343632510796}
-  - component: {fileID: 114600373000498978}
   - component: {fileID: 114966263676562284}
+  - component: {fileID: 114762222619580006}
   - component: {fileID: 61343407655216614}
   - component: {fileID: 50105999824673716}
   - component: {fileID: 82755673366926274}
-  - component: {fileID: 114762222619580006}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player

@@ -16,26 +16,31 @@ namespace CrowShadowManager
 
     public class GameManager : MonoBehaviour
     {
-
         public static GameManager instance;
 
         // MISSÕES
         public Mission mission;
         public SideQuest sideQuest;
+
+        [Header("Mission")]
+
+        [Range(0,12)]
         public int currentMission = 0;
         public static bool initMission = false;
         public static float initX = 0, initY = 0;
         public static int initDir = 0;
-
+        
         // CENAS
         public string previousSceneName = "", currentSceneName = "";
 
         // EXTRAS
+        [Range(0, 5)]
         public int sideQuests = 0;
 
         // ESCOLHAS
         public float pathBird = 0, pathCat = 0;
 
+        [Header("Choices")]
         //CENA ESPECÍFICA
         public bool mission1MaeQuarto = false;
         public bool mission1Inicio = false;
@@ -46,6 +51,7 @@ namespace CrowShadowManager
         public bool mission4QuebraSozinho = false;
         public bool mission10BurnCorredor = false;
 
+        [Header("Game Conditions")]
         // CONIDÇÕES DO JOGO
         public bool paused = false;
         public bool pausedObject = false;
@@ -53,6 +59,13 @@ namespace CrowShadowManager
         public bool invertWorld = false;
         public bool invertWorldBlocked = true;
         public bool playerProtected = false;
+
+        // HUD - INÍCIO MISSÃO
+        public bool showMissionStart = true;
+        private float startMissionDelay = 3f;
+        private GameObject hud;
+        private GameObject levelImage;
+        private Text levelText;
 
         // LOCALIZAÇÃO ALEATÓRIA DE OBJETOS
         private struct RandomPlace
@@ -70,18 +83,13 @@ namespace CrowShadowManager
         }
         private List<RandomPlace> randomPlaces = new List<RandomPlace>();
 
-        // HUD - INÍCIO MISSÃO
-        public bool showMissionStart = true;
-        private float startMissionDelay = 3f;
-        private GameObject hud;
-        private GameObject levelImage;
-        private Text levelText;
+        // SAVE
+        private Save currentSave;
+
+        [Header("External Sources")]
 
         // RPG TALK
         public RPGTalk rpgTalk;
-
-        // SAVE
-        private Save currentSave;
 
         // SONS
         public ScenerySounds scenerySounds;

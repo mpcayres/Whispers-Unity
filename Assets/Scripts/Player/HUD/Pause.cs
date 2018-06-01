@@ -17,12 +17,14 @@ namespace CrowShadowPlayer
             pauseMenu.SetActive(false);
             gameManager = GameObject.Find("Player").GetComponent<GameManager>();
         }
+
         void Start()
         {
             gameObject.AddComponent<AudioSource>();
             source.clip = sound;
             source.playOnAwake = false;
         }
+
         void Update()
         {
             if (CrossPlatformInputManager.GetButtonDown("keyPause") && !GameManager.instance.blocked &&
