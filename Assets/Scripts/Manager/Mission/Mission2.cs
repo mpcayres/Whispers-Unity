@@ -85,6 +85,8 @@ public class Mission2 : Mission {
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
+            GameManager.instance.paused = false;
+            GameManager.instance.blocked = false;
         }
 
         if (GameManager.instance.previousSceneName.Equals("QuartoKid") &&
@@ -351,8 +353,12 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_FOSFORO)
         {
-            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
-            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
+            velaFixa.SetActive(false);
+            // Vela
+            velaFixa = GameObject.Find("velaMesa").gameObject;
+            velaFixa.transform.GetChild(0).gameObject.SetActive(true);
+            velaFixa.transform.GetChild(1).gameObject.SetActive(true);
+            velaFixa.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = 140;
             GameManager.instance.Invoke("InvokeMission", 4f);
         }
         else if (secao == enumMission.FINAL_CONTESTA)

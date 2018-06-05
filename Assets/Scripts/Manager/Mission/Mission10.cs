@@ -372,10 +372,10 @@ public class Mission10 : Mission {
         else
         {
             // Vela
-            GameObject velaFixa = GameManager.instance.AddObject("Objects/EmptyObject", "", new Vector3(0.125f, -1.1f, 0), new Vector3(2.5f, 2.5f, 1));
-            velaFixa.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/vela_acesa1");
-            velaFixa.GetComponent<SpriteRenderer>().sortingOrder = 140;
-            GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
+            GameObject velaFixa = GameObject.Find("velaMesa").gameObject;
+            velaFixa.transform.GetChild(0).gameObject.SetActive(true);
+            velaFixa.transform.GetChild(1).gameObject.SetActive(true);
+            velaFixa.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = 140;
         }
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO)
