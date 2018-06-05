@@ -1,4 +1,4 @@
-# Whispers-Unity
+# CROW’S SHADOW
 
 Versão em Unity do Game Al-Ghaib https://github.com/ingridsl/Al-Ghaib (construído com SDL e Engine Própria)
 
@@ -23,16 +23,25 @@ A influência de espíritos malignos na cabeça de qualquer um podem trazer cons
 
 O jogo traz as aventuras de uma criança sendo coagida por um ser misterioso que busca trazer infortúnios e desgraças para os humanos. A criança, controlada pelo jogador, terá que tomar suas decisões que podem causar efeitos diferentes (e nem sempre bons) enquanto é levado ao limbo entre a loucura e o surreal, vivenciando a agonia, ou o alívio, de ser guiado ou assombrado por um ser místico...
 
-* Controles (Como joga):
+* Controles
+ 
+   * Movimentação: ← · ↑ · → · ↓ 
+   * Correr: Movimentação + shift
+   * Interagir com objetos: Z
+   * Utilizar objeto do inventário: X
+   * Ações especiais do objeto do inventário: pressionar X
+   * Mover objeto: Movimentação + C
+   * Subir em objeto: ctrl + C
+   * Visão de realidade passada: E
+   * Abrir inventário: I
+   * Atalho para abrir diário: J
+   * Ação em mini-jogo: espaço
+   * Passar e selecionar diálogo: espaço, enter ou mouse
+   * Selecionar menu: enter ou mouse
 
-   * Interação com objeto (Z)
-   * Abrir inventário (I)
-   * Utilizar objeto do inventário (X)
-   * Objeto móvel (C)
-   * Subir em objeto móvel (Ctrl+C)
-   * Ação em mini-game (Espaço)
-   * Mundo invertido (E)
-   * Livro (J)
+* CHEATS:  
+   * números de 1 a 9 vão para essas missões
+
 
 
 
