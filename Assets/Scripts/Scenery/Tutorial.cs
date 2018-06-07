@@ -9,17 +9,24 @@ namespace CrowShadowScenery
     {
         public string keyName1, keyName2;
         public int mission = 1;
+        public Player.Actions playerAction = Player.Actions.DEFAULT;
         public AudioClip click;
         public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-        int repeatTime = 2;
-        bool exit = false, end = false, invoked = false;
+        private Player player;
+        private int repeatTime = 2;
+        private bool exit = false, end = false, invoked = false;
 
         public bool inventoryObject = false;
 
         void Awake()
         {
             source.playOnAwake = false;
+        }
+
+        private void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
         void Update()
@@ -32,7 +39,7 @@ namespace CrowShadowScenery
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
+            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && player.playerAction == playerAction && !end)
             {
                 if ((GameManager.instance.currentMission == 1 &&
                     GameManager.instance.mission1Inicio &&

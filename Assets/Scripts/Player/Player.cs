@@ -18,6 +18,7 @@ namespace CrowShadowPlayer
         public float runningFactor = 3f;
         public float invertControlsTime = 0;
         public int direction = 0, wantedDirection = 0;
+        public bool hidden = false;
         public bool isRunning = false;
         public Animator animator;
 

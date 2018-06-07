@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
 namespace CrowShadowObjects
 {
@@ -35,6 +36,7 @@ namespace CrowShadowObjects
                     player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                     player.layer = LayerMask.NameToLayer("PlayerHidden");
                     GameManager.instance.pausedObject = true;
+                    player.GetComponent<Player>().hidden = true;
                     timeLeft = timeMax;
                 }
                 else if (!player.GetComponent<Renderer>().enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
@@ -43,6 +45,7 @@ namespace CrowShadowObjects
                     player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                     player.layer = LayerMask.NameToLayer("Player");
                     GameManager.instance.pausedObject = false;
+                    player.GetComponent<Player>().hidden = false;
                     timeLeft = 0;
                 }
             }

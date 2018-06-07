@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using CrowShadowManager;
+using CrowShadowPlayer;
 
 namespace CrowShadowNPCs
 {
@@ -199,7 +200,7 @@ namespace CrowShadowNPCs
             if (hasActionPatroller)
             {
                 print("ActionPatroller: " + collision.tag);
-                if (collision.gameObject.tag.Equals("Player"))
+                if (collision.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Player>().hidden)
                 {
                     GameManager.instance.GameOver();
                 }

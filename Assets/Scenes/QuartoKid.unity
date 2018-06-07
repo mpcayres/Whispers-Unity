@@ -49696,6 +49696,7 @@ MonoBehaviour:
   keyName1: keyMove
   keyName2: keyMove
   mission: 1
+  playerAction: 0
   click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
   inventoryObject: 0
 --- !u!61 &1250353194
@@ -85312,6 +85313,7 @@ MonoBehaviour:
   keyName1: keyMove
   keyName2: keySpecial
   mission: 1
+  playerAction: 1
   click: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
   inventoryObject: 0
 --- !u!61 &1906961857
