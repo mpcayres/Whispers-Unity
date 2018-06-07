@@ -11,7 +11,7 @@ namespace CrowShadowMenu
 
         private void Awake()
         {
-            GameObject menuCanvas = GameObject.Find("MenuCanvas").gameObject;
+            GameObject menuCanvas = GameObject.Find("Canvas").gameObject;
             script = menuCanvas.GetComponent<PreferencesManager>();
         }
 

@@ -8,7 +8,7 @@ namespace CrowShadowMenu
 
         public void OnClick()
         {
-            GameObject menu = GameObject.Find("MenuCanvas").gameObject;
+            GameObject menu = GameObject.Find("Canvas").gameObject;
             GameObject load = PreferencesManager.FindDeepChild(menu.transform, "LoadGamePanel").gameObject;
             GameObject loadSub = PreferencesManager.FindDeepChild(menu.transform, "LoadGameSubPanel").gameObject;
 
@@ -36,7 +36,7 @@ namespace CrowShadowMenu
         {
             PlayerPrefs.SetInt("Mission", m);
             PlayerPrefs.SetInt("CurrentSaveNumber", save);
-            GameManager.LoadScene(6);
+            GameManager.LoadScene(6, true);
         }
 
     }

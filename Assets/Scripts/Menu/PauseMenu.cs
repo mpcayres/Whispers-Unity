@@ -16,13 +16,12 @@ namespace CrowShadowMenu
         {
             if (option == PauseMenuOptions.BackToGame)
             {
-
                 gameManager.paused = false;
                 transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                GameManager.LoadScene(0);
+                GameManager.LoadScene(0, true);
             }
 
         }

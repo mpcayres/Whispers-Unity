@@ -1,4 +1,5 @@
 ﻿using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -63,9 +64,9 @@ namespace CrowShadowManager
         // HUD - INÍCIO MISSÃO
         public bool showMissionStart = true;
         private float startMissionDelay = 3f;
-        private GameObject hud;
-        private GameObject levelImage;
-        private Text levelText;
+        private static GameObject hud;
+        private static GameObject levelImage;
+        private static Text levelText;
 
         // LOCALIZAÇÃO ALEATÓRIA DE OBJETOS
         private struct RandomPlace
@@ -254,16 +255,49 @@ namespace CrowShadowManager
         /************ FUNÇÕES DE CENA ************/
 
         // FUNÇÕES DE MUDANÇA DE CENA
-        public static void LoadScene(string name)
+        public static void LoadScene(string name, bool menu = false)
         {
-            SaveObjectsVariables();
-            SceneManager.LoadScene(name);
+            if (menu)
+            {
+                levelImage = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+                levelImage.SetActive(true);
+            }
+            else
+            {
+                SaveObjectsVariables();
+                if (levelText == null || levelImage == null)
+                {
+                    levelImage = hud.transform.Find("LevelImage").gameObject;
+                    levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
+                }
+                levelText.text = "";
+                levelImage.SetActive(true);
+            }
+
+            SceneManager.LoadSceneAsync(name);
         }
 
-        public static void LoadScene(int index)
+        public static void LoadScene(int index, bool menu = false)
         {
-            SaveObjectsVariables();
-            SceneManager.LoadScene(index);
+            if (menu)
+            {
+                levelImage = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+                levelImage.SetActive(true);
+            }
+            else
+            {
+                SaveObjectsVariables();
+                if (levelText == null || levelImage == null)
+                {
+                    levelImage = hud.transform.Find("LevelImage").gameObject;
+                    levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
+                }
+                levelText.text = "";
+                levelImage.SetActive(true);
+            }
+            print("ACTIVE " + Time.time * 1000);
+
+            SceneManager.LoadSceneAsync(index);
         }
 
         // FUNÇÕES PARA CONTAR MUDANÇA DE CENA
@@ -310,6 +344,13 @@ namespace CrowShadowManager
                     initX = initY = 0;
                 }
             }
+
+            levelImage.SetActive(false);
+            if (currentSceneName.Equals("MainMenu") || currentSceneName.Equals("GameOver") || currentSceneName.Equals("Credits"))
+            {
+                levelImage = null;
+            }
+            print("CLOSE " + Time.time * 1000);
 
             if (previousSceneName.Equals("GameOver"))
             {

@@ -13,7 +13,7 @@ namespace CrowShadowMenu
 
         public void LoadLastScene()
         {
-            StartCoroutine(FadingLoad());
+            GameManager.instance.ContinueGame(); //StartCoroutine(FadingLoad());
         }
 
         IEnumerator FadingLoad()

@@ -12,20 +12,24 @@ namespace CrowShadowMenu
 
         public void Quit()
         {
-            StartCoroutine(FadingExit());
-
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit ();
+#endif
+            //StartCoroutine(FadingExit());
         }
 
         IEnumerator FadingExit()
         {
             anim.SetBool("Fade", true);
             yield return new WaitUntil(() => black.color.a == 1);
+            
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-		Application.Quit ();
+            Application.Quit ();
 #endif
-
         }
 
     }
