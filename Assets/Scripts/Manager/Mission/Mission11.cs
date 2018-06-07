@@ -478,5 +478,10 @@ public class Mission11 : Mission {
             EspecificaEnum((int)enumMission.FINAL);
         }
     }
+    public override void ForneceDica()
+    {
+
+    }
+
 
 }

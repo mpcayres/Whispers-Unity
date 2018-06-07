@@ -37,6 +37,10 @@ public class Mission1 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
+        if ((int)GameManager.instance.timer == tipTimerSmall || (int)GameManager.instance.timer == tipTimerMedium || (int)GameManager.instance.timer == tipTimerLonger)
+        {
+            ForneceDica();
+        }
         if (secao == enumMission.NIGHT)
         {
             if (!GameManager.instance.showMissionStart)
@@ -50,6 +54,7 @@ public class Mission1 : Mission {
             {
                 EspecificaEnum((int) enumMission.GATO_APARECEU);
             }
+
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
@@ -318,14 +323,30 @@ public class Mission1 : Mission {
             EspecificaEnum((int)enumMission.GATO_SALA);
         }
     }
-
+    public override void ForneceDica() {
+        if (GameManager.instance.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO) {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1CorvoArmarioStart", "M1CorvoArmarioEnd", GameManager.instance.rpgTalk.txtToParse);
+        }
+        else if (GameManager.instance.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && !usedTip1 && GameManager.instance.timer == tipTimerSmall)
+        {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario1Start", "M1LanternaArmario1End", GameManager.instance.rpgTalk.txtToParse);
+            usedTip1 = true;
+        } else if (GameManager.instance.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && usedTip1 && GameManager.instance.timer == tipTimerMedium) {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario2Start", "M1LanternaArmario2End", GameManager.instance.rpgTalk.txtToParse);
+        }
+    }
     public override void EspecificaEnum(int pos)
     {
-        secao = (enumMission) pos;
-        GameManager.instance.Print("SECAO: " + secao);
 
+        secao = (enumMission) pos;
+        GameManager.instance.timer = 0;
+        GameManager.instance.Print("SECAO: " + secao);
         if(secao == enumMission.INICIO)
         {
+            GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", GameManager.instance.rpgTalk.txtToParse);
             GameManager.instance.mission1Inicio = true;
         }

@@ -752,5 +752,10 @@ public class Mission10 : Mission {
 
         return crow;
     }
+    public override void ForneceDica()
+    {
 
- }
+    }
+
+
+}

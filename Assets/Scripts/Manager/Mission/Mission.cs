@@ -7,6 +7,11 @@ public abstract class Mission {
 
     public string sceneInit = "";
 
+    public int tipTimerSmall = 40;
+    public int tipTimerMedium = 60;
+    public int tipTimerLonger = 80;
+    public bool usedTip1 = false;
+
     public void LoadMission()
     {
 
@@ -57,6 +62,8 @@ public abstract class Mission {
     public abstract void SetSala();
 
     public abstract void EspecificaEnum(int pos);
+
+    public abstract void ForneceDica();
 
     public virtual void AreaTriggered(string tag) { } // para chamar quando uma área é ativada
 

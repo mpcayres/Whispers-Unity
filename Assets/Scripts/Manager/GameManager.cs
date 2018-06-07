@@ -18,12 +18,13 @@ namespace CrowShadowManager
     {
         public static GameManager instance;
 
+
         // MISSÕES
         public Mission mission;
         public SideQuest sideQuest;
 
         [Header("Mission")]
-
+        public float timer;
         [Range(0,12)]
         public int currentMission = 0;
         public static bool initMission = false;
@@ -156,6 +157,7 @@ namespace CrowShadowManager
         // ATUALIZAÇÕES DO JOGO
         public void Update()
         {
+            timer += Time.deltaTime;
             if (!showMissionStart)
             {
 
@@ -776,6 +778,7 @@ namespace CrowShadowManager
         // MUDAR MISSÃO
         public void ChangeMission(int m)
         {
+            timer = 0;
             SetMission(m);
             SaveGame(currentMission, 0);
         }
