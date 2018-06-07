@@ -61,9 +61,20 @@ Alex: Pumpkin?
 [title=M1CorridorSceneEnd]
 [title=M1CorridorSceneRepeat]
 [title=M1CorridorSceneRepeatEnd]
-
-
-
+----------------------------------- DICAS --------------------------------------------
+[title=M1CorvoArmarioStart]
+Alex: I have to look what is above the wardrobe.
+Alex: But I'm too small.
+Alex: Maybe I can use something to reach up there.
+[title=M1CorvoArmarioEnd]
+[title=M1Lanterna1ArmarioStart]
+Alex: This house is too dark.
+Alex: I'm getting scared.
+[title=M1Lanterna1ArmarioEnd]
+[title=M1Lanterna2ArmarioStart]
+Alex: Maybe I can find something with light.
+Alex: Like a lantern or a lighter.
+[title=M1Lanterna2ArmarioEnd]
 -------------------------------------- MISSAO 2 ----------------------------------------------------
 ----------------------------------- ESPECIAL -----------------------------------
 [title=M2AllObjectsRespeita]

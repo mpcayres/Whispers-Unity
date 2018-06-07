@@ -477,4 +477,9 @@ public class Mission2 : Mission {
         }
     }
 
+    public override void ForneceDica()
+    {
+        
+    }
+
 }
