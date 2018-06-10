@@ -12,6 +12,7 @@ public class Save
     public List<CrowShadowPlayer.Inventory.InventoryItems> inventory = new List<CrowShadowPlayer.Inventory.InventoryItems>(); // completo
     public int currentItem = -1; // item atual
     public int lifeTampa = 80; // vida restante para objeto protetor
+    public int lifeEscudo = 120; // vida restante para objeto protetor
     public int pedraCount = 0;
 
     // COLECIONÁVEIS

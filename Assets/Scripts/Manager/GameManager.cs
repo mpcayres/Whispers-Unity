@@ -17,6 +17,8 @@ namespace CrowShadowManager
 
     public class GameManager : MonoBehaviour
     {
+        // PUBLIC
+
         public static GameManager instance;
 
         // MISSÕES
@@ -63,10 +65,22 @@ namespace CrowShadowManager
 
         // HUD - INÍCIO MISSÃO
         public bool showMissionStart = true;
-        private float startMissionDelay = 3f;
-        private static GameObject hud;
-        private static GameObject levelImage;
-        private static Text levelText;
+        public float startMissionDelay = 3f;
+
+        [Header("External Sources")]
+
+        // COMPONENTS
+        public GameObject tampa;
+        public GameObject escudo;
+
+        // RPG TALK
+        public RPGTalk rpgTalk;
+
+        // SONS
+        public ScenerySounds scenerySounds;
+        public ScenerySounds2 scenerySounds2;
+
+        // PRIVATE
 
         // LOCALIZAÇÃO ALEATÓRIA DE OBJETOS
         private struct RandomPlace
@@ -87,14 +101,13 @@ namespace CrowShadowManager
         // SAVE
         private Save currentSave;
 
-        [Header("External Sources")]
-
-        // RPG TALK
-        public RPGTalk rpgTalk;
-
-        // SONS
-        public ScenerySounds scenerySounds;
-        public ScenerySounds2 scenerySounds2;
+        // COMPONENTES AUXILIARES
+        private GameObject hud, levelImage;
+        private Text levelText;
+        private ProtectionObject tampaProtectionObject, escudoProtectionObject;
+        private Player player;
+        private Renderer rendererPlayer;
+        private UnityStandardAssets.ImageEffects.ColorCorrectionLookup colorCamera;
 
         // CRIAÇÃO JOGO
         public void Awake()
@@ -108,6 +121,14 @@ namespace CrowShadowManager
                 previousSceneName = currentSceneName;
 
                 hud = GameObject.Find("HUDCanvas").gameObject;
+
+                levelImage = hud.transform.Find("LevelImage").gameObject;
+                levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
+                tampaProtectionObject = tampa.GetComponent<ProtectionObject>();
+                escudoProtectionObject = escudo.GetComponent<ProtectionObject>();
+                player = GetComponent<Player>();
+                rendererPlayer = GetComponent<Renderer>();
+                colorCamera = GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>();
 
                 currentMission = PlayerPrefs.GetInt("Mission");
                 // Salva o jogo somente quando jogar através do New Game ou Continue
@@ -125,7 +146,8 @@ namespace CrowShadowManager
                     currentMission = 1;
 
                     Inventory.SetInventory(null);
-                    GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 80;
+                    tampaProtectionObject.life = 80;
+                    escudoProtectionObject.life = 120;
 
                     Book.pageQuantity = 0;
                     sideQuests = 0;
@@ -256,9 +278,9 @@ namespace CrowShadowManager
         /************ FUNÇÕES DE CENA ************/
 
         // FUNÇÕES DE MUDANÇA DE CENA
-        public static void LoadScene(string name, bool menu = false)
+        public static void LoadScene(string name, bool menu = false, bool forceReload = false)
         {
-            if (name.Equals(currentSceneName))
+            if (name.Equals(currentSceneName) && !forceReload)
             {
                 GameManager.instance.SetSceneWhenLoaded();
             }
@@ -303,14 +325,14 @@ namespace CrowShadowManager
 
             if (previousSceneName.Equals("GameOver"))
             {
-                GetComponent<Player>().enabled = true;
-                GetComponent<Renderer>().enabled = true;
+                player.enabled = true;
+                rendererPlayer.enabled = true;
             }
 
             if (currentSceneName.Equals("GameOver"))
             {
-                GetComponent<Player>().enabled = false;
-                GetComponent<Renderer>().enabled = false;
+                player.enabled = false;
+                rendererPlayer.enabled = false;
                 if (rpgTalk.isPlaying)
                 {
                     rpgTalk.EndTalk();
@@ -339,7 +361,7 @@ namespace CrowShadowManager
         {
             if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest"))
             {
-                GetComponent<Player>().ChangePosition();
+                player.ChangePosition();
             }
             else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest"))
             {
@@ -351,11 +373,11 @@ namespace CrowShadowManager
                 {
                     sideQuest.EndSideQuest();
                 }
-                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+                player.ChangePositionDefault(initX, initY, initDir);
             }
             else
             {
-                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+                player.ChangePositionDefault(initX, initY, initDir);
                 if (initMission && currentSceneName.Equals(mission.sceneInit))
                 {
                     initMission = false;
@@ -594,11 +616,19 @@ namespace CrowShadowManager
             save.currentItem = Inventory.GetCurrentItem();
             if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
             {
-                save.lifeTampa = GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life;
+                save.lifeTampa = tampaProtectionObject.life;
             }
             else
             {
                 save.lifeTampa = 0;
+            }
+            if (Inventory.HasItemType(Inventory.InventoryItems.ESCUDO))
+            {
+                save.lifeEscudo = escudoProtectionObject.life;
+            }
+            else
+            {
+                save.lifeEscudo = 0;
             }
             save.pedraCount = Inventory.pedraCount;
 
@@ -694,7 +724,11 @@ namespace CrowShadowManager
                 if (currentSave.currentItem != -1) Inventory.SetCurrentItem(currentSave.currentItem);
                 if (Inventory.HasItemType(Inventory.InventoryItems.TAMPA))
                 {
-                    GameObject.Find("Player").gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = currentSave.lifeTampa;
+                    tampaProtectionObject.life = currentSave.lifeTampa;
+                }
+                if (Inventory.HasItemType(Inventory.InventoryItems.ESCUDO))
+                {
+                    escudoProtectionObject.life = currentSave.lifeEscudo;
                 }
                 Inventory.pedraCount = currentSave.pedraCount;
 
@@ -770,9 +804,6 @@ namespace CrowShadowManager
                 default:
                     break;
             }
-
-            levelImage = hud.transform.Find("LevelImage").gameObject;
-            levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
 
             if (mission != null)
             {
@@ -907,7 +938,11 @@ namespace CrowShadowManager
             invertWorld = sel;
             if (!currentSceneName.Equals("GameOver") && !currentSceneName.Equals("MainMenu"))
             {
-                GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>().enabled = invertWorld;
+                if (colorCamera == null)
+                {
+                    colorCamera = GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>();
+                }
+                colorCamera.enabled = invertWorld;
             }
         }
 

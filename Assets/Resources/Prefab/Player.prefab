@@ -1492,9 +1492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9695343170627764fb5d49dea6fe06fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
   currentMission: 0
-  previousSceneName: 
-  currentSceneName: 
   sideQuests: 0
   pathBird: 0
   pathCat: 0
@@ -1511,6 +1510,9 @@ MonoBehaviour:
   invertWorldBlocked: 0
   playerProtected: 0
   showMissionStart: 1
+  startMissionDelay: 3
+  tampa: {fileID: 1596103839746552}
+  escudo: {fileID: 1325338790196908}
   rpgTalk: {fileID: 114614734401517286}
   scenerySounds: {fileID: 114365670633547336}
   scenerySounds2: {fileID: 114918750010813636}
@@ -1691,9 +1693,10 @@ MonoBehaviour:
   movespeed: 0.01
   runningFactor: 3
   invertControlsTime: 0
+  hidden: 0
+  isRunning: 0
   direction: 2
   wantedDirection: 0
-  isRunning: 0
   animator: {fileID: 95882510258092630}
   steps: {fileID: 8300000, guid: 0014d196cabeb47c090691ff38da85fa, type: 3}
   stepsGrass: {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
