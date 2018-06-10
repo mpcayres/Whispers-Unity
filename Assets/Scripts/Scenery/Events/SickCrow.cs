@@ -1,27 +1,36 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
-using CrowShadowObjects;
+using CrowShadowPlayer;
 
 namespace CrowShadowScenery
 {
     public class SickCrow : MonoBehaviour
     {
-        public bool fly = false;
-        public GameObject armario;
-
         public Animation animationSick { get { return GetComponent<Animation>(); } }
+
+        public bool fly = false;
+        public bool colliding = false;
+
+        Player player;
 
         void Start()
         {
-            if (GameManager.instance.currentMission > 1 || GameManager.instance.mission1MaeQuarto)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+
+        void Update()
+        {
+
+            if (player.playerAction == Player.Actions.ON_OBJECT)
             {
-                this.gameObject.SetActive(false);
-            }
-            else
-            {
-                armario = GameObject.Find("Armario").gameObject;
-                armario.GetComponent<SceneObject>().isCrowSick = true;
-                armario.GetComponent<SceneObject>().isUp = true;
+                if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
+                !GameManager.instance.paused && !GameManager.instance.blocked &&
+                !GameManager.instance.pausedObject)
+                {
+                    fly = true;
+                }
+
             }
         }
     }

@@ -46,6 +46,7 @@ TagManager:
   - Bastao
   - Pedra
   - Papel
+  - SickCrow
   layers:
   - Default
   - TransparentFX

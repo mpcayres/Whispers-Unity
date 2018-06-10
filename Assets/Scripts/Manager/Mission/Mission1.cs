@@ -6,15 +6,15 @@ using CrowShadowPlayer;
 using CrowShadowScenery;
 
 public class Mission1 : Mission {
-    enum enumMission { NIGHT, INICIO, GATO_APARECEU, GATO_CORREDOR,
+    enum enumMission { NIGHT, INICIO, GATO_QUARTO, GATO_APARECEU, GATO_CORREDOR,
         GATO_COZINHA, GATO_SALA, LANTERNA_ENCONTRADA, CORVO_VISTO, SMILE, MAE_QUARTO, FAZER_ESCOLHA, FINAL };
     enumMission secao;
 
-    bool left = false;
     SceneObject window;
-    //ZoomObject clock;
-    float portaDefaultX, portaDefaultY;
+    SickCrow sickCrow;
+    
     bool areaTriggered = false, birdsActive = false;
+    float portaDefaultX, portaDefaultY;
 
     public override void InitMission()
     {
@@ -31,7 +31,7 @@ public class Mission1 : Mission {
 
         PlayerPrefs.DeleteKey("MO_Corredor_0X");
         PlayerPrefs.DeleteKey("MO_Corredor_0Y");
-
+        
         SetInitialSettings();
     }
 
@@ -50,33 +50,24 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.INICIO)
         {
-            if (GameObject.Find("CrowHolder").gameObject.transform.GetComponent<SickCrow>().fly)
+            if (sickCrow.fly)
             {
-                EspecificaEnum((int) enumMission.GATO_APARECEU);
+                EspecificaEnum((int) enumMission.GATO_QUARTO);
             }
-
+        }
+        else if (secao == enumMission.GATO_QUARTO)
+        {
+            if (GameManager.currentSceneName.Equals("QuartoKid") && !GameManager.instance.rpgTalk.isPlaying)
+            {
+                EspecificaEnum((int)enumMission.GATO_APARECEU);
+            }
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
-            var cat = GameObject.Find("catFollower(Clone)").gameObject;
             if (GameManager.currentSceneName.Equals("Corredor") && !GameManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.GATO_CORREDOR);
-            } else if (GameManager.currentSceneName.Equals("QuartoKid") && !GameManager.instance.rpgTalk.isPlaying) {
-                if (!left)
-                {
-                    
-                    Vector3 aux = new Vector3(1.8f, 1f, -0.5f);
-                    Vector3[] catPos = { aux };
-                    cat.GetComponent<Cat>().targets = catPos;
-                    Cat.instance.destroyEndPath = true;
-                    left = true;
-                }
-               // else if(cat.GetComponent<Cat>().targets == null) {
-               //     GameObject.Destroy(GameObject.Find("catFollower(Clone)").gameObject);
-               // }
             } 
-
         }
         else if (secao == enumMission.GATO_SALA)
         {
@@ -107,11 +98,10 @@ public class Mission1 : Mission {
             {
                 GameManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
-                if(value > 0)
+                if (value > 0)
                     GameManager.instance.scenerySounds.PlayBird(1);
                 else
                     GameManager.instance.scenerySounds.PlayBird(4);
-
             }
             
         }
@@ -119,14 +109,15 @@ public class Mission1 : Mission {
 
     public override void SetCorredor()
     {
-
         GameManager.instance.scenerySounds.StopSound();
+
         if (secao == enumMission.GATO_APARECEU)
         {
             GameManager.instance.rpgTalk.NewTalk("M1CorridorSceneStart", "M1CorridorSceneEnd", GameManager.instance.rpgTalk.txtToParse);
             GameManager.instance.scenerySounds.PlayCat(2);
         }
 
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -146,7 +137,6 @@ public class Mission1 : Mission {
         portaBanheiro.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/door-closed");
         portaBanheiro.GetComponent<SceneDoor>().isOpened = false;
         portaBanheiro.transform.position = new Vector3(portaBanheiro.transform.position.x - posX, portaBanheiroDefaultY, portaBanheiro.transform.position.z);
-
 
         // Objeto movel que atrapalha
         GameObject chair = GameManager.instance.AddObject("Objects/MovingObject", "Sprites/Objects/Scene/vaso",
@@ -191,11 +181,11 @@ public class Mission1 : Mission {
 
     public override void SetCozinha()
     {
-
         GameManager.instance.scenerySounds.StopSound();
         GameManager.instance.scenerySounds.PlayDrop();
         //GameManager.instance.rpgTalk.NewTalk ("M1KitchenSceneStart", "M1KitchenSceneEnd");
 
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -208,15 +198,14 @@ public class Mission1 : Mission {
         {
             EspecificaEnum((int)enumMission.GATO_COZINHA);
         }
-        
     }
 
     public override void SetJardim()
     {
-
         GameManager.instance.scenerySounds.StopSound();
         //GameManager.instance.rpgTalk.NewTalk ("M1GardenSceneStart", "M1GardenSceneEnd");
 
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
 
@@ -228,23 +217,27 @@ public class Mission1 : Mission {
 
     public override void SetQuartoKid()
     {
-
         GameManager.instance.scenerySounds.StopSound();
-        // Luz
+        
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO) {
             // Janela
-            GameObject windowObject = GameObject.Find("WindowTrigger").gameObject;
+            /*GameObject windowObject = GameObject.Find("WindowTrigger").gameObject;
             window = windowObject.GetComponent<SceneObject>();
             windowObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/window-closed");
             window.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/window-closed");
-            window.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/window-opened");
+            window.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/window-opened");*/
 
             // Relogio
             //clock = GameObject.Find("Relogio").gameObject.GetComponent<ZoomObject>();
+
+            // Pássaro
+            GameObject littleCrow = GameManager.instance.AddObject("MissionEvents/CrowHolder", "", new Vector3(-0.66f, 1.62f, 0f), new Vector3(0.5f, 0.5f, 1));
+            sickCrow = littleCrow.GetComponent<SickCrow>();
         }
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO || secao == enumMission.CORVO_VISTO)
@@ -270,15 +263,14 @@ public class Mission1 : Mission {
 
             GameManager.instance.rpgTalk.NewTalk("M1KidRoomSceneRepeat", "M1KidRoomSceneRepeatEnd", GameManager.instance.rpgTalk.txtToParse);
         }
-
     }
 
     public override void SetQuartoMae()
     {
-
         GameManager.instance.scenerySounds.StopSound();
         //GameManager.instance.rpgTalk.NewTalk ("M1MomRoomSceneStart", "M1MomRoomSceneEnd");
 
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -286,10 +278,10 @@ public class Mission1 : Mission {
 
     public override void SetSala()
     {
-
         GameManager.instance.scenerySounds.StopSound();
         //GameManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
 
+        // LUZ DO AMBIENTE
         GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightBooks").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
@@ -323,6 +315,7 @@ public class Mission1 : Mission {
             EspecificaEnum((int)enumMission.GATO_SALA);
         }
     }
+
     public override void ForneceDica() {
         if (GameManager.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO) {
             GameManager.instance.timer = 0;
@@ -338,19 +331,20 @@ public class Mission1 : Mission {
             GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario2Start", "M1LanternaArmario2End", GameManager.instance.rpgTalk.txtToParse);
         }
     }
+
     public override void EspecificaEnum(int pos)
     {
-
         secao = (enumMission) pos;
         GameManager.instance.timer = 0;
         GameManager.instance.Print("SECAO: " + secao);
+
         if(secao == enumMission.INICIO)
         {
             GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", GameManager.instance.rpgTalk.txtToParse);
             GameManager.instance.mission1Inicio = true;
         }
-        else if (secao == enumMission.GATO_APARECEU)
+        else if (secao == enumMission.GATO_QUARTO)
         {
             GameManager.instance.mission1Inicio = false;
             // Porta abrindo
@@ -370,6 +364,13 @@ public class Mission1 : Mission {
             Vector3[] catPos = { aux };
             cat.GetComponent<Cat>().targets = catPos;
             cat.GetComponent<Cat>().stopEndPath = true;
+        }
+        else if (secao == enumMission.GATO_APARECEU)
+        {
+            Vector3 aux = new Vector3(1.8f, 1f, -0.5f);
+            Vector3[] catPos = { aux };
+            Cat.instance.GetComponent<Cat>().targets = catPos;
+            Cat.instance.destroyEndPath = true;
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {

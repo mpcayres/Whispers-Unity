@@ -138,7 +138,7 @@ namespace CrowShadowObjects
                 originalDirection = scriptPlayer.direction;
                 if (originalDirection != 3)
                 {
-                    scriptPlayer.playerAction = Player.Actions.ON_OBJECT;
+                    scriptPlayer.playerAction = Player.Actions.ANIMATION;
                     originalX = player.transform.position.x;
                     originalY = player.transform.position.y;
                     GetComponent<Collider2D>().enabled = false;

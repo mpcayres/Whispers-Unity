@@ -10,11 +10,12 @@ namespace CrowShadowScenery
 
         public Sprite aberto;
         public Sprite fechado;
-        public Sprite monstro;
         public bool colliding = false;
         public bool scare = false;
+
         SpriteRenderer spriteRenderer;
         BoxCollider2D boxCollider;
+
         float sizeX, sizeY;
         //float posXdefault;
         bool gameOver = false;
@@ -73,7 +74,6 @@ namespace CrowShadowScenery
         {
             if (spriteRenderer.sprite == aberto && scare && !Flashlight.GetState())
             {
-                spriteRenderer.sprite = monstro;
                 GameManager.instance.scenerySounds.PlayScare(1);
                 GameManager.instance.scenerySounds.PlayBird(1);
                 GameManager.instance.scenerySounds.PlayBird(4);
@@ -81,15 +81,6 @@ namespace CrowShadowScenery
                 GameManager.instance.blocked = true;
                 gameOver = true;
             }
-
-            /*if (spriteRenderer.sprite == monstro)
-            {
-                transform.position = new Vector3(posXdefault, (float)(transform.position.y + posY / 2 + 0.1), transform.position.z);
-            }
-            else
-            {
-                transform.position = new Vector3(posXdefault, posYdefault, transform.position.z);
-            }*/
         }
 
     }

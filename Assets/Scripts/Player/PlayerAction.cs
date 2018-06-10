@@ -54,12 +54,15 @@ namespace CrowShadowPlayer
             {
                 collision.gameObject.GetComponent<Lamp>().colliding = true;
             }
+            else if (collision.gameObject.tag.Equals("SickCrow"))
+            {
+                collision.gameObject.GetComponent<SickCrow>().colliding = true;
+            }
             else if (collision.gameObject.tag.Equals("WindowTrigger"))
             {
                 collision.gameObject.GetComponent<WindowTrigger>().colliding = true;
                 collision.gameObject.GetComponent<WindowTrigger>().ScareTrigger();
             }
-
         }
 
         private void OnTriggerExit2D(Collider2D collision)

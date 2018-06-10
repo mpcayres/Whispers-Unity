@@ -35,6 +35,7 @@ namespace CrowShadowManager
         
         // CENAS
         public static string previousSceneName = "", currentSceneName = "";
+        public static bool forceReload = false;
 
         // EXTRAS
         [Range(0, 5)]
@@ -278,14 +279,11 @@ namespace CrowShadowManager
         /************ FUNÇÕES DE CENA ************/
 
         // FUNÇÕES DE MUDANÇA DE CENA
-        public static void LoadScene(string name, bool menu = false, bool forceReload = false)
+        public static void LoadScene(string name, bool menu = false)
         {
-            if (name.Equals(currentSceneName) && !forceReload)
+            if (!(name.Equals(currentSceneName) && !forceReload))
             {
-                GameManager.instance.SetSceneWhenLoaded();
-            }
-            else
-            {
+                forceReload = false;
                 if (!menu)
                 {
                     SaveObjectsVariables();
@@ -828,6 +826,7 @@ namespace CrowShadowManager
         public void ChangeMission(int m)
         {
             timer = 0;
+            forceReload = true;
             SetMission(m);
             SaveGame(currentMission, 0);
         }

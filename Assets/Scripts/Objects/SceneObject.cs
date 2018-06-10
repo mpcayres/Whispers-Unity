@@ -2,7 +2,6 @@
 using UnityStandardAssets.CrossPlatformInput;
 using CrowShadowManager;
 using CrowShadowPlayer;
-using CrowShadowScenery;
 
 namespace CrowShadowObjects
 {
@@ -26,8 +25,6 @@ namespace CrowShadowObjects
         BoxCollider2D boxCollider;
         Player player;
 
-        public bool isCrowSick = false;
-
         void Awake()
         {
             boxCollider = GetComponent<BoxCollider2D>();
@@ -49,13 +46,7 @@ namespace CrowShadowObjects
 
             if ((!isUp && (player.playerAction == Player.Actions.DEFAULT)) || (isUp && (player.playerAction == Player.Actions.ON_OBJECT)))
             {
-                if (isCrowSick && CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
-                !GameManager.instance.paused && !GameManager.instance.blocked &&
-                !GameManager.instance.pausedObject)
-                {
-                    GameObject.Find("CrowHolder").gameObject.GetComponent<SickCrow>().fly = true;
-                }
-                else if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
+                if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
                 !GameManager.instance.paused && !GameManager.instance.blocked &&
                 !GameManager.instance.pausedObject) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {

@@ -9,7 +9,7 @@ namespace CrowShadowPlayer
 {
     public class Player : MonoBehaviour
     {
-        public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT };
+        public enum Actions { DEFAULT, MOVING_OBJECT, ON_OBJECT, ANIMATION };
         [Header("Conditions")]
         public Actions playerAction;
         public enum States { DEFAULT, FLASHLIGHT, PROTECTED_TAMPA, PROTECTED_ESCUDO };
@@ -63,7 +63,7 @@ namespace CrowShadowPlayer
                 //Ordem do layer determinada pelo eixo y
                 spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-                if (playerAction != Actions.ON_OBJECT)
+                if (playerAction == Actions.DEFAULT || playerAction == Actions.MOVING_OBJECT)
                 {
                     if (CrossPlatformInputManager.GetButton("keyRun"))
                     {
@@ -165,7 +165,7 @@ namespace CrowShadowPlayer
                         source.Stop();
                     }
                 }
-                else
+                else if (playerAction == Actions.ON_OBJECT)
                 {
                     if (CrossPlatformInputManager.GetButton("keySpecial"))
                     {
@@ -403,15 +403,18 @@ namespace CrowShadowPlayer
 
         IEnumerator WaitCoroutineUpDown(float time, float x, float y, int dir, bool down)
         {
-            Debug.Log("about to yield return WaitForSeconds(" + time + ")");
+            Debug.Log("about to yield return WaitForSeconds(" + time + ") " + down);
             yield return new WaitForSeconds(time);
-            Debug.Log("Animation ended");
+            Debug.Log("Animation ended " + down);
             ChangePositionDefault(x, y, dir);
             if (down)
             {
                 playerAction = Actions.DEFAULT;
                 auxOnObject.GetComponent<Collider2D>().enabled = true;
                 GetComponent<Collider2D>().enabled = true;
+            } else
+            {
+                playerAction = Actions.ON_OBJECT;
             }
             yield break;
             //Debug.Log("You'll never see this"); // produces a dead code warning
