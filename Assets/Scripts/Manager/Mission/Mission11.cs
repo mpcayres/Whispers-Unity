@@ -50,7 +50,7 @@ public class Mission11 : Mission {
                 EspecificaEnum((int)enumMission.INICIO);
             }
         }
-        else if (endCat && GameManager.instance.currentSceneName.Equals("Jardim") && Cat.instance == null)
+        else if (endCat && GameManager.currentSceneName.Equals("Jardim") && Cat.instance == null)
         {
             // Gato, correção de um erro
             GameObject cat = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));

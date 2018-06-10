@@ -59,10 +59,10 @@ public class Mission1 : Mission {
         else if (secao == enumMission.GATO_APARECEU)
         {
             var cat = GameObject.Find("catFollower(Clone)").gameObject;
-            if (GameManager.instance.currentSceneName.Equals("Corredor") && !GameManager.instance.rpgTalk.isPlaying)
+            if (GameManager.currentSceneName.Equals("Corredor") && !GameManager.instance.rpgTalk.isPlaying)
             {
                 EspecificaEnum((int)enumMission.GATO_CORREDOR);
-            } else if (GameManager.instance.currentSceneName.Equals("QuartoKid") && !GameManager.instance.rpgTalk.isPlaying) {
+            } else if (GameManager.currentSceneName.Equals("QuartoKid") && !GameManager.instance.rpgTalk.isPlaying) {
                 if (!left)
                 {
                     
@@ -103,7 +103,7 @@ public class Mission1 : Mission {
                 birdsActive = true;
 
             }
-            if(birdsActive && !GameManager.instance.scenerySounds.source.isPlaying && (!GameManager.instance.currentSceneName.Equals("GameOver") || !GameManager.instance.currentSceneName.Equals("MainMenu")))
+            if(birdsActive && !GameManager.instance.scenerySounds.source.isPlaying && (!GameManager.currentSceneName.Equals("GameOver") || !GameManager.currentSceneName.Equals("MainMenu")))
             {
                 GameManager.instance.scenerySounds.StopSound();
                 float value = Random.value;
@@ -324,16 +324,16 @@ public class Mission1 : Mission {
         }
     }
     public override void ForneceDica() {
-        if (GameManager.instance.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO) {
+        if (GameManager.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO) {
             GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1CorvoArmarioStart", "M1CorvoArmarioEnd", GameManager.instance.rpgTalk.txtToParse);
         }
-        else if (GameManager.instance.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && !usedTip1 && GameManager.instance.timer == tipTimerSmall)
+        else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && !usedTip1 && GameManager.instance.timer == tipTimerSmall)
         {
             GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario1Start", "M1LanternaArmario1End", GameManager.instance.rpgTalk.txtToParse);
             usedTip1 = true;
-        } else if (GameManager.instance.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && usedTip1 && GameManager.instance.timer == tipTimerMedium) {
+        } else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && usedTip1 && GameManager.instance.timer == tipTimerMedium) {
             GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario2Start", "M1LanternaArmario2End", GameManager.instance.rpgTalk.txtToParse);
         }

@@ -142,7 +142,7 @@ namespace CrowShadowPlayer
                     }
 
                     //barulho dos passos
-                    if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                    if (GameManager.currentSceneName.Equals("Jardim"))
                     {
                         source.clip = stepsGrass;
                         stepsControl = 0.1f;
@@ -241,21 +241,21 @@ namespace CrowShadowPlayer
             playerAction = Actions.DEFAULT;
 
             string previousSceneName = "";
-            if (GameManager.instance.previousSceneName.Equals("GameOver"))
+            if (GameManager.previousSceneName.Equals("GameOver"))
             {
                 previousSceneName = lastSceneGameOver;
                 invertControlsTime = 0;
                 movespeed = 0.01f;
             }
-            else if (!GameManager.instance.currentSceneName.Equals("GameOver"))
+            else if (!GameManager.currentSceneName.Equals("GameOver"))
             {
-                lastSceneGameOver = GameManager.instance.previousSceneName;
-                previousSceneName = GameManager.instance.previousSceneName;
+                lastSceneGameOver = GameManager.previousSceneName;
+                previousSceneName = GameManager.previousSceneName;
             }
 
-            if (!GameManager.instance.currentSceneName.Equals(GameManager.instance.previousSceneName))
+            if (!GameManager.currentSceneName.Equals(GameManager.previousSceneName))
             {
-                if (GameManager.instance.currentSceneName.Equals("Corredor"))
+                if (GameManager.currentSceneName.Equals("Corredor"))
                 {
                     if (previousSceneName.Equals("Sala"))
                     {
@@ -282,11 +282,11 @@ namespace CrowShadowPlayer
                         ChangeDirection(3);
                     }
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Cozinha"))
+                else if (GameManager.currentSceneName.Equals("Cozinha"))
                 {
                     transform.position = new Vector2((float)1.5, (float)0.7);
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                else if (GameManager.currentSceneName.Equals("Jardim"))
                 {
                     if (previousSceneName.Equals("Porao"))
                     {
@@ -298,27 +298,27 @@ namespace CrowShadowPlayer
                         transform.position = new Vector2((float)3.25, (float)2.3);
                     }
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Porao"))
+                else if (GameManager.currentSceneName.Equals("Porao"))
                 {
                     transform.position = new Vector2((float)3.2, (float)0.5);
                     ChangeDirection(3);
                 }
-                else if (GameManager.instance.currentSceneName.Equals("QuartoKid"))
+                else if (GameManager.currentSceneName.Equals("QuartoKid"))
                 {
                     transform.position = new Vector2((float)1.75, (float)0.65);
                     ChangeDirection(3);
                 }
-                else if (GameManager.instance.currentSceneName.Equals("QuartoMae"))
+                else if (GameManager.currentSceneName.Equals("QuartoMae"))
                 {
                     transform.position = new Vector2((float)-3.8, (float)-0.45);
                     ChangeDirection(3);
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Banheiro"))
+                else if (GameManager.currentSceneName.Equals("Banheiro"))
                 {
                     transform.position = new Vector2((float)2.171, (float)0.284);
                     ChangeDirection(3);
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Sala"))
+                else if (GameManager.currentSceneName.Equals("Sala"))
                 {
                     if (previousSceneName.Equals("Jardim"))
                     {
@@ -331,7 +331,7 @@ namespace CrowShadowPlayer
                         ChangeDirection(3);
                     }
                 }
-                else if (GameManager.instance.currentSceneName.Equals("SideQuest"))
+                else if (GameManager.currentSceneName.Equals("SideQuest"))
                 {
                     transform.position = new Vector2(GameManager.instance.sideQuest.sideX, GameManager.instance.sideQuest.sideY);
                     ChangeDirection(GameManager.instance.sideQuest.sideDir);
@@ -345,13 +345,13 @@ namespace CrowShadowPlayer
             }
 
             if ((GameManager.instance.mission is Mission8) &&
-                !GameManager.instance.previousSceneName.Equals("GameOver") &&
-                !GameManager.instance.currentSceneName.Equals("GameOver"))
+                !GameManager.previousSceneName.Equals("GameOver") &&
+                !GameManager.currentSceneName.Equals("GameOver"))
             {
                 if (rb == null) rb = GetComponent<Rigidbody2D>();
                 corvoPositionX = transform.position.x;
                 corvoPositionY = transform.position.y;
-                corvoScene = GameManager.instance.currentSceneName;
+                corvoScene = GameManager.currentSceneName;
                 if (Crow.instance != null)
                 {
                     Crow.instance.gameObject.SetActive(false);
@@ -363,7 +363,7 @@ namespace CrowShadowPlayer
 
         public void ChangeCorvoPosition()
         {
-            if (GameManager.instance.currentSceneName.Equals(corvoScene) && Crow.instance != null)
+            if (GameManager.currentSceneName.Equals(corvoScene) && Crow.instance != null)
             {
                 Crow.instance.ChangePosition(corvoPositionX, corvoPositionY);
                 Crow.instance.gameObject.SetActive(true);

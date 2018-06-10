@@ -10,7 +10,7 @@ public class SideQuest5 : SideQuest
 
     public override void InitSideQuest()
     {
-        if (!GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (!GameManager.previousSceneName.Equals("GameOver"))
         {
             // Determinar posição do player (sideX e sideY)
             sideX = 0f; sideY = 18f;

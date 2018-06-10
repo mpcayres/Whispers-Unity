@@ -27,7 +27,7 @@ public abstract class SideQuest
 
     protected void SetInitialSettings()
     {
-        oldScene = GameManager.instance.previousSceneName;
+        oldScene = GameManager.previousSceneName;
         camera = GameObject.Find("MainCamera").gameObject;
 
         GameObject player = GameObject.Find("Player").gameObject;

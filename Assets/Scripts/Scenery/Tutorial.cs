@@ -43,13 +43,13 @@ namespace CrowShadowScenery
             {
                 if ((GameManager.instance.currentMission == 1 &&
                     GameManager.instance.mission1Inicio &&
-                    GameManager.instance.currentSceneName.Equals("QuartoKid"))
+                    GameManager.currentSceneName.Equals("QuartoKid"))
                     ||
                     (GameManager.instance.currentMission != 1)
                     ||
                     (GameManager.instance.currentMission == 1 &&
                     !GameManager.instance.mission1Inicio &&
-                    !GameManager.instance.currentSceneName.Equals("QuartoKid")))
+                    !GameManager.currentSceneName.Equals("QuartoKid")))
                 {
                     exit = false;
                     if (!inventoryObject)
@@ -73,13 +73,13 @@ namespace CrowShadowScenery
             {
                 if ((GameManager.instance.currentMission == 1 &&
                     GameManager.instance.mission1Inicio &&
-                    GameManager.instance.currentSceneName.Equals("QuartoKid"))
+                    GameManager.currentSceneName.Equals("QuartoKid"))
                     ||
                     (GameManager.instance.currentMission != 1)
                     ||
                     (GameManager.instance.currentMission == 1 &&
                     !GameManager.instance.mission1Inicio &&
-                    !GameManager.instance.currentSceneName.Equals("QuartoKid")))
+                    !GameManager.currentSceneName.Equals("QuartoKid")))
                 {
                     if (!inventoryObject)
                         InvokeShow();

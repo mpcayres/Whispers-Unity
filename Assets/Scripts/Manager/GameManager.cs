@@ -32,7 +32,7 @@ namespace CrowShadowManager
         public static int initDir = 0;
         
         // CENAS
-        public string previousSceneName = "", currentSceneName = "";
+        public static string previousSceneName = "", currentSceneName = "";
 
         // EXTRAS
         [Range(0, 5)]
@@ -258,13 +258,20 @@ namespace CrowShadowManager
         // FUNÇÕES DE MUDANÇA DE CENA
         public static void LoadScene(string name, bool menu = false)
         {
-            if (!menu)
+            if (name.Equals(currentSceneName))
             {
-                SaveObjectsVariables();
+                GameManager.instance.SetSceneWhenLoaded();
             }
-            print("ACTIVE " + Time.time * 1000);
+            else
+            {
+                if (!menu)
+                {
+                    SaveObjectsVariables();
+                }
+                //print("ACTIVE " + Time.time * 1000);
 
-            FadingScene.instance.LoadSceneAsync(name, 0);
+                FadingScene.instance.LoadSceneAsync(name, 0);
+            }
         }
 
         // FUNÇÕES PARA CONTAR MUDANÇA DE CENA
@@ -286,31 +293,13 @@ namespace CrowShadowManager
             //print("OLDSCENE" + previousSceneName);
             //print("NEWSCENE" + currentSceneName);
 
-            if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest"))
-            {
-                GetComponent<Player>().ChangePosition();
-            }
-            else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest"))
-            {
-                if (currentSceneName.Equals("SideQuest") && sideQuest != null)
-                {
-                    sideQuest.InitSideQuest();
-                }
-                else if (previousSceneName.Equals("SideQuest") && !currentSceneName.Equals("GameOver") && sideQuest != null)
-                {
-                    sideQuest.EndSideQuest();
-                }
-                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
-            }
-            else
-            {
-                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
-                if (initMission && currentSceneName.Equals(mission.sceneInit))
-                {
-                    initMission = false;
-                    initX = initY = 0;
-                }
-            }
+            SetSceneWhenLoaded();
+        }
+
+        // ESPECIFICA DETALHES DA CENA QUANDO ESTÁ É CARREGADA
+        private void SetSceneWhenLoaded()
+        {
+            SetPlayerOnScene();
 
             if (previousSceneName.Equals("GameOver"))
             {
@@ -343,6 +332,36 @@ namespace CrowShadowManager
             ExtrasManager.PagesManager();
             SetObjectsVariables();
             SetPickUps();
+        }
+
+        // DETERMINA POSIÇÃO DO PLAYER AO CARREGAR A CENA
+        private void SetPlayerOnScene()
+        {
+            if (!initMission && !currentSceneName.Equals("SideQuest") && !previousSceneName.Equals("SideQuest"))
+            {
+                GetComponent<Player>().ChangePosition();
+            }
+            else if (currentSceneName.Equals("SideQuest") || previousSceneName.Equals("SideQuest"))
+            {
+                if (currentSceneName.Equals("SideQuest") && sideQuest != null)
+                {
+                    sideQuest.InitSideQuest();
+                }
+                else if (previousSceneName.Equals("SideQuest") && !currentSceneName.Equals("GameOver") && sideQuest != null)
+                {
+                    sideQuest.EndSideQuest();
+                }
+                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+            }
+            else
+            {
+                GetComponent<Player>().ChangePositionDefault(initX, initY, initDir);
+                if (initMission && currentSceneName.Equals(mission.sceneInit))
+                {
+                    initMission = false;
+                    initX = initY = 0;
+                }
+            }
         }
 
         /************ FUNÇÕES DE OBJETO ************/

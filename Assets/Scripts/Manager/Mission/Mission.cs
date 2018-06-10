@@ -19,27 +19,27 @@ public abstract class Mission {
 
     public void LoadMissionScene()
     {
-        if (GameManager.instance.currentSceneName.Equals("Corredor"))
+        if (GameManager.currentSceneName.Equals("Corredor"))
         {
             SetCorredor();
         }
-        else if (GameManager.instance.currentSceneName.Equals("Cozinha"))
+        else if (GameManager.currentSceneName.Equals("Cozinha"))
         {
             SetCozinha();
         }
-        else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+        else if (GameManager.currentSceneName.Equals("Jardim"))
         {
             SetJardim();
         }
-        else if (GameManager.instance.currentSceneName.Equals("QuartoKid"))
+        else if (GameManager.currentSceneName.Equals("QuartoKid"))
         {
             SetQuartoKid();
         }
-        else if (GameManager.instance.currentSceneName.Equals("QuartoMae"))
+        else if (GameManager.currentSceneName.Equals("QuartoMae"))
         {
             SetQuartoMae();
         }
-        else if (GameManager.instance.currentSceneName.Equals("Sala"))
+        else if (GameManager.currentSceneName.Equals("Sala"))
         {
             SetSala();
         }

@@ -79,7 +79,7 @@ public class Mission2 : Mission {
 
     public override void SetCorredor()
     {
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
@@ -89,7 +89,7 @@ public class Mission2 : Mission {
             GameManager.instance.blocked = false;
         }
 
-        if (GameManager.instance.previousSceneName.Equals("QuartoKid") &&
+        if (GameManager.previousSceneName.Equals("QuartoKid") &&
             (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2))
         {
             GameManager.instance.rpgTalk.NewTalk("M2CorridorSceneRepeat", "M2CorridorSceneRepeatEnd");
@@ -156,7 +156,7 @@ public class Mission2 : Mission {
 
 	public override void SetCozinha()
 	{
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
@@ -192,7 +192,7 @@ public class Mission2 : Mission {
 
     public override void SetQuartoKid()
     {
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
@@ -200,7 +200,7 @@ public class Mission2 : Mission {
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver") && 
+        if (GameManager.previousSceneName.Equals("GameOver") && 
             (secao == enumMission.FINAL_CONTESTA_CORVO || secao == enumMission.FINAL_CONTESTA_GATO))
         {
             secao = enumMission.FINAL_CONTESTA; // está fora do EspecificaEnum pq não é para chamar a fala de lá e aí ficava mais fácil
@@ -295,7 +295,7 @@ public class Mission2 : Mission {
 
     public override void SetSala()
     {
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(

@@ -324,12 +324,12 @@ namespace CrowShadowScenery
             if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf)
             {
 
-                if (GameManager.instance.currentSceneName.Equals("Corridor"))
+                if (GameManager.currentSceneName.Equals("Corridor"))
                 {
                     board = GameObject.Find(boardName).gameObject;
                     board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/cofre");
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                else if (GameManager.currentSceneName.Equals("Jardim"))
                 {
                     isBasement = true;
                 }
@@ -340,12 +340,12 @@ namespace CrowShadowScenery
             }
             else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
             {
-                if (GameManager.instance.currentSceneName.Equals("Corridor"))
+                if (GameManager.currentSceneName.Equals("Corridor"))
                 {
                     board = GameObject.Find(boardName).gameObject;
                     board.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/quadroInutil2");
                 }
-                else if (GameManager.instance.currentSceneName.Equals("Jardim"))
+                else if (GameManager.currentSceneName.Equals("Jardim"))
                 {
 
                     isBasement = true;

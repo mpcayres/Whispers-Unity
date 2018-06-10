@@ -82,9 +82,9 @@ namespace CrowShadowManager
         // OnLevelWasLoaded is called when a level is loaded. It takes loaded level index (int) as a parameter so you can limit the fade in to certain scenes
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)//void OnLevelWasLoaded()
         {
-            //alpha = 1;			// uncomment this if the alpha is not set to 1 by default
+            alpha = 1;			// uncomment this if the alpha is not set to 1 by default
             BeginFade(-1);          // call the fade in function
-            print("CLOSE " + Time.time * 1000);
+            //print("CLOSE " + Time.time * 1000);
         }
 
         // sets fadeDir to the direction parameter making the scene fade in if -1 and out if 1

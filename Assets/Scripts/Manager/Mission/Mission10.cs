@@ -51,7 +51,7 @@ public class Mission10 : Mission {
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
     {
-        if (GameManager.instance.currentSceneName.Equals("GameOver") && !stopMiniGame)
+        if (GameManager.currentSceneName.Equals("GameOver") && !stopMiniGame)
         {
             if (fosforo != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO)
                 fosforo.GetComponent<MiniGameObject>().StopMiniGame();
@@ -63,7 +63,7 @@ public class Mission10 : Mission {
                 pedra.GetComponent<MiniGameObject>().StopMiniGame();
             stopMiniGame = true;
         }
-        else if (GameManager.instance.previousSceneName.Equals("GameOver") && stopMiniGame)
+        else if (GameManager.previousSceneName.Equals("GameOver") && stopMiniGame)
         {
             stopMiniGame = false;
         }
@@ -169,7 +169,7 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
-            if (GameManager.instance.currentSceneName.Equals("Corredor") && luminaria != null)
+            if (GameManager.currentSceneName.Equals("Corredor") && luminaria != null)
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
@@ -177,7 +177,7 @@ public class Mission10 : Mission {
                     EspecificaEnum((int)enumMission.FINAL_BIRD);
                 }
             }
-            else if (GameManager.instance.currentSceneName.Equals("QuartoMae") && luminaria != null)
+            else if (GameManager.currentSceneName.Equals("QuartoMae") && luminaria != null)
             {
                 if (luminaria.GetComponent<Lamp>().Changed())
                 {
@@ -223,7 +223,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
@@ -260,7 +260,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
@@ -301,7 +301,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
@@ -358,7 +358,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
@@ -408,7 +408,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
@@ -442,7 +442,7 @@ public class Mission10 : Mission {
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
-        if (GameManager.instance.previousSceneName.Equals("GameOver"))
+        if (GameManager.previousSceneName.Equals("GameOver"))
         {
             gameOverSet = true;
             GameManager.instance.Invoke("InvokeMission", 2f);
