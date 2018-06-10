@@ -40,28 +40,28 @@ namespace CrowShadowScenery
             switch (gameObject.tag)
             {
                 case "DoorToLivingroom":
-                    GameManager.LoadScene(1);
+                    GameManager.LoadScene("Sala");
                     break;
                 case "DoorToAlley":
-                    GameManager.LoadScene(2);
+                    GameManager.LoadScene("Corredor");
                     break;
                 case "DoorToGarden":
-                    GameManager.LoadScene(3);
+                    GameManager.LoadScene("Jardim");
                     break;
                 case "DoorToKitchen":
-                    GameManager.LoadScene(4);
+                    GameManager.LoadScene("Cozinha");
                     break;
                 case "DoorToMomRoom":
-                    GameManager.LoadScene(5);
+                    GameManager.LoadScene("QuartoMae");
                     break;
                 case "DoorToKidRoom":
-                    GameManager.LoadScene(6);
+                    GameManager.LoadScene("QuartoKid");
                     break;
                 case "DoorToBathroom":
-                    GameManager.LoadScene(9);
+                    GameManager.LoadScene("Banheiro");
                     break;
                 case "DoorToBasement":
-                    GameManager.LoadScene(11);
+                    GameManager.LoadScene("Porao");
                     break;
                 default:
                     GameManager.instance.paused = false;

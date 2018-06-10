@@ -36,7 +36,7 @@ namespace CrowShadowMenu
         {
             PlayerPrefs.SetInt("Mission", m);
             PlayerPrefs.SetInt("CurrentSaveNumber", save);
-            GameManager.LoadScene(6, true);
+            GameManager.LoadScene("QuartoKid", true);
         }
 
     }

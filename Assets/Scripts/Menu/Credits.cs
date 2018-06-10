@@ -7,7 +7,7 @@ namespace CrowShadowMenu
     {
         public void ChangeScene(int number = 0)
         {
-            GameManager.LoadScene(0, true); // animation finished: load main menu
+            GameManager.LoadScene("MainMenu", true); // animation finished: load main menu
         }
     }
 }

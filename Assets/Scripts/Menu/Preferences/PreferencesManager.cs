@@ -148,8 +148,6 @@ namespace CrowShadowMenu
 
             if (name.Equals("SaveButton"))
             {
-                instance.GetComponent<ContinueGame>().black = transform.Find("BlackSquare").GetComponent<Image>();
-                instance.GetComponent<ContinueGame>().anim = transform.Find("BlackSquare").GetComponent<Animator>();
                 instance.GetComponent<Button>().onClick.AddListener(delegate { instance.GetComponent<ContinueGame>().OnClick(int.Parse(numSave)); });
             }
             else if (name.Equals("ContinueButton"))

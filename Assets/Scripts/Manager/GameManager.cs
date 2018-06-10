@@ -19,7 +19,6 @@ namespace CrowShadowManager
     {
         public static GameManager instance;
 
-
         // MISSÕES
         public Mission mission;
         public SideQuest sideQuest;
@@ -195,7 +194,7 @@ namespace CrowShadowManager
             // CONDIÇÃO PARA SAIR - MENU
             if (CrossPlatformInputManager.GetButtonDown("Exit"))
             {
-                LoadScene(0);
+                LoadScene("MainMenu");
             }
 
             // CHEATS
@@ -259,62 +258,28 @@ namespace CrowShadowManager
         // FUNÇÕES DE MUDANÇA DE CENA
         public static void LoadScene(string name, bool menu = false)
         {
-            if (menu)
-            {
-                levelImage = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
-                levelImage.SetActive(true);
-            }
-            else
+            if (!menu)
             {
                 SaveObjectsVariables();
-                if (levelText == null || levelImage == null)
-                {
-                    levelImage = hud.transform.Find("LevelImage").gameObject;
-                    levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
-                }
-                levelText.text = "";
-                levelImage.SetActive(true);
-            }
-
-            SceneManager.LoadSceneAsync(name);
-        }
-
-        public static void LoadScene(int index, bool menu = false)
-        {
-            if (menu)
-            {
-                levelImage = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
-                levelImage.SetActive(true);
-            }
-            else
-            {
-                SaveObjectsVariables();
-                if (levelText == null || levelImage == null)
-                {
-                    levelImage = hud.transform.Find("LevelImage").gameObject;
-                    levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
-                }
-                levelText.text = "";
-                levelImage.SetActive(true);
             }
             print("ACTIVE " + Time.time * 1000);
 
-            SceneManager.LoadSceneAsync(index);
+            FadingScene.instance.LoadSceneAsync(name, 0);
         }
 
         // FUNÇÕES PARA CONTAR MUDANÇA DE CENA
-        private void OnEnable()
+        void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         // FUNÇÃO APÓS MUDANÇA DE CENA
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             previousSceneName = currentSceneName;
             currentSceneName = scene.name;
@@ -346,13 +311,6 @@ namespace CrowShadowManager
                     initX = initY = 0;
                 }
             }
-
-            levelImage.SetActive(false);
-            if (currentSceneName.Equals("MainMenu") || currentSceneName.Equals("GameOver") || currentSceneName.Equals("Credits"))
-            {
-                levelImage = null;
-            }
-            print("CLOSE " + Time.time * 1000);
 
             if (previousSceneName.Equals("GameOver"))
             {

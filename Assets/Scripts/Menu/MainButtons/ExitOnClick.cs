@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using CrowShadowManager;
 
 namespace CrowShadowMenu
 {
@@ -12,19 +13,13 @@ namespace CrowShadowMenu
 
         public void Quit()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit ();
-#endif
-            //StartCoroutine(FadingExit());
+            StartCoroutine(FadingExit());
         }
 
         IEnumerator FadingExit()
         {
-            anim.SetBool("Fade", true);
-            yield return new WaitUntil(() => black.color.a == 1);
-            
+            float fadeTime = FadingScene.instance.BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

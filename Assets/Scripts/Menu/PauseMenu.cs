@@ -8,10 +8,12 @@ namespace CrowShadowMenu
         GameManager gameManager;
         public PauseMenuOptions option;
         public enum PauseMenuOptions { BackToGame, BackToMainMenu };
+
         private void Awake()
         {
             gameManager = GameObject.Find("Player").GetComponent<GameManager>();
         }
+
         public void OnClick()
         {
             if (option == PauseMenuOptions.BackToGame)
@@ -21,7 +23,7 @@ namespace CrowShadowMenu
             }
             else
             {
-                GameManager.LoadScene(0, true);
+                GameManager.LoadScene("MainMenu", true);
             }
 
         }
