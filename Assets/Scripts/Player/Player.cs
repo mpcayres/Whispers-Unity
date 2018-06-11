@@ -30,12 +30,11 @@ namespace CrowShadowPlayer
         public AudioClip steps, stepsGrass;
         public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
-        private float stepsControl = 0.5f;
-
-        private Rigidbody2D rb;
         private SpriteRenderer spriteRenderer;
+        private Collider2D collider;
         private MovingObject auxOnObject;
 
+        private float stepsControl = 0.5f;
         private string lastSceneGameOver = "", corvoScene = "";
         private float corvoPositionX, corvoPositionY;
         private int oldDirection; //0 = east, 1 = west, 2 = north, 3 = south
@@ -43,8 +42,8 @@ namespace CrowShadowPlayer
         void Start()
         {
             animator = GetComponent<Animator>();
-            rb = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            collider = GetComponent<Collider2D>();
             source.playOnAwake = false;
         }
 
@@ -79,11 +78,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector2(transform.position.x - move, transform.position.y);
+                            transform.position = new Vector3(transform.position.x - move, transform.position.y, transform.position.z);
                         }
                         else
                         {
-                            transform.position = new Vector2(transform.position.x + move, transform.position.y);
+                            transform.position = new Vector3(transform.position.x + move, transform.position.y, transform.position.z);
                         }
                         isWalking = true;
                         direction = 0;
@@ -92,11 +91,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector2(transform.position.x + move, transform.position.y);
+                            transform.position = new Vector3(transform.position.x + move, transform.position.y, transform.position.z);
                         }
                         else
                         {
-                            transform.position = new Vector2(transform.position.x - move, transform.position.y);
+                            transform.position = new Vector3(transform.position.x - move, transform.position.y, transform.position.z);
                         }
                         isWalking = true;
                         direction = 1;
@@ -105,11 +104,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector2(transform.position.x, transform.position.y - move);
+                            transform.position = new Vector3(transform.position.x, transform.position.y - move, transform.position.z);
                         }
                         else
                         {
-                            transform.position = new Vector2(transform.position.x, transform.position.y + move);
+                            transform.position = new Vector3(transform.position.x, transform.position.y + move, transform.position.z);
                         }
                         isWalking = true;
                         direction = 2;
@@ -118,11 +117,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector2(transform.position.x, transform.position.y + move);
+                            transform.position = new Vector3(transform.position.x, transform.position.y + move, transform.position.z);
                         }
                         else
                         {
-                            transform.position = new Vector2(transform.position.x, transform.position.y - move);
+                            transform.position = new Vector3(transform.position.x, transform.position.y - move, transform.position.z);
                         }
                         isWalking = true;
                         direction = 3;
@@ -218,21 +217,21 @@ namespace CrowShadowPlayer
         public void ChangeState(int newState)
         {
             playerState = (States)newState;
-            GetComponent<Animator>().SetInteger("playerState", newState);
-            GetComponent<Animator>().SetTrigger("changeDirection");
+            animator.SetInteger("playerState", newState);
+            animator.SetTrigger("changeDirection");
         }
 
         public void ChangeDirection(int newDirection)
         {
             direction = newDirection;
-            GetComponent<Animator>().SetInteger("direction", direction);
-            GetComponent<Animator>().SetTrigger("changeDirection");
+            animator.SetInteger("direction", direction);
+            animator.SetTrigger("changeDirection");
             oldDirection = direction;
         }
 
         public void ChangePositionDefault(float x, float y, int dir)
         {
-            GetComponent<Rigidbody2D>().position = new Vector2(x, y);
+            transform.position = new Vector3(x, y, -1f);
             if (dir != -1) ChangeDirection(dir);
         }
 
@@ -259,81 +258,81 @@ namespace CrowShadowPlayer
                 {
                     if (previousSceneName.Equals("Sala"))
                     {
-                        transform.position = new Vector2((float)-9.8, (float)-0.6);
+                        transform.position = new Vector3(-9.8f, -0.6f, -1f);
                     }
                     else if (previousSceneName.Equals("QuartoMae"))
                     {
-                        transform.position = new Vector2((float)-1.6, (float)-0.3);
+                        transform.position = new Vector3(-1.6f, -0.3f, -1f);
                         ChangeDirection(3);
                     }
                     else if (previousSceneName.Equals("Cozinha"))
                     {
-                        transform.position = new Vector2((float)2.95, (float)-0.6);
+                        transform.position = new Vector3(2.95f, -0.6f, -1f);
                     }
                     else if (previousSceneName.Equals("Banheiro"))
                     {
-                        transform.position = new Vector2((float)-11.3, (float)-0.3);
+                        transform.position = new Vector3(-11.3f, -0.3f, -1f);
                         ChangeDirection(3);
                     }
                     //else if (previousSceneName.Equals("QuartoKid"))
                     else
                     {
-                        transform.position = new Vector2((float)11.9, (float)-0.3);
+                        transform.position = new Vector3(11.9f, -0.3f, -1f);
                         ChangeDirection(3);
                     }
                 }
                 else if (GameManager.currentSceneName.Equals("Cozinha"))
                 {
-                    transform.position = new Vector2((float)1.5, (float)0.7);
+                    transform.position = new Vector3(1.5f, 0.7f, -1f);
                 }
                 else if (GameManager.currentSceneName.Equals("Jardim"))
                 {
                     if (previousSceneName.Equals("Porao"))
                     {
-                        transform.position = new Vector2((float)6.0, (float)2.5);
+                        transform.position = new Vector3(6.0f, 2.5f, -1f);
                         ChangeDirection(3);
                     }
                     else
                     {
-                        transform.position = new Vector2((float)3.25, (float)2.3);
+                        transform.position = new Vector3(3.25f, 2.3f, -1f);
                     }
                 }
                 else if (GameManager.currentSceneName.Equals("Porao"))
                 {
-                    transform.position = new Vector2((float)3.2, (float)0.5);
+                    transform.position = new Vector3(3.2f, 0.5f, -1f);
                     ChangeDirection(3);
                 }
                 else if (GameManager.currentSceneName.Equals("QuartoKid"))
                 {
-                    transform.position = new Vector2((float)1.75, (float)0.65);
+                    transform.position = new Vector3(1.75f, 0.65f, -1f);
                     ChangeDirection(3);
                 }
                 else if (GameManager.currentSceneName.Equals("QuartoMae"))
                 {
-                    transform.position = new Vector2((float)-3.8, (float)-0.45);
+                    transform.position = new Vector3(-3.8f, -0.45f, -1f);
                     ChangeDirection(3);
                 }
                 else if (GameManager.currentSceneName.Equals("Banheiro"))
                 {
-                    transform.position = new Vector2((float)2.171, (float)0.284);
+                    transform.position = new Vector3(2.171f, 0.284f, -1f);
                     ChangeDirection(3);
                 }
                 else if (GameManager.currentSceneName.Equals("Sala"))
                 {
                     if (previousSceneName.Equals("Jardim"))
                     {
-                        transform.position = new Vector2((float)2.35, (float)-2.0);
+                        transform.position = new Vector3(2.35f, -2.0f, -1f);
                     }
                     //else if (previousSceneName.Equals("Corredor"))
                     else
                     {
-                        transform.position = new Vector2((float)-3.15, (float)0.85);
+                        transform.position = new Vector3(-3.15f, 0.85f, -1f);
                         ChangeDirection(3);
                     }
                 }
                 else if (GameManager.currentSceneName.Equals("SideQuest"))
                 {
-                    transform.position = new Vector2(GameManager.instance.sideQuest.sideX, GameManager.instance.sideQuest.sideY);
+                    transform.position = new Vector3(GameManager.instance.sideQuest.sideX, GameManager.instance.sideQuest.sideY);
                     ChangeDirection(GameManager.instance.sideQuest.sideDir);
                 }
                 GameManager.instance.paused = false;
@@ -348,7 +347,6 @@ namespace CrowShadowPlayer
                 !GameManager.previousSceneName.Equals("GameOver") &&
                 !GameManager.currentSceneName.Equals("GameOver"))
             {
-                if (rb == null) rb = GetComponent<Rigidbody2D>();
                 corvoPositionX = transform.position.x;
                 corvoPositionY = transform.position.y;
                 corvoScene = GameManager.currentSceneName;
@@ -411,7 +409,7 @@ namespace CrowShadowPlayer
             {
                 playerAction = Actions.DEFAULT;
                 auxOnObject.GetComponent<Collider2D>().enabled = true;
-                GetComponent<Collider2D>().enabled = true;
+                collider.enabled = true;
             } else
             {
                 playerAction = Actions.ON_OBJECT;
