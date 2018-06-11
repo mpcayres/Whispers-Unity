@@ -5,6 +5,10 @@ using CrowShadowPlayer;
 
 public abstract class Mission {
 
+    protected GameObject mainLight, player, fosforo, isqueiro, faca, pedra;
+    protected MiniGameObject fosforoMiniGame, isqueiroMiniGame;
+    protected Book book;
+
     public string sceneInit = "";
 
     public int tipTimerSmall = 40;
@@ -19,6 +23,8 @@ public abstract class Mission {
 
     public void LoadMissionScene()
     {
+        mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+
         if (GameManager.currentSceneName.Equals("Corredor"))
         {
             SetCorredor();
@@ -78,21 +84,21 @@ public abstract class Mission {
 
         GameManager.instance.paused = false;
 
-        GameObject player = GameObject.Find("Player").gameObject;
-        GameObject fosforo = player.transform.Find("Fosforo").gameObject;
-        GameObject isqueiro = player.transform.Find("Isqueiro").gameObject;
-        GameObject faca = player.transform.Find("Faca").gameObject;
-        GameObject pedra = player.transform.Find("Pedra").gameObject;
+        player = GameManager.instance.gameObject;
+        fosforo = player.transform.Find("Fosforo").gameObject;
+        isqueiro = player.transform.Find("Isqueiro").gameObject;
+        faca = player.transform.Find("Faca").gameObject;
+        pedra = player.transform.Find("Pedra").gameObject;
+        book = player.GetComponent<Book>();
 
-        fosforo.GetComponent<MiniGameObject>().achievedGoal = false;
-        isqueiro.GetComponent<MiniGameObject>().achievedGoal = false;
-        //faca.GetComponent<MiniGameObject>().achievedGoal = false;
-        //pedra.GetComponent<MiniGameObject>().achievedGoal = false;
+        fosforoMiniGame = fosforo.GetComponent<MiniGameObject>();
+        isqueiroMiniGame = isqueiro.GetComponent<MiniGameObject>();
 
-        fosforo.GetComponent<MiniGameObject>().activated = false;
-        isqueiro.GetComponent<MiniGameObject>().activated = false;
-        //faca.GetComponent<MiniGameObject>().activated = false;
-        //pedra.GetComponent<MiniGameObject>().activated = false;
+        fosforoMiniGame.achievedGoal = false;
+        isqueiroMiniGame.achievedGoal = false;
+
+        fosforoMiniGame.activated = false;
+        isqueiroMiniGame.activated = false;
 
         if (GameManager.instance.rpgTalk.isPlaying)
         {

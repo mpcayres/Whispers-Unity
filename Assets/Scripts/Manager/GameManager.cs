@@ -68,11 +68,13 @@ namespace CrowShadowManager
         public bool showMissionStart = true;
         public float startMissionDelay = 3f;
 
-        [Header("External Sources")]
-
+        [Header("Components")]
         // COMPONENTS
+        public Player player;
         public GameObject tampa;
         public GameObject escudo;
+
+        [Header("External Sources")]
 
         // RPG TALK
         public RPGTalk rpgTalk;
@@ -106,7 +108,6 @@ namespace CrowShadowManager
         private GameObject hud, levelImage;
         private Text levelText;
         private ProtectionObject tampaProtectionObject, escudoProtectionObject;
-        private Player player;
         private Renderer rendererPlayer;
         private UnityStandardAssets.ImageEffects.ColorCorrectionLookup colorCamera;
 
@@ -125,8 +126,10 @@ namespace CrowShadowManager
 
                 levelImage = hud.transform.Find("LevelImage").gameObject;
                 levelText = levelImage.transform.Find("LevelText").GetComponent<Text>();
+
                 tampaProtectionObject = tampa.GetComponent<ProtectionObject>();
                 escudoProtectionObject = escudo.GetComponent<ProtectionObject>();
+
                 player = GetComponent<Player>();
                 rendererPlayer = GetComponent<Renderer>();
                 colorCamera = GameObject.Find("MainCamera").GetComponent<UnityStandardAssets.ImageEffects.ColorCorrectionLookup>();

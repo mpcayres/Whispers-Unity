@@ -9,7 +9,6 @@ public class Mission11 : Mission {
     enumMission secao;
 
     bool endCat = false;
-    GameObject player;
 
     public override void InitMission()
     {
@@ -35,7 +34,7 @@ public class Mission11 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        player = GameObject.FindGameObjectWithTag("Player").gameObject;
+        player = GameManager.instance.gameObject;
 
         GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject.SetActive(false);
         GameObject.Find("HUDCanvas").transform.Find("BoxInventory").gameObject.SetActive(false);
@@ -53,10 +52,11 @@ public class Mission11 : Mission {
         else if (endCat && GameManager.currentSceneName.Equals("Jardim") && Cat.instance == null)
         {
             // Gato, correção de um erro
-            GameObject cat = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
-            cat.GetComponent<Cat>().followWhenClose = false;
-            cat.GetComponent<Cat>().Stop();
-            cat.GetComponent<Cat>().ChangeDirectionAnimation(5);
+            GameObject catObject = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(0.92f, 1.46f, -0.5f), new Vector3(0.15f, 0.15f, 1));
+            Cat cat = catObject.GetComponent<Cat>();
+            cat.followWhenClose = false;
+            cat.Stop();
+            cat.ChangeDirectionAnimation(5);
         }
         if (secao == enumMission.QUARTO_KID_CORVO_ATACA && !GameManager.instance.scenerySounds.source.isPlaying)
         {
@@ -70,7 +70,7 @@ public class Mission11 : Mission {
 
     public override void SetCorredor()
     {
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 5;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
@@ -146,7 +146,7 @@ public class Mission11 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
@@ -176,7 +176,7 @@ public class Mission11 : Mission {
 
     public override void SetJardim()
     {
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
 
@@ -227,7 +227,7 @@ public class Mission11 : Mission {
 
     public override void SetQuartoKid()
     {
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
@@ -289,7 +289,7 @@ public class Mission11 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 3;
         player.GetComponent<Player>().ChangePositionDefault(0, 0, 0);
@@ -344,7 +344,7 @@ public class Mission11 : Mission {
 
     public override void SetSala()
     {
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("MainCamera").GetComponent<Camera>().orthographicSize = 4;
         player.GetComponent<Player>().ChangePositionDefault(0, -1, 0);

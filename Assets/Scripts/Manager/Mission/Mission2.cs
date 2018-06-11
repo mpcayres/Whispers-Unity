@@ -303,7 +303,7 @@ public class Mission2 : Mission {
             cat.GetComponent<Cat>().FollowPlayer();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
 
         if (secao == enumMission.RESPEITA_MAE2)

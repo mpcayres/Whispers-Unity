@@ -10,16 +10,14 @@ public class Mission10 : Mission {
         CORVO_APARECE_BIRD, CORVO_ATACA_BIRD_INIT, CORVO_ATACA_BIRD, BOTIJAO_BIRD, FINAL_BIRD, FINAL };
     enumMission secao;
 
+    GameObject luminaria, fireEvent;
+
     bool hasPanela = false, endCat = false, invertLocal = false, gameOverSet = false, stopMiniGame = false;
     bool estanteTrigger = false, poltronaTrigger = false, sofaTrigger = false;
     bool estanteBurn = false, poltronaBurn = false, sofaBurn = false;
     bool falaMae = false, falaGato = false;
-
-    float portaDefaultX, portaDefaultY;
-    Book book;
-    GameObject player, fosforo, isqueiro, faca, pedra, luminaria, fireEvent;
-
     bool birdsActive = false;
+    float portaDefaultX, portaDefaultY; 
 
     // ANALISAR DIFICULDADE DO NIVEL E DOS DIFERENTES OBJETOS - FACA, PEDRO, FOSFORO, ISQUEIRO
     public override void InitMission()
@@ -40,13 +38,6 @@ public class Mission10 : Mission {
 
         hasPanela = Inventory.HasItemType(Inventory.InventoryItems.TAMPA);
         if (GameManager.instance.pathCat >= GameManager.instance.pathBird) endCat = true;
-
-        book = GameObject.Find("Player").gameObject.GetComponent<Book>();
-        player = GameObject.Find("Player").gameObject;
-        fosforo = player.transform.Find("Fosforo").gameObject;
-        isqueiro = player.transform.Find("Isqueiro").gameObject;
-        faca = player.transform.Find("Faca").gameObject;
-        pedra = player.transform.Find("Pedra").gameObject;
     }
 
     public override void UpdateMission() //aqui coloca as ações do update específicas da missão
@@ -54,13 +45,9 @@ public class Mission10 : Mission {
         if (GameManager.currentSceneName.Equals("GameOver") && !stopMiniGame)
         {
             if (fosforo != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO)
-                fosforo.GetComponent<MiniGameObject>().StopMiniGame();
+                fosforoMiniGame.StopMiniGame();
             if (isqueiro != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
-                isqueiro.GetComponent<MiniGameObject>().StopMiniGame();
-            if (faca != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
-                faca.GetComponent<MiniGameObject>().StopMiniGame();
-            if (pedra != null && Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
-                pedra.GetComponent<MiniGameObject>().StopMiniGame();
+                isqueiroMiniGame.StopMiniGame();
             stopMiniGame = true;
         }
         else if (GameManager.previousSceneName.Equals("GameOver") && stopMiniGame)
@@ -71,13 +58,11 @@ public class Mission10 : Mission {
         if (GameManager.instance.invertWorld && !invertLocal)
         {
             invertLocal = true;
-            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
             mainLight.transform.Rotate(new Vector3(-40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
         else if (!GameManager.instance.invertWorld && invertLocal)
         {
             invertLocal = false;
-            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
             mainLight.transform.Rotate(new Vector3(40, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         }
 
@@ -118,13 +103,13 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_CAT || secao == enumMission.MAE_CAT)
         {
-            if (fosforo.GetComponent<MiniGameObject>().achievedGoal || isqueiro.GetComponent<MiniGameObject>().achievedGoal)
+            if (fosforoMiniGame.achievedGoal || isqueiroMiniGame.achievedGoal)
             {
-                fosforo.GetComponent<MiniGameObject>().achievedGoal = false;
-                isqueiro.GetComponent<MiniGameObject>().achievedGoal = false;
+                fosforoMiniGame.achievedGoal = false;
+                isqueiroMiniGame.achievedGoal = false;
 
-                fosforo.GetComponent<MiniGameObject>().activated = false;
-                isqueiro.GetComponent<MiniGameObject>().activated = false;
+                fosforoMiniGame.activated = false;
+                isqueiroMiniGame.activated = false;
 
                 if (estanteTrigger)
                 {
@@ -156,16 +141,8 @@ public class Mission10 : Mission {
         }
         else if (secao == enumMission.CORVO_ATACA_BIRD)
         {
-            if (faca.GetComponent<MiniGameObject>().achievedGoal || pedra.GetComponent<MiniGameObject>().achievedGoal)
-            {
-                faca.GetComponent<MiniGameObject>().achievedGoal = false;
-                pedra.GetComponent<MiniGameObject>().achievedGoal = false;
-
-                faca.GetComponent<MiniGameObject>().activated = false;
-                pedra.GetComponent<MiniGameObject>().activated = false;
-
-                EspecificaEnum((int) enumMission.BOTIJAO_BIRD);
-            }
+            // Achieved Goal Faca Pedra
+            EspecificaEnum((int) enumMission.BOTIJAO_BIRD);
         }
         else if (secao == enumMission.BOTIJAO_BIRD)
         {
@@ -213,7 +190,7 @@ public class Mission10 : Mission {
 
         GameManager.instance.scenerySounds.StopSound();
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -250,7 +227,7 @@ public class Mission10 : Mission {
 
         GameManager.instance.scenerySounds.PlayDrop();
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -291,7 +268,7 @@ public class Mission10 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -348,7 +325,7 @@ public class Mission10 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -398,7 +375,7 @@ public class Mission10 : Mission {
             GameManager.instance.rpgTalk.EndTalk();
         }
 
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -432,7 +409,7 @@ public class Mission10 : Mission {
 
     public override void SetSala()
     {
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        // LUZ DO AMBIENTE
         mainLight.transform.Rotate(new Vector3(30, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -621,38 +598,38 @@ public class Mission10 : Mission {
         {
             if (tag.Equals("EnterEstanteTrigger") && !estanteBurn)
             {
-                fosforo.GetComponent<MiniGameObject>().activated = true;
-                isqueiro.GetComponent<MiniGameObject>().activated = true;
-                fosforo.GetComponent<MiniGameObject>().posFlareX = -5.71f;
-                fosforo.GetComponent<MiniGameObject>().posFlareY = 1.64f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareX = -5.71f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareY = 1.64f;
+                fosforoMiniGame.activated = true;
+                isqueiroMiniGame.activated = true;
+                fosforoMiniGame.posFlareX = -5.71f;
+                fosforoMiniGame.posFlareY = 1.64f;
+                isqueiroMiniGame.posFlareX = -5.71f;
+                isqueiroMiniGame.posFlareY = 1.64f;
                 estanteTrigger = true;
             }
             else if (tag.Equals("EnterPoltronaTrigger") && !poltronaBurn)
             {
-                fosforo.GetComponent<MiniGameObject>().activated = true;
-                isqueiro.GetComponent<MiniGameObject>().activated = true;
-                fosforo.GetComponent<MiniGameObject>().posFlareX = -1f;
-                fosforo.GetComponent<MiniGameObject>().posFlareY = 1.6f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareX = -1f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareY = 1.6f;
+                fosforoMiniGame.activated = true;
+                isqueiroMiniGame.activated = true;
+                fosforoMiniGame.posFlareX = -1f;
+                fosforoMiniGame.posFlareY = 1.6f;
+                isqueiroMiniGame.posFlareX = -1f;
+                isqueiroMiniGame.posFlareY = 1.6f;
                 poltronaTrigger = true;
             }
             else if (tag.Equals("EnterSofaTrigger") && !sofaBurn)
             {
-                fosforo.GetComponent<MiniGameObject>().activated = true;
-                isqueiro.GetComponent<MiniGameObject>().activated = true;
-                fosforo.GetComponent<MiniGameObject>().posFlareX = 5.53f;
-                fosforo.GetComponent<MiniGameObject>().posFlareY = 0.4f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareX = 5.53f;
-                isqueiro.GetComponent<MiniGameObject>().posFlareY = 0.5f;
+                fosforoMiniGame.activated = true;
+                isqueiroMiniGame.activated = true;
+                fosforoMiniGame.posFlareX = 5.53f;
+                fosforoMiniGame.posFlareY = 0.4f;
+                isqueiroMiniGame.posFlareX = 5.53f;
+                isqueiroMiniGame.posFlareY = 0.5f;
                 sofaTrigger = true;
             }
             else if (tag.Equals("ExitEstanteTrigger") || tag.Equals("ExitPoltronaTrigger") || tag.Equals("ExitSofaTrigger"))
             {
-                fosforo.GetComponent<MiniGameObject>().activated = false;
-                isqueiro.GetComponent<MiniGameObject>().activated = false;
+                fosforoMiniGame.activated = false;
+                isqueiroMiniGame.activated = false;
                 estanteTrigger = poltronaTrigger = sofaTrigger = false;
             }
         }
@@ -664,17 +641,10 @@ public class Mission10 : Mission {
                 {
                     GameManager.instance.rpgTalk.NewTalk("M8PedraCozinha", "M8PedraCozinhaEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
                 }
-                faca.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                faca.GetComponent<MiniGameObject>().posFlareY = 1f;
-                pedra.GetComponent<MiniGameObject>().posFlareX = -4.1f;
-                pedra.GetComponent<MiniGameObject>().posFlareY = 1f;
-                faca.GetComponent<MiniGameObject>().activated = true;
-                pedra.GetComponent<MiniGameObject>().activated = true;
             }
             else if (tag.Equals("ExitGasTrigger"))
             {
-                faca.GetComponent<MiniGameObject>().activated = false;
-                pedra.GetComponent<MiniGameObject>().activated = false;
+
             }
         }
     }
@@ -752,10 +722,10 @@ public class Mission10 : Mission {
 
         return crow;
     }
+
     public override void ForneceDica()
     {
 
     }
-
 
 }

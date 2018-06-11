@@ -118,7 +118,6 @@ public class Mission1 : Mission {
         }
 
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -186,7 +185,6 @@ public class Mission1 : Mission {
         //GameManager.instance.rpgTalk.NewTalk ("M1KitchenSceneStart", "M1KitchenSceneEnd");
 
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -206,7 +204,6 @@ public class Mission1 : Mission {
         //GameManager.instance.rpgTalk.NewTalk ("M1GardenSceneStart", "M1GardenSceneEnd");
 
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
 
         /*GameObject areaLight = GameObject.Find("AreaLightHolder").gameObject; //utilizar AreaLight para cenas de dia, variar Z do Holder
@@ -220,7 +217,6 @@ public class Mission1 : Mission {
         GameManager.instance.scenerySounds.StopSound();
         
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
 
@@ -271,7 +267,6 @@ public class Mission1 : Mission {
         //GameManager.instance.rpgTalk.NewTalk ("M1MomRoomSceneStart", "M1MomRoomSceneEnd");
 
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(20, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
     }
@@ -282,7 +277,6 @@ public class Mission1 : Mission {
         //GameManager.instance.rpgTalk.NewTalk ("M1LivingroomSceneStart", "M1LivingroomSceneEnd");
 
         // LUZ DO AMBIENTE
-        GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
         mainLight.transform.Rotate(new Vector3(50, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
         GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightBooks").gameObject.SetActive(true); //utilizar AreaLight para cenas de dia, variar Z
 
@@ -313,22 +307,6 @@ public class Mission1 : Mission {
         if (secao == enumMission.GATO_COZINHA)
         {
             EspecificaEnum((int)enumMission.GATO_SALA);
-        }
-    }
-
-    public override void ForneceDica() {
-        if (GameManager.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO) {
-            GameManager.instance.timer = 0;
-            GameManager.instance.rpgTalk.NewTalk("M1CorvoArmarioStart", "M1CorvoArmarioEnd", GameManager.instance.rpgTalk.txtToParse);
-        }
-        else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && !usedTip1 && GameManager.instance.timer == tipTimerSmall)
-        {
-            GameManager.instance.timer = 0;
-            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario1Start", "M1LanternaArmario1End", GameManager.instance.rpgTalk.txtToParse);
-            usedTip1 = true;
-        } else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && usedTip1 && GameManager.instance.timer == tipTimerMedium) {
-            GameManager.instance.timer = 0;
-            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario2Start", "M1LanternaArmario2End", GameManager.instance.rpgTalk.txtToParse);
         }
     }
 
@@ -389,8 +367,8 @@ public class Mission1 : Mission {
             GameManager.instance.mission1Inicio = false;
             GameManager.instance.scenerySounds.PlayBird(1);
             GameManager.instance.blocked = true;
+
             //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLightTV").gameObject.SetActive(true);
-            GameObject mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
             mainLight.transform.Rotate(new Vector3(-25, mainLight.transform.rotation.y, mainLight.transform.rotation.z));
             GameManager.instance.AddObject("Effects/BlinkMainLight", "", new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
             GameObject.Find("TV").gameObject.GetComponent<SceneMultipleObject>().ChangeSprite();
@@ -418,6 +396,26 @@ public class Mission1 : Mission {
             GameManager.instance.mission1Inicio = false;
             GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
             GameManager.instance.Invoke("InvokeMission", 4f);
+        }
+    }
+
+    public override void ForneceDica()
+    {
+        if (GameManager.currentSceneName.Equals("QuartoKid") && secao == enumMission.INICIO)
+        {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1CorvoArmarioStart", "M1CorvoArmarioEnd", GameManager.instance.rpgTalk.txtToParse);
+        }
+        else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && !usedTip1 && GameManager.instance.timer == tipTimerSmall)
+        {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario1Start", "M1LanternaArmario1End", GameManager.instance.rpgTalk.txtToParse);
+            usedTip1 = true;
+        }
+        else if (GameManager.currentSceneName.Equals("Sala") && secao == enumMission.GATO_SALA && usedTip1 && GameManager.instance.timer == tipTimerMedium)
+        {
+            GameManager.instance.timer = 0;
+            GameManager.instance.rpgTalk.NewTalk("M1LanternaArmario2Start", "M1LanternaArmario2End", GameManager.instance.rpgTalk.txtToParse);
         }
     }
 
