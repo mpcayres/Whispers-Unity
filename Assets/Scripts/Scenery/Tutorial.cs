@@ -41,29 +41,18 @@ namespace CrowShadowScenery
         {
             if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && player.playerAction == playerAction && !end)
             {
-                if ((GameManager.instance.currentMission == 1 &&
-                    GameManager.instance.mission1Inicio &&
-                    GameManager.currentSceneName.Equals("QuartoKid"))
-                    ||
-                    (GameManager.instance.currentMission != 1)
-                    ||
-                    (GameManager.instance.currentMission == 1 &&
-                    !GameManager.instance.mission1Inicio &&
-                    !GameManager.currentSceneName.Equals("QuartoKid")))
+                exit = false;
+                if (!inventoryObject)
                 {
-                    exit = false;
-                    if (!inventoryObject)
-                        InvokeShow();
-                    else
-                    {
-                        if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
-                        {
-                            InvokeShow();
-                        }
-                    }
-
+                    InvokeShow();
                 }
-
+                else
+                {
+                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
+                    {
+                        InvokeShow();
+                    }
+                }
             }
         }
 
@@ -71,24 +60,15 @@ namespace CrowShadowScenery
         {
             if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && !end)
             {
-                if ((GameManager.instance.currentMission == 1 &&
-                    GameManager.instance.mission1Inicio &&
-                    GameManager.currentSceneName.Equals("QuartoKid"))
-                    ||
-                    (GameManager.instance.currentMission != 1)
-                    ||
-                    (GameManager.instance.currentMission == 1 &&
-                    !GameManager.instance.mission1Inicio &&
-                    !GameManager.currentSceneName.Equals("QuartoKid")))
+                if (!inventoryObject)
                 {
-                    if (!inventoryObject)
-                        InvokeShow();
-                    else
+                    InvokeShow();
+                }   
+                else
+                {
+                    if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
                     {
-                        if (Inventory.HasItemType(Inventory.InventoryItems.FLASHLIGHT))
-                        {
-                            InvokeShow();
-                        }
+                        InvokeShow();
                     }
                 }
             }

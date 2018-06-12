@@ -142,6 +142,9 @@ public class Mission1 : Mission {
             new Vector3((float)-3.59, (float)-0.45, 0), new Vector3((float)1.2, (float)1.2, 1));
         chair.GetComponent<MovingObject>().prefName = "MO_Corredor_0";
 
+        // Tutorial
+        GameManager.instance.AddObject("Tutorial/C-vase");
+
         if (secao == enumMission.GATO_APARECEU)
         {
             GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(8.3f, -0.6f, -0.5f), new Vector3(0.15f, 0.15f, 1));
@@ -221,15 +224,9 @@ public class Mission1 : Mission {
         //GameObject.Find("AreaLightHolder").gameObject.transform.Find("AreaLight").gameObject.SetActive(true);
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO) {
-            // Janela
-            /*GameObject windowObject = GameObject.Find("WindowTrigger").gameObject;
-            window = windowObject.GetComponent<SceneObject>();
-            windowObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/window-closed");
-            window.sprite1 = Resources.Load<Sprite>("Sprites/Objects/Scene/window-closed");
-            window.sprite2 = Resources.Load<Sprite>("Sprites/Objects/Scene/window-opened");*/
-
-            // Relogio
-            //clock = GameObject.Find("Relogio").gameObject.GetComponent<ZoomObject>();
+            // Tutorial
+            GameManager.instance.AddObject("Tutorial/C-key");
+            GameManager.instance.AddObject("Tutorial/CtrlC-key");
 
             // Pássaro
             GameObject littleCrow = GameManager.instance.AddObject("MissionEvents/CrowHolder", "", new Vector3(-0.66f, 1.62f, 0f), new Vector3(0.5f, 0.5f, 1));
@@ -247,11 +244,9 @@ public class Mission1 : Mission {
             porta.GetComponent<SceneDoor>().isOpened = false;
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
         }
-
-        GameManager.instance.Print("LOCAD 0: " + secao);
+        
         if (secao == enumMission.MAE_QUARTO)
         {
-            GameManager.instance.Print("LOCAD 2");
             GameObject.Find("Flashlight").gameObject.GetComponent<Flashlight>().EnableFlashlight(false);
             GameManager.instance.GetComponent<Player>().ChangePositionDefault(-2.5f, 0.7f, 0);
             GameManager.instance.AddObject("NPCs/mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
@@ -293,6 +288,7 @@ public class Mission1 : Mission {
         GameObject portaCorredor = GameObject.Find("DoorToAlley").gameObject;
         portaCorredor.GetComponent<SceneDoor>().isOpened = false;
 
+        // Triggers
         GameObject trigger = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0f, 0f, 0), new Vector3(1, 1, 1));
         trigger.name = "AreaTrigger";
         trigger.GetComponent<Collider2D>().offset = new Vector2(2.68f, 0);
@@ -302,7 +298,11 @@ public class Mission1 : Mission {
         trigger2.name = "TVTrigger";
         trigger2.GetComponent<Collider2D>().offset = new Vector2(7f, -0.4f);
         trigger2.GetComponent<BoxCollider2D>().size = new Vector2(1.55f, 0.8f);
-        
+
+        // Tutorial
+        GameManager.instance.AddObject("Tutorial/Z-bau");
+        GameManager.instance.AddObject("Tutorial/X-lantern");
+
         areaTriggered = false;
         birdsActive = false;
 
@@ -322,11 +322,9 @@ public class Mission1 : Mission {
         {
             GameManager.instance.timer = 0;
             GameManager.instance.rpgTalk.NewTalk("M1KidRoomSceneStart", "M1KidRoomSceneEnd", GameManager.instance.rpgTalk.txtToParse);
-            GameManager.instance.mission1Inicio = true;
         }
         else if (secao == enumMission.GATO_QUARTO)
         {
-            GameManager.instance.mission1Inicio = false;
             // Porta abrindo
             GameManager.instance.scenerySounds2.PlayDoorOpen(2);
             GameObject porta = GameObject.Find("DoorToAlley").gameObject;
@@ -354,7 +352,6 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {
-            GameManager.instance.mission1Inicio = false;
             Cat.instance.GetComponent<Cat>().Patrol();
             Vector3 aux = new Vector3(2.6f, -0.7f, -0.5f);
             Vector3[] catPos = { aux };
@@ -366,7 +363,6 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.CORVO_VISTO)
         {
-            GameManager.instance.mission1Inicio = false;
             GameManager.instance.scenerySounds.PlayBird(1);
             GameManager.instance.blocked = true;
 
@@ -378,7 +374,6 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.SMILE)
         {
-            GameManager.instance.mission1Inicio = false;
             GameManager.instance.scenerySounds.PlayScare(3);
             
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
@@ -389,14 +384,10 @@ public class Mission1 : Mission {
         }
         else if (secao == enumMission.MAE_QUARTO)
         {
-            GameManager.instance.mission1Inicio = false;
-            GameManager.instance.mission1MaeQuarto = true;
             GameManager.LoadScene("QuartoKid");
-            GameManager.instance.Print("LOCAD");
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {
-            GameManager.instance.mission1Inicio = false;
             GameObject.Destroy(GameObject.Find("mom(Clone)").gameObject);
             GameManager.instance.Invoke("InvokeMission", 4f);
         }

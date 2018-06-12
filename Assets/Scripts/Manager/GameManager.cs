@@ -45,10 +45,6 @@ namespace CrowShadowManager
         public float pathBird = 0, pathCat = 0;
 
         [Header("Choices")]
-        //CENA ESPECÍFICA
-        public bool mission1MaeQuarto = false;
-        public bool mission1Inicio = false;
-
         // ESCOLHAS ESPECÍFICAS
         public bool mission1AssustaGato = false;
         public bool mission2ContestaMae = false;

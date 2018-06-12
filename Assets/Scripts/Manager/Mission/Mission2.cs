@@ -50,7 +50,8 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.RESPEITA_MAE2)
         {
-            if(Inventory.HasItemType(Inventory.InventoryItems.VELA) && Inventory.HasItemType(Inventory.InventoryItems.FOSFORO)){
+            if (Inventory.HasItemType(Inventory.InventoryItems.VELA) && Inventory.HasItemType(Inventory.InventoryItems.FOSFORO))
+            {
                 EspecificaEnum((int)enumMission.FINAL_RESPEITA);
             }
         }
@@ -70,7 +71,7 @@ public class Mission2 : Mission {
         }
         else if (secao == enumMission.FINAL_RESPEITA_VELA)
         {
-            if (fosforo.GetComponent<MiniGameObject>().achievedGoal)
+            if (fosforoMiniGame.achievedGoal)
             {
                 EspecificaEnum((int)enumMission.FINAL_RESPEITA_FOSFORO);
             }
@@ -84,9 +85,9 @@ public class Mission2 : Mission {
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
-            GameManager.instance.paused = false;
-            GameManager.instance.blocked = false;
         }
+
+        GameManager.instance.scenerySounds.StopSound();
 
         if (GameManager.previousSceneName.Equals("QuartoKid") &&
             (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2))
@@ -94,7 +95,6 @@ public class Mission2 : Mission {
             GameManager.instance.rpgTalk.NewTalk("M2CorridorSceneRepeat", "M2CorridorSceneRepeatEnd");
         }
 
-        GameManager.instance.scenerySounds.StopSound();
         if (secao == enumMission.INICIO_SOZINHO)
         {
             // Gato
@@ -163,7 +163,6 @@ public class Mission2 : Mission {
 	{
         if (GameManager.previousSceneName.Equals("GameOver"))
         {
-            GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
@@ -199,7 +198,6 @@ public class Mission2 : Mission {
     {
         if (GameManager.previousSceneName.Equals("GameOver"))
         {
-            GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
@@ -300,7 +298,6 @@ public class Mission2 : Mission {
     {
         if (GameManager.previousSceneName.Equals("GameOver"))
         {
-            GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
