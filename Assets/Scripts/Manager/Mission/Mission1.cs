@@ -76,7 +76,7 @@ public class Mission1 : Mission {
                 EspecificaEnum((int)enumMission.LANTERNA_ENCONTRADA);
             }
         }
-        else if (secao == enumMission.MAE_QUARTO)
+        else if (secao == enumMission.MAE_QUARTO && GameManager.currentSceneName.Equals("QuartoKid"))
         {
             if (!GameManager.instance.rpgTalk.isPlaying)
             {
@@ -248,8 +248,10 @@ public class Mission1 : Mission {
             porta.transform.position = new Vector3(porta.transform.position.x - posX, portaDefaultY, porta.transform.position.z);
         }
 
-        if(secao == enumMission.MAE_QUARTO)
+        GameManager.instance.Print("LOCAD 0: " + secao);
+        if (secao == enumMission.MAE_QUARTO)
         {
+            GameManager.instance.Print("LOCAD 2");
             GameObject.Find("Flashlight").gameObject.GetComponent<Flashlight>().EnableFlashlight(false);
             GameManager.instance.GetComponent<Player>().ChangePositionDefault(-2.5f, 0.7f, 0);
             GameManager.instance.AddObject("NPCs/mom", "", new Vector3(1.7f, 0.6f, -0.5f), new Vector3(0.3f, 0.3f, 1));
@@ -389,7 +391,8 @@ public class Mission1 : Mission {
         {
             GameManager.instance.mission1Inicio = false;
             GameManager.instance.mission1MaeQuarto = true;
-            GameManager.LoadScene(sceneInit);
+            GameManager.LoadScene("QuartoKid");
+            GameManager.instance.Print("LOCAD");
         }
         else if (secao == enumMission.FAZER_ESCOLHA)
         {

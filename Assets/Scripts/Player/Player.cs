@@ -31,7 +31,8 @@ namespace CrowShadowPlayer
         public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
         private SpriteRenderer spriteRenderer;
-        private Collider2D collider;
+        private Collider2D colliderPlayer;
+        private Rigidbody2D rb;
         private MovingObject auxOnObject;
 
         private float stepsControl = 0.5f;
@@ -43,7 +44,8 @@ namespace CrowShadowPlayer
         {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            collider = GetComponent<Collider2D>();
+            colliderPlayer = GetComponent<Collider2D>();
+            rb = GetComponent<Rigidbody2D>();
             source.playOnAwake = false;
         }
 
@@ -78,11 +80,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector3(transform.position.x - move, transform.position.y, transform.position.z);
+                            rb.position = new Vector2(rb.position.x - move, rb.position.y);
                         }
                         else
                         {
-                            transform.position = new Vector3(transform.position.x + move, transform.position.y, transform.position.z);
+                            rb.position = new Vector2(rb.position.x + move, rb.position.y);
                         }
                         isWalking = true;
                         direction = 0;
@@ -91,11 +93,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector3(transform.position.x + move, transform.position.y, transform.position.z);
+                            rb.position = new Vector2(rb.position.x + move, rb.position.y);
                         }
                         else
                         {
-                            transform.position = new Vector3(transform.position.x - move, transform.position.y, transform.position.z);
+                            rb.position = new Vector2(rb.position.x - move, rb.position.y);
                         }
                         isWalking = true;
                         direction = 1;
@@ -104,11 +106,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector3(transform.position.x, transform.position.y - move, transform.position.z);
+                            rb.position = new Vector2(rb.position.x, rb.position.y - move);
                         }
                         else
                         {
-                            transform.position = new Vector3(transform.position.x, transform.position.y + move, transform.position.z);
+                            rb.position = new Vector2(rb.position.x, rb.position.y + move);
                         }
                         isWalking = true;
                         direction = 2;
@@ -117,11 +119,11 @@ namespace CrowShadowPlayer
                     {
                         if (invertControlsTime > 0)
                         {
-                            transform.position = new Vector3(transform.position.x, transform.position.y + move, transform.position.z);
+                            rb.position = new Vector2(rb.position.x, rb.position.y + move);
                         }
                         else
                         {
-                            transform.position = new Vector3(transform.position.x, transform.position.y - move, transform.position.z);
+                            rb.position = new Vector2(rb.position.x, rb.position.y - move);
                         }
                         isWalking = true;
                         direction = 3;
@@ -409,7 +411,7 @@ namespace CrowShadowPlayer
             {
                 playerAction = Actions.DEFAULT;
                 auxOnObject.GetComponent<Collider2D>().enabled = true;
-                collider.enabled = true;
+                colliderPlayer.enabled = true;
             } else
             {
                 playerAction = Actions.ON_OBJECT;

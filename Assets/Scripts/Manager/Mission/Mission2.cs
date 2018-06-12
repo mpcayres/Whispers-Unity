@@ -12,7 +12,7 @@ public class Mission2 : Mission {
     enumMission secao;
 
     GameObject crowBabies;
-    GameObject vela, velaFixa, fosforo;//, faca, tampa;
+    GameObject vela, velaFixa;
 
     public override void InitMission()
     {
@@ -81,7 +81,6 @@ public class Mission2 : Mission {
     {
         if (GameManager.previousSceneName.Equals("GameOver"))
         {
-            GameObject player = GameObject.Find("Player").gameObject;
             GameObject cat = GameManager.instance.AddObject(
                 "NPCs/catFollower", "", new Vector3(player.transform.position.x + 0.6f, player.transform.position.y, 0), new Vector3(0.15f, 0.15f, 1));
             cat.GetComponent<Cat>().FollowPlayer();
@@ -99,7 +98,8 @@ public class Mission2 : Mission {
         if (secao == enumMission.INICIO_SOZINHO)
         {
             // Gato
-            GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            GameObject cat = GameManager.instance.AddObject("NPCs/catFollower", "", new Vector3(10.8f, -0.3f, 0), new Vector3(0.15f, 0.15f, 1));
+            cat.GetComponent<Cat>().followWhenClose = true;
         }
 
         if (secao == enumMission.INICIO_SOZINHO || secao == enumMission.INICIO_GATO)
@@ -125,7 +125,8 @@ public class Mission2 : Mission {
             trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
             trigger.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
         }
-        else if (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2 || 
+        else if (secao == enumMission.CONTESTA_MAE || secao == enumMission.RESPEITA_MAE ||
+            secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2 || 
             secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_RESPEITA)
         {
             // Porta Mae
@@ -136,21 +137,25 @@ public class Mission2 : Mission {
             portaMae.GetComponent<SceneDoor>().isOpened = false;
             portaMae.transform.position = new Vector3(portaMae.transform.position.x - posX, portaMaeDefaultY, portaMae.transform.position.z);
 
-            // Mae patrulha
-            GameObject mom = GameManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
-            mom.GetComponent<Patroller>().isPatroller = true;
-            Vector3 target1 = new Vector3(6f, -0.3f, -0.5f);
-            Vector3 target2 = new Vector3(6f, 0.5f, -0.5f);
-            Vector3 target3 = new Vector3(6f, -0.3f, -0.5f);
-            Vector3 target4 = new Vector3(7f, -0.3f, -0.5f);
-            if (Random.value > 0) target4 = new Vector3(8f, -0.3f, -0.5f);
-            Vector3 target5 = new Vector3(-3f, -0.3f, -0.5f);
-            Vector3 target6 = new Vector3(5f, -0.3f, -0.5f);
-            if (Random.value > 0) target6 = new Vector3(3f, -0.3f, -0.5f);
-            Vector3 target7 = new Vector3(-3f, -0.3f, -0.5f);
-            Vector3[] momTargets = { target1, target2, target3, target4, target5, target6, target7 };
-            mom.GetComponent<Patroller>().targets = momTargets;
-            mom.GetComponent<Patroller>().hasActionPatroller = true;
+            if (secao == enumMission.CONTESTA_MAE2 || secao == enumMission.RESPEITA_MAE2 ||
+            secao == enumMission.FINAL_CONTESTA || secao == enumMission.FINAL_RESPEITA)
+            {
+                // Mae patrulha
+                GameObject mom = GameManager.instance.AddObject("NPCs/mom", "", new Vector3(-2f, -0.5f, -0.5f), new Vector3(0.3f, 0.3f, 1));
+                mom.GetComponent<Patroller>().isPatroller = true;
+                Vector3 target1 = new Vector3(6f, -0.3f, -0.5f);
+                Vector3 target2 = new Vector3(6f, 0.5f, -0.5f);
+                Vector3 target3 = new Vector3(6f, -0.3f, -0.5f);
+                Vector3 target4 = new Vector3(7f, -0.3f, -0.5f);
+                if (Random.value > 0) target4 = new Vector3(8f, -0.3f, -0.5f);
+                Vector3 target5 = new Vector3(-3f, -0.3f, -0.5f);
+                Vector3 target6 = new Vector3(5f, -0.3f, -0.5f);
+                if (Random.value > 0) target6 = new Vector3(3f, -0.3f, -0.5f);
+                Vector3 target7 = new Vector3(-3f, -0.3f, -0.5f);
+                Vector3[] momTargets = { target1, target2, target3, target4, target5, target6, target7 };
+                mom.GetComponent<Patroller>().targets = momTargets;
+                mom.GetComponent<Patroller>().hasActionPatroller = true;
+            }
         }
     }
 
@@ -260,13 +265,11 @@ public class Mission2 : Mission {
             if (secao == enumMission.FINAL_RESPEITA)
             {
                 // Mini-game vela
-                vela = GameObject.Find("Player").gameObject.transform.Find("Vela").gameObject;
+                vela = player.transform.Find("Vela").gameObject;
                 GameObject trigger = GameManager.instance.AddObject("Scenery/AreaTrigger", "", new Vector3(0.125f, -1.38f, 0), new Vector3(1, 1, 1));
                 trigger.name = "VelaTrigger";
                 trigger.GetComponent<Collider2D>().offset = new Vector2(0, 0);
                 trigger.GetComponent<BoxCollider2D>().size = new Vector2(1.8f, 1f);
-
-                fosforo = GameObject.Find("Player").gameObject.transform.Find("Fosforo").gameObject;
 
                 GameManager.instance.rpgTalk.NewTalk("M2KidRoomSceneRepeat", "M2KidRoomSceneRepeatEnd", GameManager.instance.rpgTalk.txtToParse);
             }

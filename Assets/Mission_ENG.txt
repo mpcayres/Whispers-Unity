@@ -156,7 +156,7 @@ Mom: You wouldn't sleep next to me.
 Mom: And also, you need to deal with your fears on your own.
 [question=1]What do you want to say to your mom?
 [choice]"You don't understand me!I don't like being alone, I don't like you!"
-[choice]"That's ok, mommy.At least Pumpkin can be by my side..."
+[choice]"That's ok, mommy. At least Pumpkin can be by my side..."
 [title=M2CorridorSceneEnd]
 [title=M2CorridorSceneRepeat]
 Alex: I can't let she see me.
