@@ -24,6 +24,8 @@ namespace CrowShadowScenery
         public string password;
         public string boardName;
 
+        public bool isBasement = false;
+
         public AudioClip click;
         public AudioClip success;
 
@@ -38,7 +40,6 @@ namespace CrowShadowScenery
         int selectedNumber2 = 1;
         int selectedNumber3 = 1;
 
-        bool isBasement = false;
         bool opened = false;
         bool tried = false;
 
@@ -46,9 +47,12 @@ namespace CrowShadowScenery
         {
             source.clip = click;
             locker = transform.GetChild(0).gameObject;
-            basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
-            sceneDoor = basement.GetComponent<SceneDoor>();
-            rendererBasement = basement.GetComponent<SpriteRenderer>();
+            if (isBasement)
+            {
+                basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
+                sceneDoor = basement.GetComponent<SceneDoor>();
+                rendererBasement = basement.GetComponent<SpriteRenderer>();
+            }
         }
 
         public void Update()

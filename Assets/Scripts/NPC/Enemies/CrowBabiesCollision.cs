@@ -15,8 +15,8 @@ public class CrowBabiesCollision : MonoBehaviour {
     void OnEnable()
     {
         //ps = GetComponent<ParticleSystem>();
-        tampa = GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>();
-        escudo = GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>();
+        tampa = GameManager.instance.gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>();
+        escudo = GameManager.instance.gameObject.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>();
     }
 
     void OnParticleCollision(GameObject TargetedParticle)

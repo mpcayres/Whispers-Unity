@@ -52,7 +52,7 @@ namespace CrowShadowPlayer
             box = Resources.Load<Sprite>("Sprites/UI/box");
             selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
 
-            player = gameObject;
+            player = GameObject.FindGameObjectWithTag("Player");
 
             if (listItems == null) listItems = new List<DataItems>();
         }
@@ -460,50 +460,7 @@ namespace CrowShadowPlayer
                 count++;
             }
 
-            if (selectItem == InventoryItems.FLASHLIGHT)
-            {
-                player.transform.Find("Flashlight").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.FOSFORO)
-            {
-                player.transform.Find("Fosforo").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.ISQUEIRO)
-            {
-                player.transform.Find("Isqueiro").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.FACA)
-            {
-                player.transform.Find("Faca").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.TAMPA)
-            {
-                player.transform.Find("Tampa").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.ESCUDO)
-            {
-                player.transform.Find("Escudo").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.PEDRA)
-            {
-                player.transform.Find("Pedra").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.PAPEL)
-            {
-                player.transform.Find("Papel").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.VELA)
-            {
-                player.transform.Find("Vela").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.RACAO)
-            {
-                player.transform.Find("Racao").gameObject.SetActive(false);
-            }
-            else if (selectItem == InventoryItems.ISQUEIRO)
-            {
-                player.transform.Find("Livro").gameObject.SetActive(false);
-            }
+            EnableItem(selectItem, false);
 
         }
 

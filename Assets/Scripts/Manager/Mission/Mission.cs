@@ -23,7 +23,11 @@ public abstract class Mission {
 
     public void LoadMissionScene()
     {
-        mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        if (!GameManager.currentSceneName.Equals("MainMenu") && !GameManager.currentSceneName.Equals("GameOver") && 
+            !GameManager.currentSceneName.Equals("Credits"))
+        {
+            mainLight = GameObject.Find("MainLight").gameObject; // Variar X (-50 - claro / 50 - escuro) - valor original: 0-100 (-50)
+        }
 
         if (GameManager.currentSceneName.Equals("Corredor"))
         {

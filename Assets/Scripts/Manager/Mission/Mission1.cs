@@ -356,9 +356,10 @@ public class Mission1 : Mission {
             Vector3 aux = new Vector3(2.6f, -0.7f, -0.5f);
             Vector3[] catPos = { aux };
             Cat.instance.GetComponent<Cat>().targets = catPos;
+            Cat.instance.destroyEndPath = false;
             Cat.instance.stopEndPath = true;
             Cat.instance.speed = 1.4f;
-            GameManager.instance.Invoke("InvokeMission", 5.5f);
+            GameManager.instance.Invoke("InvokeMission", 6.5f);
             GameManager.instance.pausedObject = true;
         }
         else if (secao == enumMission.CORVO_VISTO)
@@ -377,9 +378,7 @@ public class Mission1 : Mission {
             GameManager.instance.scenerySounds.PlayScare(3);
             
             GameObject darkness = GameObject.Find("DarknessHolder").gameObject;
-            darkness.transform.Find("Darkness1").gameObject.SetActive(true);
-            darkness.transform.Find("Darkness2").gameObject.SetActive(true);
-            darkness.transform.Find("Darkness3").gameObject.SetActive(true);
+            darkness.transform.Find("Darkness").gameObject.SetActive(true);
             GameManager.instance.Invoke("InvokeMission", 3f);
         }
         else if (secao == enumMission.MAE_QUARTO)
