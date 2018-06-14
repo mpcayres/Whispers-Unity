@@ -8,11 +8,6 @@ namespace CrowShadowScenery
     {
         private static List<GameObject> lights = new List<GameObject>();
 
-        void Update()
-        {
-
-        }
-
         public void GenerateBorderLightMap(float initX, float initY, List<float> radiusFinalLight, List<float> finalX, List<float> finalY)
         {
             // Luz inicial

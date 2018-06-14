@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
 
 namespace CrowShadowNPCs
 {
@@ -13,7 +14,7 @@ namespace CrowShadowNPCs
                 DontDestroyOnLoad(gameObject);
                 instance = this;
                 animator = GetComponent<Animator>();
-                player = GameObject.FindGameObjectWithTag("Player");
+                player = GameManager.instance.gameObject;
                 spriteRenderer = GetComponent<SpriteRenderer>();
                 fixOrder = -12;
             }

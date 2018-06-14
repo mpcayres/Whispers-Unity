@@ -6,7 +6,6 @@ namespace CrowShadowNPCs
 {
     public class Minion : Follower
     {
-
         public int healthLight = 200; //decrementa 1 por colisão
         public int healthMelee = 300;
         public int decrementFaca = 30, decrementBastao = 25, decrementPedra = 20;
@@ -15,10 +14,15 @@ namespace CrowShadowNPCs
         public float timeMaxChangeVelocity = 6f, factorDivideSpeed = 1.8f; // tempo máximo com velocidade menor e fator para dividi-la
         public float timeInvertControls = 6f; // tempo adicional para ficar com o controle invertido
 
+        MinionEmmitter emmitter;
+        Player playerScript;
+        Rigidbody2D playerRB;
+        Renderer playerRenderer;
+        ProtectionObject tampa, escudo;
+
         float timeLeftAttack = 0, timePower = 0, timeChangeVelocity = 0;
         int power = 0; // 1 - diminui velocidade, 2 - inverte controles, 3 - morre
         bool onCollision = false, changeVelocity = false;
-        MinionEmmitter emmitter;
 
         protected new void Start()
         {
@@ -26,6 +30,11 @@ namespace CrowShadowNPCs
             distFollow = 0.1f;
             moveTowards = true;
             emmitter = GetComponentInParent<MinionEmmitter>();
+            playerScript = player.GetComponent<Player>();
+            playerRB = player.GetComponent<Rigidbody2D>();
+            playerRenderer = player.GetComponent<Renderer>();
+            tampa = GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>();
+            escudo = GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>();
         }
 
         protected new void Update()
@@ -34,20 +43,19 @@ namespace CrowShadowNPCs
             if (!followingPlayer)
             {
                 // Se estiver correndo, aumenta a ára de busca
-                if (player.GetComponent<Player>().isRunning)
+                if (playerScript.isRunning)
                 {
-                    GetComponent<CircleCollider2D>().radius = 0.8f;
+                    circleCollider.radius = 0.8f;
                 }
                 else
                 {
-                    GetComponent<CircleCollider2D>().radius = 0.6f;
+                    circleCollider.radius = 0.6f;
                 }
             }
             else
             {
                 // Condição quando está escondido
-                if (!player.GetComponent<Renderer>().enabled &&
-                    player.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Kinematic)
+                if (!playerRenderer.enabled && playerRB.bodyType == RigidbodyType2D.Kinematic)
                 {
                     FollowPlayer(false);
                 }
@@ -68,11 +76,11 @@ namespace CrowShadowNPCs
                         print("PROT");
                         if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
                         {
-                            GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                            tampa.DecreaseLife();
                         }
                         else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ESCUDO)
                         {
-                            GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                            escudo.DecreaseLife();
                         }
                     }
                     else
@@ -92,7 +100,7 @@ namespace CrowShadowNPCs
                 }
                 else
                 {
-                    player.GetComponent<Player>().movespeed = player.GetComponent<Player>().movespeed * factorDivideSpeed;
+                    playerScript.movespeed = playerScript.movespeed * factorDivideSpeed;
                     changeVelocity = false;
                 }
             }
@@ -128,11 +136,11 @@ namespace CrowShadowNPCs
                 case 0:
                     timeChangeVelocity = timeMaxChangeVelocity;
                     changeVelocity = true;
-                    player.GetComponent<Player>().movespeed = player.GetComponent<Player>().movespeed / factorDivideSpeed;
+                    playerScript.movespeed = playerScript.movespeed / factorDivideSpeed;
                     power++;
                     break;
                 case 1:
-                    player.GetComponent<Player>().invertControlsTime += timeInvertControls;
+                    playerScript.invertControlsTime += timeInvertControls;
                     power++;
                     break;
                 case 2:
@@ -205,7 +213,7 @@ namespace CrowShadowNPCs
                     if (followWhenClose && !followingPlayer)
                     {
                         FollowPlayer();
-                        GetComponent<CircleCollider2D>().radius = 0.3f;
+                        circleCollider.radius = 0.3f;
                     }
                 }
             }

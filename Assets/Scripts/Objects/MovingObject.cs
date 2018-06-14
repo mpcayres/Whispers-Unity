@@ -12,11 +12,11 @@ namespace CrowShadowObjects
         public string prefName = ""; // Padrão: identificador do objeto (MO) + _ + nome da cena + _ + identificador
         public float scaleMoveUp = 4f;
 
-        SpriteRenderer spriteRenderer;
-        Rigidbody2D rb;
-
         GameObject player;
         Player scriptPlayer;
+        Renderer playerRenderer;
+        SpriteRenderer spriteRenderer;
+        Rigidbody2D rb;
 
         float distanceWantedX = 0.4f;
         float distanceWantedY = 0.45f;
@@ -28,8 +28,9 @@ namespace CrowShadowObjects
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameManager.instance.gameObject;
             scriptPlayer = player.GetComponent<Player>();
+            playerRenderer = player.GetComponent<SpriteRenderer>();
         }
 
         void Update()
@@ -40,7 +41,7 @@ namespace CrowShadowObjects
             }
             else
             {
-                spriteRenderer.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder - 1;
+                spriteRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
             }
             if (colliding && !GameManager.instance.paused && !GameManager.instance.pausedObject && !GameManager.instance.blocked)
             {

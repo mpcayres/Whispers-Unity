@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
 
 namespace CrowShadowNPCs
 {
@@ -7,20 +8,23 @@ namespace CrowShadowNPCs
         public float timeBirdsFollow = 1f;
         public float timeBurst = 10f;
         public int numBursts = -1;
+        public float countTimeBurst = 0f;
 
         protected GameObject birdEmitter;
-        protected int countBurst = 0;
-        public float countTimeBurst = 0f;
+        protected ParticleSystem particleSystemCrow;
+
+        protected int countBurst = 0;        
         protected bool activated = false;
 
         protected new void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameManager.instance.gameObject;
             birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
 
             if (numBursts == 1)
             {
-                var main = birdEmitter.GetComponent<ParticleSystem>().main;
+                particleSystemCrow = birdEmitter.GetComponent<ParticleSystem>();
+                var main = particleSystemCrow.main;
                 main.loop = false;
                 numBursts = -1;
             }
@@ -66,7 +70,7 @@ namespace CrowShadowNPCs
                         countTimeBurst = 0f;
                         if (countBurst >= numBursts)
                         {
-                            var main = birdEmitter.GetComponent<ParticleSystem>().main;
+                            var main = particleSystemCrow.main;
                             main.loop = false;
                         }
                     }

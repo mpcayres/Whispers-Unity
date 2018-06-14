@@ -10,9 +10,13 @@ public class CrowBabiesCollision : MonoBehaviour {
     //List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
     //List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
 
+    ProtectionObject tampa, escudo;
+
     void OnEnable()
     {
         //ps = GetComponent<ParticleSystem>();
+        tampa = GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>();
+        escudo = GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>();
     }
 
     void OnParticleCollision(GameObject TargetedParticle)
@@ -25,11 +29,11 @@ public class CrowBabiesCollision : MonoBehaviour {
                 //print(Inventory.GetCurrentItemType().ToString());
                 if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.TAMPA)
                 {
-                    GameObject.Find("Tampa").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                    tampa.DecreaseLife();
                 }
                 else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ESCUDO)
                 {
-                    GameObject.Find("Escudo").gameObject.GetComponent<ProtectionObject>().DecreaseLife();
+                   escudo.DecreaseLife();
                 }
             }
             else

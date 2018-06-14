@@ -8,11 +8,6 @@ namespace CrowShadowPlayer
         public Inventory.InventoryItems item;
         public bool inArea = false;
 
-        void Start()
-        {
-
-        }
-
         void Update()
         {
             if (Inventory.GetCurrentItemType() == item && inArea && CrossPlatformInputManager.GetButtonDown("keyUseObject"))

@@ -11,7 +11,7 @@ namespace CrowShadowMenu
 
         private void Awake()
         {
-            gameManager = GameObject.Find("Player").GetComponent<GameManager>();
+            gameManager = GameManager.instance.gameObject.GetComponent<GameManager>();
         }
 
         public void OnClick()

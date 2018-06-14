@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CrowShadowManager;
 
 namespace CrowShadowScenery
 {
@@ -10,7 +11,7 @@ namespace CrowShadowScenery
 
         void Start()
         {
-            target = GameObject.FindGameObjectWithTag("Player");
+            target = GameManager.instance.gameObject;
         }
 
         void Update()

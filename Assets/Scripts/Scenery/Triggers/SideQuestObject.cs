@@ -7,6 +7,7 @@ namespace CrowShadowScenery
     public class SideQuestObject : MonoBehaviour
     {
         public int numSideQuest = 0;
+
         private bool triggered = false;
 
         private void Update()

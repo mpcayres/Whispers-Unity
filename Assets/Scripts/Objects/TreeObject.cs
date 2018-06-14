@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using CrowShadowManager;
 
 namespace CrowShadowObjects
 {
     public class TreeObject : MonoBehaviour
     {
         SpriteRenderer spriteRenderer;
+
         float offset;
 
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameManager.instance.gameObject;
             offset = GetComponent<BoxCollider2D>().offset.y
                 - player.GetComponent<SpriteRenderer>().size.y * player.transform.lossyScale.y / 2;
         }

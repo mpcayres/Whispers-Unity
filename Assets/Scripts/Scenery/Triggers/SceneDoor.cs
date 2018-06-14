@@ -14,7 +14,8 @@ namespace CrowShadowScenery
             {
                 if (!isOpened)
                 {
-                    GameManager.instance.rpgTalk.NewTalk("Trancada", "TrancadaEnd", GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
+                    GameManager.instance.rpgTalk.NewTalk("Trancada", "TrancadaEnd", 
+                        GameManager.instance.rpgTalk.txtToParse, GameManager.instance, "", false);
                     GameManager.instance.scenerySounds2.PlayDoorClosed();
                 }
                 else

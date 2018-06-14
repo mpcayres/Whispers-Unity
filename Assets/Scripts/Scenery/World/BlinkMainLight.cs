@@ -6,12 +6,13 @@ namespace CrowShadowScenery
 {
     public class BlinkMainLight : MonoBehaviour
     {
-
-        GameObject lightMain;
         public bool destroyChangeScene = true;
         public float minWaitTime = 0.2f;
         public float maxWaitTime = 0.3f;
         public int nTimes = -1;
+
+        GameObject lightMain;
+
         int cont;
 
         void Start()

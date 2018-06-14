@@ -15,7 +15,6 @@ namespace CrowShadowObjects
         public bool isUp = false;
         public bool blockAfterPick = false;
         public bool blockSortOrder = false;
-        bool blockChange = false;
         public bool colliding = false;
         public int numRandomListed = -1;
 
@@ -23,6 +22,7 @@ namespace CrowShadowObjects
         BoxCollider2D boxCollider;
         Player player;
 
+        bool blockChange = false;
         float sizeX, sizeY;
         float posX, posY, posXdefault, posYdefault;
 
@@ -31,14 +31,16 @@ namespace CrowShadowObjects
             boxCollider = GetComponent<BoxCollider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer.sprite == null)
+            {
                 spriteRenderer.sprite = sprite1;
+            }
             sizeX = boxCollider.size.x / spriteRenderer.bounds.size.x;
             sizeY = boxCollider.size.y / spriteRenderer.bounds.size.y;
             posX = spriteRenderer.bounds.size.x / scale;
             posY = spriteRenderer.bounds.size.y / scale;
             posYdefault = transform.position.y;
             posXdefault = transform.position.x;
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
         void Update()

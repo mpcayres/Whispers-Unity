@@ -7,16 +7,22 @@ namespace CrowShadowObjects
 {
     public class FurtiveObject : MonoBehaviour
     {
-        GameObject player;
         public bool colliding = false;
         public float timeMax = 6f;
+
+        GameObject player;
         SpriteRenderer spriteRenderer;
+        Renderer playerRenderer;
+        Rigidbody2D playerRB;
+        
         float timeLeft;
 
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameManager.instance.gameObject;
+            playerRenderer = player.GetComponent<Renderer>();
+            playerRB = player.GetComponent<Rigidbody2D>();
         }
 
         void Update()
@@ -30,19 +36,19 @@ namespace CrowShadowObjects
                     timeLeft -= Time.deltaTime;
                 }
 
-                if (player.GetComponent<Renderer>().enabled && CrossPlatformInputManager.GetButtonDown("keyInteract")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                if (playerRenderer.enabled && CrossPlatformInputManager.GetButtonDown("keyInteract")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
                 {
-                    player.GetComponent<Renderer>().enabled = false;
-                    player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                    playerRenderer.enabled = false;
+                    playerRB.bodyType = RigidbodyType2D.Kinematic;
                     player.layer = LayerMask.NameToLayer("PlayerHidden");
                     GameManager.instance.pausedObject = true;
                     player.GetComponent<Player>().hidden = true;
                     timeLeft = timeMax;
                 }
-                else if (!player.GetComponent<Renderer>().enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
+                else if (!playerRenderer.enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
                 {
-                    player.GetComponent<Renderer>().enabled = true;
-                    player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                    playerRenderer.enabled = true;
+                    playerRB.bodyType = RigidbodyType2D.Dynamic;
                     player.layer = LayerMask.NameToLayer("Player");
                     GameManager.instance.pausedObject = false;
                     player.GetComponent<Player>().hidden = false;

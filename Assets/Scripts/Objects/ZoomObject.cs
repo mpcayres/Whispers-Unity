@@ -6,30 +6,33 @@ namespace CrowShadowObjects
 {
     public class ZoomObject : MonoBehaviour
     {
-
         public bool colliding = false;
         public float scaleX, scaleY;
-        bool showImage = false, opened = false;
+        
         GameObject objectInstance;
         SpriteRenderer spriteRenderer;
+        GameObject camera;
+
+        bool showImage = false, opened = false;
 
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            camera = GameObject.Find("MainCamera");
         }
 
         void Update()
         {
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
-            if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") && !GameManager.instance.blocked && !GameManager.instance.paused)
+            if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") && 
+                !GameManager.instance.blocked && !GameManager.instance.paused)
             {
                 if (!showImage)
                 {
                     if (!GameManager.instance.pausedObject)
                     {
                         showImage = true;
-                        GameObject camera = GameObject.Find("MainCamera");
                         Vector3 pos = new Vector3(
                             camera.transform.position.x,
                             camera.transform.position.y,

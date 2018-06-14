@@ -6,23 +6,23 @@ namespace CrowShadowNPCs
 {
     public class Patroller : MonoBehaviour
     {
-        public float speed;
         public Animator animator;
+
+        public float speed;
         public bool isPatroller = false;
         public bool destroyEndPath = false;
         public bool stopEndPath = false;
         public Vector3[] targets;
-
         public bool hasActionPatroller = false;
         public float offsetActionPatroller = 0f;
 
         protected SpriteRenderer spriteRenderer;
+        protected CircleCollider2D circleCollider;
 
         protected int direction = 4, oldDirection = 4;
         protected int destPoint = 0;
-
-
-        bool quadr1 = false, quadr2 = false, quadr3 = false, quadr4 = false;
+        
+        //bool quadr1 = false, quadr2 = false, quadr3 = false, quadr4 = false;
 
         protected void Start()
         {
@@ -36,6 +36,7 @@ namespace CrowShadowNPCs
                     i.enabled = true;
                 }
             }
+            circleCollider = GetComponent<CircleCollider2D>();
         }
 
         protected void Update()
@@ -47,35 +48,33 @@ namespace CrowShadowNPCs
                 GotoNextPoint();
             }
 
-            if (quadr1 || quadr2 || quadr3 || quadr4)
+            /*if (quadr1 || quadr2 || quadr3 || quadr4)
             {
-
-
-                float thisObjX = this.gameObject.transform.position.x;
-                float thisObjY = this.gameObject.transform.position.y;
-                float thisObjZ = this.gameObject.transform.position.z;
+                float thisObjX = gameObject.transform.position.x;
+                float thisObjY = gameObject.transform.position.y;
+                float thisObjZ = gameObject.transform.position.z;
 
                 if (quadr1)
                 {
-                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
                     quadr1 = false;
                 }
                 if (quadr2)
                 {
-                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(thisObjX - 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
                     quadr2 = false;
                 }
                 if (quadr3)
                 {
-                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
+                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY + 1, thisObjZ), speed * Time.deltaTime);
                     quadr3 = false;
                 }
                 if (quadr4)
                 {
-                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
+                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ), speed * Time.deltaTime);
                     quadr4 = false;
                 }
-            }
+            }*/
 
             SetActionPatrollerDirection();
         }
@@ -147,19 +146,19 @@ namespace CrowShadowNPCs
                 switch (direction)
                 {
                     case 0:
-                        GetComponent<CircleCollider2D>().offset = new Vector2(offsetActionPatroller, 0f);
+                        circleCollider.offset = new Vector2(offsetActionPatroller, 0f);
                         break;
                     case 1:
-                        GetComponent<CircleCollider2D>().offset = new Vector2(-offsetActionPatroller, 0f);
+                        circleCollider.offset = new Vector2(-offsetActionPatroller, 0f);
                         break;
                     case 2:
-                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, offsetActionPatroller);
+                        circleCollider.offset = new Vector2(0f, offsetActionPatroller);
                         break;
                     case 3:
-                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, -offsetActionPatroller);
+                        circleCollider.offset = new Vector2(0f, -offsetActionPatroller);
                         break;
                     default:
-                        GetComponent<CircleCollider2D>().offset = new Vector2(0f, 0f);
+                        circleCollider.offset = new Vector2(0f, 0f);
                         break;
                 }
             }
@@ -207,7 +206,7 @@ namespace CrowShadowNPCs
             }
         }
 
-        void OnCollisionEnter2D(Collision2D coll)
+        /*void OnCollisionEnter2D(Collision2D coll)
         {
             if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
                 || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
@@ -242,7 +241,7 @@ namespace CrowShadowNPCs
                     quadr4 = true;
                 }
             }
-        }
+        }*/
 
     }
 }

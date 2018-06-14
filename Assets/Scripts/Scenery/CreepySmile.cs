@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
 
 namespace CrowShadowScenery
 {
     public class CreepySmile : MonoBehaviour
     {
         public float blinkTime;
+
+        private GameObject target;
+
         private float count = 0;
         private int status = 0;
-        private GameObject target;
         private float smooth = 2.0F;
         private float tiltAngle = 20.0F;
 
         void Start()
         {
-            target = GameObject.FindGameObjectWithTag("Player");
+            target = GameManager.instance.gameObject;
         }
 
         // Update is called once per frame

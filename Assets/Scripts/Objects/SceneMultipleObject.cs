@@ -13,23 +13,29 @@ namespace CrowShadowObjects
         public PositionSprite positionSprite;
         public float scale = 1;
         public bool colliding = false;
+
+        public float timeMax = (float)0.25;
+        public AudioClip noise;
+        public AudioSource source { get { return GetComponent<AudioSource>(); } }
+
         SpriteRenderer spriteRenderer;
         BoxCollider2D boxCollider;
+
         bool sprite1Selected = true;
         int cont = 0;
         float sizeX, sizeY;
         float posX, posY, posXdefault, posYdefault;
         float timeLeft = 0;
-        public float timeMax = (float)0.25;
-        public AudioClip noise;
-        public AudioSource source { get { return GetComponent<AudioSource>(); } }
+        
 
         void Start()
         {
             boxCollider = GetComponent<BoxCollider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer.sprite == null)
+            {
                 spriteRenderer.sprite = sprite1[0];
+            }
             sizeX = boxCollider.size.x / spriteRenderer.bounds.size.x;
             sizeY = boxCollider.size.y / spriteRenderer.bounds.size.y;
             posX = spriteRenderer.bounds.size.x / scale;
@@ -112,7 +118,6 @@ namespace CrowShadowObjects
             boxCollider.size = new Vector2(
                 sizeX * spriteRenderer.bounds.size.x,
                 sizeY * spriteRenderer.bounds.size.y);
-
         }
 
     }

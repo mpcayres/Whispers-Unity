@@ -8,22 +8,18 @@ namespace CrowShadowScenery
         public AudioClip bat1, bat2, crow, owl;
         public AudioClip wolf1, wolf2;
 
-        private AudioSource source { get { return GetComponent<AudioSource>(); } }
-
-
         public bool EnableSound = true;
         public int NightLoop = 0;
 
-        void Start()
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
 
+        void Start()
         {
             source.playOnAwake = false;
-
         }
 
         private void Update()
         {
-
             if (EnableSound == true)
             {
                 EnableSound = false;
@@ -37,20 +33,22 @@ namespace CrowShadowScenery
             PlayNight(NightLoop);
             NightLoop++;
             if (NightLoop > 5)
+            {
                 NightLoop = 0;
+            }
         }
 
         void EnableSoundLoop()
         {
             if (EnableSound == true)
+            {
                 EnableSound = false;
+            }
             else
             {
                 EnableSound = true;
 
             }
-
-
         }
 
         public void PlayNight(int number)
@@ -77,8 +75,6 @@ namespace CrowShadowScenery
                     source.clip = wolf1;
                     source.PlayOneShot(wolf1);
                     break;
-
-
             }
         }
     }

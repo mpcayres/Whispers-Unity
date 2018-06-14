@@ -15,16 +15,20 @@ namespace CrowShadowPlayer
         public bool refreshTimeMax = true;
         public float posFlareX = 0, posFlareY = 0;
 
+        GameObject anim, flare;
+        RectTransform animRect;
+        Image animImage;
+
         private bool otherItem = true;
         private bool playing = false;
         private float timeLeft;
         private int counter;
 
-        GameObject anim, flare;
-
         void Start()
         {
             anim = GameObject.Find("HUDCanvas").gameObject.transform.Find("AnimMiniGame").gameObject;
+            animRect = anim.GetComponent<RectTransform>();
+            animImage = anim.GetComponent<Image>();
             InitImage();
         }
 
@@ -66,20 +70,20 @@ namespace CrowShadowPlayer
                     counter++;
                     if (item == Inventory.InventoryItems.FOSFORO || item == Inventory.InventoryItems.PAPEL || item == Inventory.InventoryItems.ISQUEIRO)
                     {
-                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                        animRect.anchoredPosition = new Vector3(animRect.anchoredPosition.x - 160 / counterMax, animRect.anchoredPosition.y);
                     }
                     else if (item == Inventory.InventoryItems.FACA)
                     {
                         float rotZ = -135;
                         if ((counter % 2) == 0) rotZ = 135;
-                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y);
-                        anim.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(180, 0, rotZ));
+                        animRect.anchoredPosition = new Vector3(animRect.anchoredPosition.x - 160 / counterMax, animRect.anchoredPosition.y);
+                        animRect.localRotation = Quaternion.Euler(new Vector3(180, 0, rotZ));
                     }
                     else if (item == Inventory.InventoryItems.PEDRA)
                     {
                         float somaY = -20;
                         if ((counter % 2) == 0) somaY = 20;
-                        anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(anim.GetComponent<RectTransform>().anchoredPosition.x - 160 / counterMax, anim.GetComponent<RectTransform>().anchoredPosition.y + somaY);
+                        animRect.anchoredPosition = new Vector3(animRect.anchoredPosition.x - 160 / counterMax, animRect.anchoredPosition.y + somaY);
                     }
                 }
 
@@ -112,31 +116,31 @@ namespace CrowShadowPlayer
             //print("INITMINIGAME" + item);
             if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FOSFORO || Inventory.GetCurrentItemType() == Inventory.InventoryItems.PAPEL)
             {
-                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
-                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
-                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                animImage.sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/fosforo");
+                animRect.rotation = Quaternion.Euler(new Vector3(0, 0, -90f));
+                animRect.sizeDelta = new Vector2(50, 50);
+                animRect.anchoredPosition = new Vector3(80, animRect.anchoredPosition.y);
             }
             else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.ISQUEIRO)
             {
-                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
-                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
-                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 100);
-                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80, anim.GetComponent<RectTransform>().anchoredPosition.y);
+                animImage.sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/isqueiro_faisca");
+                animRect.rotation = Quaternion.Euler(new Vector3(0, 0, 45f));
+                animRect.sizeDelta = new Vector2(50, 100);
+                animRect.anchoredPosition = new Vector3(80, animRect.anchoredPosition.y);
             }
             else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.FACA)
             {
-                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
-                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(180, 0, 180));
-                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
-                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
+                animImage.sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/faca");
+                animRect.rotation = Quaternion.Euler(new Vector3(180, 0, 180));
+                animRect.sizeDelta = new Vector2(100, 20);
+                animRect.anchoredPosition = new Vector3(80 - counter * (160 / counterMax), animRect.anchoredPosition.y);
             }
             else if (Inventory.GetCurrentItemType() == Inventory.InventoryItems.PEDRA)
             {
-                anim.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
-                anim.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, -20));
-                anim.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 40);
-                anim.GetComponent<RectTransform>().anchoredPosition = new Vector3(80 - counter * (160 / counterMax), anim.GetComponent<RectTransform>().anchoredPosition.y);
+                animImage.sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/pedra");
+                animRect.rotation = Quaternion.Euler(new Vector3(0, 0, -20));
+                animRect.sizeDelta = new Vector2(60, 40);
+                animRect.anchoredPosition = new Vector3(80 - counter * (160 / counterMax), animRect.anchoredPosition.y);
             }
 
         }

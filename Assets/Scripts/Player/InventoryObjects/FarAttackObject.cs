@@ -10,6 +10,9 @@ namespace CrowShadowPlayer
         public Inventory.InventoryItems item;
         public bool attacking = false, hitSuccess = false, addObject = true;
 
+        protected Player player;
+        protected SpriteRenderer spriteRenderer;
+
         protected float distance = 0, maxDistance = 6f, startX = 0, startY = 0;
         protected float speed = 3f, translateSpeed = 5f;
         protected float arcHeight = 0.8f; // altura
@@ -17,9 +20,6 @@ namespace CrowShadowPlayer
         protected int directionAttack = 0;
         protected bool changeDirection = false, initPositioning = false, initAttack = false, triggered = false;
         protected Vector3 posAttack = new Vector3(0, 0, 0), oldParentPosition;
-
-        protected Player player;
-        protected SpriteRenderer spriteRenderer;
 
         protected void Start()
         {

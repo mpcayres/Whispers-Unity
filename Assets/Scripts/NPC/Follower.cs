@@ -8,20 +8,20 @@ namespace CrowShadowNPCs
         public bool followWhenClose = false;
         public bool followingPlayer = false;
 
+        protected GameObject player;
+
         protected int fixOrder = 0;
         protected float distFollow = 0.6f;
         protected bool moveTowards = false;
-        protected GameObject player;
 
         protected new void Start()
         {
             base.Start();
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameManager.instance.gameObject;
         }
 
         protected new void Update()
         {
-
             spriteRenderer.sortingOrder = fixOrder + Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
             if (followingPlayer)
@@ -149,9 +149,7 @@ namespace CrowShadowNPCs
             }
         }
 
-
-
-        void OnCollisionEnter2D(Collision2D coll)
+        /*void OnCollisionEnter2D(Collision2D coll)
         {
             if (coll.gameObject.tag.Equals("FixedObject") || coll.gameObject.tag.Equals("SceneObject")
                 || coll.gameObject.tag.Equals("MovingObject") || coll.gameObject.tag.Equals("Player"))
@@ -161,18 +159,15 @@ namespace CrowShadowNPCs
                 var otherX = coll.otherCollider.bounds.center.x;
                 var otherY = coll.otherCollider.bounds.center.y;
 
-                float thisObjX = this.gameObject.transform.position.x;
-                float thisObjY = this.gameObject.transform.position.y;
-                float thisObjZ = this.gameObject.transform.position.z;
-
+                float thisObjX = gameObject.transform.position.x;
+                float thisObjY = gameObject.transform.position.y;
+                float thisObjZ = gameObject.transform.position.z;
 
                 if (thisX < otherX && thisY > otherY)
                 {
                     // subir um pouco
                     // um pouco pra direita
-                    this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ - 1), speed * Time.deltaTime);
-
-
+                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(thisObjX + 1, thisObjY - 1, thisObjZ - 1), speed * Time.deltaTime);
                 }
                 if (thisX < otherX && thisY < otherY)
                 {
@@ -190,7 +185,7 @@ namespace CrowShadowNPCs
                     // um pouco pra esquerda
                 }
             }
-        }
+        }*/
 
     }
 }

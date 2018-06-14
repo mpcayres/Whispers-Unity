@@ -7,12 +7,12 @@ namespace CrowShadowScenery
 {
     public class WindowTrigger : MonoBehaviour
     {
-
         public Sprite aberto;
         public Sprite fechado;
         public bool colliding = false;
         public bool scare = false;
 
+        GameObject birdEmitter;
         SpriteRenderer spriteRenderer;
         BoxCollider2D boxCollider;
 
@@ -23,6 +23,7 @@ namespace CrowShadowScenery
 
         void Start()
         {
+            birdEmitter = transform.Find("BirdEmitter").gameObject;
             boxCollider = GetComponent<BoxCollider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer.sprite == null)
@@ -37,7 +38,8 @@ namespace CrowShadowScenery
 
         void Update()
         {
-            if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding && !GameManager.instance.paused && !GameManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding && 
+                !GameManager.instance.paused && !GameManager.instance.blocked) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
             {
                 ChangeSprite();
             }
@@ -77,7 +79,7 @@ namespace CrowShadowScenery
                 GameManager.instance.scenerySounds.PlayScare(1);
                 GameManager.instance.scenerySounds.PlayBird(1);
                 GameManager.instance.scenerySounds.PlayBird(4);
-                transform.Find("BirdEmitter").gameObject.SetActive(true);
+                birdEmitter.SetActive(true);
                 GameManager.instance.blocked = true;
                 gameOver = true;
             }

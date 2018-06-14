@@ -8,9 +8,10 @@ namespace CrowShadowPlayer
         public bool miniGameUnlocked = false;
         public bool achievedGoal = false;
 
-        protected bool init = false;
-        protected MiniGameObject miniGameObject;
         protected GameObject fireHolder, fire;
+        protected MiniGameObject miniGameObject;
+
+        protected bool init = false;
 
         protected new void Start()
         {

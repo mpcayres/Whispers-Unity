@@ -6,16 +6,19 @@ namespace CrowShadowScenery
 {
     public class Gloom : MonoBehaviour
     {
+        AudioSource audioSource;
+
         private int maxRoar = 5;
 
         private void Start()
         {
-            gameObject.GetComponent<AudioSource>().Stop();
+            audioSource = GetComponent<AudioSource>();
+            audioSource.Stop();
         }
 
         void Update()
         {
-            if (Flashlight.GetState() && !gameObject.GetComponent<AudioSource>().isPlaying)
+            if (Flashlight.GetState() && !audioSource.isPlaying)
             {
                 gameObject.GetComponent<AudioSource>().Play();
                 maxRoar--;

@@ -16,12 +16,11 @@ namespace CrowShadowScenery
 
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
         void Update()
         {
-
             if (player.playerAction == Player.Actions.ON_OBJECT)
             {
                 if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
@@ -30,7 +29,6 @@ namespace CrowShadowScenery
                 {
                     fly = true;
                 }
-
             }
         }
     }

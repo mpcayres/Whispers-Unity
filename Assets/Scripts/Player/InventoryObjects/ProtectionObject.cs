@@ -9,8 +9,9 @@ namespace CrowShadowPlayer
         public Inventory.InventoryItems item;
         public int life = 60;
 
-        bool enterProtection = false;
         Player player;
+
+        bool enterProtection = false;
 
         void Start()
         {

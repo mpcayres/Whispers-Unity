@@ -6,7 +6,7 @@ namespace CrowShadowScenery
     {
         public AudioClip sound;
         public AudioSource source { get { return GetComponent<AudioSource>(); } }
-        // Use this for initialization
+        
         void Start()
         {
             source.clip = sound;

@@ -8,13 +8,18 @@ namespace CrowShadowObjects
     {
         public string prefName = ""; // Padrão: identificador do objeto (L) + _ + nome da cena + _ + identificador
         public bool colliding = false;
-        private bool change = false;
 
         SpriteRenderer spriteRenderer;
+        Light lightComponent;
+        CircleCollider2D circleCollider;
+
+        private bool change = false;
 
         void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            lightComponent = GetComponent<Light>();
+            circleCollider = GetComponent<CircleCollider2D>();
         }
 
         void Update()
@@ -24,8 +29,8 @@ namespace CrowShadowObjects
             if (CrossPlatformInputManager.GetButtonDown("keyInteract") && colliding &&
                 !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
             {
-                GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-                GetComponent<CircleCollider2D>().enabled = GetComponent<Light>().enabled;
+               lightComponent.enabled = !lightComponent.enabled;
+                circleCollider.enabled = lightComponent.enabled;
                 change = true;
             }
         }

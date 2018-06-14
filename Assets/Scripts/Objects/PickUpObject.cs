@@ -10,6 +10,7 @@ namespace CrowShadowObjects
         public bool colliding = false;
         public Inventory.InventoryItems item;
         public bool isUp = false;
+
         Player player;
 
         void Start()
@@ -22,7 +23,7 @@ namespace CrowShadowObjects
                     Destroy(gameObject);
                 }
             }
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
         void Update()

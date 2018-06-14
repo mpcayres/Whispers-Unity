@@ -5,13 +5,14 @@ namespace CrowShadowScenery
 {
     public class Mouse : MonoBehaviour
     {
-        public AudioClip squeak;
-        private AudioSource source { get { return GetComponent<AudioSource>(); } }
-
         public string animationName = "Mouse";
         public bool always = true; //after all this time? always
-        bool playedAlready = false;
         public Animation animationMouse { get { return GetComponent<Animation>(); } }
+        public AudioClip squeak;
+
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
+
+        bool playedAlready = false;
 
         void OnTriggerEnter2D(Collider2D other)
         {
@@ -26,16 +27,13 @@ namespace CrowShadowScenery
                         animationMouse.Play(animationName);
                         playedAlready = true;
                     }
-
                 }
-
                 else
                 {
                     source.clip = squeak;
                     source.PlayDelayed(0.5f);
                     animationMouse.Play(animationName);
                     playedAlready = true;
-
                 }
             }
         }

@@ -6,6 +6,8 @@ namespace CrowShadowScenery
 {
     public class SpiritManager : MonoBehaviour
     {
+        public bool success = false;
+
         private int goodSpiritCount = 0;
         private int evilSpiritCount = 0;
         private int killerSpiritCount = 0;
@@ -18,8 +20,6 @@ namespace CrowShadowScenery
         private int maxKillerKilled = 0;
         private int totalGoodSpirit = 0;
 
-        public bool success = false;
-
         private Dictionary<int, GameObject> goodSpiritDictionary = new Dictionary<int, GameObject>();
         private Dictionary<int, GameObject> evilSpiritDictionary = new Dictionary<int, GameObject>();
         private Dictionary<int, GameObject> killerSpiritDictionary = new Dictionary<int, GameObject>();
@@ -30,11 +30,6 @@ namespace CrowShadowScenery
             evilSpiritKilled = 0;
             killerSpiritKilled = 0;
             success = false;
-        }
-
-        private void Update()
-        {
-
         }
 
         // GERA O MAPA DE ESPÍRITOS

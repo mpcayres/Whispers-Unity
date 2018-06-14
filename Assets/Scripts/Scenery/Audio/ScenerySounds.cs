@@ -43,14 +43,13 @@ namespace CrowShadowScenery
         void EnableSoundLoop()
         {
             if (EnableSound == true)
+            {
                 EnableSound = false;
+            }
             else
             {
                 EnableSound = true;
-
-            }
-
-
+            }       
         }
 
         void PlayNightLoop()
@@ -58,7 +57,9 @@ namespace CrowShadowScenery
             PlayNight(NightLoop);
             NightLoop++;
             if (NightLoop > 12)
+            {
                 NightLoop = 0;
+            }
         }
 
         public void PlayDrop()
@@ -92,9 +93,7 @@ namespace CrowShadowScenery
                     source.clip = cat4;
                     source.PlayOneShot(cat4);
                     break;
-
             }
-
         }
 
         public void PlayBird(int number)
@@ -117,10 +116,9 @@ namespace CrowShadowScenery
                     source.clip = wings;
                     source.PlayOneShot(wings);
                     break;
-
             }
-
         }
+
         public void PlayBat(int number)
         {
             switch (number)
@@ -133,13 +131,11 @@ namespace CrowShadowScenery
                     source.clip = bat2;
                     source.PlayOneShot(bat2);
                     break;
-
             }
         }
 
         public void PlayDemon(int number)
         {
-
             switch (number)
             {
                 case 1:
@@ -174,14 +170,11 @@ namespace CrowShadowScenery
                     source.clip = demon8;
                     source.PlayOneShot(demon8);
                     break;
-
             }
-
         }
 
         public void PlayScare(int number)
         {
-
             switch (number)
             {
                 case 1:
@@ -204,14 +197,11 @@ namespace CrowShadowScenery
                     source.clip = scare5;
                     source.PlayOneShot(scare5);
                     break;
-
             }
-
         }
 
         public void PlayAmbient(int number)
         {
-
             switch (number)
             {
                 case 1:
@@ -223,12 +213,10 @@ namespace CrowShadowScenery
                     source.PlayOneShot(ambient2);
                     break;
             }
-
         }
 
         public void PlayWolf(int number)
         {
-
             switch (number)
             {
                 case 1:
@@ -240,11 +228,10 @@ namespace CrowShadowScenery
                     source.PlayOneShot(wolf2);
                     break;
             }
-
         }
+
         public void PlayHeartbeat(int number)
         {
-
             switch (number)
             {
                 case 1:
@@ -267,9 +254,7 @@ namespace CrowShadowScenery
                     source.clip = heartbeat5;
                     source.PlayOneShot(heartbeat5);
                     break;
-
             }
-
         }
 
         public void PlayNight(int number)
@@ -324,9 +309,7 @@ namespace CrowShadowScenery
                     source.clip = demon8;
                     source.PlayOneShot(demon8);
                     break;
-
             }
-
         }
 
     }

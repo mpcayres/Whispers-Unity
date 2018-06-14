@@ -9,15 +9,17 @@ namespace CrowShadowScenery
     {
         public string keyName1, keyName2;
         public int mission = 1;
+        public bool inventoryObject = false;
+
         public Player.Actions playerAction = Player.Actions.DEFAULT;
         public AudioClip click;
         public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
+        private GameObject key;
         private Player player;
+
         private int repeatTime = 2;
         private bool exit = false, end = false, invoked = false;
-
-        public bool inventoryObject = false;
 
         void Awake()
         {
@@ -26,7 +28,8 @@ namespace CrowShadowScenery
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            key = gameObject.transform.GetChild(0).gameObject;
+            player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
         void Update()
@@ -39,7 +42,8 @@ namespace CrowShadowScenery
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag.Equals("Player") && GameManager.instance.currentMission == mission && player.playerAction == playerAction && !end)
+            if (other.gameObject.tag.Equals("Player") && 
+                GameManager.instance.currentMission == mission && player.playerAction == playerAction && !end)
             {
                 exit = false;
                 if (!inventoryObject)
@@ -80,7 +84,7 @@ namespace CrowShadowScenery
             {
                 exit = true;
                 invoked = false;
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                key.SetActive(false);
             }
         }
 
@@ -89,7 +93,7 @@ namespace CrowShadowScenery
             if (CrossPlatformInputManager.GetButtonDown(keyName1) && CrossPlatformInputManager.GetButtonDown(keyName2))
             {
                 end = true;
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                key.SetActive(false);
             }
         }
 
@@ -106,13 +110,13 @@ namespace CrowShadowScenery
         {
             if (!end && !exit)
             {
-                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                if (key.activeInHierarchy)
                 {
-                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    key.SetActive(false);
                 }
                 else
                 {
-                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    key.SetActive(true);
                 }
                 source.PlayOneShot(click);
                 invoked = false;

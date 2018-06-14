@@ -6,16 +6,15 @@ namespace CrowShadowPlayer
 {
     public class Pause : MonoBehaviour
     {
-        public AudioClip sound;
-        private AudioSource source { get { return GetComponent<AudioSource>(); } }
         public GameObject pauseMenu;
-        GameManager gameManager;
+        public AudioClip sound;
+        
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
 
         private void Awake()
         {
             pauseMenu = GameObject.Find("HUDCanvas").transform.Find("PauseMenu").gameObject;
             pauseMenu.SetActive(false);
-            gameManager = GameObject.Find("Player").GetComponent<GameManager>();
         }
 
         void Start()
@@ -35,13 +34,13 @@ namespace CrowShadowPlayer
 
                 if (pauseMenu.activeSelf)
                 {
-                    gameManager.paused = false;
+                    GameManager.instance.paused = false;
                     //gameManager.blocked = false;
                     pauseMenu.SetActive(false);
                 }
                 else
                 {
-                    gameManager.paused = true;
+                    GameManager.instance.paused = true;
                     //gameManager.blocked = true;
                     pauseMenu.SetActive(true);
                 }

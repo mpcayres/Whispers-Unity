@@ -6,10 +6,11 @@ namespace CrowShadowObjects
     {
         public string prefName = ""; // Padrão: identificador do objeto (RO) + _ + nome da cena + _ + identificador
         public float rotateSpeed = 10f;
-        float lastPosX, lastPosY, difPosX, difPosY, somaDif = 0;
 
         SpriteRenderer spriteRenderer;
         Rigidbody2D rigidBody;
+
+        float lastPosX, lastPosY, difPosX, difPosY, somaDif = 0;
 
         void Awake()
         {

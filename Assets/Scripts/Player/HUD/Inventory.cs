@@ -28,28 +28,32 @@ namespace CrowShadowPlayer
         public static int papelCount = 0;
         public AudioClip sound;
 
+        GameObject menu, slotsPanel, imagesPanel;
+        static GameObject menuItem, counterValue, hud, player;
+        Sprite box, selectedBox;
+
         private AudioSource source { get { return GetComponent<AudioSource>(); } }
         private static List<DataItems> listItems;
         private static int currentItem = -1, lastItem = -1;
         private int previousItem = -1;
         private int slotPedra = -1, slotPapel = -1;
 
-        GameObject menu, slotsPanel, imagesPanel;
-        Sprite box, selectedBox;
-        static GameObject menuItem, counterValue;
-        GameManager gameManager;
-
         private void Awake()
         {
-            menu = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu").gameObject;
+            hud = GameObject.Find("HUDCanvas");
+            menu = hud.transform.Find("InventoryMenu").gameObject;
             menu.SetActive(false);
-            menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
+
+            menuItem = hud.transform.Find("SelectedObject").gameObject;
             counterValue = menuItem.transform.Find("CurrentTextCounter").gameObject;
-            slotsPanel = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu/SlotsPanel").gameObject;
-            imagesPanel = GameObject.Find("HUDCanvas").transform.Find("InventoryMenu/ImagesPanel").gameObject;
+            slotsPanel = hud.transform.Find("InventoryMenu/SlotsPanel").gameObject;
+            imagesPanel = hud.transform.Find("InventoryMenu/ImagesPanel").gameObject;
+
             box = Resources.Load<Sprite>("Sprites/UI/box");
             selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
-            gameManager = GameObject.Find("Player").GetComponent<GameManager>();
+
+            player = GameManager.instance.gameObject;
+
             if (listItems == null) listItems = new List<DataItems>();
         }
 
@@ -128,7 +132,7 @@ namespace CrowShadowPlayer
             {
                 open = false;
                 menu.SetActive(false);
-                gameManager.paused = false;
+                GameManager.instance.paused = false;
                 if (currentItem != -1)
                 {
                     GameObject currentSlot = slotsPanel.transform.Find("Slot (" + currentItem + ")").gameObject;
@@ -142,7 +146,8 @@ namespace CrowShadowPlayer
             {
                 open = true;
                 menu.SetActive(true);
-                gameManager.paused = true;
+                GameManager.instance.paused = true;
+
                 int count = 0;
                 foreach (DataItems i in listItems)
                 {
@@ -238,8 +243,14 @@ namespace CrowShadowPlayer
 
             if (pos != -1)
             {
-                if (menuItem == null) menuItem = GameObject.Find("HUDCanvas").transform.Find("SelectedObject").gameObject;
-                if (!menuItem.activeSelf && !(GameManager.instance.mission is Mission9)) menuItem.SetActive(true);
+                if (menuItem == null)
+                {
+                    menuItem = hud.transform.Find("SelectedObject").gameObject;
+                }
+                if (!menuItem.activeSelf && !(GameManager.instance.mission is Mission9))
+                {
+                    menuItem.SetActive(true);
+                }
                 menuItem.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Objects/Inventory/" + listItems[pos].file);
                 menuItem.GetComponent<Image>().preserveAspect = true;
                 SetCurrentValue();
@@ -254,40 +265,40 @@ namespace CrowShadowPlayer
             switch (item)
             {
                 case InventoryItems.FLASHLIGHT:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(e);
+                    player.transform.Find("Flashlight").gameObject.SetActive(e);
                     break;
                 case InventoryItems.FOSFORO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(e);
+                    player.transform.Find("Fosforo").gameObject.SetActive(e);
                     break;
                 case InventoryItems.ISQUEIRO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(e);
+                    player.transform.Find("Isqueiro").gameObject.SetActive(e);
                     break;
                 case InventoryItems.FACA:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(e);
+                    player.transform.Find("Faca").gameObject.SetActive(e);
                     break;
                 case InventoryItems.BASTAO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Bastao").gameObject.SetActive(e);
+                    player.transform.Find("Bastao").gameObject.SetActive(e);
                     break;
                 case InventoryItems.TAMPA:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(e);
+                    player.transform.Find("Tampa").gameObject.SetActive(e);
                     break;
                 case InventoryItems.ESCUDO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(e);
+                    player.transform.Find("Escudo").gameObject.SetActive(e);
                     break;
                 case InventoryItems.PEDRA:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(e);
+                    player.transform.Find("Pedra").gameObject.SetActive(e);
                     break;
                 case InventoryItems.PAPEL:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(e);
+                    player.transform.Find("Papel").gameObject.SetActive(e);
                     break;
                 case InventoryItems.VELA:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(e);
+                    player.transform.Find("Vela").gameObject.SetActive(e);
                     break;
                 case InventoryItems.RACAO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(e);
+                    player.transform.Find("Racao").gameObject.SetActive(e);
                     break;
                 case InventoryItems.LIVRO:
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(e);
+                    player.transform.Find("Livro").gameObject.SetActive(e);
                     break;
                 default:
                     break;
@@ -363,11 +374,11 @@ namespace CrowShadowPlayer
                     break;
                 case InventoryItems.TAMPA:
                     file = "tampa";
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 100;
+                    player.transform.Find("Tampa").gameObject.GetComponent<ProtectionObject>().life = 100;
                     break;
                 case InventoryItems.ESCUDO:
                     file = "escudo";
-                    GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>().life = 80;
+                    player.transform.Find("Escudo").gameObject.GetComponent<ProtectionObject>().life = 80;
                     break;
                 case InventoryItems.PEDRA:
                     file = "pedra";
@@ -451,47 +462,47 @@ namespace CrowShadowPlayer
 
             if (selectItem == InventoryItems.FLASHLIGHT)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Flashlight").gameObject.SetActive(false);
+                player.transform.Find("Flashlight").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.FOSFORO)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Fosforo").gameObject.SetActive(false);
+                player.transform.Find("Fosforo").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.ISQUEIRO)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Isqueiro").gameObject.SetActive(false);
+                player.transform.Find("Isqueiro").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.FACA)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Faca").gameObject.SetActive(false);
+                player.transform.Find("Faca").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.TAMPA)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Tampa").gameObject.SetActive(false);
+                player.transform.Find("Tampa").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.ESCUDO)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Escudo").gameObject.SetActive(false);
+                player.transform.Find("Escudo").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.PEDRA)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Pedra").gameObject.SetActive(false);
+                player.transform.Find("Pedra").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.PAPEL)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Papel").gameObject.SetActive(false);
+                player.transform.Find("Papel").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.VELA)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Vela").gameObject.SetActive(false);
+                player.transform.Find("Vela").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.RACAO)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Racao").gameObject.SetActive(false);
+                player.transform.Find("Racao").gameObject.SetActive(false);
             }
             else if (selectItem == InventoryItems.ISQUEIRO)
             {
-                GameManager.instance.GetComponent<Player>().gameObject.transform.Find("Livro").gameObject.SetActive(false);
+                player.transform.Find("Livro").gameObject.SetActive(false);
             }
 
         }

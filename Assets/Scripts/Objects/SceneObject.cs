@@ -17,13 +17,13 @@ namespace CrowShadowObjects
         public bool colliding = false;
         public bool canHavePickUp = true;
 
-        bool isActive = false, opened = false;
-        float sizeX, sizeY;
-        float posX, posY, posXdefault, posYdefault;
-
         SpriteRenderer spriteRenderer;
         BoxCollider2D boxCollider;
         Player player;
+
+        bool isActive = false, opened = false;
+        float sizeX, sizeY;
+        float posX, posY, posXdefault, posYdefault;
 
         void Awake()
         {
@@ -37,7 +37,7 @@ namespace CrowShadowObjects
             posY = spriteRenderer.bounds.size.y / scale;
             posYdefault = transform.position.y;
             posXdefault = transform.position.x;
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
         void Update()

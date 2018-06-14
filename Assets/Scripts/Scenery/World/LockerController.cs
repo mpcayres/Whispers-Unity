@@ -17,37 +17,43 @@ namespace CrowShadowScenery
          **/
     public class LockerController : MonoBehaviour
     {
-
         public Text row1;
         public Text row2;
         public Text row3;
 
-        int selectedRow = 1;
+        public string password;
+        public string boardName;
 
+        public AudioClip click;
+        public AudioClip success;
+
+        private AudioSource source { get { return GetComponent<AudioSource>(); } }
+
+        GameObject locker, basement;
+        SceneDoor sceneDoor;
+        SpriteRenderer rendererBasement;
+
+        int selectedRow = 1;
         int selectedNumber1 = 1;
         int selectedNumber2 = 1;
         int selectedNumber3 = 1;
-
-        public string password;
-
-        public string boardName;
 
         bool isBasement = false;
         bool opened = false;
         bool tried = false;
 
-        public AudioClip click;
-        public AudioClip success;
-        private AudioSource source { get { return GetComponent<AudioSource>(); } }
-
         public void Start()
         {
             source.clip = click;
+            locker = transform.GetChild(0).gameObject;
+            basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
+            sceneDoor = basement.GetComponent<SceneDoor>();
+            rendererBasement = basement.GetComponent<SpriteRenderer>();
         }
+
         public void Update()
         {
-
-            if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+            if (locker.activeSelf)
             {
                 if (Input.GetButtonDown("Vertical"))
                 { //up(positive) e down(negative)
@@ -71,7 +77,7 @@ namespace CrowShadowScenery
                         NumbersLeft();
                     }
                 }
-                if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+                if (locker.activeSelf)
                 {
                     if (row1.text[3] == password[0] && row2.text[3] == password[1] && row3.text[3] == password[2] && !opened)
                     {
@@ -89,10 +95,8 @@ namespace CrowShadowScenery
                             source.PlayOneShot(success);
 
                             Invoke("Show", 0.5f);
-                            GameObject basement = GameObject.Find("Jardim").gameObject.transform.GetChild(0).gameObject;
-                            basement.GetComponent<SceneDoor>().isOpened = true;
-                            basement.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/porão-aberto");
-
+                            sceneDoor.isOpened = true;
+                            rendererBasement.sprite = Resources.Load<Sprite>("Sprites/Objects/Scene/porão-aberto");
                         }
                     }
                 }
@@ -107,24 +111,25 @@ namespace CrowShadowScenery
                 selectedRow = 1;
             else
                 selectedRow++;
+
             switch (selectedRow)
             {
                 case 1:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 2:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 3:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(true);
                     break;
             }
@@ -138,24 +143,25 @@ namespace CrowShadowScenery
                 selectedRow = 3;
             else
                 selectedRow--;
+
             switch (selectedRow)
             {
                 case 1:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 2:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow2").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow2").gameObject;
                     selectorRow.SetActive(true);
                     break;
                 case 3:
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow1").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow1").gameObject;
                     selectorRow.SetActive(false);
-                    selectorRow = this.transform.GetChild(0).gameObject.transform.Find("SelectorRow3").gameObject;
+                    selectorRow = locker.transform.Find("SelectorRow3").gameObject;
                     selectorRow.SetActive(true);
                     break;
 
@@ -310,18 +316,15 @@ namespace CrowShadowScenery
                     else if (selectedRow == 3)
                         row3.text = "8  9  0";
                     break;
-
             }
-
-
-
         }
 
-        void OnTriggerStay2D(Collider2D other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             GameObject board;
 
-            if (!tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && !gameObject.transform.GetChild(0).gameObject.activeSelf)
+            if (!tried && other.gameObject.tag.Equals("Player") && 
+                CrossPlatformInputManager.GetButton("keyInteract") && !locker.activeSelf)
             {
 
                 if (GameManager.currentSceneName.Equals("Corridor"))
@@ -338,7 +341,8 @@ namespace CrowShadowScenery
                 tried = true;
 
             }
-            else if (tried && other.gameObject.tag.Equals("Player") && CrossPlatformInputManager.GetButton("keyInteract") && gameObject.transform.GetChild(0).gameObject.activeSelf)
+            else if (tried && other.gameObject.tag.Equals("Player") && 
+                CrossPlatformInputManager.GetButton("keyInteract") && locker.activeSelf)
             {
                 if (GameManager.currentSceneName.Equals("Corridor"))
                 {
@@ -347,7 +351,6 @@ namespace CrowShadowScenery
                 }
                 else if (GameManager.currentSceneName.Equals("Jardim"))
                 {
-
                     isBasement = true;
                 }
                 Invoke("Show", 0.2f);
@@ -356,9 +359,9 @@ namespace CrowShadowScenery
 
 
         }
+
         void Show()
         {
-            GameObject locker = gameObject.transform.GetChild(0).gameObject;
             if (locker.activeSelf)
             {
                 locker.SetActive(false);
@@ -370,9 +373,7 @@ namespace CrowShadowScenery
                 locker.SetActive(true);
                 GameManager.instance.paused = true;
                 GameManager.instance.blocked = true;
-
             }
-            
         }
         
     }

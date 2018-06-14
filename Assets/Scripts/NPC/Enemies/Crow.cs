@@ -17,7 +17,7 @@ namespace CrowShadowNPCs
                 DontDestroyOnLoad(gameObject);
                 instance = this;
                 animator = GetComponent<Animator>();
-                player = GameObject.FindGameObjectWithTag("Player");
+                player = GameManager.instance.gameObject;
                 spriteRenderer = GetComponent<SpriteRenderer>();
                 birdEmitter = transform.Find("BirdEmitterCollider").gameObject;
             }

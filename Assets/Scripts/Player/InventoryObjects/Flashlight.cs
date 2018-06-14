@@ -9,14 +9,21 @@ namespace CrowShadowPlayer
         public Inventory.InventoryItems item;
 
         Player player;
-        float rotationSpeed = 1f, timePressed = 0f;
+        Light lightComponent;
+        Collider2D colliderComponent;
+        CircleCollider2D circleCollider;
+
         static bool enable;
+        float rotationSpeed = 1f, timePressed = 0f;
         bool changeDirectionTime = false;
 
         void Start()
         {
             player = GetComponentInParent<Player>();
-            enable = GetComponent<Collider2D>().enabled = GetComponent<Light>().enabled;
+            lightComponent = GetComponent<Light>();
+            colliderComponent = GetComponent<Collider2D>();
+            circleCollider = GetComponent<CircleCollider2D>();
+            enable = colliderComponent.enabled = lightComponent.enabled;
         }
 
         void Update()
@@ -27,7 +34,7 @@ namespace CrowShadowPlayer
             {
                 if (CrossPlatformInputManager.GetButtonDown("keyUseObject"))
                 {
-                    EnableFlashlight(!GetComponent<Light>().enabled);
+                    EnableFlashlight(!lightComponent.enabled);
                     if (enable)
                     {
                         transform.rotation = Quaternion.Euler((float)0.0, (float)0.0, (float)0.0);
@@ -64,8 +71,8 @@ namespace CrowShadowPlayer
                     EnableFlashlight(false);
                 }
 
-                GetComponent<Light>().spotAngle = 60 - timePressed;
-                GetComponent<CircleCollider2D>().radius = 1f - (timePressed / 100f);
+                lightComponent.spotAngle = 60 - timePressed;
+                circleCollider.radius = 1f - (timePressed / 100f);
 
                 switch (player.direction)
                 {
@@ -73,25 +80,25 @@ namespace CrowShadowPlayer
                         transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(0f, -0.6f, 2f), rotationSpeed * Time.deltaTime);
                         Quaternion targetRotationE = Quaternion.Euler((float)180.0, (float)230.0 - timePressed, (float)0.0);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationE, rotationSpeed * Time.deltaTime);
-                        GetComponent<Collider2D>().offset = new Vector2(-2f + (timePressed / 25f), 0);
+                        colliderComponent.offset = new Vector2(-2f + (timePressed / 25f), 0);
                         break;
                     case 1:
                         transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(0f, -0.6f, 2f), rotationSpeed * Time.deltaTime);
                         Quaternion targetRotationW = Quaternion.Euler((float)180.0, (float)130.0 + timePressed, (float)0.0);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationW, rotationSpeed * Time.deltaTime);
-                        GetComponent<Collider2D>().offset = new Vector2(2f - (timePressed / 25f), 0);
+                        colliderComponent.offset = new Vector2(2f - (timePressed / 25f), 0);
                         break;
                     case 2:
                         transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(-0.45f, 0f, 2f), rotationSpeed * Time.deltaTime);
                         Quaternion targetRotationN = Quaternion.Euler((float)-45.0 + (timePressed / 2f), (float)0.0, (float)0.0);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationN, rotationSpeed * Time.deltaTime);
-                        GetComponent<Collider2D>().offset = new Vector2(0, 2f - (timePressed / 25f));
+                        colliderComponent.offset = new Vector2(0, 2f - (timePressed / 25f));
                         break;
                     case 3:
                         transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(-0.45f, 0f, 2f), rotationSpeed * Time.deltaTime);
                         Quaternion targetRotationS = Quaternion.Euler((float)45.0 - (timePressed / 2f), (float)0.0, (float)0.0);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationS, rotationSpeed * Time.deltaTime);
-                        GetComponent<Collider2D>().offset = new Vector2(0, -2f + (timePressed / 25f));
+                        colliderComponent.offset = new Vector2(0, -2f + (timePressed / 25f));
                         break;
                     default:
                         break;
@@ -107,8 +114,8 @@ namespace CrowShadowPlayer
 
         public void EnableFlashlight(bool e)
         {
-            GetComponent<Light>().enabled = e;
-            GetComponent<Collider2D>().enabled = e;
+            lightComponent.enabled = e;
+            colliderComponent.enabled = e;
             enable = e;
             if (enable)
             {

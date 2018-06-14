@@ -5,10 +5,10 @@ namespace CrowShadowScenery
 {
     public class BlinkLight : MonoBehaviour
     {
-
-        Light testLight;
         public float minWaitTime;
         public float maxWaitTime;
+
+        Light testLight;
 
         void Start()
         {
