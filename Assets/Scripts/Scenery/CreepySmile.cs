@@ -19,8 +19,7 @@ namespace CrowShadowScenery
         {
             target = GameManager.instance.gameObject;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             count += Time.deltaTime;

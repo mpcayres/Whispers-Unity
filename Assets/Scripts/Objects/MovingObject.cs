@@ -28,6 +28,10 @@ namespace CrowShadowObjects
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start()
+        {
             player = GameManager.instance.gameObject;
             scriptPlayer = player.GetComponent<Player>();
             playerRenderer = player.GetComponent<SpriteRenderer>();

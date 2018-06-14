@@ -52,7 +52,7 @@ namespace CrowShadowPlayer
             box = Resources.Load<Sprite>("Sprites/UI/box");
             selectedBox = Resources.Load<Sprite>("Sprites/UI/box-select");
 
-            player = GameManager.instance.gameObject;
+            player = gameObject;
 
             if (listItems == null) listItems = new List<DataItems>();
         }

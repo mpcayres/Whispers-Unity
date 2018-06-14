@@ -37,6 +37,10 @@ namespace CrowShadowObjects
             posY = spriteRenderer.bounds.size.y / scale;
             posYdefault = transform.position.y;
             posXdefault = transform.position.x;
+        }
+
+        private void Start()
+        {
             player = GameManager.instance.gameObject.GetComponent<Player>();
         }
 
