@@ -396,7 +396,7 @@ namespace CrowShadowPlayer
 
         public void PlayAnimation(string anim, float time = 1f)
         {
-            print("2:" + anim + time);
+            //print("ANIM:" + anim + time);
             animator.Play(anim);
             StartCoroutine(WaitCoroutineAnim(time));
         }

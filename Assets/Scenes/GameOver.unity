@@ -160,11 +160,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 51816584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa95b626bd99f7b4db4418a0368fad71, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b2e760a6f94bed498e83cf16f6a750e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 714124967}
-  anim: {fileID: 714124968}
 --- !u!114 &51816587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,8 +203,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 51816586}
-        m_MethodName: LoadByIndex
-        m_Mode: 3
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -398,8 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9097b8699758f4fa1c4ba10756bdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 714124967}
-  anim: {fileID: 714124968}
 --- !u!114 &88379084
 MonoBehaviour:
   m_ObjectHideFlags: 0

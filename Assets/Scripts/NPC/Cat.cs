@@ -16,6 +16,7 @@ namespace CrowShadowNPCs
                 animator = GetComponent<Animator>();
                 player = GameManager.instance.gameObject;
                 spriteRenderer = GetComponent<SpriteRenderer>();
+                hasActionPatroller = true;
                 fixOrder = -12;
             }
             else if (instance != this)

@@ -279,6 +279,8 @@ namespace CrowShadowManager
         // FUNÇÕES DE MUDANÇA DE CENA
         public static void LoadScene(string name, bool menu = false)
         {
+            print("OLDSCENE" + previousSceneName);
+            print("NEWSCENE" + currentSceneName);
             if (!(name.Equals(currentSceneName) && !forceReload))
             {
                 forceReload = false;
@@ -308,8 +310,6 @@ namespace CrowShadowManager
         {
             previousSceneName = currentSceneName;
             currentSceneName = scene.name;
-            //print("OLDSCENE" + previousSceneName);
-            //print("NEWSCENE" + currentSceneName);
 
             SetSceneWhenLoaded();
         }
@@ -846,7 +846,7 @@ namespace CrowShadowManager
         // CONTINUAR JOGO
         public void ContinueGame()
         {
-            LoadScene(previousSceneName);
+            LoadScene(previousSceneName, true);
             blocked = false;
             hud.SetActive(true);
         }

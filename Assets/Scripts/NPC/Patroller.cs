@@ -178,7 +178,7 @@ namespace CrowShadowNPCs
 
         protected void ChangeDirectionAnimation()
         {
-            if (oldDirection != direction)
+            if (oldDirection != direction && animator != null)
             {
                 if (animator == null) animator = GetComponent<Animator>();
                 animator.SetInteger("direction", direction);

@@ -182,7 +182,7 @@ namespace CrowShadowPlayer
         // RETORNA TIPO DO ITEM
         public static InventoryItems GetItemType(int i)
         {
-            if (i == -1) return InventoryItems.DEFAULT;
+            if (i == -1 || i >= listItems.Count) return InventoryItems.DEFAULT;
             return listItems[i].type;
         }
 

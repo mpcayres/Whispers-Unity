@@ -14,16 +14,16 @@ namespace CrowShadowMenu
         
         void Update()
         {
-            if (CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
+            /*if (CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
             {
-                eventSystem.SetSelectedGameObject(selectedObject);
-                buttonSelected = true;
-            }
+                //eventSystem.SetSelectedGameObject(selectedObject);
+                //buttonSelected = true;
+            }*/
         }
 
         private void OnDisable()
         {
-            buttonSelected = false;
+            //buttonSelected = false;
         }
     }
 }
