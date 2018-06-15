@@ -323,22 +323,22 @@ namespace CrowShadowPlayer
         }
 
         // ADICIONA NOVO ITEM
-        public static void NewItem(InventoryItems selectItem)
+        public static void NewItem(InventoryItems selectItem, int addTrowable = 1)
         {
 
             // Não permite ter mais de um mesmo objeto no inventário
             if (listItems == null) listItems = new List<DataItems>();
             if (selectItem == InventoryItems.PEDRA)
             {
-                pedraCount++;
+                pedraCount+= addTrowable;
                 SetCurrentValue();
-                if (pedraCount > 1) return;
+                //if (pedraCount > 1) return;
             }
             else if (selectItem == InventoryItems.PAPEL)
             {
-                papelCount++;
+                papelCount += addTrowable;
                 SetCurrentValue();
-                if (papelCount > 1) return;
+               // if (papelCount > 1) return;
             }
             else
             {

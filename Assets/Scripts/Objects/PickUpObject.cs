@@ -10,6 +10,7 @@ namespace CrowShadowObjects
         public bool colliding = false;
         public Inventory.InventoryItems item;
         public bool isUp = false;
+        public int addTrowable = 1;
 
         Player player;
 
@@ -33,7 +34,7 @@ namespace CrowShadowObjects
                 if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
                     !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
                 {
-                    Inventory.NewItem(item);
+                    Inventory.NewItem(item, addTrowable);
                     Destroy(gameObject);
                 }
             }

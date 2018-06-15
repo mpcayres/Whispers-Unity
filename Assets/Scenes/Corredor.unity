@@ -25907,6 +25907,90 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1638ccbb2b0617244ba4efaa82663f54, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &670834920
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -14.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 212321789458829192, guid: f94e47b327b5e3f4883f27ea176bcb82,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6106a811af64834b8360663fb8c22b1,
+        type: 3}
+    - target: {fileID: 61230683281259726, guid: f94e47b327b5e3f4883f27ea176bcb82,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 61230683281259726, guid: f94e47b327b5e3f4883f27ea176bcb82,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520833594432176, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_Name
+      value: Papel-PickUp1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114442648805757956, guid: f94e47b327b5e3f4883f27ea176bcb82,
+        type: 2}
+      propertyPath: item
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114442648805757956, guid: f94e47b327b5e3f4883f27ea176bcb82,
+        type: 2}
+      propertyPath: addTrowable
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542800611389916, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f94e47b327b5e3f4883f27ea176bcb82, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &674384564
 GameObject:
   m_ObjectHideFlags: 0
