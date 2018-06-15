@@ -155,7 +155,7 @@ Mom: I'm sorry baby, Mommy moves a lot at night.
 Mom: You wouldn't sleep next to me.
 Mom: And also, you need to deal with your fears on your own.
 [question=1]What do you want to say to your mom?
-[choice]"You don't understand me!I don't like being alone, I don't like you!"
+[choice]"You don't understand me! I don't like being alone, I don't like you!"
 [choice]"That's ok, mommy. At least Pumpkin can be by my side..."
 [title=M2CorridorSceneEnd]
 [title=M2CorridorSceneRepeat]
@@ -279,10 +279,17 @@ Alex: So she can hear.
 [title=EuJaTenhoIsso]
 Alex: I already have this.
 [title=EuJaTenhoIssoEnd]
+[title=M4MaeChegouCorredor]
+Alex: What was that noise?
+Alex: I need to get out of here soon!
+[title=M4MaeChegouCorredorEnd]
+[title=M4MaeChegou]
+Mom: Alex, come here now!
+[title=M4MaeChegouEnd]
 [title=VerdadeOuMentira]
 Mom: What are you doing here ?!
 Mom: Did you break the vase!?
-[question = 4] What do you want to do now?
+[question=4] What do you want to do now?
 [choice] Tell the truth
 [choice] Lie
 [title=VerdadeOuMentiraEnd]

@@ -263,6 +263,13 @@ Alex: Assim ela conseguirá ouvir.
 [title=EuJaTenhoIsso]
 Alex: Eu já tenho isso.
 [title=EuJaTenhoIssoEnd]
+[title=M4MaeChegouCorredor]
+Alex: Que barulho foi esse?
+Alex: Preciso sair daqui logo!
+[title=M4MaeChegouCorredorEnd]
+[title=M4MaeChegou]
+Mãe: Alex, venha aqui agora!
+[title=M4MaeChegouEnd]
 [title=VerdadeOuMentira]
 Mãe: O que está fazendo aqui?!
 Mãe: Foi você que quebrou o vaso!?

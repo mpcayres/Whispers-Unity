@@ -263,6 +263,13 @@
 [title=EuJaTenhoIsso]
 アレックス: Eu já tenho isso.
 [title=EuJaTenhoIssoEnd]
+[title=M4MaeChegouCorredor]
+Alex: Que barulho foi esse?
+Alex: Preciso sair daqui logo!
+[title=M4MaeChegouCorredorEnd]
+[title=M4MaeChegou]
+Mãe: Alex, venha aqui agora!
+[title=M4MaeChegouEnd]
 [title=VerdadeOuMentira]
 お母さん: O que está fazendo aqui?!
 お母さん: Foi você que quebrou o vaso!?

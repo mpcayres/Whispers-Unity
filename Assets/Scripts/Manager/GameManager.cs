@@ -279,8 +279,8 @@ namespace CrowShadowManager
         // FUNÇÕES DE MUDANÇA DE CENA
         public static void LoadScene(string name, bool menu = false)
         {
-            print("OLDSCENE" + previousSceneName);
-            print("NEWSCENE" + currentSceneName);
+            //print("OLDSCENE: " + previousSceneName);
+            //print("NEWSCENE: " + currentSceneName);
             if (!(name.Equals(currentSceneName) && !forceReload))
             {
                 forceReload = false;
