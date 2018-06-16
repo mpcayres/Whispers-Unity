@@ -34,7 +34,10 @@ namespace CrowShadowObjects
                 if (colliding && CrossPlatformInputManager.GetButtonDown("keyInteract") &&
                     !GameManager.instance.paused && !GameManager.instance.blocked && !GameManager.instance.pausedObject)
                 {
-                    Inventory.NewItem(item, addTrowable);
+                    for (int i = 0; i != addTrowable; i++)
+                    {
+                        Inventory.NewItem(item);
+                    }
                     Destroy(gameObject);
                 }
             }
@@ -42,7 +45,8 @@ namespace CrowShadowObjects
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            colliding = true;
+            if(other.gameObject.tag.Equals("Player"))
+                colliding = true;
         }
     }
 }
