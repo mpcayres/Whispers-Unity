@@ -997,7 +997,7 @@ namespace CrowShadowManager
 
         public void InvokeMission()
         {
-            print("INVOKEMISSION");
+            //print("INVOKEMISSION");
             if (currentSceneName.Equals("GameOver"))
             {
                 wasInvoked = true;
