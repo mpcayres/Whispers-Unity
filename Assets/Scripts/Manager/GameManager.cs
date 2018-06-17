@@ -303,7 +303,14 @@ namespace CrowShadowManager
                 }
                 print("ACTIVE " + Time.time * 1000);
 
-                FadingScene.instance.LoadSceneAsync(name, 0);
+                if (FadingScene.instance != null)
+                {
+                    FadingScene.instance.LoadSceneAsync(name, 0);
+                }
+                else
+                {
+                    SceneManager.LoadSceneAsync(name, 0);
+                }
             }
         }
 
