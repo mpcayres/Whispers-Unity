@@ -175,7 +175,6 @@ GameObject:
   - component: {fileID: 222489934034896870}
   - component: {fileID: 114754224834696714}
   - component: {fileID: 114921730353245196}
-  - component: {fileID: 114036457710921778}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: InventoryMenu
@@ -1086,19 +1085,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114036457710921778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1186076141267558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 528a8e7cb12e2734ca2524b45d798850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
-  selectedObject: {fileID: 1455877740637396}
 --- !u!114 &114057277185215182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1191,8 +1177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f514f77a104b244a8a131cf26f7e9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!114 &114110043274396966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2889,8 +2873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f514f77a104b244a8a131cf26f7e9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  black: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!114 &114898229309105144
 MonoBehaviour:
   m_ObjectHideFlags: 1
