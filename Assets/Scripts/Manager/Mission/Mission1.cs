@@ -343,13 +343,16 @@ public class Mission1 : Mission {
             Vector3[] catPos = { aux };
             cat.GetComponent<Cat>().targets = catPos;
             cat.GetComponent<Cat>().stopEndPath = true;
+            cat.GetComponent<Cat>().destroyEndPath = false;
         }
         else if (secao == enumMission.GATO_APARECEU)
         {
+            GameManager.instance.scenerySounds.PlayCat(2);
+            Cat.instance.GetComponent<Cat>().Patrol();
             Vector3 aux = new Vector3(1.8f, 1f, -0.5f);
             Vector3[] catPos = { aux };
             Cat.instance.GetComponent<Cat>().targets = catPos;
-            Cat.instance.destroyEndPath = true;
+            Cat.instance.GetComponent<Cat>().destroyEndPath = true;
         }
         else if (secao == enumMission.GATO_CORREDOR)
         {
