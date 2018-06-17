@@ -17,6 +17,7 @@ namespace CrowShadowObjects
         Renderer playerRenderer;
         SpriteRenderer spriteRenderer;
         Rigidbody2D rb;
+        Collider2D colliderMO, colliderPlayer;
 
         float distanceWantedX = 0.4f;
         float distanceWantedY = 0.45f;
@@ -28,6 +29,7 @@ namespace CrowShadowObjects
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
+            colliderMO = GetComponent<Collider2D>();
         }
 
         private void Start()
@@ -35,6 +37,7 @@ namespace CrowShadowObjects
             player = GameManager.instance.gameObject;
             scriptPlayer = player.GetComponent<Player>();
             playerRenderer = player.GetComponent<SpriteRenderer>();
+            colliderPlayer = player.GetComponent<Collider2D>();
         }
 
         void Update()
@@ -146,8 +149,8 @@ namespace CrowShadowObjects
                     scriptPlayer.playerAction = Player.Actions.ANIMATION;
                     originalX = player.transform.position.x;
                     originalY = player.transform.position.y;
-                    GetComponent<Collider2D>().enabled = false;
-                    player.GetComponent<Collider2D>().enabled = false;
+                    colliderMO.enabled = false;
+                    colliderPlayer.enabled = false;
                     if (originalDirection == 0)
                     {
                         scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);

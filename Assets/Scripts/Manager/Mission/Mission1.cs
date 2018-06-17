@@ -225,6 +225,7 @@ public class Mission1 : Mission {
 
         if (secao == enumMission.NIGHT || secao == enumMission.INICIO) {
             // Tutorial
+            GameManager.instance.AddObject("Tutorial/Z-key1");
             GameManager.instance.AddObject("Tutorial/C-key");
             GameManager.instance.AddObject("Tutorial/CtrlC-key");
 
@@ -300,8 +301,8 @@ public class Mission1 : Mission {
         trigger2.GetComponent<BoxCollider2D>().size = new Vector2(1.55f, 0.8f);
 
         // Tutorial
-        GameManager.instance.AddObject("Tutorial/Z-bau");
-        GameManager.instance.AddObject("Tutorial/X-lantern");
+        GameManager.instance.AddObject("Tutorial/Z-key2");
+        GameManager.instance.AddObject("Tutorial/X-key");
 
         areaTriggered = false;
         birdsActive = false;
