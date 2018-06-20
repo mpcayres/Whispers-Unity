@@ -26,3 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuartoKid.unity
     guid: e44dfa2df3506e64e902e135f1b6d370
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 5e9f166e89750724e9b142c031087f07
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 99f77e4dcf8de414eac8ddced4913f08
+  - enabled: 1
+    path: Assets/Scenes/Banheiro.unity
+    guid: 99b2b1d0633f7ba4fb77445ad7d6522f
+  - enabled: 1
+    path: Assets/Scenes/SideQuest.unity
+    guid: 51d3bedfe56ed514eb3f6a3e96483465
+  - enabled: 1
+    path: Assets/Scenes/Porao.unity
+    guid: 93827afd41d5b0c4ba60697c8a91d121

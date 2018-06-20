@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 124060498232269390}
   - component: {fileID: 81475516532999440}
   - component: {fileID: 114614904921372210}
+  - component: {fileID: 114137052861968324}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -75,6 +76,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -93,6 +95,20 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052123855311862}
   m_Enabled: 1
+--- !u!114 &114137052861968324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052123855311862}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cde8c0fd649d9b46bb403ba5e157391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: b61f0d8d8244b4b28aa66b0c8cb46a8d, type: 3}
+  converted3DLut: {fileID: 0}
+  basedOnTempTex: Assets/Imported/Image Effects/Cinema Suite/Cinema Themes/LUTs/19603D16.png
 --- !u!114 &114614904921372210
 MonoBehaviour:
   m_ObjectHideFlags: 1

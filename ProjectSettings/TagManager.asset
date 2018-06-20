@@ -24,6 +24,29 @@ TagManager:
   - Trigger
   - WindowTrigger
   - FurtiveObject
+  - ZoomObject
+  - ScenePickUpObject
+  - SceneMultipleObject
+  - Lamp
+  - Enemy
+  - AreaTrigger
+  - CatShadow
+  - Shadow
+  - Fire
+  - Corvo
+  - Pagina
+  - GoodSpirit
+  - EvilSpirit
+  - HelpingLight
+  - DoorToBathroom
+  - CorvBabies
+  - RotateObject
+  - DoorToBasement
+  - Faca
+  - Bastao
+  - Pedra
+  - Papel
+  - SickCrow
   layers:
   - Default
   - TransparentFX
@@ -39,8 +62,8 @@ TagManager:
   - Enemies
   - PickUp
   - PlayerHidden
-  - 
-  - 
+  - Fire
+  - AreaTrigger
   - 
   - 
   - 
@@ -63,6 +86,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Shadow
+    uniqueID: 3733409655
     locked: 0
   - name: UI
     uniqueID: 3198805345

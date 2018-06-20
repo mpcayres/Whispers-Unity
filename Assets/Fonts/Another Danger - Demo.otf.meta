@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 315c4867be71de34ab3a103cd72d492c
+timeCreated: 1513009944
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Another Danger - Demo
+  fontNames:
+  - Another Danger - Demo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

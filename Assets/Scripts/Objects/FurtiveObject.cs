@@ -1,43 +1,61 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
+using CrowShadowPlayer;
 
-public class FurtiveObject : MonoBehaviour {
-    GameObject player;
-    public bool colliding = false;
-    SpriteRenderer spriteRenderer;
-    float timeLeft;
-
-    void Start ()
+namespace CrowShadowObjects
+{
+    public class FurtiveObject : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
+        public bool colliding = false;
+        public float timeMax = 6f;
 
-    void Update()
-    {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-
-        if (colliding && !MissionManager.instance.paused)
-        {
-            if (timeLeft > 0)
-            {
-                timeLeft -= Time.deltaTime;
-            }
-
-            if (player.GetComponent<Renderer>().enabled && Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
-            {
-                player.GetComponent<Renderer>().enabled = false;
-                player.layer = LayerMask.NameToLayer("PlayerHidden");
-                player.GetComponent<MissionManager>().blocked = true;
-                timeLeft = 3;
-            }
-            else if (!player.GetComponent<Renderer>().enabled && (Input.GetKeyDown(KeyCode.Z) || timeLeft <= 0))
-            {
-                player.GetComponent<Renderer>().enabled = true;
-                player.layer = LayerMask.NameToLayer("Player");
-                player.GetComponent<MissionManager>().blocked = false;
-                timeLeft = 0;
-            }
-        }
+        GameObject player;
+        SpriteRenderer spriteRenderer;
+        Renderer playerRenderer;
+        Rigidbody2D playerRB;
         
+        float timeLeft;
+
+        void Start()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            player = GameManager.instance.gameObject;
+            playerRenderer = player.GetComponent<Renderer>();
+            playerRB = player.GetComponent<Rigidbody2D>();
+        }
+
+        void Update()
+        {
+            spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+
+            if (colliding && !GameManager.instance.paused && !GameManager.instance.blocked)
+            {
+                if (timeLeft > 0)
+                {
+                    timeLeft -= Time.deltaTime;
+                }
+
+                if (playerRenderer.enabled && CrossPlatformInputManager.GetButtonDown("keyInteract")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                {
+                    playerRenderer.enabled = false;
+                    playerRB.bodyType = RigidbodyType2D.Kinematic;
+                    player.layer = LayerMask.NameToLayer("PlayerHidden");
+                    GameManager.instance.pausedObject = true;
+                    player.GetComponent<Player>().hidden = true;
+                    timeLeft = timeMax;
+                }
+                else if (!playerRenderer.enabled && (CrossPlatformInputManager.GetButtonDown("keyInteract") || timeLeft <= 0))
+                {
+                    playerRenderer.enabled = true;
+                    playerRB.bodyType = RigidbodyType2D.Dynamic;
+                    player.layer = LayerMask.NameToLayer("Player");
+                    GameManager.instance.pausedObject = false;
+                    player.GetComponent<Player>().hidden = false;
+                    timeLeft = 0;
+                }
+            }
+
+        }
     }
 }

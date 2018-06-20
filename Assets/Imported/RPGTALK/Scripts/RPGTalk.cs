@@ -271,7 +271,7 @@ public class RPGTalk : MonoBehaviour {
 
 	//Event to be called when a it play next line in the talk
 	public delegate void MadeAChoiceAction(int questionID, int choiceNumber);
-	public event MadeAChoiceAction OnMadeChoice;
+	public event MadeAChoiceAction OnChoiceMade;
 
 
 	void Start(){
@@ -302,10 +302,11 @@ public class RPGTalk : MonoBehaviour {
 	/// </summary>
 	/// <param name="_lineToStart">Line to start reading the text.</param>
 	/// <param name="_lineToBreak">Line to stop reading the text.</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak){
+	public void NewTalk(string _lineToStart,string _lineToBreak, bool block = true){
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -314,11 +315,13 @@ public class RPGTalk : MonoBehaviour {
 	/// <param name="_lineToStart">Line to start reading the text.</param>
 	/// <param name="_lineToBreak">Line to stop reading the text.</param>
 	/// <param name="_txtToParse">Text to read from</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse){
+	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, bool block = true)
+    {
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
 		txtToParse = _txtToParse;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -329,13 +332,24 @@ public class RPGTalk : MonoBehaviour {
 	/// <param name="_txtToParse">Text to read from</param>
 	/// <param name="_callbackScript">Script to be called when the talk ends</param>
 	/// <param name="_txtToParse">Function to be called when the talk ends</param>
-	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, MonoBehaviour _callbackScript, string _callbackFunction){
+	public void NewTalk(string _lineToStart,string _lineToBreak,TextAsset _txtToParse, MonoBehaviour _callbackScript, string _callbackFunction, bool block = true)
+    {
 		lineToStart = _lineToStart;
 		lineToBreak = _lineToBreak;
 		txtToParse = _txtToParse;
 		callbackScript = _callbackScript;
 		callbackFunction = _callbackFunction;
-		NewTalk ();
+        BlockPlayer(block);
+        NewTalk ();
+	}
+
+	public void NewTalk(string _lineToStart,string _lineToBreak, string _callbackFunction, bool block = true)
+    {
+		lineToStart = _lineToStart;
+		lineToBreak = _lineToBreak;
+		callbackFunction = _callbackFunction;
+        BlockPlayer(block);
+        NewTalk ();
 	}
 
 	/// <summary>
@@ -346,6 +360,8 @@ public class RPGTalk : MonoBehaviour {
 		if(OnNewTalk != null){
 			OnNewTalk ();
 		}
+        
+
 
 		//Check if we are using the right txtToParse based on the language
 		CheckCurrentLanguage ();
@@ -990,7 +1006,7 @@ public class RPGTalk : MonoBehaviour {
 						rpgAudioSorce.clip = passAudio;
 						rpgAudioSorce.Play ();
 					}
-					if(callbackScript != null){
+					if(callbackScript != null && !callbackFunction.Equals("")){
 						callbackScript.Invoke(callbackFunction,0f);
 						//Stop any blinking arrows that shouldn't appear
 						CancelInvoke ("blink");
@@ -1118,7 +1134,7 @@ public class RPGTalk : MonoBehaviour {
 
 	/// <summary>
 	/// Function to be called by the buttons when the user makes a choice.
-	/// This passes the talk and call the OnMadeChoice event
+	/// This passes the talk and call the OnChoiceMade event
 	/// </summary>
 	public void MadeAChoice(int questionID, int choiceNumber){
 		foreach (RPGTalkQuestion q in questions) {
@@ -1128,8 +1144,8 @@ public class RPGTalk : MonoBehaviour {
 		}
 		enablePass = true;
 		PlayNext ();
-		if (OnMadeChoice != null) {
-			OnMadeChoice (questionID, choiceNumber);
+		if (OnChoiceMade != null) {
+			OnChoiceMade (questionID, choiceNumber);
 		}
 		//delete all the buttons (and other childs) in the buttons parent
 		foreach (Transform child in choicesParent) {
@@ -1300,7 +1316,7 @@ public class RPGTalk : MonoBehaviour {
 	/// </summary>
 	/// <param name="jumpQuestions">If set to <c>true</c> goes to the end of the talk, even if there were questions between it</param>
 	public void EndTalk(bool jumpQuestions = false) {
-		if (textUI && textUI.gameObject.activeInHierarchy) {
+		if (textUI && textUI.gameObject.activeInHierarchy && rpgtalkElements != null) {
 			cutscenePosition = rpgtalkElements.Count - 1;
 			if (!shouldStayOnScreen) {
 				CleanDirtySprites ();
@@ -1407,7 +1423,12 @@ public class RPGTalk : MonoBehaviour {
 			//call the event
 			if(OnEndTalk != null){
 				OnEndTalk ();
+
 			}
+
+            //my addition - enable player movement
+            CrowShadowManager.GameManager.instance.blocked = false;
+
 
 			isPlaying = false;
 
@@ -1423,8 +1444,8 @@ public class RPGTalk : MonoBehaviour {
 				}
 			}
 
-			if(callbackScript != null){
-				callbackScript.Invoke(callbackFunction,0f);
+			if(callbackScript != null && !callbackFunction.Equals("")){
+                callbackScript.Invoke(callbackFunction,0f);
 			}
 		}
 
@@ -1458,5 +1479,14 @@ public class RPGTalk : MonoBehaviour {
 			}
 		}
 	}
+
+    void BlockPlayer(bool block) {
+
+        if (block)
+        {
+            //my addition - stop player movement
+            CrowShadowManager.GameManager.instance.blocked = true;
+        }
+    }
 
 }

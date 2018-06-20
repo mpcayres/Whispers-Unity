@@ -1,96 +1,207 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+using CrowShadowManager;
+using CrowShadowPlayer;
 
-public class MovingObject : MonoBehaviour {
-    GameObject player;
-    public bool colliding = false;
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rb;
-    Player script;
-    float distanceWantedX = 0.4f;
-    float distanceWantedY = 0.45f;
+namespace CrowShadowObjects
+{
+    public class MovingObject : MonoBehaviour
+    {
+        public bool canMoveUp = false;
+        public bool colliding = false;
+        public string prefName = ""; // Padrão: identificador do objeto (MO) + _ + nome da cena + _ + identificador
+        public float scaleMoveUp = 4f;
 
-    void Start ()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        script = player.GetComponent<Player>();
-    }
-	
-	void Update ()
-    {
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-        if (colliding && !MissionManager.instance.paused)
+        GameObject player;
+        Player scriptPlayer;
+        Renderer playerRenderer;
+        SpriteRenderer spriteRenderer;
+        Rigidbody2D rb;
+        Collider2D colliderMO, colliderPlayer;
+
+        float distanceWantedX = 0.4f;
+        float distanceWantedY = 0.45f;
+        int originalDirection;
+        float originalX, originalY;
+        float aproxTimerMult = 1f;
+
+        void Awake()
         {
-            if (Input.GetKeyDown(KeyCode.Z)) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            rb = GetComponent<Rigidbody2D>();
+            colliderMO = GetComponent<Collider2D>();
+        }
+
+        private void Start()
+        {
+            player = GameManager.instance.gameObject;
+            scriptPlayer = player.GetComponent<Player>();
+            playerRenderer = player.GetComponent<SpriteRenderer>();
+            colliderPlayer = player.GetComponent<Collider2D>();
+        }
+
+        void Update()
+        {
+            if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT)
+            {
+                spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+            }
+            else
+            {
+                spriteRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+            }
+            if (colliding && !GameManager.instance.paused && !GameManager.instance.pausedObject && !GameManager.instance.blocked)
+            {
+                if (CrossPlatformInputManager.GetButton("keySpecial") && canMoveUp)
+                {
+                    if (CrossPlatformInputManager.GetButtonDown("keyMove"))
+                    {
+                        MoveUp();
+                    }
+                }
+                else if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT)
+                {
+                    if (CrossPlatformInputManager.GetButtonDown("keyMove")) //GetKeyDown e GetKeyUp não pode ser usado fora do Update
+                    {
+                        InitMove();
+                    }
+                    else if (CrossPlatformInputManager.GetButton("keyMove"))
+                    {
+                        Move();
+                    }
+                    else if (CrossPlatformInputManager.GetButtonUp("keyMove"))
+                    {
+                        EndMove();
+                    }
+                }
+            }
+        }
+
+        public void InitMove()
+        {
+            //print("INITMOVE");
+            scriptPlayer.playerAction = Player.Actions.MOVING_OBJECT;
+            scriptPlayer.animator.SetTrigger("movingObject");
+            aproxTimerMult = 0f;
+        }
+
+        public void Move()
+        {
+            if (scriptPlayer.playerAction != Player.Actions.MOVING_OBJECT)
             {
                 InitMove();
             }
-            else if (Input.GetKey(KeyCode.Z))
+
+            if (!GameManager.instance.scenerySounds2.source.isPlaying)
             {
-                Move();
+                GameManager.instance.scenerySounds2.PlaySlide(1);
             }
-            else if (Input.GetKeyUp(KeyCode.Z))
+            //print("MOVE");
+            var relativePoint = transform.InverseTransformPoint(player.transform.position);
+            //para ver se esta na esquerda ou direta, em cima ou baixo
+            //para nao dar problema com a colisão do MovingObject em bordas, faze-las grandes (maiores do que ele)
+
+            if ((scriptPlayer.direction == 0 && relativePoint.x < 0.0)
+                || (scriptPlayer.direction == 1 && relativePoint.x > 0.0)
+                || (scriptPlayer.direction == 0 && relativePoint.x < 0.0 && scriptPlayer.wantedDirection == 1)
+                || (scriptPlayer.direction == 1 && relativePoint.x > 0.0 && scriptPlayer.wantedDirection == 0)
+                )
             {
-                EndMove();
+                Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
+                diff.y = 0; // ignore Y
+                diff.z = 0;
+                rb.position = Vector2.Lerp(rb.position, player.transform.position + diff.normalized * distanceWantedX, aproxTimerMult * Time.deltaTime);
+            }
+            else if ((scriptPlayer.direction == 2 && relativePoint.y < 0.0)
+                || (scriptPlayer.direction == 3 && relativePoint.y > 0.0)
+                || (scriptPlayer.direction == 2 && relativePoint.y < 0.0 && scriptPlayer.wantedDirection == 3)
+                || (scriptPlayer.direction == 3 && relativePoint.y > 0.0 && scriptPlayer.wantedDirection == 2))
+            {
+                Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
+                diff.x = 0; // ignore X
+                diff.z = 0;
+                rb.position = Vector2.Lerp(rb.position, player.transform.position + diff.normalized * distanceWantedY, aproxTimerMult * Time.deltaTime);
+            }
+
+            if (aproxTimerMult < 100f)
+            {
+                aproxTimerMult += (10 * Time.deltaTime);
             }
         }
-    }
 
-    public void InitMove()
-    {
-        print("INITMOVE");
-        script.playerState = Player.Actions.MOVING_OBJECT;
-        script.animator.SetTrigger("movingObject");
-    }
-
-    public void Move()
-    {
-        print("MOVE");
-        var relativePoint = transform.InverseTransformPoint(player.transform.position);
-        //para ver se esta na esquerda ou direta, em cima ou baixo
-        //para nao dar problema com a colisão do MovingObject em bordas, faze-las grandes (maiores do que ele)
-
-        if ((script.direction == 0 && relativePoint.x < 0.0)
-            || (script.direction == 1 && relativePoint.x > 0.0)
-            || (script.direction == 0 && relativePoint.x < 0.0 && script.wantedDirection == 1)
-            || (script.direction == 1 && relativePoint.x > 0.0 && script.wantedDirection == 0)
-            )
+        public void EndMove()
         {
-            Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
-            diff.y = 0; // ignore Y
-            diff.z = 0;
-            rb.position = player.transform.position + diff.normalized * distanceWantedX;
+            GameManager.instance.scenerySounds2.StopSound();
+            //print("ENDMOVE");
+            scriptPlayer.playerAction = Player.Actions.DEFAULT;
+            scriptPlayer.animator.SetTrigger("changeDirection");
         }
-        else if ((script.direction == 2 && relativePoint.y < 0.0)
-            || (script.direction == 3 && relativePoint.y > 0.0)
-            || (script.direction == 2 && relativePoint.y < 0.0 && script.wantedDirection == 3)
-            || (script.direction == 3 && relativePoint.y > 0.0 && script.wantedDirection == 2))
+
+        public void MoveUp()
         {
-            Vector3 diff = new Vector3(rb.position.x, rb.position.y) - player.transform.position;
-            diff.x = 0; // ignore X
-            diff.z = 0;
-            rb.position = player.transform.position + diff.normalized * distanceWantedY;
+            //print("MOVEUP");
+            scriptPlayer.StopMovement();
+            if (scriptPlayer.playerAction != Player.Actions.ON_OBJECT)
+            {
+                originalDirection = scriptPlayer.direction;
+                if (originalDirection != 3)
+                {
+                    scriptPlayer.playerAction = Player.Actions.ANIMATION;
+                    originalX = player.transform.position.x;
+                    originalY = player.transform.position.y;
+                    colliderMO.enabled = false;
+                    colliderPlayer.enabled = false;
+                    if (originalDirection == 0)
+                    {
+                        scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                        scriptPlayer.MoveUpAnimation(this, "playerClimbEast", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
+                    }
+                    else if (originalDirection == 1)
+                    {
+                        scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y, -1);
+                        scriptPlayer.MoveUpAnimation(this, "playerClimbWest", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
+                    }
+                    else if (originalDirection == 2)
+                    {
+                        scriptPlayer.ChangePositionDefault(rb.position.x, rb.position.y, -1);
+                        scriptPlayer.MoveUpAnimation(this, "playerClimbNorth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
+                    }
+                    /*else if (originalDirection == 3)
+                    {
+                        scriptPlayer.ChangePositionDefault(this, rb.position.x, rb.position.y, -1);
+                        scriptPlayer.MoveUpAnimation("playerClimbSouth", rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), originalDirection);
+                    }*/
+                }
+            }
+            else
+            {
+                if (originalDirection == 0)
+                {
+                    scriptPlayer.ChangePositionDefault(rb.position.x - (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), 1);
+                    scriptPlayer.MoveDownAnimation("playerDownWest", originalX, originalY, -1);
+                }
+                else if (originalDirection == 1)
+                {
+                    scriptPlayer.ChangePositionDefault(rb.position.x + (spriteRenderer.bounds.size.x / (float)1.5), rb.position.y + (spriteRenderer.bounds.size.y / scaleMoveUp), 0);
+                    scriptPlayer.MoveDownAnimation("playerDownEast", originalX, originalY, -1);
+                }
+                else if (originalDirection == 2)
+                {
+                    scriptPlayer.ChangePositionDefault(rb.position.x, rb.position.y, 3);
+                    scriptPlayer.MoveDownAnimation("playerDownSouth", originalX, originalY, -1);
+                }
+                /*else if (originalDirection == 3)
+                {
+                scriptPlayer.ChangePositionDefault(this, rb.position.x, rb.position.y + (spriteRenderer.bounds.size.y / 4), 2);
+                    scriptPlayer.MoveDownAnimation("playerDownNorth", originalX, originalY, -1);
+                }*/
+            }
         }
-    }
 
-    public void EndMove()
-    {
-        print("ENDMOVE");
-        script.playerState = Player.Actions.DEFAULT;
-        script.animator.SetTrigger("changeDirection");
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+        public void ChangePosition(float x, float y)
+        {
+            rb.position = new Vector2(x, y);
+        }
 
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
-    }
-
 }

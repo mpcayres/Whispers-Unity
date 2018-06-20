@@ -1,5 +1,0 @@
-Hello! Welcome to our game!
-[question=0]Are you ready to play?
-[choice]Yes!
-[choice]Not really.
-Ok!
